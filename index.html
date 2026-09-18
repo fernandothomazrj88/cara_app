@@ -3,25 +3,17 @@
 
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <title>CARA — Comunidade Apostólica Restaurando Almas</title>
 
-  <!-- ÍCONE -->
   <link rel="icon" href="icone-cara.png">
   <link rel="apple-touch-icon" href="icone-cara.png">
 
-  <meta name="theme-color" content="#0b171d">
+  <meta name="theme-color" content="#07151c">
 
   <style>
-
-    /* =========================
-       CONFIGURAÇÕES GERAIS
-    ========================== */
 
     * {
       box-sizing: border-box;
@@ -30,11 +22,9 @@
     }
 
     :root {
-      --preto: #081116;
-      --preto-claro: #101b20;
+      --escuro: #07151c;
       --dourado: #d7a52b;
       --branco: #ffffff;
-      --cinza: #d5d8da;
       --fundo: #f3f3f1;
     }
 
@@ -46,8 +36,6 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--fundo);
       color: #171717;
-
-      /* espaço para o menu inferior */
       padding-bottom: 95px;
     }
 
@@ -59,19 +47,19 @@
 
 
     /* =========================
-       CABEÇALHO
+       TOPO
     ========================== */
 
     .hero {
-      background: #0b171d;
+      background: #07151c;
       color: white;
 
       padding:
-        calc(18px + env(safe-area-inset-top))
-        20px
-        30px;
+        calc(10px + env(safe-area-inset-top))
+        18px
+        28px;
 
-      border-bottom: 4px solid var(--dourado);
+      border-bottom: 3px solid var(--dourado);
     }
 
 
@@ -79,114 +67,64 @@
 
     .logo {
       width: 100%;
-      max-width: 720px;
+      max-width: 760px;
       height: auto;
-
-      margin: 0 auto;
 
       display: block;
 
-      object-fit: contain;
+      margin: 0 auto;
 
-      /* IMPORTANTE:
-         sem fundo branco
-         sem borda
-         sem padding
-      */
+      object-fit: contain;
     }
 
 
-    /* ADORAÇÃO / COMUNHÃO... */
+    /* FRASE DA CARA */
 
-    .lema-topo {
-      margin-top: 12px;
-
+    .frase-topo {
       text-align: center;
 
-      color: #e0e0e0;
+      color: #ffffff;
 
-      font-size: 10px;
-      font-weight: bold;
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
 
-      letter-spacing: 2px;
+      font-size: 16px;
+      line-height: 1.4;
+
+      margin:
+        10px
+        auto
+        30px;
+
+      max-width: 650px;
     }
 
 
-    /* =========================
-       BOAS-VINDAS
-    ========================== */
+    /* BOAS VINDAS */
 
     .boas-vindas {
-      margin-top: 30px;
+      margin-top: 5px;
     }
 
     .bem-vindo {
       color: var(--dourado);
 
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
 
       letter-spacing: 3px;
 
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
 
     .boas-vindas h1 {
       color: white;
 
-      font-size: clamp(34px, 8vw, 48px);
+      font-size: clamp(35px, 9vw, 48px);
 
-      line-height: 1;
+      line-height: 1.05;
 
-      margin-bottom: 18px;
-    }
-
-
-    /* VERSÍCULO */
-
-    .versiculo {
-      max-width: 600px;
-
-      color: #eeeeee;
-
-      font-size: 17px;
-
-      line-height: 1.55;
-    }
-
-    .referencia {
-      display: block;
-
-      margin-top: 9px;
-
-      color: var(--dourado);
-
-      font-weight: bold;
-    }
-
-
-    /* FRASE OFICIAL */
-
-    .frase-oficial {
-      margin-top: 26px;
-
-      padding: 20px;
-
-      border-left: 3px solid var(--dourado);
-
-      background: rgba(255, 255, 255, 0.04);
-
-      border-radius: 0 14px 14px 0;
-
-      color: white;
-
-      font-family: Georgia, "Times New Roman", serif;
-
-      font-style: italic;
-
-      font-size: 19px;
-
-      line-height: 1.45;
+      margin: 0;
     }
 
 
@@ -199,81 +137,17 @@
     }
 
 
-    /* =========================
-       PRÓXIMO EVENTO
-    ========================== */
-
-    .evento {
-      background: linear-gradient(
-        135deg,
-        #10191d,
-        #17252b
-      );
-
-      color: white;
-
-      border-radius: 20px;
-
-      padding: 20px;
-
-      margin-bottom: 20px;
-
-      box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .evento-label {
-      color: var(--dourado);
-
-      font-size: 12px;
-      font-weight: bold;
-
-      letter-spacing: 3px;
-    }
-
-    .evento h2 {
-      margin-top: 9px;
-
-      font-size: 26px;
-    }
-
-    .evento-subtitulo {
-      color: #d3d3d3;
-
-      margin-top: 4px;
-
-      font-size: 16px;
-    }
-
-    .evento-info {
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 16px;
-
-      margin-top: 18px;
-
-      color: #eeeeee;
-
-      font-size: 14px;
-    }
-
-
-    /* =========================
-       TÍTULO DAS SEÇÕES
-    ========================== */
+    /* TÍTULO */
 
     .titulo-secao {
       margin:
-        26px
+        4px
         3px
-        12px;
+        13px;
 
       color: #80681f;
 
       font-size: 12px;
-
       font-weight: 800;
 
       letter-spacing: 2px;
@@ -294,7 +168,7 @@
     }
 
     .modulo {
-      min-height: 116px;
+      min-height: 118px;
 
       border-radius: 18px;
 
@@ -311,15 +185,11 @@
       justify-content: space-between;
 
       box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.12);
+        0 5px 15px rgba(0,0,0,.12);
 
       transition:
-        transform 0.15s ease,
-        filter 0.15s ease;
-
-      cursor: pointer;
-
-      overflow: hidden;
+        transform .15s ease,
+        filter .15s ease;
     }
 
     .modulo:hover {
@@ -327,7 +197,7 @@
     }
 
     .modulo:active {
-      transform: scale(0.97);
+      transform: scale(.97);
     }
 
     .modulo-icone {
@@ -336,14 +206,13 @@
 
     .modulo h3 {
       font-size: 18px;
-
       margin-top: 9px;
     }
 
     .modulo p {
       margin-top: 4px;
 
-      color: rgba(255, 255, 255, 0.82);
+      color: rgba(255,255,255,.82);
 
       font-size: 12px;
 
@@ -351,141 +220,72 @@
     }
 
 
-    /* CORES DOS MÓDULOS */
+    /* =========================
+       CORES
+    ========================== */
 
     .agenda {
-      background:
-        linear-gradient(
-          135deg,
-          #005a4b,
-          #00705d
-        );
+      background: linear-gradient(
+        135deg,
+        #005a4b,
+        #00705d
+      );
     }
 
     .louvor {
-      background:
-        linear-gradient(
-          135deg,
-          #795000,
-          #9a6a00
-        );
+      background: linear-gradient(
+        135deg,
+        #795000,
+        #9a6a00
+      );
     }
 
     .midia {
-      background:
-        linear-gradient(
-          135deg,
-          #671b25,
-          #8a2934
-        );
+      background: linear-gradient(
+        135deg,
+        #671b25,
+        #8a2934
+      );
     }
 
     .estudos {
-      background:
-        linear-gradient(
-          135deg,
-          #064d70,
-          #08749f
-        );
+      background: linear-gradient(
+        135deg,
+        #064d70,
+        #08749f
+      );
     }
 
     .pregacoes {
-      background:
-        linear-gradient(
-          135deg,
-          #382044,
-          #56306a
-        );
+      background: linear-gradient(
+        135deg,
+        #382044,
+        #56306a
+      );
     }
 
     .membros {
-      background:
-        linear-gradient(
-          135deg,
-          #395407,
-          #54780d
-        );
+      background: linear-gradient(
+        135deg,
+        #395407,
+        #54780d
+      );
     }
 
     .ministerios {
-      background:
-        linear-gradient(
-          135deg,
-          #006064,
-          #007f82
-        );
+      background: linear-gradient(
+        135deg,
+        #006064,
+        #007f82
+      );
     }
 
     .secretaria {
-      background:
-        linear-gradient(
-          135deg,
-          #252b2e,
-          #3a4246
-        );
-    }
-
-
-    /* =========================
-       NOSSA MISSÃO
-    ========================== */
-
-    .missao {
-      margin-top: 20px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #1c1708,
-          #11191d
-        );
-
-      color: white;
-
-      border-radius: 20px;
-
-      padding: 23px;
-
-      border-left:
-        5px solid var(--dourado);
-    }
-
-    .missao-label {
-      color: var(--dourado);
-
-      font-size: 11px;
-
-      font-weight: bold;
-
-      letter-spacing: 3px;
-    }
-
-    .missao h2 {
-      margin-top: 9px;
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 25px;
-
-      line-height: 1.15;
-    }
-
-    .missao p {
-      margin-top: 15px;
-
-      color: #d8d8d8;
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-style: italic;
-
-      line-height: 1.5;
+      background: linear-gradient(
+        135deg,
+        #252b2e,
+        #3a4246
+      );
     }
 
 
@@ -497,19 +297,16 @@
       position: fixed;
 
       bottom: 0;
-
       left: 50%;
 
-      transform:
-        translateX(-50%);
+      transform: translateX(-50%);
 
       width: 100%;
-
       max-width: 900px;
 
       min-height: 78px;
 
-      background: #071116;
+      background: #061015;
 
       display: grid;
 
@@ -523,8 +320,7 @@
         0;
 
       box-shadow:
-        0 -4px 20px
-        rgba(0, 0, 0, 0.18);
+        0 -4px 20px rgba(0,0,0,.18);
 
       z-index: 1000;
 
@@ -542,7 +338,6 @@
       flex-direction: column;
 
       justify-content: center;
-
       align-items: center;
 
       gap: 4px;
@@ -556,7 +351,6 @@
 
     .menu-item.ativo {
       color: var(--dourado);
-
       font-weight: bold;
     }
 
@@ -569,14 +363,14 @@
 
       .hero {
         padding:
-          28px
-          42px
-          38px;
+          20px
+          40px
+          35px;
       }
 
       .conteudo {
         padding:
-          28px
+          25px
           38px;
       }
 
@@ -589,22 +383,18 @@
         min-height: 145px;
       }
 
-      .frase-oficial {
-        max-width: 650px;
-      }
-
     }
 
 
     /* =========================
-       CELULARES PEQUENOS
+       CELULAR PEQUENO
     ========================== */
 
     @media (max-width: 370px) {
 
       .hero {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 14px;
+        padding-right: 14px;
       }
 
       .conteudo {
@@ -623,9 +413,8 @@
         font-size: 16px;
       }
 
-      .lema-topo {
-        letter-spacing: 1.4px;
-        font-size: 9px;
+      .frase-topo {
+        font-size: 14px;
       }
 
     }
@@ -636,451 +425,234 @@
 
 <body>
 
-  <div class="app">
+<div class="app">
 
 
-    <!-- =====================
-         CABEÇALHO
-    ====================== -->
+  <!-- CABEÇALHO -->
 
-    <header class="hero">
+  <header class="hero">
 
-
-      <!-- LOGO ORIGINAL -->
-
-      <img
-        src="logo-cara.png"
-        alt="CARA — Comunidade Apostólica Restaurando Almas"
-        class="logo"
-      >
+    <img
+      src="logo-cara.png"
+      alt="CARA — Comunidade Apostólica Restaurando Almas"
+      class="logo"
+    >
 
 
-      <div class="lema-topo">
-        ADORAÇÃO • COMUNHÃO • DISCIPULADO • SERVIÇO
+    <div class="frase-topo">
+      “Um amor que acolhe, a verdade que liberta e a graça que restaura!”
+    </div>
+
+
+    <div class="boas-vindas">
+
+      <div class="bem-vindo">
+        BEM-VINDO
       </div>
 
+      <h1>
+        Shalom, Shalom!
+      </h1>
 
-      <!-- BOAS-VINDAS -->
+    </div>
 
-      <div class="boas-vindas">
+  </header>
 
-        <div class="bem-vindo">
-          BEM-VINDO
+
+
+  <!-- CONTEÚDO -->
+
+  <main class="conteudo">
+
+
+    <div class="titulo-secao">
+      ACESSO RÁPIDO
+    </div>
+
+
+    <section class="modulos">
+
+
+      <a class="modulo agenda" href="#">
+
+        <div class="modulo-icone">
+          📅
         </div>
 
+        <div>
+          <h3>Agenda</h3>
 
-        <h1>
-          Shalom, Shalom!
-        </h1>
-
-
-        <div class="versiculo">
-
-          “Mas os que esperam no Senhor
-          renovam as suas forças,
-          voam alto como águias;
-          correm e não ficam exaustos,
-          andam e não se cansam.”
-
-          <span class="referencia">
-            Isaías 40:31 (NVI)
-          </span>
-
+          <p>
+            Cultos, reuniões e eventos
+          </p>
         </div>
 
+      </a>
 
-        <div class="frase-oficial">
 
-          “Um amor que acolhe,
-          a verdade que liberta
-          e a graça que restaura!”
 
+      <a class="modulo louvor" href="#">
+
+        <div class="modulo-icone">
+          🎵
         </div>
 
-      </div>
+        <div>
+          <h3>Louvor</h3>
 
-    </header>
-
-
-
-    <!-- =====================
-         CONTEÚDO
-    ====================== -->
-
-    <main class="conteudo">
-
-
-      <!-- PRÓXIMO EVENTO -->
-
-      <section class="evento">
-
-        <div class="evento-label">
-          PRÓXIMO EVENTO
+          <p>
+            Cifras, repertório e escalas
+          </p>
         </div>
 
-
-        <h2>
-          📖 Estudo Bíblico
-        </h2>
+      </a>
 
 
-        <div class="evento-subtitulo">
-          Romanos — Aula 03
+
+      <a class="modulo midia" href="#">
+
+        <div class="modulo-icone">
+          🖼️
         </div>
 
+        <div>
+          <h3>Mídia</h3>
 
-        <div class="evento-info">
-
-          <span>
-            📅 Terça-feira
-          </span>
-
-          <span>
-            🕘 21h45
-          </span>
-
-          <span>
-            📍 Na congregação
-          </span>
-
+          <p>
+            Artes, fotos e conteúdos
+          </p>
         </div>
 
-      </section>
+      </a>
 
 
 
-      <div class="titulo-secao">
-        ACESSO RÁPIDO
-      </div>
+      <a class="modulo estudos" href="#">
 
-
-
-      <!-- =====================
-           MÓDULOS
-      ====================== -->
-
-      <section class="modulos">
-
-
-        <!-- AGENDA -->
-
-        <a
-          class="modulo agenda"
-          href="#"
-        >
-
-          <div class="modulo-icone">
-            📅
-          </div>
-
-          <div>
-
-            <h3>
-              Agenda
-            </h3>
-
-            <p>
-              Cultos, reuniões e eventos
-            </p>
-
-          </div>
-
-        </a>
-
-
-
-        <!-- LOUVOR -->
-
-        <a
-          class="modulo louvor"
-          href="#"
-        >
-
-          <div class="modulo-icone">
-            🎵
-          </div>
-
-          <div>
-
-            <h3>
-              Louvor
-            </h3>
-
-            <p>
-              Cifras, repertório e escalas
-            </p>
-
-          </div>
-
-        </a>
-
-
-
-        <!-- MÍDIA -->
-
-        <a
-          class="modulo midia"
-          href="#"
-        >
-
-          <div class="modulo-icone">
-            🖼️
-          </div>
-
-          <div>
-
-            <h3>
-              Mídia
-            </h3>
-
-            <p>
-              Artes, fotos e conteúdos
-            </p>
-
-          </div>
-
-        </a>
-
-
-
-        <!-- ESTUDOS -->
-
-        <a
-          class="modulo estudos"
-          href="#"
-        >
-
-          <div class="modulo-icone">
-            📖
-          </div>
-
-          <div>
-
-            <h3>
-              Estudos Bíblicos
-            </h3>
-
-            <p>
-              Materiais e aulas
-            </p>
-
-          </div>
-
-        </a>
-
-
-
-        <!-- PREGAÇÕES -->
-
-        <a
-          class="modulo pregacoes"
-          href="#"
-        >
-
-          <div class="modulo-icone">
-            🎙️
-          </div>
-
-          <div>
-
-            <h3>
-              Pregações
-            </h3>
-
-            <p>
-              Mensagens e séries
-            </p>
-
-          </div>
-
-        </a>
-
-
-
-        <!-- MEMBROS -->
-
-        <a
-          class="modulo membros"
-          href="#"
-        >
-
-          <div class="modulo-icone">
-            👥
-          </div>
-
-          <div>
-
-            <h3>
-              Membros
-            </h3>
-
-            <p>
-              Cadastro e aniversariantes
-            </p>
-
-          </div>
-
-        </a>
-
-
-
-        <!-- MINISTÉRIOS -->
-
-        <a
-          class="modulo ministerios"
-          href="#"
-        >
-
-          <div class="modulo-icone">
-            🤝
-          </div>
-
-          <div>
-
-            <h3>
-              Ministérios
-            </h3>
-
-            <p>
-              Servir e edificar
-            </p>
-
-          </div>
-
-        </a>
-
-
-
-        <!-- SECRETARIA -->
-
-        <a
-          class="modulo secretaria"
-          href="#"
-        >
-
-          <div class="modulo-icone">
-            ⚙️
-          </div>
-
-          <div>
-
-            <h3>
-              Secretaria
-            </h3>
-
-            <p>
-              Documentos e administração
-            </p>
-
-          </div>
-
-        </a>
-
-      </section>
-
-
-
-      <!-- =====================
-           MISSÃO
-      ====================== -->
-
-      <section class="missao">
-
-        <div class="missao-label">
-          NOSSA MISSÃO
+        <div class="modulo-icone">
+          📖
         </div>
 
+        <div>
+          <h3>Estudos Bíblicos</h3>
 
-        <h2>
-          Restaurar vidas para
-          a glória de Deus.
-        </h2>
+          <p>
+            Materiais e aulas
+          </p>
+        </div>
 
-
-        <p>
-
-          “Um amor que acolhe,
-          a verdade que liberta
-          e a graça que restaura!”
-
-        </p>
-
-      </section>
-
-    </main>
-
-  </div>
+      </a>
 
 
 
-  <!-- =====================
-       MENU INFERIOR
-  ====================== -->
+      <a class="modulo pregacoes" href="#">
 
-  <nav class="menu-inferior">
+        <div class="modulo-icone">
+          🎙️
+        </div>
 
+        <div>
+          <h3>Pregações</h3>
 
-    <a
-      href="#"
-      class="menu-item ativo"
-    >
+          <p>
+            Mensagens e séries
+          </p>
+        </div>
 
-      <span>🏠</span>
-
-      Início
-
-    </a>
+      </a>
 
 
-    <a
-      href="#"
-      class="menu-item"
-    >
 
-      <span>📅</span>
+      <a class="modulo membros" href="#">
 
-      Agenda
+        <div class="modulo-icone">
+          👥
+        </div>
 
-    </a>
+        <div>
+          <h3>Membros</h3>
 
+          <p>
+            Cadastro e aniversariantes
+          </p>
+        </div>
 
-    <a
-      href="#"
-      class="menu-item"
-    >
-
-      <span>▦</span>
-
-      Ministérios
-
-    </a>
+      </a>
 
 
-    <a
-      href="#"
-      class="menu-item"
-    >
 
-      <span>🔔</span>
+      <a class="modulo ministerios" href="#">
 
-      Avisos
+        <div class="modulo-icone">
+          🤝
+        </div>
 
-    </a>
+        <div>
+          <h3>Ministérios</h3>
+
+          <p>
+            Servir e edificar
+          </p>
+        </div>
+
+      </a>
 
 
-    <a
-      href="#"
-      class="menu-item"
-    >
 
-      <span>☰</span>
+      <a class="modulo secretaria" href="#">
 
-      Mais
+        <div class="modulo-icone">
+          ⚙️
+        </div>
 
-    </a>
+        <div>
+          <h3>Secretaria</h3>
 
-  </nav>
+          <p>
+            Documentos e administração
+          </p>
+        </div>
 
+      </a>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+
+<!-- MENU INFERIOR -->
+
+<nav class="menu-inferior">
+
+  <a href="#" class="menu-item ativo">
+    <span>🏠</span>
+    Início
+  </a>
+
+  <a href="#" class="menu-item">
+    <span>📅</span>
+    Agenda
+  </a>
+
+  <a href="#" class="menu-item">
+    <span>▦</span>
+    Ministérios
+  </a>
+
+  <a href="#" class="menu-item">
+    <span>🔔</span>
+    Avisos
+  </a>
+
+  <a href="#" class="menu-item">
+    <span>☰</span>
+    Mais
+  </a>
+
+</nav>
 
 </body>
 </html>
