@@ -1,0 +1,4116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <base target="_top">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>CARA Louvor</title>
+
+
+  <!-- ÍCONE / ATALHO DO CARA LOUVOR -->
+  <meta name="theme-color" content="#c8952d">
+  <meta name="application-name" content="CARA Louvor">
+  <meta name="apple-mobile-web-app-title" content="CARA Louvor">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="https://drive.google.com/thumbnail?id=1TI-K49OA4nBa3z3lAYV-FNQxHVldQtKi&sz=w192"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    sizes="192x192"
+    href="https://drive.google.com/thumbnail?id=1TI-K49OA4nBa3z3lAYV-FNQxHVldQtKi&sz=w192"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #1b1b1b;
+    }
+
+    .topo {
+      background: #ffffff;
+      text-align: center;
+      padding: 22px 20px 18px;
+      border-bottom: 3px solid #c8952d;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+
+    .topo {
+      position: relative;
+    }
+
+    .voltar-app-principal {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border: 1px solid rgba(200,149,45,.55);
+      border-radius: 10px;
+      background: rgba(5,18,24,.72);
+      color: #f1d38a;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      z-index: 5;
+    }
+
+    .voltar-app-principal:active {
+      transform: scale(.98);
+    }
+
+    .logo-cara {
+      display: block;
+      width: 100%;
+      max-width: 430px;
+      height: auto;
+      margin: 0 auto 14px;
+    }
+
+    .topo h1 {
+      margin: 5px 0 0;
+      font-size: 20px;
+      color: #a87517;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .conteudo {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+
+    .tela {
+      display: none;
+    }
+
+    .tela.ativa {
+      display: block;
+    }
+
+    .boas-vindas {
+      margin-bottom: 25px;
+    }
+
+    .boas-vindas h2 {
+      margin: 0 0 7px;
+      font-size: 25px;
+    }
+
+    .boas-vindas p {
+      margin: 0;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .titulo-area {
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a87517;
+      margin: 30px 0 12px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 19px;
+      margin-bottom: 14px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      border: 1px solid #eeeeee;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 16px rgba(0,0,0,0.11);
+    }
+
+    .icone {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 12px;
+      background: #f7f1e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 23px;
+      margin-right: 15px;
+    }
+
+    .card-texto {
+      flex: 1;
+    }
+
+    .card h3 {
+      margin: 0 0 5px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .seta {
+      margin-left: 10px;
+      color: #c8952d;
+      font-size: 22px;
+    }
+
+    .cabecalho-tela {
+      display: flex;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .cabecalho-tela h2 {
+      margin: 0;
+      font-size: 23px;
+    }
+
+    .voltar {
+      border: none;
+      background: #eeeeee;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      margin-right: 12px;
+    }
+
+    .formulario,
+    .detalhe,
+    .login-box {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 22px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      border: 1px solid #eeeeee;
+    }
+
+    .campo {
+      margin-bottom: 16px;
+    }
+
+    .campo label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .campo input,
+    .campo textarea,
+    .campo select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cccccc;
+      border-radius: 9px;
+      font-size: 15px;
+      font-family: inherit;
+      background: #ffffff;
+    }
+
+    .campo textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    #cifra {
+      min-height: 220px;
+      font-family: "Courier New", monospace;
+    }
+
+    .botao {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .botao-dourado {
+      background: #c8952d;
+      color: #ffffff;
+    }
+
+    .botao-cinza {
+      background: #eeeeee;
+      color: #333333;
+    }
+
+    .mensagem {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .mensagem-sucesso {
+      display: block;
+      background: #e7f7ec;
+      color: #1d6b35;
+    }
+
+    .mensagem-erro {
+      display: block;
+      background: #fdeaea;
+      color: #9a1f1f;
+    }
+
+    .mensagem-processando {
+      display: block;
+      background: #faf4e7;
+      color: #8a6417;
+    }
+
+    .status-ministerio {
+      background: #faf7f1;
+      border: 1px solid #ead9b6;
+      padding: 14px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+
+    .status-ministerio strong {
+      color: #a87517;
+    }
+
+    .pesquisa {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #cccccc;
+      border-radius: 10px;
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .louvor-item,
+    .repertorio-item,
+    .item-selecionado,
+    .usuario-item {
+      background: #ffffff;
+      border-radius: 13px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid #eeeeee;
+    }
+
+    .louvor-item,
+    .repertorio-item {
+      cursor: pointer;
+    }
+
+    .louvor-item h3,
+    .repertorio-item h3,
+    .usuario-item h3 {
+      margin: 0 0 5px;
+    }
+
+    .louvor-item p,
+    .repertorio-item p,
+    .usuario-item p {
+      margin: 4px 0;
+      color: #666666;
+      font-size: 14px;
+    }
+
+    .tom,
+    .badge {
+      display: inline-block;
+      background: #f7f1e5;
+      color: #a87517;
+      padding: 5px 8px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 7px;
+    }
+
+    .abas-louvor {
+      display: flex;
+      background: #eeeeee;
+      padding: 4px;
+      border-radius: 10px;
+      margin-top: 22px;
+      margin-bottom: 18px;
+      gap: 4px;
+    }
+
+    .aba-louvor {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 11px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .aba-louvor.ativa {
+      background: #ffffff;
+      color: #a87517;
+    }
+
+    .conteudo-louvor {
+      display: none;
+    }
+
+    .conteudo-louvor.ativo {
+      display: block;
+    }
+
+    .letra {
+      white-space: pre-wrap;
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    .cifra {
+      white-space: pre-wrap;
+      overflow-x: auto;
+      font-family: "Courier New", monospace;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .observacoes {
+      background: #faf7f1;
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 15px;
+      white-space: pre-line;
+    }
+
+    .navegacao-louvor {
+      display: none;
+      margin: 20px 0;
+      padding: 12px;
+      background: #faf7f1;
+      border-radius: 12px;
+    }
+
+    .posicao-louvor {
+      text-align: center;
+      color: #a87517;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .botoes-navegacao {
+      display: flex;
+      gap: 8px;
+    }
+
+    .botoes-navegacao button {
+      flex: 1;
+      border: none;
+      border-radius: 9px;
+      padding: 11px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .selecionar-louvor {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .selecionar-louvor select {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #cccccc;
+      border-radius: 9px;
+    }
+
+    .botao-add {
+      border: none;
+      background: #c8952d;
+      color: #ffffff;
+      border-radius: 9px;
+      padding: 0 18px;
+      font-size: 20px;
+    }
+
+    .item-topo {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .numero {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #f7f1e5;
+      color: #a87517;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .mini-input {
+      margin-top: 10px;
+    }
+
+    .mini-input input {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+    }
+
+    .item-acoes,
+    .usuario-acoes {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .item-acoes button,
+    .usuario-acoes button {
+      flex: 1;
+      border: none;
+      padding: 9px;
+      border-radius: 8px;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    .pin-box {
+      display: block;
+      margin-top: 12px;
+      padding: 12px;
+      background: #faf7f1;
+      border-radius: 10px;
+    }
+
+    .pin-box input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .pin-box-acoes {
+      display: flex;
+      gap: 8px;
+    }
+
+    .pin-box-acoes button {
+      flex: 1;
+      border: none;
+      padding: 9px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .vazio,
+    .carregando {
+      text-align: center;
+      color: #777777;
+      padding: 30px 15px;
+    }
+
+    .toast {
+      position: fixed;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      width: calc(100% - 32px);
+      max-width: 440px;
+      padding: 15px 18px;
+      border-radius: 12px;
+      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.18);
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        opacity .25s ease,
+        transform .25s ease,
+        visibility .25s ease;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .toast.visivel {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast-sucesso {
+      background: #e8f7ec;
+      border: 1px solid #b8dfc1;
+      color: #17652f;
+    }
+
+    .toast-erro {
+      background: #fdeaea;
+      border: 1px solid #efb8b8;
+      color: #9c2020;
+    }
+
+    .toast-info {
+      background: #fff8e8;
+      border: 1px solid #ead39d;
+      color: #75520c;
+    }
+
+    .toast strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .rodape {
+      text-align: center;
+      padding: 25px 20px 35px;
+      color: #777777;
+      font-size: 12px;
+    }
+
+    .rodape strong {
+      color: #a87517;
+    }
+
+    @media (max-width: 500px) {
+      .logo-cara {
+        max-width: 340px;
+      }
+
+      .conteudo {
+        padding: 24px 15px 35px;
+      }
+
+      .selecionar-louvor {
+        flex-direction: column;
+      }
+
+      .botao-add {
+        height: 44px;
+      }
+    }
+  
+
+    /* =========================================================
+       NOVA IDENTIDADE VISUAL — APP C.A.R.A. / MINISTÉRIO DE LOUVOR
+       Mantém a lógica e as funções existentes; altera somente a UI.
+       ========================================================= */
+    :root {
+      --cara-bg: #071820;
+      --cara-bg-2: #0b222c;
+      --cara-surface: #102a35;
+      --cara-surface-2: #153541;
+      --cara-accent: #b17b00;
+      --cara-accent-2: #d5a62e;
+      --cara-text: #f7f5ef;
+      --cara-muted: #aebbc0;
+      --cara-line: rgba(213,166,46,.30);
+      --cara-input: #0b2029;
+    }
+
+    html { background: var(--cara-bg); }
+
+    body {
+      background: linear-gradient(180deg, #071820 0%, #0a2029 48%, #071820 100%);
+      color: var(--cara-text);
+      min-height: 100vh;
+      padding-bottom: 18px;
+    }
+
+    .topo {
+      background: linear-gradient(180deg, #0b222c 0%, #071820 100%);
+      border-bottom: 3px solid var(--cara-accent);
+      box-shadow: 0 8px 24px rgba(0,0,0,.24);
+      padding: 18px 18px 16px;
+    }
+
+    .logo-cara {
+      max-width: 360px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+    }
+
+    .topo h1 {
+      color: var(--cara-accent-2);
+      font-size: 18px;
+      letter-spacing: 1.7px;
+    }
+
+    .conteudo {
+      max-width: 760px;
+      padding: 26px 16px 42px;
+    }
+
+    .boas-vindas h2,
+    .cabecalho-tela h2,
+    .card h3,
+    .louvor-item h3,
+    .repertorio-item h3,
+    .usuario-item h3,
+    .formulario h3,
+    .detalhe h2,
+    .login-box h3 {
+      color: var(--cara-text);
+    }
+
+    .boas-vindas p,
+    .card p,
+    .louvor-item p,
+    .repertorio-item p,
+    .usuario-item p,
+    .rodape,
+    .vazio,
+    .carregando {
+      color: var(--cara-muted);
+    }
+
+    .titulo-area {
+      color: var(--cara-accent-2);
+      margin-top: 28px;
+    }
+
+    .card,
+    .formulario,
+    .detalhe,
+    .login-box,
+    .louvor-item,
+    .repertorio-item,
+    .item-selecionado,
+    .usuario-item {
+      background: linear-gradient(145deg, var(--cara-surface-2), var(--cara-surface));
+      border: 1px solid rgba(255,255,255,.07);
+      box-shadow: 0 8px 20px rgba(0,0,0,.20);
+    }
+
+    .card {
+      border-left: 4px solid var(--cara-accent);
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 26px rgba(0,0,0,.28);
+      border-color: var(--cara-line);
+    }
+
+    .icone {
+      background: linear-gradient(145deg, #8d6200, #b17b00);
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.10);
+    }
+
+    .seta,
+    .status-ministerio strong,
+    .posicao-louvor,
+    .rodape strong {
+      color: var(--cara-accent-2);
+    }
+
+    .voltar {
+      background: var(--cara-surface-2);
+      color: var(--cara-accent-2);
+      border: 1px solid var(--cara-line);
+    }
+
+    .campo label { color: #e9edf0; }
+
+    .campo input,
+    .campo textarea,
+    .campo select,
+    .pesquisa,
+    .selecionar-louvor select,
+    .mini-input input,
+    .pin-box input {
+      background: var(--cara-input);
+      color: var(--cara-text);
+      border: 1px solid #284550;
+      outline: none;
+    }
+
+    .campo input:focus,
+    .campo textarea:focus,
+    .campo select:focus,
+    .pesquisa:focus,
+    .selecionar-louvor select:focus,
+    .mini-input input:focus,
+    .pin-box input:focus {
+      border-color: var(--cara-accent-2);
+      box-shadow: 0 0 0 3px rgba(213,166,46,.12);
+    }
+
+    input::placeholder,
+    textarea::placeholder { color: #80949d; }
+
+    .botao-dourado,
+    .botao-add {
+      background: linear-gradient(135deg, #8d6200, #b17b00);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(177,123,0,.20);
+    }
+
+    .botao-cinza,
+    .botoes-navegacao button,
+    .item-acoes button,
+    .usuario-acoes button,
+    .pin-box-acoes button {
+      background: #18333e;
+      color: var(--cara-text);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .status-ministerio,
+    .observacoes,
+    .navegacao-louvor,
+    .pin-box {
+      background: #0c252f;
+      color: var(--cara-text);
+      border: 1px solid var(--cara-line);
+    }
+
+    .tom,
+    .badge,
+    .numero {
+      background: rgba(177,123,0,.18);
+      color: var(--cara-accent-2);
+      border: 1px solid rgba(213,166,46,.20);
+    }
+
+    .abas-louvor {
+      background: #081b23;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .aba-louvor { color: var(--cara-muted); }
+
+    .aba-louvor.ativa {
+      background: var(--cara-accent);
+      color: #fff;
+    }
+
+    .letra,
+    .cifra,
+    #detalheCantor,
+    #repDetalheInfo { color: #edf1f2; }
+
+    .rodape {
+      border-top: 1px solid rgba(255,255,255,.06);
+      background: #06151b;
+    }
+
+    .toast-info {
+      background: #1d2c24;
+      border-color: #8b742e;
+      color: #f4dda1;
+    }
+
+    @media (max-width: 500px) {
+      .topo { padding: 14px 14px 13px; }
+      .logo-cara { max-width: 310px; }
+      .topo h1 { font-size: 16px; }
+      .conteudo { padding: 22px 14px 36px; }
+      .card { padding: 16px; border-radius: 14px; }
+      .icone { width: 46px; height: 46px; min-width: 46px; }
+      .boas-vindas h2 { font-size: 24px; }
+    }
+
+  </style>
+
+<script>
+/* ==========================================================
+   PONTE GITHUB -> APPS SCRIPT (JSONP)
+   Mantém a interface no GitHub Pages.
+   ========================================================== */
+const CARA_LOUVOR_API = "https://script.google.com/macros/s/AKfycbxRkkDNaw2NsmnxulJKrQnGBKXr_7KJ-RgIjWRRj2Bb1nnGlcsQaPXRcejV_ope2im8EA/exec";
+
+(function () {
+  function chamarApi(funcao, args) {
+    return new Promise((resolve, reject) => {
+      const callback = "__cara_cb_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+      const script = document.createElement("script");
+      const timeout = setTimeout(() => {
+        cleanup();
+        reject(new Error("Tempo esgotado ao comunicar com o servidor."));
+      }, 20000);
+
+      function cleanup() {
+        clearTimeout(timeout);
+        delete window[callback];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+
+      window[callback] = (resposta) => {
+        cleanup();
+        if (resposta && resposta.ok === false) {
+          reject(new Error(resposta.erro || "Erro no servidor."));
+          return;
+        }
+        resolve(resposta ? resposta.dados : null);
+      };
+
+      const payload = encodeURIComponent(JSON.stringify(args || []));
+      script.src = CARA_LOUVOR_API
+        + "?api=1&funcao=" + encodeURIComponent(funcao)
+        + "&args=" + payload
+        + "&callback=" + encodeURIComponent(callback)
+        + "&_=" + Date.now();
+
+      script.onerror = () => {
+        cleanup();
+        reject(new Error("Não foi possível acessar o servidor do Louvor."));
+      };
+
+      document.body.appendChild(script);
+    });
+  }
+
+  function novoRunner(successHandler, failureHandler) {
+    return new Proxy({}, {
+      get(_target, prop) {
+        if (prop === "withSuccessHandler") {
+          return (fn) => novoRunner(fn, failureHandler);
+        }
+        if (prop === "withFailureHandler") {
+          return (fn) => novoRunner(successHandler, fn);
+        }
+        return (...args) => {
+          chamarApi(String(prop), args)
+            .then((dados) => {
+              if (typeof successHandler === "function") successHandler(dados);
+            })
+            .catch((erro) => {
+              if (typeof failureHandler === "function") failureHandler(erro);
+              else console.error(erro);
+            });
+        };
+      }
+    });
+  }
+
+  window.google = window.google || {};
+  google.script = google.script || {};
+  Object.defineProperty(google.script, "run", {
+    get() { return novoRunner(null, null); }
+  });
+})();
+</script>
+
+</head>
+
+<body>
+<a class="voltar-app-principal" href="index.html" aria-label="Voltar ao início do App C.A.R.A.">← Início</a>
+
+<div id="toast" class="toast"></div>
+
+<header class="topo">
+
+  
+
+  <img
+    src="https://fernandothomazrj88.github.io/cara_app/logo-cara.png"
+    class="logo-cara"
+  >
+
+  <h1>
+    MINISTÉRIO DE LOUVOR
+  </h1>
+
+</header>
+
+
+<main class="conteudo">
+
+
+<section
+  id="telaInicial"
+  class="tela ativa"
+>
+
+  <div class="boas-vindas">
+
+    <h2>
+      Shalom! 👋
+    </h2>
+
+    <p>
+      Acompanhe os louvores da Comunidade Apostólica
+      Restaurando Almas.
+    </p>
+
+  </div>
+
+
+  <div class="titulo-area">
+    Área Pública
+  </div>
+
+
+  <div
+    class="card"
+    onclick="abrirRepertorios()"
+  >
+    <div class="icone">🎶</div>
+
+    <div class="card-texto">
+      <h3>Louvores do Culto</h3>
+      <p>Veja o repertório preparado para os cultos.</p>
+    </div>
+
+    <div class="seta">›</div>
+  </div>
+
+
+  <div
+    class="card"
+    onclick="abrirBiblioteca()"
+  >
+    <div class="icone">📖</div>
+
+    <div class="card-texto">
+      <h3>Biblioteca de Louvores</h3>
+      <p>Consulte letras e cifras.</p>
+    </div>
+
+    <div class="seta">›</div>
+  </div>
+
+
+  <div class="titulo-area">
+    Área do Ministério
+  </div>
+
+
+  <div
+    id="areaLogin"
+    class="login-box"
+  >
+
+    <h3>
+      🔐 Entrar
+    </h3>
+
+
+    <div class="campo">
+
+      <label>
+        E-mail
+      </label>
+
+      <input
+        id="loginEmail"
+        type="email"
+      >
+
+    </div>
+
+
+    <div class="campo">
+
+      <label>
+        PIN
+      </label>
+
+      <input
+        id="loginPin"
+        type="password"
+        inputmode="numeric"
+        maxlength="6"
+      >
+
+    </div>
+
+
+    <button
+      class="botao botao-dourado"
+      onclick="fazerLogin()"
+    >
+      Entrar na Área do Ministério
+    </button>
+
+
+    <div
+      id="mensagemLogin"
+      class="mensagem"
+    ></div>
+
+  </div>
+
+
+  <div
+    id="areaMinisterio"
+    style="display:none;"
+  >
+
+    <div
+      id="statusUsuario"
+      class="status-ministerio"
+    ></div>
+
+
+    <div
+      class="card"
+      onclick="abrirCadastro()"
+    >
+
+      <div class="icone">
+        ➕
+      </div>
+
+      <div class="card-texto">
+        <h3>Cadastrar Louvor</h3>
+        <p>Cadastre letra, cifra, tom e informações.</p>
+      </div>
+
+      <div class="seta">›</div>
+
+    </div>
+
+
+    <div
+      class="card"
+      onclick="abrirMontarRepertorio()"
+    >
+
+      <div class="icone">
+        🎼
+      </div>
+
+      <div class="card-texto">
+        <h3>Montar Repertório</h3>
+        <p>Organize os louvores do próximo culto.</p>
+      </div>
+
+      <div class="seta">›</div>
+
+    </div>
+
+
+    <div
+      id="cardGerenciarUsuarios"
+      class="card"
+      style="display:none;"
+      onclick="abrirUsuarios()"
+    >
+
+      <div class="icone">
+        👥
+      </div>
+
+      <div class="card-texto">
+        <h3>Gerenciar Usuários</h3>
+        <p>Cadastre usuários e configure os PINs.</p>
+      </div>
+
+      <div class="seta">›</div>
+
+    </div>
+
+
+    <button
+      class="botao botao-cinza"
+      onclick="sairMinisterio()"
+    >
+      Sair da Área do Ministério
+    </button>
+
+  </div>
+
+</section>
+
+
+<section
+  id="telaCadastro"
+  class="tela"
+>
+
+  <div class="cabecalho-tela">
+
+    <button
+      class="voltar"
+      onclick="voltarInicio()"
+    >
+      ‹
+    </button>
+
+    <h2>Cadastrar Louvor</h2>
+
+  </div>
+
+
+  <div class="formulario">
+
+    <div class="campo">
+      <label>Título *</label>
+      <input id="titulo">
+    </div>
+
+    <div class="campo">
+      <label>Cantor / Ministério</label>
+      <input id="cantor">
+    </div>
+
+    <div class="campo">
+      <label>Tom</label>
+      <input id="tom">
+    </div>
+
+    <div class="campo">
+      <label>Link da letra</label>
+      <input id="link">
+    </div>
+
+    <div class="campo">
+      <label>Observações</label>
+      <textarea id="observacoes"></textarea>
+    </div>
+
+    <div class="campo">
+      <label>Letra</label>
+      <textarea id="letra"></textarea>
+    </div>
+
+    <div class="campo">
+      <label>Cifra</label>
+      <textarea id="cifra"></textarea>
+    </div>
+
+
+    <button
+      class="botao botao-dourado"
+      onclick="salvarLouvor()"
+    >
+      Salvar Louvor
+    </button>
+
+
+    <div
+      id="mensagemCadastro"
+      class="mensagem"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="telaBiblioteca"
+  class="tela"
+>
+
+  <div class="cabecalho-tela">
+
+    <button
+      class="voltar"
+      onclick="voltarInicio()"
+    >
+      ‹
+    </button>
+
+    <h2>Biblioteca de Louvores</h2>
+
+  </div>
+
+
+  <input
+    id="pesquisaLouvor"
+    class="pesquisa"
+    placeholder="Pesquisar louvor ou cantor..."
+    oninput="filtrarLouvores()"
+  >
+
+
+  <div
+    id="listaLouvores"
+  ></div>
+
+</section>
+
+
+<section
+  id="telaDetalhe"
+  class="tela"
+>
+
+  <div class="cabecalho-tela">
+
+    <button
+      class="voltar"
+      onclick="voltarDaTelaLouvor()"
+    >
+      ‹
+    </button>
+
+    <h2>Louvor</h2>
+
+  </div>
+
+
+  <div class="detalhe">
+
+    <h2 id="detalheTitulo"></h2>
+
+    <div id="detalheCantor"></div>
+
+    <div id="detalheTom"></div>
+
+    <div
+      id="detalheObservacoes"
+      class="observacoes"
+      style="display:none;"
+    ></div>
+
+
+    <div
+      id="navegacaoLouvor"
+      class="navegacao-louvor"
+    >
+
+      <div
+        id="posicaoLouvor"
+        class="posicao-louvor"
+      ></div>
+
+
+      <div class="botoes-navegacao">
+
+        <button
+          id="botaoAnterior"
+          onclick="louvorAnterior()"
+        >
+          ← Anterior
+        </button>
+
+        <button
+          id="botaoProximo"
+          onclick="proximoLouvor()"
+        >
+          Próximo →
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="abas-louvor">
+
+      <button
+        id="abaLetra"
+        class="aba-louvor ativa"
+        onclick="mostrarAbaLouvor('letra')"
+      >
+        LETRA
+      </button>
+
+      <button
+        id="abaCifra"
+        class="aba-louvor"
+        onclick="mostrarAbaLouvor('cifra')"
+      >
+        CIFRA
+      </button>
+
+    </div>
+
+
+    <div
+      id="conteudoLetra"
+      class="conteudo-louvor ativo"
+    >
+      <div
+        id="detalheLetra"
+        class="letra"
+      ></div>
+    </div>
+
+
+    <div
+      id="conteudoCifra"
+      class="conteudo-louvor"
+    >
+      <div
+        id="detalheCifra"
+        class="cifra"
+      ></div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="telaMontarRepertorio"
+  class="tela"
+>
+
+  <div class="cabecalho-tela">
+
+    <button
+      class="voltar"
+      onclick="voltarInicio()"
+    >
+      ‹
+    </button>
+
+    <h2>Montar Repertório</h2>
+
+  </div>
+
+
+  <div class="formulario">
+
+    <div class="campo">
+      <label>Data do culto *</label>
+      <input
+        type="date"
+        id="repData"
+      >
+    </div>
+
+    <div class="campo">
+      <label>Tipo de culto</label>
+      <input id="repTipo">
+    </div>
+
+    <div class="campo">
+      <label>Ministro responsável</label>
+      <input id="repMinistro">
+    </div>
+
+    <div class="campo">
+      <label>Observações gerais</label>
+      <textarea id="repObservacoes"></textarea>
+    </div>
+
+
+    <div class="titulo-area">
+      Adicionar Louvores
+    </div>
+
+
+    <div class="selecionar-louvor">
+
+      <select
+        id="selectLouvor"
+      ></select>
+
+      <button
+        class="botao-add"
+        onclick="adicionarLouvorRepertorio()"
+      >
+        +
+      </button>
+
+    </div>
+
+
+    <div
+      id="listaSelecionados"
+    ></div>
+
+
+    <button
+      class="botao botao-dourado"
+      onclick="salvarRepertorio()"
+    >
+      Salvar Repertório
+    </button>
+
+
+    <div
+      id="mensagemRepertorio"
+      class="mensagem"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="telaRepertorios"
+  class="tela"
+>
+
+  <div class="cabecalho-tela">
+
+    <button
+      class="voltar"
+      onclick="voltarInicio()"
+    >
+      ‹
+    </button>
+
+    <h2>Louvores do Culto</h2>
+
+  </div>
+
+
+  <div
+    id="listaRepertorios"
+  ></div>
+
+</section>
+
+
+<section
+  id="telaDetalheRepertorio"
+  class="tela"
+>
+
+  <div class="cabecalho-tela">
+
+    <button
+      class="voltar"
+      onclick="abrirRepertorios()"
+    >
+      ‹
+    </button>
+
+    <h2>Repertório</h2>
+
+  </div>
+
+
+  <div class="detalhe">
+
+    <h2
+      id="repDetalheTitulo"
+    ></h2>
+
+    <div
+      id="repDetalheInfo"
+    ></div>
+
+    <div
+      id="repDetalheObs"
+      class="observacoes"
+      style="display:none;"
+    ></div>
+
+    <div class="titulo-area">
+      Louvores
+    </div>
+
+    <div
+      id="repDetalheItens"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="telaUsuarios"
+  class="tela"
+>
+
+  <div class="cabecalho-tela">
+
+    <button
+      class="voltar"
+      onclick="voltarInicio()"
+    >
+      ‹
+    </button>
+
+    <h2>Gerenciar Usuários</h2>
+
+  </div>
+
+
+  <div class="formulario">
+
+    <h3>Novo / Editar usuário</h3>
+
+
+    <input
+      type="hidden"
+      id="usuarioId"
+    >
+
+
+    <div class="campo">
+
+      <label>Nome</label>
+
+      <input
+        id="usuarioNome"
+      >
+
+    </div>
+
+
+    <div class="campo">
+
+      <label>E-mail</label>
+
+      <input
+        id="usuarioEmail"
+        type="email"
+      >
+
+    </div>
+
+
+    <div class="campo">
+
+      <label>Função</label>
+
+      <select
+        id="usuarioFuncao"
+      >
+
+        <option value="MINISTRO">
+          MINISTRO
+        </option>
+
+        <option value="ADMIN">
+          ADMIN
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="campo">
+
+      <label>Ativo</label>
+
+      <select
+        id="usuarioAtivo"
+      >
+
+        <option value="SIM">
+          SIM
+        </option>
+
+        <option value="NAO">
+          NÃO
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button
+      class="botao botao-dourado"
+      onclick="salvarUsuarioApp()"
+    >
+      Salvar Usuário
+    </button>
+
+
+    <button
+      class="botao botao-cinza"
+      onclick="limparFormularioUsuario()"
+    >
+      Limpar
+    </button>
+
+
+    <div
+      id="mensagemUsuario"
+      class="mensagem"
+    ></div>
+
+  </div>
+
+
+  <div class="titulo-area">
+    Usuários cadastrados
+  </div>
+
+
+  <div
+    id="listaUsuarios"
+  ></div>
+
+</section>
+
+</main>
+
+
+<footer class="rodape">
+
+  <strong>CARA</strong>
+
+  <br>
+
+  Comunidade Apostólica Restaurando Almas
+
+  <br><br>
+
+  Ministério de Louvor
+
+</footer>
+
+
+<script>
+
+let tokenMinisterio = '';
+
+let timerToast = null;
+
+let usuarioAtual = null;
+
+let louvores = [];
+
+let repertorios = [];
+
+let itensRepertorio = [];
+
+let repertorioAtual = null;
+
+let indiceLouvorAtual = -1;
+
+let origemDetalheLouvor =
+  'biblioteca';
+
+
+window.addEventListener(
+  'load',
+  iniciarApp
+);
+
+
+function iniciarApp() {
+
+  tokenMinisterio =
+    localStorage.getItem(
+      'cara_louvor_token'
+    ) || '';
+
+
+  if (!tokenMinisterio) {
+    atualizarAreaMinisterio();
+    return;
+  }
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resposta) {
+
+        if (
+          resposta &&
+          resposta.autenticado
+        ) {
+
+          usuarioAtual =
+            resposta.usuario;
+
+        } else {
+
+          tokenMinisterio = '';
+
+          localStorage.removeItem(
+            'cara_louvor_token'
+          );
+
+        }
+
+
+        atualizarAreaMinisterio();
+
+      }
+    )
+
+    .withFailureHandler(
+      function() {
+
+        tokenMinisterio = '';
+
+        localStorage.removeItem(
+          'cara_louvor_token'
+        );
+
+        atualizarAreaMinisterio();
+
+      }
+    )
+
+    .verificarSessao(
+      tokenMinisterio
+    );
+
+}
+
+
+function fazerLogin() {
+
+  const email =
+    document
+      .getElementById(
+        'loginEmail'
+      )
+      .value
+      .trim();
+
+
+  const pin =
+    document
+      .getElementById(
+        'loginPin'
+      )
+      .value
+      .trim();
+
+
+  mostrarMensagem(
+    'mensagemLogin',
+    'Entrando...',
+    'processando'
+  );
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resposta) {
+
+        tokenMinisterio =
+          resposta.token;
+
+
+        usuarioAtual =
+          resposta.usuario;
+
+
+        localStorage.setItem(
+          'cara_louvor_token',
+          tokenMinisterio
+        );
+
+
+        atualizarAreaMinisterio();
+
+      }
+    )
+
+    .withFailureHandler(
+      function(erro) {
+
+        mostrarMensagem(
+          'mensagemLogin',
+          obterMensagemErro(
+            erro
+          ),
+          'erro'
+        );
+
+      }
+    )
+
+    .loginMinisterio(
+      email,
+      pin
+    );
+
+}
+
+
+function sairMinisterio() {
+
+  tokenMinisterio = '';
+
+  usuarioAtual = null;
+
+
+  localStorage.removeItem(
+    'cara_louvor_token'
+  );
+
+
+  atualizarAreaMinisterio();
+
+}
+
+
+function atualizarAreaMinisterio() {
+
+  const login =
+    document.getElementById(
+      'areaLogin'
+    );
+
+
+  const area =
+    document.getElementById(
+      'areaMinisterio'
+    );
+
+
+  const gerenciar =
+    document.getElementById(
+      'cardGerenciarUsuarios'
+    );
+
+
+  if (
+    usuarioAtual &&
+    tokenMinisterio
+  ) {
+
+    login.style.display =
+      'none';
+
+
+    area.style.display =
+      'block';
+
+
+    document.getElementById(
+      'statusUsuario'
+    ).innerHTML =
+
+      '👤 Olá, <strong>' +
+
+      escaparHtml(
+        usuarioAtual.nome ||
+        usuarioAtual.email
+      ) +
+
+      '</strong><br>' +
+
+      'Acesso: ' +
+
+      escaparHtml(
+        usuarioAtual.funcao
+      );
+
+
+    gerenciar.style.display =
+      usuarioAtual.funcao ===
+      'ADMIN'
+        ? 'flex'
+        : 'none';
+
+  } else {
+
+    login.style.display =
+      'block';
+
+
+    area.style.display =
+      'none';
+
+
+    gerenciar.style.display =
+      'none';
+
+  }
+
+}
+
+
+function mostrarTela(id) {
+
+  document
+    .querySelectorAll(
+      '.tela'
+    )
+    .forEach(
+      function(tela) {
+
+        tela.classList.remove(
+          'ativa'
+        );
+
+      }
+    );
+
+
+  document
+    .getElementById(id)
+    .classList.add(
+      'ativa'
+    );
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+}
+
+
+function voltarInicio() {
+  mostrarTela(
+    'telaInicial'
+  );
+}
+
+
+function abrirCadastro() {
+  mostrarTela(
+    'telaCadastro'
+  );
+}
+
+
+function salvarLouvor() {
+
+  const titulo =
+    document
+      .getElementById(
+        'titulo'
+      )
+      .value
+      .trim();
+
+
+  if (!titulo) {
+
+    mostrarMensagem(
+      'mensagemCadastro',
+      'Informe o título.',
+      'erro'
+    );
+
+    return;
+
+  }
+
+
+  const dados = {
+
+    titulo: titulo,
+
+    cantor:
+      document.getElementById(
+        'cantor'
+      ).value,
+
+    tom:
+      document.getElementById(
+        'tom'
+      ).value,
+
+    link:
+      document.getElementById(
+        'link'
+      ).value,
+
+    observacoes:
+      document.getElementById(
+        'observacoes'
+      ).value,
+
+    letra:
+      document.getElementById(
+        'letra'
+      ).value,
+
+    cifra:
+      document.getElementById(
+        'cifra'
+      ).value
+
+  };
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resposta) {
+
+        mostrarMensagem(
+          'mensagemCadastro',
+          resposta.mensagem,
+          'sucesso'
+        );
+
+      }
+    )
+
+    .withFailureHandler(
+      function(erro) {
+
+        mostrarMensagem(
+          'mensagemCadastro',
+          obterMensagemErro(
+            erro
+          ),
+          'erro'
+        );
+
+      }
+    )
+
+    .cadastrarLouvor(
+      tokenMinisterio,
+      dados
+    );
+
+}
+
+
+function abrirBiblioteca() {
+
+  mostrarTela(
+    'telaBiblioteca'
+  );
+
+
+  document.getElementById(
+    'listaLouvores'
+  ).innerHTML =
+    '<div class="carregando">Carregando...</div>';
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resultado) {
+
+        louvores =
+          resultado || [];
+
+        exibirLouvores(
+          louvores
+        );
+
+      }
+    )
+
+    .listarLouvores();
+
+}
+
+
+function exibirLouvores(lista) {
+
+  const container =
+    document.getElementById(
+      'listaLouvores'
+    );
+
+
+  container.innerHTML = '';
+
+
+  if (!lista.length) {
+
+    container.innerHTML =
+      '<div class="vazio">Nenhum louvor cadastrado.</div>';
+
+    return;
+
+  }
+
+
+  lista.forEach(
+    function(louvor) {
+
+      const div =
+        document.createElement(
+          'div'
+        );
+
+
+      div.className =
+        'louvor-item';
+
+
+      div.onclick =
+        function() {
+
+          origemDetalheLouvor =
+            'biblioteca';
+
+          abrirDetalheLouvor(
+            louvor
+          );
+
+        };
+
+
+      div.innerHTML =
+
+        '<h3>' +
+        escaparHtml(
+          louvor.titulo
+        ) +
+        '</h3>' +
+
+        (
+          louvor.cantor
+            ? '<p>' +
+              escaparHtml(
+                louvor.cantor
+              ) +
+              '</p>'
+            : ''
+        ) +
+
+        (
+          louvor.tom
+            ? '<span class="tom">Tom: ' +
+              escaparHtml(
+                louvor.tom
+              ) +
+              '</span>'
+            : ''
+        );
+
+
+      container.appendChild(
+        div
+      );
+
+    }
+  );
+
+}
+
+
+function filtrarLouvores() {
+
+  const termo =
+    document
+      .getElementById(
+        'pesquisaLouvor'
+      )
+      .value
+      .toLowerCase();
+
+
+  exibirLouvores(
+
+    louvores.filter(
+      function(l) {
+
+        return (
+          String(
+            l.titulo || ''
+          )
+            .toLowerCase()
+            .includes(termo)
+          ||
+          String(
+            l.cantor || ''
+          )
+            .toLowerCase()
+            .includes(termo)
+        );
+
+      }
+    )
+
+  );
+
+}
+
+
+function abrirDetalheLouvor(
+  louvor
+) {
+
+  document.getElementById(
+    'detalheTitulo'
+  ).textContent =
+    louvor.titulo || '';
+
+
+  document.getElementById(
+    'detalheCantor'
+  ).textContent =
+    louvor.cantor
+      ? 'Cantor / Ministério: ' +
+        louvor.cantor
+      : '';
+
+
+  document.getElementById(
+    'detalheTom'
+  ).innerHTML =
+    louvor.tom
+      ? '<span class="tom">Tom: ' +
+        escaparHtml(
+          louvor.tom
+        ) +
+        '</span>'
+      : '';
+
+
+  const obs =
+    document.getElementById(
+      'detalheObservacoes'
+    );
+
+
+  if (louvor.observacoes) {
+
+    obs.textContent =
+      louvor.observacoes;
+
+    obs.style.display =
+      'block';
+
+  } else {
+
+    obs.style.display =
+      'none';
+
+  }
+
+
+  document.getElementById(
+    'detalheLetra'
+  ).textContent =
+    louvor.letra ||
+    'Letra não cadastrada.';
+
+
+  document.getElementById(
+    'detalheCifra'
+  ).textContent =
+    louvor.cifra ||
+    'Cifra não cadastrada.';
+
+
+  configurarNavegacaoLouvor();
+
+
+  mostrarAbaLouvor(
+    'letra'
+  );
+
+
+  mostrarTela(
+    'telaDetalhe'
+  );
+
+}
+
+
+function mostrarAbaLouvor(aba) {
+
+  const letra =
+    document.getElementById(
+      'conteudoLetra'
+    );
+
+  const cifra =
+    document.getElementById(
+      'conteudoCifra'
+    );
+
+  const btnLetra =
+    document.getElementById(
+      'abaLetra'
+    );
+
+  const btnCifra =
+    document.getElementById(
+      'abaCifra'
+    );
+
+
+  letra.classList.remove(
+    'ativo'
+  );
+
+  cifra.classList.remove(
+    'ativo'
+  );
+
+  btnLetra.classList.remove(
+    'ativa'
+  );
+
+  btnCifra.classList.remove(
+    'ativa'
+  );
+
+
+  if (aba === 'cifra') {
+
+    cifra.classList.add(
+      'ativo'
+    );
+
+    btnCifra.classList.add(
+      'ativa'
+    );
+
+  } else {
+
+    letra.classList.add(
+      'ativo'
+    );
+
+    btnLetra.classList.add(
+      'ativa'
+    );
+
+  }
+
+}
+
+
+function voltarDaTelaLouvor() {
+
+  if (
+    origemDetalheLouvor ===
+    'repertorio'
+  ) {
+
+    mostrarTela(
+      'telaDetalheRepertorio'
+    );
+
+  } else {
+
+    mostrarTela(
+      'telaBiblioteca'
+    );
+
+  }
+
+}
+
+
+function abrirMontarRepertorio() {
+
+  mostrarTela(
+    'telaMontarRepertorio'
+  );
+
+
+  itensRepertorio = [];
+
+
+  renderizarItensRepertorio();
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resultado) {
+
+        louvores =
+          resultado || [];
+
+        preencherSelectLouvores();
+
+      }
+    )
+
+    .listarLouvores();
+
+}
+
+
+function preencherSelectLouvores() {
+
+  const select =
+    document.getElementById(
+      'selectLouvor'
+    );
+
+
+  select.innerHTML =
+    '<option value="">Selecione um louvor...</option>';
+
+
+  louvores.forEach(
+    function(l) {
+
+      const option =
+        document.createElement(
+          'option'
+        );
+
+
+      option.value =
+        l.id;
+
+
+      option.textContent =
+        l.titulo +
+        (
+          l.cantor
+            ? ' — ' +
+              l.cantor
+            : ''
+        );
+
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+}
+
+
+function adicionarLouvorRepertorio() {
+
+  const id =
+    document.getElementById(
+      'selectLouvor'
+    ).value;
+
+
+  if (!id) {
+    return;
+  }
+
+
+  const louvor =
+    louvores.find(
+      function(l) {
+        return l.id === id;
+      }
+    );
+
+
+  if (!louvor) {
+    return;
+  }
+
+
+  itensRepertorio.push({
+    louvorId:
+      louvor.id,
+    titulo:
+      louvor.titulo,
+    cantor:
+      louvor.cantor,
+    tom:
+      louvor.tom || '',
+    observacoes:
+      ''
+  });
+
+
+  renderizarItensRepertorio();
+
+}
+
+
+function renderizarItensRepertorio() {
+
+  const container =
+    document.getElementById(
+      'listaSelecionados'
+    );
+
+
+  container.innerHTML = '';
+
+
+  if (!itensRepertorio.length) {
+
+    container.innerHTML =
+      '<div class="vazio">Nenhum louvor adicionado.</div>';
+
+    return;
+
+  }
+
+
+  itensRepertorio.forEach(
+    function(item, index) {
+
+      const div =
+        document.createElement(
+          'div'
+        );
+
+
+      div.className =
+        'item-selecionado';
+
+
+      div.innerHTML =
+
+        '<div class="item-topo">' +
+
+        '<div class="numero">' +
+        (index + 1) +
+        '</div>' +
+
+        '<div>' +
+
+        '<h3>' +
+        escaparHtml(
+          item.titulo
+        ) +
+        '</h3>' +
+
+        '<p>' +
+        escaparHtml(
+          item.cantor
+        ) +
+        '</p>' +
+
+        '</div>' +
+
+        '</div>';
+
+
+      const tomDiv =
+        document.createElement(
+          'div'
+        );
+
+      tomDiv.className =
+        'mini-input';
+
+
+      const tomInput =
+        document.createElement(
+          'input'
+        );
+
+
+      tomInput.placeholder =
+        'Tom para este culto';
+
+
+      tomInput.value =
+        item.tom;
+
+
+      tomInput.oninput =
+        function() {
+
+          itensRepertorio[
+            index
+          ].tom =
+            this.value;
+
+        };
+
+
+      tomDiv.appendChild(
+        tomInput
+      );
+
+      div.appendChild(
+        tomDiv
+      );
+
+
+      const obsDiv =
+        document.createElement(
+          'div'
+        );
+
+      obsDiv.className =
+        'mini-input';
+
+
+      const obsInput =
+        document.createElement(
+          'input'
+        );
+
+
+      obsInput.placeholder =
+        'Observação';
+
+
+      obsInput.oninput =
+        function() {
+
+          itensRepertorio[
+            index
+          ].observacoes =
+            this.value;
+
+        };
+
+
+      obsDiv.appendChild(
+        obsInput
+      );
+
+      div.appendChild(
+        obsDiv
+      );
+
+
+      const acoes =
+        document.createElement(
+          'div'
+        );
+
+      acoes.className =
+        'item-acoes';
+
+
+      ['↑ Subir','↓ Descer','Remover']
+        .forEach(
+          function(texto, pos) {
+
+            const b =
+              document.createElement(
+                'button'
+              );
+
+
+            b.textContent =
+              texto;
+
+
+            if (pos === 0) {
+
+              b.onclick =
+                function() {
+
+                  moverItem(
+                    index,
+                    -1
+                  );
+
+                };
+
+            }
+
+            if (pos === 1) {
+
+              b.onclick =
+                function() {
+
+                  moverItem(
+                    index,
+                    1
+                  );
+
+                };
+
+            }
+
+            if (pos === 2) {
+
+              b.onclick =
+                function() {
+
+                  removerItem(
+                    index
+                  );
+
+                };
+
+            }
+
+
+            acoes.appendChild(
+              b
+            );
+
+          }
+        );
+
+
+      div.appendChild(
+        acoes
+      );
+
+
+      container.appendChild(
+        div
+      );
+
+    }
+  );
+
+}
+
+
+function moverItem(
+  index,
+  direcao
+) {
+
+  const novo =
+    index + direcao;
+
+
+  if (
+    novo < 0 ||
+    novo >=
+      itensRepertorio.length
+  ) {
+    return;
+  }
+
+
+  const item =
+    itensRepertorio[index];
+
+
+  itensRepertorio.splice(
+    index,
+    1
+  );
+
+
+  itensRepertorio.splice(
+    novo,
+    0,
+    item
+  );
+
+
+  renderizarItensRepertorio();
+
+}
+
+
+function removerItem(index) {
+
+  itensRepertorio.splice(
+    index,
+    1
+  );
+
+
+  renderizarItensRepertorio();
+
+}
+
+
+function salvarRepertorio() {
+
+  const data =
+    document.getElementById(
+      'repData'
+    ).value;
+
+
+  if (!data) {
+
+    mostrarMensagem(
+      'mensagemRepertorio',
+      'Informe a data.',
+      'erro'
+    );
+
+    return;
+
+  }
+
+
+  const dados = {
+
+    data:
+      data,
+
+    tipoCulto:
+      document.getElementById(
+        'repTipo'
+      ).value,
+
+    ministro:
+      document.getElementById(
+        'repMinistro'
+      ).value,
+
+    observacoes:
+      document.getElementById(
+        'repObservacoes'
+      ).value,
+
+    itens:
+      itensRepertorio.map(
+        function(item) {
+
+          return {
+            louvorId:
+              item.louvorId,
+            tom:
+              item.tom,
+            observacoes:
+              item.observacoes
+          };
+
+        }
+      )
+
+  };
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resposta) {
+
+        mostrarMensagem(
+          'mensagemRepertorio',
+          resposta.mensagem,
+          'sucesso'
+        );
+
+      }
+    )
+
+    .withFailureHandler(
+      function(erro) {
+
+        mostrarMensagem(
+          'mensagemRepertorio',
+          obterMensagemErro(
+            erro
+          ),
+          'erro'
+        );
+
+      }
+    )
+
+    .cadastrarRepertorio(
+      tokenMinisterio,
+      dados
+    );
+
+}
+
+
+function abrirRepertorios() {
+
+  mostrarTela(
+    'telaRepertorios'
+  );
+
+
+  document.getElementById(
+    'listaRepertorios'
+  ).innerHTML =
+    '<div class="carregando">Carregando...</div>';
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resultado) {
+
+        repertorios =
+          resultado || [];
+
+        renderizarRepertorios();
+
+      }
+    )
+
+    .listarRepertorios();
+
+}
+
+
+function renderizarRepertorios() {
+
+  const container =
+    document.getElementById(
+      'listaRepertorios'
+    );
+
+
+  container.innerHTML = '';
+
+
+  repertorios.forEach(
+    function(rep) {
+
+      const div =
+        document.createElement(
+          'div'
+        );
+
+
+      div.className =
+        'repertorio-item';
+
+
+      div.onclick =
+        function() {
+
+          abrirDetalheRepertorio(
+            rep
+          );
+
+        };
+
+
+      div.innerHTML =
+
+        '<h3>' +
+        escaparHtml(
+          rep.tipoCulto ||
+          'Culto'
+        ) +
+        '</h3>' +
+
+        '<p>📅 ' +
+        formatarDataBR(
+          rep.data
+        ) +
+        '</p>' +
+
+        (
+          rep.ministro
+            ? '<p>🎤 Ministro: ' +
+              escaparHtml(
+                rep.ministro
+              ) +
+              '</p>'
+            : ''
+        ) +
+
+        '<p>🎶 ' +
+        rep.itens.length +
+        ' louvor(es)</p>';
+
+
+      container.appendChild(
+        div
+      );
+
+    }
+  );
+
+}
+
+
+function abrirDetalheRepertorio(
+  rep
+) {
+
+  repertorioAtual =
+    rep;
+
+
+  document.getElementById(
+    'repDetalheTitulo'
+  ).textContent =
+    rep.tipoCulto ||
+    'Culto';
+
+
+  document.getElementById(
+    'repDetalheInfo'
+  ).innerHTML =
+
+    '<p><strong>Data:</strong> ' +
+    formatarDataBR(
+      rep.data
+    ) +
+    '</p>' +
+
+    (
+      rep.ministro
+        ? '<p><strong>Ministro:</strong> ' +
+          escaparHtml(
+            rep.ministro
+          ) +
+          '</p>'
+        : ''
+    );
+
+
+  const container =
+    document.getElementById(
+      'repDetalheItens'
+    );
+
+
+  container.innerHTML = '';
+
+
+  const repObs =
+    document.getElementById(
+      'repDetalheObs'
+    );
+
+
+  if (rep.observacoes) {
+
+    repObs.textContent =
+      rep.observacoes;
+
+    repObs.style.display =
+      'block';
+
+  } else {
+
+    repObs.style.display =
+      'none';
+
+  }
+
+
+  rep.itens.forEach(
+    function(item, index) {
+
+      const div =
+        document.createElement(
+          'div'
+        );
+
+
+      div.className =
+        'louvor-item';
+
+
+      div.onclick =
+        function() {
+
+          indiceLouvorAtual =
+            index;
+
+          origemDetalheLouvor =
+            'repertorio';
+
+          abrirLouvorDoRepertorio(
+            index
+          );
+
+        };
+
+
+      div.innerHTML =
+
+        '<h3>' +
+        (index + 1) +
+        '. ' +
+        escaparHtml(
+          item.titulo
+        ) +
+        '</h3>' +
+
+        '<p>' +
+        escaparHtml(
+          item.cantor
+        ) +
+        '</p>' +
+
+        (
+          item.tom
+            ? '<span class="tom">Tom: ' +
+              escaparHtml(
+                item.tom
+              ) +
+              '</span>'
+            : ''
+        ) +
+
+        (
+          item.observacoes
+            ? '<p>📌 ' +
+              escaparHtml(
+                item.observacoes
+              ) +
+              '</p>'
+            : ''
+        );
+
+
+      container.appendChild(
+        div
+      );
+
+    }
+  );
+
+
+  mostrarTela(
+    'telaDetalheRepertorio'
+  );
+
+}
+
+
+function abrirLouvorDoRepertorio(index) {
+
+  const item =
+    repertorioAtual
+      .itens[index];
+
+
+  indiceLouvorAtual =
+    index;
+
+
+  origemDetalheLouvor =
+    'repertorio';
+
+
+  abrirDetalheLouvor({
+    titulo:
+      item.titulo,
+    cantor:
+      item.cantor,
+    tom:
+      item.tom,
+    letra:
+      item.letra,
+    cifra:
+      item.cifra,
+    observacoes:
+      item.observacoes
+  });
+
+}
+
+
+function configurarNavegacaoLouvor() {
+
+  const nav =
+    document.getElementById(
+      'navegacaoLouvor'
+    );
+
+
+  if (
+    origemDetalheLouvor !==
+      'repertorio'
+    ||
+    !repertorioAtual
+  ) {
+
+    nav.style.display =
+      'none';
+
+    return;
+
+  }
+
+
+  nav.style.display =
+    'block';
+
+
+  document.getElementById(
+    'posicaoLouvor'
+  ).textContent =
+
+    (
+      indiceLouvorAtual + 1
+    ) +
+
+    ' de ' +
+
+    repertorioAtual
+      .itens
+      .length;
+
+
+  document.getElementById(
+    'botaoAnterior'
+  ).disabled =
+    indiceLouvorAtual === 0;
+
+
+  document.getElementById(
+    'botaoProximo'
+  ).disabled =
+    indiceLouvorAtual ===
+    repertorioAtual.itens.length - 1;
+
+}
+
+
+function louvorAnterior() {
+
+  if (
+    indiceLouvorAtual <= 0
+  ) {
+    return;
+  }
+
+
+  indiceLouvorAtual--;
+
+
+  abrirLouvorDoRepertorio(
+    indiceLouvorAtual
+  );
+
+}
+
+
+function proximoLouvor() {
+
+  if (
+    indiceLouvorAtual >=
+    repertorioAtual.itens.length - 1
+  ) {
+    return;
+  }
+
+
+  indiceLouvorAtual++;
+
+
+  abrirLouvorDoRepertorio(
+    indiceLouvorAtual
+  );
+
+}
+
+
+function abrirUsuarios() {
+
+  if (
+    !usuarioAtual ||
+    usuarioAtual.funcao !==
+      'ADMIN'
+  ) {
+    return;
+  }
+
+
+  mostrarTela(
+    'telaUsuarios'
+  );
+
+
+  carregarUsuarios();
+
+}
+
+
+function carregarUsuarios() {
+
+  document.getElementById(
+    'listaUsuarios'
+  ).innerHTML =
+    '<div class="carregando">Carregando...</div>';
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(lista) {
+
+        renderizarUsuarios(
+          lista || []
+        );
+
+      }
+    )
+
+    .withFailureHandler(
+      function(erro) {
+
+        document.getElementById(
+          'listaUsuarios'
+        ).innerHTML =
+          '<div class="vazio">' +
+          escaparHtml(
+            obterMensagemErro(
+              erro
+            )
+          ) +
+          '</div>';
+
+      }
+    )
+
+    .listarUsuarios(
+      tokenMinisterio
+    );
+
+}
+
+
+function renderizarUsuarios(lista) {
+
+  const container =
+    document.getElementById(
+      'listaUsuarios'
+    );
+
+
+  container.innerHTML = '';
+
+
+  lista.forEach(
+    function(usuario) {
+
+      const div =
+        document.createElement(
+          'div'
+        );
+
+
+      div.className =
+        'usuario-item';
+
+
+      div.innerHTML =
+
+        '<h3>' +
+        escaparHtml(
+          usuario.nome
+        ) +
+        '</h3>' +
+
+        '<p>' +
+        escaparHtml(
+          usuario.email
+        ) +
+        '</p>' +
+
+        '<span class="badge">' +
+        escaparHtml(
+          usuario.funcao
+        ) +
+        '</span> ' +
+
+        '<span class="badge">' +
+        escaparHtml(
+          usuario.ativo
+        ) +
+        '</span>' +
+
+        '<p>PIN: ' +
+        (
+          usuario.possuiPin
+            ? 'Configurado'
+            : 'Não configurado'
+        ) +
+        '</p>';
+
+
+      const acoes =
+        document.createElement(
+          'div'
+        );
+
+
+      acoes.className =
+        'usuario-acoes';
+
+
+      const editar =
+        document.createElement(
+          'button'
+        );
+
+
+      editar.textContent =
+        'Editar';
+
+
+      editar.onclick =
+        function() {
+
+          editarUsuario(
+            usuario
+          );
+
+        };
+
+
+      const definir =
+        document.createElement(
+          'button'
+        );
+
+
+      definir.textContent =
+        'Definir PIN';
+
+
+      definir.onclick =
+        function() {
+
+          mostrarDefinirPin(
+            div,
+            usuario
+          );
+
+        };
+
+
+      const aleatorio =
+        document.createElement(
+          'button'
+        );
+
+
+      aleatorio.textContent =
+        'PIN aleatório';
+
+
+      aleatorio.onclick =
+        function() {
+
+          gerarPinUsuarioApp(
+            usuario.id
+          );
+
+        };
+
+
+      acoes.appendChild(
+        editar
+      );
+
+      acoes.appendChild(
+        definir
+      );
+
+      acoes.appendChild(
+        aleatorio
+      );
+
+
+      div.appendChild(
+        acoes
+      );
+
+
+      container.appendChild(
+        div
+      );
+
+    }
+  );
+
+}
+
+
+function mostrarDefinirPin(
+  card,
+  usuario
+) {
+
+  const existente =
+    card.querySelector(
+      '.pin-box'
+    );
+
+
+  if (existente) {
+
+    existente.remove();
+
+    return;
+
+  }
+
+
+  const box =
+    document.createElement(
+      'div'
+    );
+
+
+  box.className =
+    'pin-box';
+
+
+  const input =
+    document.createElement(
+      'input'
+    );
+
+
+  input.type =
+    'password';
+
+  input.inputMode =
+    'numeric';
+
+  input.maxLength =
+    6;
+
+  input.placeholder =
+    'Digite um PIN de 4 a 6 números';
+
+
+  input.addEventListener(
+    'input',
+    function() {
+
+      this.value =
+        this.value.replace(
+          /\D/g,
+          ''
+        );
+
+    }
+  );
+
+
+  const acoes =
+    document.createElement(
+      'div'
+    );
+
+
+  acoes.className =
+    'pin-box-acoes';
+
+
+  const salvar =
+    document.createElement(
+      'button'
+    );
+
+
+  salvar.textContent =
+    'Salvar PIN';
+
+
+  salvar.style.background =
+    '#c8952d';
+
+  salvar.style.color =
+    '#ffffff';
+
+
+  salvar.onclick =
+    function() {
+
+      definirPinUsuarioApp(
+        usuario.id,
+        input.value
+      );
+
+    };
+
+
+  const cancelar =
+    document.createElement(
+      'button'
+    );
+
+
+  cancelar.textContent =
+    'Cancelar';
+
+
+  cancelar.onclick =
+    function() {
+
+      box.remove();
+
+    };
+
+
+  acoes.appendChild(
+    salvar
+  );
+
+  acoes.appendChild(
+    cancelar
+  );
+
+
+  box.appendChild(
+    input
+  );
+
+  box.appendChild(
+    acoes
+  );
+
+
+  card.appendChild(
+    box
+  );
+
+
+  input.focus();
+
+}
+
+
+function definirPinUsuarioApp(
+  usuarioId,
+  novoPin
+) {
+
+  novoPin =
+    String(
+      novoPin || ''
+    ).trim();
+
+
+  if (
+    !/^\d{4,6}$/.test(
+      novoPin
+    )
+  ) {
+
+    mostrarToast(
+      'PIN inválido',
+      'O PIN deve ter de 4 a 6 números.',
+      'erro'
+    );
+
+    return;
+
+  }
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resposta) {
+
+        mostrarToast(
+          'Tudo certo!',
+          resposta.mensagem ||
+          'PIN definido com sucesso.',
+          'sucesso'
+        );
+
+
+        carregarUsuarios();
+
+      }
+    )
+
+    .withFailureHandler(
+      function(erro) {
+
+        mostrarToast(
+          'Não foi possível salvar',
+          obterMensagemErro(
+            erro
+          ),
+          'erro'
+        );
+
+      }
+    )
+
+    .definirPinUsuario(
+      tokenMinisterio,
+      usuarioId,
+      novoPin
+    );
+
+}
+
+
+function editarUsuario(usuario) {
+
+  document.getElementById(
+    'usuarioId'
+  ).value =
+    usuario.id;
+
+
+  document.getElementById(
+    'usuarioNome'
+  ).value =
+    usuario.nome;
+
+
+  document.getElementById(
+    'usuarioEmail'
+  ).value =
+    usuario.email;
+
+
+  document.getElementById(
+    'usuarioFuncao'
+  ).value =
+    usuario.funcao;
+
+
+  document.getElementById(
+    'usuarioAtivo'
+  ).value =
+    usuario.ativo === 'NAO'
+      ? 'NAO'
+      : 'SIM';
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+}
+
+
+function limparFormularioUsuario() {
+
+  document.getElementById(
+    'usuarioId'
+  ).value = '';
+
+
+  document.getElementById(
+    'usuarioNome'
+  ).value = '';
+
+
+  document.getElementById(
+    'usuarioEmail'
+  ).value = '';
+
+
+  document.getElementById(
+    'usuarioFuncao'
+  ).value =
+    'MINISTRO';
+
+
+  document.getElementById(
+    'usuarioAtivo'
+  ).value =
+    'SIM';
+
+}
+
+
+function salvarUsuarioApp() {
+
+  const dados = {
+
+    id:
+      document.getElementById(
+        'usuarioId'
+      ).value,
+
+    nome:
+      document.getElementById(
+        'usuarioNome'
+      ).value,
+
+    email:
+      document.getElementById(
+        'usuarioEmail'
+      ).value,
+
+    funcao:
+      document.getElementById(
+        'usuarioFuncao'
+      ).value,
+
+    ativo:
+      document.getElementById(
+        'usuarioAtivo'
+      ).value
+
+  };
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resposta) {
+
+        mostrarMensagem(
+          'mensagemUsuario',
+          resposta.mensagem,
+          'sucesso'
+        );
+
+
+        limparFormularioUsuario();
+
+        carregarUsuarios();
+
+      }
+    )
+
+    .withFailureHandler(
+      function(erro) {
+
+        mostrarMensagem(
+          'mensagemUsuario',
+          obterMensagemErro(
+            erro
+          ),
+          'erro'
+        );
+
+      }
+    )
+
+    .salvarUsuario(
+      tokenMinisterio,
+      dados
+    );
+
+}
+
+
+function gerarPinUsuarioApp(
+  usuarioId
+) {
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(resposta) {
+
+        mostrarToast(
+          'PIN gerado para ' +
+          resposta.nome,
+          'Novo PIN: ' +
+          resposta.pin +
+          ' — anote e envie somente para essa pessoa.',
+          'sucesso',
+          8000
+        );
+
+
+        carregarUsuarios();
+
+      }
+    )
+
+    .withFailureHandler(
+      function(erro) {
+
+        mostrarToast(
+          'Erro ao gerar PIN',
+          obterMensagemErro(
+            erro
+          ),
+          'erro'
+        );
+
+      }
+    )
+
+    .gerarNovoPinUsuario(
+      tokenMinisterio,
+      usuarioId
+    );
+
+}
+
+
+function mostrarToast(
+  titulo,
+  mensagem,
+  tipo,
+  duracao
+) {
+
+  const toast =
+    document.getElementById(
+      'toast'
+    );
+
+
+  if (!toast) {
+    return;
+  }
+
+
+  clearTimeout(
+    timerToast
+  );
+
+
+  toast.className =
+    'toast toast-' +
+    (
+      tipo ||
+      'info'
+    );
+
+
+  toast.innerHTML =
+
+    '<strong>' +
+
+    escaparHtml(
+      titulo || ''
+    ) +
+
+    '</strong>' +
+
+    escaparHtml(
+      mensagem || ''
+    );
+
+
+  requestAnimationFrame(
+    function() {
+
+      toast.classList.add(
+        'visivel'
+      );
+
+    }
+  );
+
+
+  timerToast =
+    setTimeout(
+      function() {
+
+        toast.classList.remove(
+          'visivel'
+        );
+
+      },
+
+      duracao || 3800
+
+    );
+
+}
+
+
+function formatarDataBR(data) {
+
+  const partes =
+    String(
+      data || ''
+    ).split('-');
+
+
+  if (
+    partes.length === 3
+  ) {
+
+    return (
+      partes[2] +
+      '/' +
+      partes[1] +
+      '/' +
+      partes[0]
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+function mostrarMensagem(
+  id,
+  texto,
+  tipo
+) {
+
+  const el =
+    document.getElementById(
+      id
+    );
+
+
+  el.className =
+    'mensagem mensagem-' +
+    tipo;
+
+
+  el.textContent =
+    texto;
+
+
+  el.style.display =
+    'block';
+
+}
+
+
+function obterMensagemErro(erro) {
+
+  return (
+    erro &&
+    erro.message
+  )
+    ? erro.message
+    : String(erro);
+
+}
+
+
+function escaparHtml(texto) {
+
+  return String(
+    texto || ''
+  )
+
+    .replace(
+      /&/g,
+      '&amp;'
+    )
+
+    .replace(
+      /</g,
+      '&lt;'
+    )
+
+    .replace(
+      />/g,
+      '&gt;'
+    )
+
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+
+    .replace(
+      /'/g,
+      '&#039;'
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
