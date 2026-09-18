@@ -864,6 +864,13 @@
    ========================================================== */
 const CARA_LOUVOR_API = "https://script.google.com/macros/s/AKfycbxRkkDNaw2NsmnxulJKrQnGBKXr_7KJ-RgIjWRRj2Bb1nnGlcsQaPXRcejV_ope2im8EA/exec";
 
+function mensagemFalhaServidor(erro) {
+  const msg = (erro && erro.message) ? erro.message : String(erro || 'Falha de comunicação');
+  console.error('CARA Louvor API:', msg);
+  return msg;
+}
+
+
 (function () {
   function chamarApi(funcao, args) {
     return new Promise((resolve, reject) => {
@@ -935,6 +942,11 @@ const CARA_LOUVOR_API = "https://script.google.com/macros/s/AKfycbxRkkDNaw2Nsmnx
   });
 })();
 </script>
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 </head>
 
@@ -2121,6 +2133,14 @@ function abrirBiblioteca() {
 
       }
     )
+    .withFailureHandler(
+      function(erro) {
+        document.getElementById('listaLouvores').innerHTML =
+          '<div class="vazio">Não foi possível carregar os louvores.<br><small>' +
+          escaparHtml(mensagemFalhaServidor(erro)) +
+          '</small></div>';
+      }
+    )
 
     .listarLouvores();
 
@@ -2944,6 +2964,14 @@ function abrirRepertorios() {
 
         renderizarRepertorios();
 
+      }
+    )
+    .withFailureHandler(
+      function(erro) {
+        document.getElementById('listaRepertorios').innerHTML =
+          '<div class="vazio">Não foi possível carregar os repertórios.<br><small>' +
+          escaparHtml(mensagemFalhaServidor(erro)) +
+          '</small></div>';
       }
     )
 
@@ -4109,6 +4137,14 @@ function escaparHtml(texto) {
 
 }
 
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(console.error);
+  });
+}
 </script>
 
 </body>
