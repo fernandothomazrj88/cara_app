@@ -1,4 +1,5 @@
-const CACHE_VERSION = 'cara-app-v3';
+const CACHE_VERSION = 'cara-app-v4';
+
 const APP_SHELL = [
   './',
   './index.html',
@@ -30,8 +31,29 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
+
+  /*
+   * Apps Script do Louvor:
+   * faz a chamada sem credenciais/cookies da sessão normal do Chrome.
+   * Isso evita que uma sessão Google problemática interfira na API pública.
+   */
+  if (
+    url.hostname === 'script.google.com' &&
+    url.pathname.includes('/macros/s/')
+  ) {
+    event.respondWith(
+      fetch(event.request, {
+        credentials: 'omit',
+        redirect: 'follow'
+      })
+    );
+    return;
+  }
+
+  // Demais origens externas: não interferir.
   if (url.origin !== self.location.origin) return;
 
+  // Arquivos do próprio C.A.R.A.: rede primeiro, cache como fallback.
   event.respondWith(
     fetch(event.request)
       .then(response => {
