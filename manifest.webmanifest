@@ -1,24 +1,25 @@
 {
+  "id": "/cara_app/",
   "name": "CARA — Comunidade Apostólica Restaurando Almas",
   "short_name": "CARA",
   "description": "Aplicativo oficial da Comunidade Apostólica Restaurando Almas",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/cara_app/",
+  "scope": "/cara_app/",
   "display": "standalone",
   "background_color": "#081820",
   "theme_color": "#081820",
   "icons": [
     {
-      "src": "icone-cara.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "icone-cara.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

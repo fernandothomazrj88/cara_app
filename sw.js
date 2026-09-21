@@ -1,16 +1,19 @@
-const CACHE_VERSION = 'cara-app-v2';
+const CACHE_VERSION = 'cara-app-v3';
 const APP_SHELL = [
   './',
   './index.html',
   './louvor.html',
   './manifest.webmanifest',
   './logo-cara.png',
-  './icone-cara.png'
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', event => {
   self.skipWaiting();
-  event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(APP_SHELL)));
+  event.waitUntil(
+    caches.open(CACHE_VERSION).then(cache => cache.addAll(APP_SHELL))
+  );
 });
 
 self.addEventListener('activate', event => {
