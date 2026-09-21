@@ -855,6 +855,94 @@
       .boas-vindas h2 { font-size: 24px; }
     }
 
+  
+    /* ===== MODO CIFRA COMPACTA ===== */
+    .botao-cifra-compacta {
+      width: 100%;
+      margin: 0 0 14px;
+      border: 1px solid var(--cara-line);
+      border-radius: 10px;
+      padding: 11px 12px;
+      background: #18333e;
+      color: var(--cara-text);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cifra-compacta-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      background: #071820;
+      color: #f7f5ef;
+      display: none;
+      flex-direction: column;
+      padding: 8px;
+      overflow: hidden;
+    }
+
+    .cifra-compacta-overlay.ativa { display: flex; }
+
+    .cifra-compacta-topo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+      margin-bottom: 6px;
+    }
+
+    .cifra-compacta-titulo {
+      flex: 1;
+      min-width: 0;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #f7f5ef;
+    }
+
+    .cifra-compacta-fechar {
+      border: 1px solid rgba(213,166,46,.35);
+      border-radius: 8px;
+      background: #18333e;
+      color: #f1d38a;
+      padding: 7px 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cifra-compacta-area {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 5px;
+    }
+
+    .cifra-compacta-grade {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    .cifra-compacta-grade.duas-colunas {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cifra-compacta-coluna {
+      min-width: 0;
+      overflow: hidden;
+      font-family: "Courier New", monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 1.04;
+      font-size: 14px;
+    }
+
   </style>
 
 <script>
@@ -1382,6 +1470,14 @@ function mensagemFalhaServidor(erro) {
       id="conteudoCifra"
       class="conteudo-louvor"
     >
+      <button
+        type="button"
+        class="botao-cifra-compacta"
+        onclick="abrirCifraCompacta()"
+      >
+        ⛶ VER CIFRA INTEIRA NA TELA
+      </button>
+
       <div
         id="detalheCifra"
         class="cifra"
@@ -1685,6 +1781,17 @@ function mensagemFalhaServidor(erro) {
   ></div>
 
 </section>
+
+
+<div id="cifraCompactaOverlay" class="cifra-compacta-overlay" aria-hidden="true">
+  <div class="cifra-compacta-topo">
+    <div id="cifraCompactaTitulo" class="cifra-compacta-titulo">Cifra</div>
+    <button type="button" class="cifra-compacta-fechar" onclick="fecharCifraCompacta()">✕ Fechar</button>
+  </div>
+  <div id="cifraCompactaArea" class="cifra-compacta-area">
+    <div id="cifraCompactaGrade" class="cifra-compacta-grade"></div>
+  </div>
+</div>
 
 </main>
 
@@ -4138,6 +4245,141 @@ function escaparHtml(texto) {
 }
 
 </script>
+
+
+<script>
+/* ===== MODO CIFRA COMPACTA =====
+   Tenta mostrar a cifra inteira em uma tela.
+   1 coluna primeiro; se necessário, usa 2 colunas.
+   Depois reduz a fonte automaticamente até caber.
+*/
+function abrirCifraCompacta() {
+  const origem = document.getElementById('detalheCifra');
+  const overlay = document.getElementById('cifraCompactaOverlay');
+  const titulo = document.getElementById('cifraCompactaTitulo');
+
+  if (!origem || !overlay) return;
+
+  titulo.textContent =
+    (document.getElementById('detalheTitulo')?.textContent || 'Cifra') +
+    (document.getElementById('detalheTom')?.textContent
+      ? ' — ' + document.getElementById('detalheTom').textContent
+      : '');
+
+  overlay.classList.add('ativa');
+  overlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  montarCifraCompacta(origem.textContent || '');
+}
+
+function fecharCifraCompacta() {
+  const overlay = document.getElementById('cifraCompactaOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('ativa');
+  overlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function blocosDaCifra(texto) {
+  return String(texto || '')
+    .replace(/\r/g, '')
+    .split(/\n\s*\n+/)
+    .map(b => b.trim())
+    .filter(Boolean);
+}
+
+function distribuirBlocos(blocos) {
+  const esquerda = [];
+  const direita = [];
+  let pesoE = 0;
+  let pesoD = 0;
+
+  blocos.forEach(bloco => {
+    const peso = bloco.split('\n').length + Math.ceil(bloco.length / 55);
+    if (pesoE <= pesoD) {
+      esquerda.push(bloco);
+      pesoE += peso;
+    } else {
+      direita.push(bloco);
+      pesoD += peso;
+    }
+  });
+
+  return [esquerda.join('\n\n'), direita.join('\n\n')];
+}
+
+function criarColunaCifra(texto) {
+  const coluna = document.createElement('div');
+  coluna.className = 'cifra-compacta-coluna';
+  coluna.textContent = texto;
+  return coluna;
+}
+
+function cabeCifraCompacta() {
+  const area = document.getElementById('cifraCompactaArea');
+  const grade = document.getElementById('cifraCompactaGrade');
+  const colunas = grade.querySelectorAll('.cifra-compacta-coluna');
+
+  return Array.from(colunas).every(coluna =>
+    coluna.scrollHeight <= area.clientHeight + 2 &&
+    coluna.scrollWidth <= coluna.clientWidth + 2
+  );
+}
+
+function aplicarFonteCompacta(tamanho) {
+  document
+    .querySelectorAll('#cifraCompactaGrade .cifra-compacta-coluna')
+    .forEach(el => {
+      el.style.fontSize = tamanho + 'px';
+      el.style.lineHeight = tamanho <= 9 ? '1' : '1.04';
+    });
+}
+
+function montarCifraCompacta(texto) {
+  const grade = document.getElementById('cifraCompactaGrade');
+  const blocos = blocosDaCifra(texto);
+
+  grade.innerHTML = '';
+  grade.classList.remove('duas-colunas');
+  grade.appendChild(criarColunaCifra(blocos.join('\n\n')));
+
+  requestAnimationFrame(() => {
+    // Primeiro tenta uma coluna, preservando boa legibilidade.
+    for (let fonte = 15; fonte >= 8; fonte--) {
+      aplicarFonteCompacta(fonte);
+      if (cabeCifraCompacta()) return;
+    }
+
+    // Se não couber, distribui as partes em duas colunas.
+    const partes = distribuirBlocos(blocos);
+    grade.innerHTML = '';
+    grade.classList.add('duas-colunas');
+    grade.appendChild(criarColunaCifra(partes[0]));
+    grade.appendChild(criarColunaCifra(partes[1]));
+
+    requestAnimationFrame(() => {
+      for (let fonte = 14; fonte >= 6; fonte--) {
+        aplicarFonteCompacta(fonte);
+        if (cabeCifraCompacta()) return;
+      }
+      aplicarFonteCompacta(6);
+    });
+  });
+}
+
+window.addEventListener('resize', () => {
+  const overlay = document.getElementById('cifraCompactaOverlay');
+  if (overlay && overlay.classList.contains('ativa')) {
+    montarCifraCompacta(document.getElementById('detalheCifra')?.textContent || '');
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') fecharCifraCompacta();
+});
+</script>
+
 
 <script>
 if ('serviceWorker' in navigator) {
