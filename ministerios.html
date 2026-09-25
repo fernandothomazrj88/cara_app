@@ -26,7 +26,13 @@ main{width:min(100% - 28px,1050px);margin:auto;padding:24px 0}
 .empty{grid-column:1/-1}
 .modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);align-items:flex-end;justify-content:center;padding:12px}.modal.on{display:flex}
 .sheet{width:min(100%,620px);background:#081b32;border:1px solid rgba(255,255,0,.25);border-radius:22px 22px 15px 15px;padding:22px;max-height:80vh;overflow:auto}
-.sheetTop{display:flex;justify-content:space-between;gap:15px}.sheet h2{font-size:24px}.close{width:42px;height:42px;border-radius:11px;border:1px solid rgba(255,255,0,.3);background:#102c52;color:var(--yellow);font-weight:bold}.sheet p{color:#c7d4e2;line-height:1.55;margin-top:16px}.tag{display:inline-block;margin-top:13px;padding:7px 10px;border-radius:9px;background:rgba(255,255,0,.1);color:var(--yellow);font-size:12px;font-weight:bold}
+.sheetTop{display:flex;justify-content:space-between;gap:15px}.sheet h2{font-size:24px}.close{width:42px;height:42px;border-radius:11px;border:1px solid rgba(255,255,0,.3);background:#102c52;color:var(--yellow);font-weight:bold}.sheet p{color:#c7d4e2;line-height:1.55;margin-top:16px}
+.area-label{margin-top:22px;color:var(--yellow);font-size:11px;font-weight:900;letter-spacing:1.5px}
+.area-box{margin-top:9px;padding:14px;border-radius:14px;background:#0d2747;border:1px solid rgba(255,255,255,.09)}
+.area-box strong{display:block;color:#fff;margin-bottom:5px}.area-box span{color:#c7d4e2;font-size:14px;line-height:1.45}
+.acao-ministerio{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;margin-top:20px;border-radius:14px;background:var(--yellow);color:#071321;text-decoration:none;font-weight:900}
+.acao-ministerio.desabilitada{background:#18304d;color:#8fa3b8;pointer-events:none}
+.tag{display:inline-block;margin-top:13px;padding:7px 10px;border-radius:9px;background:rgba(255,255,0,.1);color:var(--yellow);font-size:12px;font-weight:bold}
 .bottom{
 position:fixed;left:50%;bottom:0;transform:translateX(-50%);
 width:100%;max-width:900px;min-height:82px;
@@ -130,12 +136,68 @@ async function carregar(){
  }
 }
 
+
+function chaveMinisterio(n){
+  return String(n||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase();
+}
+
+function dadosArea(m){
+  const n=chaveMinisterio(nome(m));
+
+  if(n.includes('LOUVOR')) return {
+    proposito:'Servir à congregação por meio do louvor, adoração e suporte musical nos cultos e atividades.',
+    area:'Cifras, repertório e recursos do Ministério de Louvor.',
+    href:'./louvor.html',
+    botao:'Acessar área do Louvor'
+  };
+
+  if(n.includes('MIDIA')) return {
+    proposito:'Comunicar com propósito, organizando artes, conteúdos, registros e transmissões da C.A.R.A.',
+    area:'A área própria da Mídia será conectada aqui na próxima etapa.',
+    href:'',
+    botao:'Área da Mídia em construção'
+  };
+
+  if(n.includes('ENSINO') || n.includes('DISCIPULADO')) return {
+    proposito:'Promover crescimento na Palavra, formação espiritual e desenvolvimento de discípulos e líderes.',
+    area:'Estudos, materiais e trilhas de discipulado serão reunidos nesta área.',
+    href:'',
+    botao:'Área em construção'
+  };
+
+  if(n.includes('HOMENS')) return {
+    proposito:'Fortalecer homens na comunhão, no caráter cristão e no propósito de servir a Cristo.',
+    area:'Aqui ficará o acesso ao discipulado de homens #Forjados.',
+    href:'',
+    botao:'Área #Forjados em construção'
+  };
+
+  return {
+    proposito: descricao(m) || 'Servir e edificar a comunidade por meio desta área ministerial.',
+    area:'Este ministério terá sua área própria conforme os módulos forem sendo desenvolvidos.',
+    href:'',
+    botao:'Área em construção'
+  };
+}
+
 function abrir(i){
  const m=ministerios[i]; if(!m)return;
  document.getElementById('mTitulo').textContent=nome(m);
- document.getElementById('mCorpo').innerHTML=
-   (descricao(m)?`<p>${esc(descricao(m))}</p>`:'<p>Área ministerial da Comunidade Apostólica Restaurando Almas.</p>')+
-   (id(m)?`<span class="tag">${esc(id(m))}</span>`:'');
+ const area=dadosArea(m);
+ document.getElementById('mCorpo').innerHTML=`
+   <div class="area-label">PROPÓSITO</div>
+   <div class="area-box"><span>${esc(area.proposito)}</span></div>
+
+   <div class="area-label">ÁREA DO MINISTÉRIO</div>
+   <div class="area-box">
+     <strong>${esc(nome(m))}</strong>
+     <span>${esc(area.area)}</span>
+   </div>
+
+   ${area.href
+      ? `<a class="acao-ministerio" href="${area.href}">${esc(area.botao)} <span>›</span></a>`
+      : `<div class="acao-ministerio desabilitada">${esc(area.botao)}</div>`}
+ `;
  const modal=document.getElementById('modal');modal.classList.add('on');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
 }
 function fechar(){const m=document.getElementById('modal');m.classList.remove('on');m.setAttribute('aria-hidden','true');document.body.style.overflow=''}
