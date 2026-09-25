@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -8,1154 +10,1813 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <title>CARA — Comunidade Apostólica Restaurando Almas</title>
+  <title>
+    CARA — Comunidade Apostólica Restaurando Almas
+  </title>
 
-  <link rel="icon" href="icone-cara.png">
-  <link rel="apple-touch-icon" href="icone-cara.png">
+  <link
+    rel="icon"
+    href="icone-cara.png"
+  >
 
-  <meta name="theme-color" content="#081820">
+  <link
+    rel="apple-touch-icon"
+    href="icone-cara.png"
+  >
 
-  <style>
+  <link
+    rel="manifest"
+    href="manifest.webmanifest"
+  >
 
-    /* ========================================
-       CONFIGURAÇÕES
-    ======================================== */
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <!-- COR OFICIAL DO APP -->
 
-    :root {
-      --fundo-topo: #081820;
-      --fundo-menu: #06141a;
-      --dourado: #dca51f;
-      --branco: #ffffff;
-      --fundo-pagina: #f4f3ef;
-      --texto-escuro: #161616;
-    }
+  <meta
+    name="theme-color"
+    content="#051326"
+  >
 
-    html {
-      scroll-behavior: smooth;
-    }
+  <meta
+    name="mobile-web-app-capable"
+    content="yes"
+  >
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--fundo-pagina);
-      color: var(--texto-escuro);
-      padding-bottom: 96px;
-    }
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
 
-    .app {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      background: var(--fundo-pagina);
-      min-height: 100vh;
-    }
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  >
 
 
-    /* ========================================
-       CABEÇALHO
-    ======================================== */
+<style>
 
-    .hero {
-      position: relative;
+/* =====================================================
+   CONFIGURAÇÕES
+===================================================== */
 
-      background:
-        radial-gradient(
-          circle at 50% 20%,
-          #12313d 0%,
-          #0b2029 38%,
-          #081820 72%,
-          #06141a 100%
-        );
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-      color: white;
 
-      padding:
-        calc(14px + env(safe-area-inset-top))
-        22px
-        34px;
+:root {
 
-      border-bottom: 4px solid var(--dourado);
+  --azul-cara: #051326;
 
-      overflow: hidden;
-    }
+  --azul-secundario: #0a213c;
 
+  --azul-card: #081b32;
 
-    /* ========================================
-       LOGO
-    ======================================== */
+  --amarelo-cara: #FFFF00;
 
-    .logo-container {
-      width: 100%;
-      max-width: 760px;
+  --branco: #ffffff;
 
-      margin: 0 auto;
+  --fundo-pagina: #f4f4f1;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  --texto-escuro: #161616;
 
-      overflow: hidden;
-    }
+}
 
-    .logo {
-      display: block;
 
-      width: 100%;
-      height: auto;
+html {
+  scroll-behavior: smooth;
+}
 
-      object-fit: contain;
 
-      /*
-        O PNG possui o próprio fundo.
-        O cabeçalho foi aproximado da mesma
-        família de cores para integrar melhor.
-      */
+body {
 
-      mix-blend-mode: normal;
-    }
+  margin: 0;
 
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-    /* ========================================
-       FRASE OFICIAL
-    ======================================== */
+  background:
+    var(--fundo-pagina);
 
-    .frase-topo {
-      max-width: 720px;
+  color:
+    var(--texto-escuro);
 
-      margin:
-        12px
-        auto
-        32px;
+  padding-bottom: 96px;
 
-      padding: 0 6px;
+}
 
-      text-align: center;
 
-      color: #ffffff;
+.app {
 
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+  width: 100%;
 
-      font-style: italic;
+  max-width: 900px;
 
-      font-size: clamp(14px, 3.8vw, 18px);
+  margin: 0 auto;
 
-      line-height: 1.5;
-    }
+  background:
+    var(--fundo-pagina);
 
+  min-height: 100vh;
 
-    /* ========================================
-       BOAS-VINDAS
-    ======================================== */
+}
 
-    .boas-vindas {
-      width: 100%;
-    }
 
-    .bem-vindo {
-      color: var(--dourado);
+/* =====================================================
+   CABEÇALHO
+===================================================== */
 
-      font-size: 12px;
-      font-weight: 800;
+.hero {
 
-      letter-spacing: 3px;
+  position: relative;
 
-      margin-bottom: 8px;
-    }
+  background:
 
-    .boas-vindas h1 {
-      color: #ffffff;
+    radial-gradient(
+      circle at 50% 15%,
+      #102b50 0%,
+      #091d36 38%,
+      #051326 72%,
+      #030c18 100%
+    );
 
-      font-size: clamp(37px, 9vw, 55px);
+  color: white;
 
-      line-height: 1;
+  padding:
 
-      font-weight: 800;
-    }
+    calc(
+      14px +
+      env(safe-area-inset-top)
+    )
 
+    22px
 
-    /* ========================================
-       CONTEÚDO PRINCIPAL
-    ======================================== */
+    34px;
 
-    .conteudo {
-      padding: 24px 18px 28px;
-    }
+  border-bottom:
 
+    4px solid
+    var(--amarelo-cara);
 
-    /* ========================================
-       PRÓXIMO EVENTO
-    ======================================== */
+  overflow: hidden;
 
-    .evento {
-      position: relative;
+}
 
-      background:
-        radial-gradient(
-          circle at 90% 20%,
-          #143341 0%,
-          #0d252f 40%,
-          #0a1c24 100%
-        );
 
-      color: white;
+/* =====================================================
+   LOGO
+===================================================== */
 
-      border-radius: 22px;
+.logo-container {
 
-      padding: 22px;
+  width: 100%;
 
-      margin-bottom: 28px;
+  max-width: 760px;
 
-      box-shadow:
-        0 10px 28px rgba(0,0,0,.16);
+  margin: 0 auto;
 
-      overflow: hidden;
-    }
+  display: flex;
 
-    .evento-label {
-      color: var(--dourado);
+  justify-content: center;
 
-      font-size: 12px;
-      font-weight: 800;
+  align-items: center;
 
-      letter-spacing: 3px;
+  overflow: hidden;
 
-      margin-bottom: 18px;
-    }
+}
 
-    .evento-principal {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
 
-    .evento-icone {
-      font-size: 39px;
-      line-height: 1;
-      flex-shrink: 0;
-    }
+.logo {
 
-    .evento-texto h2 {
-      font-size: 25px;
-      line-height: 1.1;
-    }
+  display: block;
 
-    .evento-texto p {
-      margin-top: 5px;
+  width: 100%;
 
-      color: #e4e4e4;
+  height: auto;
 
-      font-size: 16px;
-    }
+  object-fit: contain;
 
-    .evento-linha {
-      height: 1px;
+}
 
-      background:
-        rgba(255,255,255,.12);
 
-      margin: 20px 0 16px;
-    }
+/* =====================================================
+   FRASE
+===================================================== */
 
-    .evento-rodape {
-      display: flex;
-      flex-wrap: wrap;
+.frase-topo {
 
-      align-items: center;
+  max-width: 720px;
 
-      gap: 14px 20px;
-    }
+  margin:
+    12px
+    auto
+    32px;
 
-    .evento-info {
-      display: flex;
-      align-items: center;
+  padding: 0 6px;
 
-      gap: 7px;
+  text-align: center;
 
-      font-size: 14px;
+  color: #ffffff;
 
-      color: #eeeeee;
-    }
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-    .evento-info .icone {
-      font-size: 19px;
-    }
+  font-style: italic;
 
-    .evento-botao {
-      display: inline-flex;
+  font-size:
+    clamp(
+      14px,
+      3.8vw,
+      18px
+    );
 
-      align-items: center;
-      justify-content: center;
+  line-height: 1.5;
 
-      gap: 8px;
+}
 
-      margin-left: auto;
 
-      min-height: 46px;
+/* =====================================================
+   BOAS-VINDAS
+===================================================== */
 
-      padding: 0 20px;
+.boas-vindas {
+  width: 100%;
+}
 
-      border-radius: 16px;
 
-      background: var(--dourado);
+.bem-vindo {
 
-      color: #111111;
+  color:
+    var(--amarelo-cara);
 
-      text-decoration: none;
+  font-size: 12px;
 
-      font-size: 14px;
-      font-weight: 800;
+  font-weight: 900;
 
-      transition:
-        transform .15s ease,
-        filter .15s ease;
-    }
+  letter-spacing: 3px;
 
-    .evento-botao:active {
-      transform: scale(.97);
-    }
+  margin-bottom: 8px;
 
+}
 
-    /* ========================================
-       TÍTULO ACESSO RÁPIDO
-    ======================================== */
 
-    .titulo-secao {
-      color: #765d13;
+.boas-vindas h1 {
 
-      font-size: 12px;
-      font-weight: 800;
+  color: white;
 
-      letter-spacing: 2px;
+  font-size:
+    clamp(
+      37px,
+      9vw,
+      55px
+    );
 
-      margin:
-        0
-        3px
-        14px;
-    }
+  line-height: 1;
 
+  font-weight: 800;
 
-    /* ========================================
-       GRID DOS MÓDULOS
-    ======================================== */
+}
 
-    .modulos {
-      display: grid;
 
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+/* =====================================================
+   CONTEÚDO
+===================================================== */
 
-      gap: 12px;
-    }
+.conteudo {
 
-    .modulo {
-      position: relative;
+  padding:
+    24px
+    18px
+    28px;
 
-      min-height: 145px;
+}
 
-      padding: 18px;
 
-      border-radius: 20px;
+/* =====================================================
+   PRÓXIMO EVENTO
+===================================================== */
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+.evento {
 
-      color: white;
+  position: relative;
 
-      text-decoration: none;
+  background:
 
-      overflow: hidden;
+    radial-gradient(
+      circle at 90% 20%,
+      #102c52 0%,
+      #081c35 42%,
+      #051326 100%
+    );
 
-      box-shadow:
-        0 7px 18px rgba(0,0,0,.14);
+  color: white;
 
-      transition:
-        transform .15s ease,
-        filter .15s ease;
-    }
+  border-radius: 22px;
 
-    .modulo:hover {
-      filter: brightness(1.05);
-    }
+  padding: 22px;
 
-    .modulo:active {
-      transform: scale(.97);
-    }
+  margin-bottom: 28px;
 
-    .modulo-icone {
-      font-size: 34px;
-      line-height: 1;
-    }
+  box-shadow:
+    0 10px 28px
+    rgba(0,0,0,.18);
 
-    .modulo h3 {
-      margin-top: 14px;
+  border:
+    1px solid
+    rgba(255,255,0,.16);
 
-      font-size: 18px;
+  overflow: hidden;
 
-      line-height: 1.1;
-    }
+}
 
-    .modulo p {
-      margin-top: 5px;
 
-      color:
-        rgba(255,255,255,.88);
+.evento::before {
 
-      font-size: 12px;
+  content: "";
 
-      line-height: 1.4;
-    }
+  position: absolute;
 
+  top: 0;
 
-    /* ========================================
-       CORES DOS MÓDULOS
-    ======================================== */
+  left: 0;
 
-    .agenda {
-      background:
-        linear-gradient(
-          135deg,
-          #006c5a,
-          #008b76
-        );
-    }
+  width: 100%;
 
-    .louvor {
-      background:
-        linear-gradient(
-          135deg,
-          #926000,
-          #b27b00
-        );
-    }
+  height: 4px;
 
-    .midia {
-      background:
-        linear-gradient(
-          135deg,
-          #7c1d2c,
-          #a5293c
-        );
-    }
+  background:
+    var(--amarelo-cara);
 
-    .estudos {
-      background:
-        linear-gradient(
-          135deg,
-          #076887,
-          #0797bd
-        );
-    }
+}
 
-    .pregacoes {
-      background:
-        linear-gradient(
-          135deg,
-          #452051,
-          #703181
-        );
-    }
 
-    .membros {
-      background:
-        linear-gradient(
-          135deg,
-          #356500,
-          #5c9707
-        );
-    }
+.evento-label {
 
-    .ministerios {
-      background:
-        linear-gradient(
-          135deg,
-          #00726e,
-          #009e98
-        );
-    }
+  color:
+    var(--amarelo-cara);
 
-    .secretaria {
-      background:
-        linear-gradient(
-          135deg,
-          #273238,
-          #46545b
-        );
-    }
+  font-size: 12px;
 
+  font-weight: 900;
 
-    /* ========================================
-       MENU INFERIOR
-    ======================================== */
+  letter-spacing: 3px;
 
-    .menu-inferior {
-      position: fixed;
+  margin-bottom: 18px;
 
-      left: 50%;
-      bottom: 0;
+}
 
-      transform:
-        translateX(-50%);
 
-      width: 100%;
-      max-width: 900px;
+.evento-principal {
 
-      min-height: 82px;
+  display: flex;
 
-      padding-bottom:
-        env(safe-area-inset-bottom);
+  align-items: center;
 
-      background:
-        linear-gradient(
-          135deg,
-          #06141a,
-          #091c24
-        );
+  gap: 15px;
 
-      display: grid;
+}
 
-      grid-template-columns:
-        repeat(5, 1fr);
 
-      border-radius:
-        24px
-        24px
-        0
-        0;
+.evento-icone {
 
-      box-shadow:
-        0 -6px 24px
-        rgba(0,0,0,.18);
+  font-size: 39px;
 
-      z-index: 1000;
-    }
+  line-height: 1;
 
-    .menu-item {
-      display: flex;
+  flex-shrink: 0;
 
-      flex-direction: column;
+}
 
-      align-items: center;
-      justify-content: center;
 
-      gap: 5px;
+.evento-texto h2 {
 
-      color: #eeeeee;
+  font-size: 25px;
 
-      text-decoration: none;
+  line-height: 1.1;
 
-      font-size: 10px;
-    }
+}
 
-    .menu-item span {
-      font-size: 23px;
-      line-height: 1;
-    }
 
-    .menu-item.ativo {
-      color: var(--dourado);
+.evento-texto p {
 
-      font-weight: 800;
-    }
+  margin-top: 7px;
 
+  color:
+    var(--amarelo-cara);
 
-    /* ========================================
-       CELULARES PEQUENOS
-    ======================================== */
+  font-size: 14px;
 
-    @media (max-width: 390px) {
+  font-weight: 700;
 
-      .hero {
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-bottom: 28px;
-      }
+}
 
-      .frase-topo {
-        margin-bottom: 27px;
-      }
 
-      .conteudo {
-        padding:
-          18px
-          13px
-          24px;
-      }
+.evento-linha {
 
-      .evento {
-        padding: 18px;
-      }
+  height: 1px;
 
-      .evento-texto h2 {
-        font-size: 22px;
-      }
+  background:
+    rgba(255,255,255,.13);
 
-      .evento-botao {
-        width: 100%;
+  margin:
+    20px
+    0
+    16px;
 
-        margin-left: 0;
+}
 
-        margin-top: 3px;
-      }
 
-      .modulos {
-        gap: 9px;
-      }
+.evento-rodape {
 
-      .modulo {
-        min-height: 135px;
+  display: flex;
 
-        padding: 15px;
-      }
+  flex-wrap: wrap;
 
-      .modulo h3 {
-        font-size: 16px;
-      }
+  align-items: center;
 
-      .modulo p {
-        font-size: 11px;
-      }
+  gap:
+    14px
+    20px;
 
-    }
+}
 
 
-    /* ========================================
-       TABLET
-    ======================================== */
+.evento-info {
 
-    @media (min-width: 700px) {
+  display: flex;
 
-      .hero {
-        padding:
-          18px
-          40px
-          38px;
-      }
+  align-items: center;
 
-      .conteudo {
-        padding:
-          28px
-          34px
-          35px;
-      }
+  gap: 7px;
 
-      .evento {
-        padding:
-          25px
-          30px;
-      }
+  font-size: 14px;
 
-      .modulos {
-        grid-template-columns:
-          repeat(4, minmax(0, 1fr));
-      }
+  color: #eeeeee;
 
-      .modulo {
-        min-height: 150px;
-      }
+}
 
-    }
 
-  </style>
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+.evento-info .icone {
+  font-size: 19px;
+}
+
+
+.evento-botao {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-left: auto;
+
+  min-height: 46px;
+
+  padding:
+    0
+    20px;
+
+  border-radius: 16px;
+
+  background:
+    var(--amarelo-cara);
+
+  color: #000;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 900;
+
+  transition:
+    transform .15s ease,
+    filter .15s ease;
+
+}
+
+
+.evento-botao:active {
+  transform: scale(.97);
+}
+
+
+/* CARREGANDO */
+
+.evento.carregando {
+
+  opacity: .88;
+
+}
+
+
+/* =====================================================
+   ACESSO RÁPIDO
+===================================================== */
+
+.titulo-secao {
+
+  color: #574d00;
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  margin:
+    0
+    3px
+    14px;
+
+}
+
+
+/* =====================================================
+   MÓDULOS
+===================================================== */
+
+.modulos {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap: 12px;
+
+}
+
+
+.modulo {
+
+  position: relative;
+
+  min-height: 145px;
+
+  padding: 18px;
+
+  border-radius: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content:
+    space-between;
+
+  color: white;
+
+  text-decoration: none;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 7px 18px
+    rgba(0,0,0,.14);
+
+  transition:
+    transform .15s ease,
+    filter .15s ease;
+
+}
+
+
+.modulo:hover {
+  filter: brightness(1.05);
+}
+
+
+.modulo:active {
+  transform: scale(.97);
+}
+
+
+.modulo-icone {
+
+  font-size: 34px;
+
+  line-height: 1;
+
+}
+
+
+.modulo h3 {
+
+  margin-top: 14px;
+
+  font-size: 18px;
+
+  line-height: 1.1;
+
+}
+
+
+.modulo p {
+
+  margin-top: 5px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .88
+    );
+
+  font-size: 12px;
+
+  line-height: 1.4;
+
+}
+
+
+/* =====================================================
+   CORES DOS MÓDULOS
+===================================================== */
+
+.agenda {
+
+  background:
+    linear-gradient(
+      135deg,
+      #006c5a,
+      #008b76
+    );
+
+}
+
+
+.louvor {
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b6900,
+      #b08a00
+    );
+
+}
+
+
+.midia {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c1d2c,
+      #a5293c
+    );
+
+}
+
+
+.estudos {
+
+  background:
+    linear-gradient(
+      135deg,
+      #076887,
+      #0797bd
+    );
+
+}
+
+
+.pregacoes {
+
+  background:
+    linear-gradient(
+      135deg,
+      #452051,
+      #703181
+    );
+
+}
+
+
+.membros {
+
+  background:
+    linear-gradient(
+      135deg,
+      #356500,
+      #5c9707
+    );
+
+}
+
+
+/*
+   MINISTÉRIOS:
+   amarelo da identidade CARA
+*/
+
+.ministerios {
+
+  background:
+    var(--amarelo-cara);
+
+  color: #000;
+
+}
+
+
+.ministerios p {
+
+  color:
+    rgba(
+      0,
+      0,
+      0,
+      .72
+    );
+
+}
+
+
+.secretaria {
+
+  background:
+    linear-gradient(
+      135deg,
+      #273238,
+      #46545b
+    );
+
+}
+
+
+/* =====================================================
+   MENU INFERIOR
+===================================================== */
+
+.menu-inferior {
+
+  position: fixed;
+
+  left: 50%;
+
+  bottom: 0;
+
+  transform:
+    translateX(-50%);
+
+  width: 100%;
+
+  max-width: 900px;
+
+  min-height: 82px;
+
+  padding-bottom:
+    env(safe-area-inset-bottom);
+
+  background:
+    var(--azul-cara);
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+  border-radius:
+    24px
+    24px
+    0
+    0;
+
+  box-shadow:
+    0 -6px 24px
+    rgba(0,0,0,.20);
+
+  z-index: 1000;
+
+}
+
+
+.menu-item {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  color: #eee;
+
+  text-decoration: none;
+
+  font-size: 10px;
+
+}
+
+
+.menu-item span {
+
+  font-size: 23px;
+
+  line-height: 1;
+
+}
+
+
+.menu-item.ativo {
+
+  color:
+    var(--amarelo-cara);
+
+  font-weight: 900;
+
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media (max-width:390px) {
+
+  .hero {
+
+    padding-left: 16px;
+
+    padding-right: 16px;
+
+    padding-bottom: 28px;
+
+  }
+
+
+  .frase-topo {
+    margin-bottom: 27px;
+  }
+
+
+  .conteudo {
+
+    padding:
+      18px
+      13px
+      24px;
+
+  }
+
+
+  .evento {
+    padding: 18px;
+  }
+
+
+  .evento-texto h2 {
+    font-size: 22px;
+  }
+
+
+  .evento-botao {
+
+    width: 100%;
+
+    margin-left: 0;
+
+    margin-top: 3px;
+
+  }
+
+
+  .modulos {
+    gap: 9px;
+  }
+
+
+  .modulo {
+
+    min-height: 135px;
+
+    padding: 15px;
+
+  }
+
+
+  .modulo h3 {
+    font-size: 16px;
+  }
+
+
+  .modulo p {
+    font-size: 11px;
+  }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (min-width:700px) {
+
+  .hero {
+
+    padding:
+      18px
+      40px
+      38px;
+
+  }
+
+
+  .conteudo {
+
+    padding:
+      28px
+      34px
+      35px;
+
+  }
+
+
+  .evento {
+
+    padding:
+      25px
+      30px;
+
+  }
+
+
+  .modulos {
+
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(0,1fr)
+      );
+
+  }
+
+
+  .modulo {
+    min-height: 150px;
+  }
+
+}
+
+</style>
 
 </head>
 
 
+
 <body>
+
 
 <div class="app">
 
 
-  <!-- ==================================
-       CABEÇALHO
-  =================================== -->
+<!-- ==================================================
+     CABEÇALHO
+================================================== -->
 
-  <header class="hero">
+<header class="hero">
 
 
-    <div class="logo-container">
+  <div class="logo-container">
 
-      <img
-        src="logo-cara.png"
-        alt="CARA — Comunidade Apostólica Restaurando Almas"
-        class="logo"
-      >
+    <img
+      src="logo-cara.png"
+      alt="CARA — Comunidade Apostólica Restaurando Almas"
+      class="logo"
+    >
+
+  </div>
+
+
+  <div class="frase-topo">
+
+    “Um amor que acolhe,
+    a verdade que liberta
+    e a graça que restaura!”
+
+  </div>
+
+
+  <div class="boas-vindas">
+
+    <div class="bem-vindo">
+      BEM-VINDO
+    </div>
+
+    <h1>
+      Shalom, Shalom!
+    </h1>
+
+  </div>
+
+
+</header>
+
+
+
+<!-- ==================================================
+     CONTEÚDO
+================================================== -->
+
+<main class="conteudo">
+
+
+<!-- ==================================================
+     PRÓXIMO EVENTO — API CENTRAL
+================================================== -->
+
+<section
+  class="evento carregando"
+  id="cardProximoEvento"
+>
+
+
+  <div class="evento-label">
+
+    PRÓXIMO EVENTO
+
+  </div>
+
+
+  <div class="evento-principal">
+
+
+    <div
+      class="evento-icone"
+      id="eventoIcone"
+    >
+      ⏳
+    </div>
+
+
+    <div class="evento-texto">
+
+      <h2 id="eventoTitulo">
+        Carregando...
+      </h2>
+
+      <p id="eventoTipo">
+        Consultando agenda
+      </p>
 
     </div>
 
 
-    <div class="frase-topo">
+  </div>
 
-      “Um amor que acolhe, a verdade que liberta
-      e a graça que restaura!”
+
+  <div class="evento-linha"></div>
+
+
+  <div class="evento-rodape">
+
+
+    <div class="evento-info">
+
+      <span class="icone">
+        📅
+      </span>
+
+      <span id="eventoData">
+        —
+      </span>
 
     </div>
 
 
-    <div class="boas-vindas">
+    <div class="evento-info">
 
-      <div class="bem-vindo">
-        BEM-VINDO
-      </div>
+      <span class="icone">
+        🕘
+      </span>
 
-      <h1>
-        Shalom, Shalom!
-      </h1>
+      <span id="eventoHora">
+        —
+      </span>
 
     </div>
 
 
-  </header>
+    <div class="evento-info">
 
+      <span class="icone">
+        📍
+      </span>
 
+      <span id="eventoLocal">
+        —
+      </span>
 
-  <!-- ==================================
-       CONTEÚDO
-  =================================== -->
-
-  <main class="conteudo">
-
-
-    <!-- ==================================
-         PRÓXIMO EVENTO
-    =================================== -->
-
-    <section class="evento">
-
-
-      <div class="evento-label">
-        PRÓXIMO EVENTO
-      </div>
-
-
-      <div class="evento-principal">
-
-
-        <div class="evento-icone">
-          📖
-        </div>
-
-
-        <div class="evento-texto">
-
-          <h2>
-            Estudo Bíblico
-          </h2>
-
-          <p>
-            Romanos — Aula 03
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-      <div class="evento-linha"></div>
-
-
-      <div class="evento-rodape">
-
-
-        <div class="evento-info">
-
-          <span class="icone">
-            📅
-          </span>
-
-          <span>
-            Terça-feira
-          </span>
-
-        </div>
-
-
-        <div class="evento-info">
-
-          <span class="icone">
-            🕘
-          </span>
-
-          <span>
-            21h45
-          </span>
-
-        </div>
-
-
-        <div class="evento-info">
-
-          <span class="icone">
-            📍
-          </span>
-
-          <span>
-            Na congregação
-          </span>
-
-        </div>
-
-
-        <a
-          href="#"
-          class="evento-botao"
-        >
-
-          Ver detalhes
-
-          <span>
-            ›
-          </span>
-
-        </a>
-
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- ==================================
-         ACESSO RÁPIDO
-    =================================== -->
-
-    <div class="titulo-secao">
-      ACESSO RÁPIDO
     </div>
 
 
+    <a
+      href="#"
+      class="evento-botao"
+      id="eventoBotao"
+    >
 
-    <section class="modulos">
+      Ver detalhes
+
+      <span>
+        ›
+      </span>
+
+    </a>
 
 
-      <!-- AGENDA -->
+  </div>
 
-      <a
-        href="#"
-        class="modulo agenda"
-      >
 
-        <div class="modulo-icone">
-          📅
-        </div>
-
-        <div>
-
-          <h3>
-            Agenda
-          </h3>
-
-          <p>
-            Cultos, reuniões e eventos
-          </p>
-
-        </div>
-
-      </a>
+</section>
 
 
 
-      <!-- LOUVOR -->
+<!-- ==================================================
+     ACESSO RÁPIDO
+================================================== -->
+
+<div class="titulo-secao">
+
+  ACESSO RÁPIDO
+
+</div>
+
+
+
+<section class="modulos">
+
+
+<!-- AGENDA -->
+
+<a
+  href="#"
+  class="modulo agenda"
+>
+
+  <div class="modulo-icone">
+    📅
+  </div>
+
+  <div>
+
+    <h3>
+      Agenda
+    </h3>
+
+    <p>
+      Cultos, reuniões e eventos
+    </p>
+
+  </div>
+
+</a>
+
+
+
+<!-- LOUVOR -->
 
 <a
   href="louvor.html"
   class="modulo louvor"
 >
 
-        <div class="modulo-icone">
-          🎵
-        </div>
+  <div class="modulo-icone">
+    🎵
+  </div>
 
-        <div>
+  <div>
 
-          <h3>
-            Louvor
-          </h3>
+    <h3>
+      Louvor
+    </h3>
 
-          <p>
-            Cifras, repertório e escalas
-          </p>
+    <p>
+      Cifras, repertório e escalas
+    </p>
 
-        </div>
+  </div>
 
-      </a>
+</a>
 
 
 
-      <!-- MÍDIA -->
+<!-- MÍDIA -->
 
-      <a
-        href="#"
-        class="modulo midia"
-      >
+<a
+  href="#"
+  class="modulo midia"
+>
 
-        <div class="modulo-icone">
-          🖼️
-        </div>
+  <div class="modulo-icone">
+    🖼️
+  </div>
 
-        <div>
+  <div>
 
-          <h3>
-            Mídia
-          </h3>
+    <h3>
+      Mídia
+    </h3>
 
-          <p>
-            Artes, fotos e conteúdos
-          </p>
+    <p>
+      Artes, fotos e conteúdos
+    </p>
 
-        </div>
+  </div>
 
-      </a>
+</a>
 
 
 
-      <!-- ESTUDOS -->
+<!-- ESTUDOS -->
 
-      <a
-        href="#"
-        class="modulo estudos"
-      >
+<a
+  href="#"
+  class="modulo estudos"
+>
 
-        <div class="modulo-icone">
-          📖
-        </div>
+  <div class="modulo-icone">
+    📖
+  </div>
 
-        <div>
+  <div>
 
-          <h3>
-            Estudos Bíblicos
-          </h3>
+    <h3>
+      Estudos Bíblicos
+    </h3>
 
-          <p>
-            Materiais e aulas
-          </p>
+    <p>
+      Materiais e aulas
+    </p>
 
-        </div>
+  </div>
 
-      </a>
+</a>
 
 
 
-      <!-- PREGAÇÕES -->
+<!-- PREGAÇÕES -->
 
-      <a
-        href="#"
-        class="modulo pregacoes"
-      >
+<a
+  href="#"
+  class="modulo pregacoes"
+>
 
-        <div class="modulo-icone">
-          🎙️
-        </div>
+  <div class="modulo-icone">
+    🎙️
+  </div>
 
-        <div>
+  <div>
 
-          <h3>
-            Pregações
-          </h3>
+    <h3>
+      Pregações
+    </h3>
 
-          <p>
-            Mensagens e séries
-          </p>
+    <p>
+      Mensagens e séries
+    </p>
 
-        </div>
+  </div>
 
-      </a>
+</a>
 
 
 
-      <!-- MEMBROS -->
+<!-- MEMBROS -->
 
-      <a
-        href="#"
-        class="modulo membros"
-      >
+<a
+  href="#"
+  class="modulo membros"
+>
 
-        <div class="modulo-icone">
-          👥
-        </div>
+  <div class="modulo-icone">
+    👥
+  </div>
 
-        <div>
+  <div>
 
-          <h3>
-            Membros
-          </h3>
+    <h3>
+      Membros
+    </h3>
 
-          <p>
-            Cadastro e aniversariantes
-          </p>
+    <p>
+      Cadastro e aniversariantes
+    </p>
 
-        </div>
+  </div>
 
-      </a>
+</a>
 
 
 
-      <!-- MINISTÉRIOS -->
+<!-- MINISTÉRIOS -->
 
-      <a
-        href="#"
-        class="modulo ministerios"
-      >
+<a
+  href="#"
+  class="modulo ministerios"
+>
 
-        <div class="modulo-icone">
-          🤝
-        </div>
+  <div class="modulo-icone">
+    🤝
+  </div>
 
-        <div>
+  <div>
 
-          <h3>
-            Ministérios
-          </h3>
+    <h3>
+      Ministérios
+    </h3>
 
-          <p>
-            Servir e edificar
-          </p>
+    <p>
+      Servir e edificar
+    </p>
 
-        </div>
+  </div>
 
-      </a>
+</a>
 
 
 
-      <!-- SECRETARIA -->
+<!-- SECRETARIA -->
 
-      <a
-        href="#"
-        class="modulo secretaria"
-      >
+<a
+  href="#"
+  class="modulo secretaria"
+>
 
-        <div class="modulo-icone">
-          ⚙️
-        </div>
+  <div class="modulo-icone">
+    ⚙️
+  </div>
 
-        <div>
+  <div>
 
-          <h3>
-            Secretaria
-          </h3>
+    <h3>
+      Secretaria
+    </h3>
 
-          <p>
-            Documentos e administração
-          </p>
+    <p>
+      Documentos e administração
+    </p>
 
-        </div>
+  </div>
 
-      </a>
+</a>
 
 
-    </section>
+</section>
 
 
-  </main>
+</main>
 
 
 </div>
 
 
 
-<!-- ==================================
+<!-- ==================================================
      MENU INFERIOR
-=================================== -->
+================================================== -->
 
 <nav class="menu-inferior">
 
 
-  <a
-    href="#"
-    class="menu-item ativo"
-  >
+<a
+  href="#"
+  class="menu-item ativo"
+>
 
-    <span>
-      🏠
-    </span>
+  <span>
+    🏠
+  </span>
 
-    Início
+  Início
 
-  </a>
-
-
-  <a
-    href="#"
-    class="menu-item"
-  >
-
-    <span>
-      📅
-    </span>
-
-    Agenda
-
-  </a>
+</a>
 
 
-  <a
-    href="#"
-    class="menu-item"
-  >
+<a
+  href="#"
+  class="menu-item"
+>
 
-    <span>
-      ▦
-    </span>
+  <span>
+    📅
+  </span>
 
-    Ministérios
+  Agenda
 
-  </a>
-
-
-  <a
-    href="#"
-    class="menu-item"
-  >
-
-    <span>
-      🔔
-    </span>
-
-    Avisos
-
-  </a>
+</a>
 
 
-  <a
-    href="#"
-    class="menu-item"
-  >
+<a
+  href="#"
+  class="menu-item"
+>
 
-    <span>
-      ☰
-    </span>
+  <span>
+    ▦
+  </span>
 
-    Mais
+  Ministérios
 
-  </a>
+</a>
+
+
+<a
+  href="#"
+  class="menu-item"
+>
+
+  <span>
+    🔔
+  </span>
+
+  Avisos
+
+</a>
+
+
+<a
+  href="#"
+  class="menu-item"
+>
+
+  <span>
+    ☰
+  </span>
+
+  Mais
+
+</a>
 
 
 </nav>
 
 
+
 <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(console.error);
-  });
+
+/* =====================================================
+   API CENTRAL C.A.R.A.
+===================================================== */
+
+const API_CARA =
+  'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const card =
+  document.getElementById(
+    'cardProximoEvento'
+  );
+
+const titulo =
+  document.getElementById(
+    'eventoTitulo'
+  );
+
+const tipo =
+  document.getElementById(
+    'eventoTipo'
+  );
+
+const data =
+  document.getElementById(
+    'eventoData'
+  );
+
+const hora =
+  document.getElementById(
+    'eventoHora'
+  );
+
+const local =
+  document.getElementById(
+    'eventoLocal'
+  );
+
+const icone =
+  document.getElementById(
+    'eventoIcone'
+  );
+
+
+/* =====================================================
+   FORMATA DATA
+===================================================== */
+
+function formatarDataCARA(
+  dataISO
+) {
+
+  if (!dataISO) {
+    return 'Data a definir';
+  }
+
+
+  const partes =
+    dataISO.split('-');
+
+
+  if (partes.length !== 3) {
+    return dataISO;
+  }
+
+
+  const ano =
+    Number(partes[0]);
+
+  const mes =
+    Number(partes[1]) - 1;
+
+  const dia =
+    Number(partes[2]);
+
+
+  const d =
+    new Date(
+      ano,
+      mes,
+      dia
+    );
+
+
+  const diasSemana = [
+
+    'Domingo',
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira',
+    'Sábado'
+
+  ];
+
+
+  return (
+    diasSemana[d.getDay()] +
+    ' • ' +
+    String(dia).padStart(2,'0') +
+    '/' +
+    String(mes + 1).padStart(2,'0')
+  );
+
 }
+
+
+/* =====================================================
+   ESCOLHE ÍCONE
+===================================================== */
+
+function iconeEventoCARA(
+  tipoEvento
+) {
+
+  const valor =
+    String(
+      tipoEvento || ''
+    ).toUpperCase();
+
+
+  if (
+    valor.includes(
+      'SANTA CEIA'
+    )
+  ) {
+    return '🍞';
+  }
+
+
+  if (
+    valor.includes(
+      'ESTUDO'
+    )
+  ) {
+    return '📖';
+  }
+
+
+  if (
+    valor.includes(
+      'CULTO'
+    )
+  ) {
+    return '🙌';
+  }
+
+
+  if (
+    valor.includes(
+      'REUNI'
+    )
+  ) {
+    return '👥';
+  }
+
+
+  return '📅';
+
+}
+
+
+/* =====================================================
+   CARREGA PRÓXIMO EVENTO
+===================================================== */
+
+async function carregarProximoEvento() {
+
+  try {
+
+    const resposta =
+      await fetch(
+        API_CARA +
+        '?rota=proximoevento',
+        {
+          method: 'GET',
+          credentials: 'omit',
+          redirect: 'follow',
+          cache: 'no-store'
+        }
+      );
+
+
+    if (!resposta.ok) {
+
+      throw new Error(
+        'Falha HTTP ' +
+        resposta.status
+      );
+
+    }
+
+
+    const json =
+      await resposta.json();
+
+
+    /*
+     * A API atual retorna:
+     *
+     * {
+     *   sucesso: true,
+     *   evento: {...}
+     * }
+     */
+
+    if (
+      !json.sucesso ||
+      !json.evento
+    ) {
+
+      throw new Error(
+        'Nenhum próximo evento'
+      );
+
+    }
+
+
+    const evento =
+      json.evento;
+
+
+    titulo.textContent =
+      evento.titulo ||
+      'Próximo evento';
+
+
+    tipo.textContent =
+      evento.tipo ||
+      'C.A.R.A.';
+
+
+    data.textContent =
+      formatarDataCARA(
+        evento.data
+      );
+
+
+    hora.textContent =
+      evento.horaInicio
+        ? evento.horaInicio
+        : 'Horário a definir';
+
+
+    local.textContent =
+      evento.local ||
+      (
+        evento.modalidade === 'ONLINE'
+          ? 'Online'
+          : 'Local a definir'
+      );
+
+
+    icone.textContent =
+      iconeEventoCARA(
+        evento.tipo
+      );
+
+
+    card.classList.remove(
+      'carregando'
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      'Erro ao carregar próximo evento:',
+      erro
+    );
+
+
+    titulo.textContent =
+      'Agenda C.A.R.A.';
+
+
+    tipo.textContent =
+      'Consulte nossa programação';
+
+
+    data.textContent =
+      'Programação';
+
+
+    hora.textContent =
+      '—';
+
+
+    local.textContent =
+      '—';
+
+
+    icone.textContent =
+      '📅';
+
+
+    card.classList.remove(
+      'carregando'
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   INICIALIZA
+===================================================== */
+
+carregarProximoEvento();
+
+
+/* =====================================================
+   SERVICE WORKER
+===================================================== */
+
+if (
+  'serviceWorker'
+  in navigator
+) {
+
+  window.addEventListener(
+    'load',
+    () => {
+
+      navigator
+        .serviceWorker
+        .register('./sw.js')
+        .catch(console.error);
+
+    }
+  );
+
+}
+
 </script>
 
+
 </body>
+
 </html>
