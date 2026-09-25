@@ -15,24 +15,15 @@
 
 
   <!-- ÍCONE / ATALHO DO CARA LOUVOR -->
-  <meta name="theme-color" content="#c8952d">
+  <meta name="theme-color" content="#051326">
   <meta name="application-name" content="CARA Louvor">
   <meta name="apple-mobile-web-app-title" content="CARA Louvor">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="192x192"
-    href="https://drive.google.com/thumbnail?id=1TI-K49OA4nBa3z3lAYV-FNQxHVldQtKi&sz=w192"
-  >
-
-  <link
-    rel="apple-touch-icon"
-    sizes="192x192"
-    href="https://drive.google.com/thumbnail?id=1TI-K49OA4nBa3z3lAYV-FNQxHVldQtKi&sz=w192"
-  >
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
 
   <style>
     * {
@@ -640,29 +631,29 @@
        Mantém a lógica e as funções existentes; altera somente a UI.
        ========================================================= */
     :root {
-      --cara-bg: #071820;
-      --cara-bg-2: #0b222c;
-      --cara-surface: #102a35;
-      --cara-surface-2: #153541;
-      --cara-accent: #b17b00;
-      --cara-accent-2: #d5a62e;
+      --cara-bg: #051326;
+      --cara-bg-2: #081b32;
+      --cara-surface: #0a213c;
+      --cara-surface-2: #102c52;
+      --cara-accent: #FFFF00;
+      --cara-accent-2: #FFFF00;
       --cara-text: #f7f5ef;
       --cara-muted: #aebbc0;
-      --cara-line: rgba(213,166,46,.30);
-      --cara-input: #0b2029;
+      --cara-line: rgba(255,255,0,.30);
+      --cara-input: #081b32;
     }
 
     html { background: var(--cara-bg); }
 
     body {
-      background: linear-gradient(180deg, #071820 0%, #0a2029 48%, #071820 100%);
+      background: linear-gradient(180deg, #051326 0%, #081b32 48%, #051326 100%);
       color: var(--cara-text);
       min-height: 100vh;
       padding-bottom: 18px;
     }
 
     .topo {
-      background: linear-gradient(180deg, #0b222c 0%, #071820 100%);
+      background: linear-gradient(180deg, #081b32 0%, #051326 100%);
       border-bottom: 3px solid var(--cara-accent);
       box-shadow: 0 8px 24px rgba(0,0,0,.24);
       padding: 18px 18px 16px;
@@ -736,8 +727,8 @@
     }
 
     .icone {
-      background: linear-gradient(145deg, #8d6200, #b17b00);
-      color: #fff;
+      background: linear-gradient(145deg, #FFFF00, #dada00);
+      color: #000;
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.10);
     }
 
@@ -785,8 +776,8 @@
 
     .botao-dourado,
     .botao-add {
-      background: linear-gradient(135deg, #8d6200, #b17b00);
-      color: #fff;
+      background: linear-gradient(135deg, #FFFF00, #dada00);
+      color: #000;
       box-shadow: 0 6px 16px rgba(177,123,0,.20);
     }
 
@@ -826,7 +817,7 @@
 
     .aba-louvor.ativa {
       background: var(--cara-accent);
-      color: #fff;
+      color: #000;
     }
 
     .letra,
@@ -856,16 +847,16 @@
     }
 
   
-    /* ===== MODO CIFRA COMPACTA ===== */
+    /* ===== MODO CIFRA PARA MÚSICO ===== */
     .botao-cifra-compacta {
       width: 100%;
       margin: 0 0 14px;
-      border: 1px solid var(--cara-line);
-      border-radius: 10px;
-      padding: 11px 12px;
-      background: #18333e;
-      color: var(--cara-text);
-      font-weight: 700;
+      border: 1px solid rgba(255,255,0,.35);
+      border-radius: 12px;
+      padding: 13px 14px;
+      background: #0a213c;
+      color: #FFFF00;
+      font-weight: 800;
       cursor: pointer;
     }
 
@@ -873,11 +864,10 @@
       position: fixed;
       inset: 0;
       z-index: 100000;
-      background: #071820;
-      color: #f7f5ef;
+      background: #051326;
+      color: #fff;
       display: none;
       flex-direction: column;
-      padding: 8px;
       overflow: hidden;
     }
 
@@ -888,59 +878,130 @@
       align-items: center;
       gap: 8px;
       flex: 0 0 auto;
-      margin-bottom: 6px;
+      padding: 9px 10px;
+      background: #081b32;
+      border-bottom: 2px solid #FFFF00;
+      box-shadow: 0 3px 14px rgba(0,0,0,.28);
     }
 
     .cifra-compacta-titulo {
       flex: 1;
       min-width: 0;
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 800;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      color: #f7f5ef;
+      color: #fff;
     }
 
+    .cifra-controles-fonte {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex: 0 0 auto;
+    }
+
+    .cifra-fonte-btn,
     .cifra-compacta-fechar {
-      border: 1px solid rgba(213,166,46,.35);
-      border-radius: 8px;
-      background: #18333e;
-      color: #f1d38a;
-      padding: 7px 10px;
-      font-weight: 700;
+      min-height: 40px;
+      border: 1px solid rgba(255,255,0,.38);
+      border-radius: 9px;
+      background: #102c52;
+      color: #FFFF00;
+      padding: 7px 11px;
+      font-weight: 900;
       cursor: pointer;
+      font-size: 14px;
+    }
+
+    .cifra-fonte-btn:active,
+    .cifra-compacta-fechar:active {
+      transform: scale(.97);
+    }
+
+    .cifra-fonte-valor {
+      min-width: 48px;
+      text-align: center;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
     }
 
     .cifra-compacta-area {
       flex: 1 1 auto;
       min-height: 0;
-      overflow: hidden;
-      border-top: 1px solid rgba(255,255,255,.06);
-      padding-top: 5px;
+      overflow: auto;
+      padding: 18px clamp(12px, 3vw, 34px) 40px;
+      overscroll-behavior: contain;
     }
 
     .cifra-compacta-grade {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      overflow: hidden;
-    }
-
-    .cifra-compacta-grade.duas-colunas {
-      grid-template-columns: 1fr 1fr;
+      width: min(100%, 1050px);
+      margin: 0 auto;
+      display: block;
     }
 
     .cifra-compacta-coluna {
       min-width: 0;
-      overflow: hidden;
-      font-family: "Courier New", monospace;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      line-height: 1.04;
-      font-size: 14px;
+      font-family: "Courier New", Courier, monospace;
+      white-space: pre;
+      line-height: 1.45;
+      font-size: 22px;
+      color: #fff;
+      overflow-x: auto;
+      tab-size: 4;
+    }
+
+    /* Linhas identificadas como acordes recebem o amarelo vivo oficial. */
+    .linha-cifra {
+      display: block;
+      min-height: 1.45em;
+    }
+
+    .linha-cifra.acorde {
+      color: #FFFF00;
+      font-weight: 900;
+    }
+
+    .linha-cifra.texto {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .linha-cifra.vazia {
+      height: .75em;
+      min-height: .75em;
+    }
+
+    @media (max-width: 600px) {
+      .cifra-compacta-topo {
+        flex-wrap: wrap;
+      }
+
+      .cifra-compacta-titulo {
+        flex-basis: calc(100% - 90px);
+        font-size: 15px;
+      }
+
+      .cifra-controles-fonte {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .cifra-fonte-btn {
+        min-width: 64px;
+        font-size: 16px;
+      }
+
+      .cifra-compacta-area {
+        padding: 14px 10px 34px;
+      }
+
+      .cifra-compacta-coluna {
+        font-size: 20px;
+      }
     }
 
   </style>
@@ -1786,8 +1847,16 @@ function mensagemFalhaServidor(erro) {
 <div id="cifraCompactaOverlay" class="cifra-compacta-overlay" aria-hidden="true">
   <div class="cifra-compacta-topo">
     <div id="cifraCompactaTitulo" class="cifra-compacta-titulo">Cifra</div>
+
+    <div class="cifra-controles-fonte" aria-label="Tamanho da cifra">
+      <button type="button" class="cifra-fonte-btn" onclick="diminuirFonteCifra()" aria-label="Diminuir fonte">A−</button>
+      <span id="cifraFonteValor" class="cifra-fonte-valor">100%</span>
+      <button type="button" class="cifra-fonte-btn" onclick="aumentarFonteCifra()" aria-label="Aumentar fonte">A+</button>
+    </div>
+
     <button type="button" class="cifra-compacta-fechar" onclick="fecharCifraCompacta()">✕ Fechar</button>
   </div>
+
   <div id="cifraCompactaArea" class="cifra-compacta-area">
     <div id="cifraCompactaGrade" class="cifra-compacta-grade"></div>
   </div>
@@ -4248,11 +4317,16 @@ function escaparHtml(texto) {
 
 
 <script>
-/* ===== MODO CIFRA COMPACTA =====
-   Tenta mostrar a cifra inteira em uma tela.
-   1 coluna primeiro; se necessário, usa 2 colunas.
-   Depois reduz a fonte automaticamente até caber.
+/* ===== MODO CIFRA PARA MÚSICO =====
+   Prioriza legibilidade: uma coluna, rolagem natural, A-/A+ e acordes amarelos.
+   O tamanho escolhido fica salvo neste aparelho.
 */
+let tamanhoFonteCifra = Number(localStorage.getItem('cara_louvor_fonte_cifra')) || 22;
+const FONTE_CIFRA_MIN = 14;
+const FONTE_CIFRA_MAX = 42;
+const FONTE_CIFRA_PASSO = 2;
+const FONTE_CIFRA_BASE = 22;
+
 function abrirCifraCompacta() {
   const origem = document.getElementById('detalheCifra');
   const overlay = document.getElementById('cifraCompactaOverlay');
@@ -4270,113 +4344,110 @@ function abrirCifraCompacta() {
   overlay.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 
-  montarCifraCompacta(origem.textContent || '');
+  montarCifraMusico(origem.textContent || '');
+  aplicarFonteCifra();
 }
 
 function fecharCifraCompacta() {
   const overlay = document.getElementById('cifraCompactaOverlay');
   if (!overlay) return;
+
   overlay.classList.remove('ativa');
   overlay.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
 
-function blocosDaCifra(texto) {
-  return String(texto || '')
-    .replace(/\r/g, '')
-    .split(/\n\s*\n+/)
-    .map(b => b.trim())
-    .filter(Boolean);
+function linhaPareceAcorde(linha) {
+  const t = String(linha || '').trim();
+  if (!t) return false;
+
+  // Não colore títulos de seções como [Intro], [Verso], etc.
+  if (/^\[[^\]]+\]$/.test(t)) return false;
+
+  // Tokens comuns de acordes: C, G/B, F#m7, Bb, Asus4, D/F#, (Em), |, etc.
+  const tokens = t.split(/\s+/).filter(Boolean);
+  if (!tokens.length) return false;
+
+  const acorde = /^[|:()\[\],.\-]*[A-G](?:#|b)?(?:m|maj|min|dim|aug|sus|add)?\d*(?:\([^)]+\))?(?:\/[A-G](?:#|b)?)?[|:()\[\],.\-]*$/i;
+  const simbolo = /^[|:.,()\-]+$/;
+
+  const validos = tokens.filter(token => acorde.test(token) || simbolo.test(token)).length;
+
+  return validos === tokens.length;
 }
 
-function distribuirBlocos(blocos) {
-  const esquerda = [];
-  const direita = [];
-  let pesoE = 0;
-  let pesoD = 0;
+function montarCifraMusico(texto) {
+  const grade = document.getElementById('cifraCompactaGrade');
+  if (!grade) return;
 
-  blocos.forEach(bloco => {
-    const peso = bloco.split('\n').length + Math.ceil(bloco.length / 55);
-    if (pesoE <= pesoD) {
-      esquerda.push(bloco);
-      pesoE += peso;
-    } else {
-      direita.push(bloco);
-      pesoD += peso;
-    }
-  });
+  grade.innerHTML = '';
 
-  return [esquerda.join('\n\n'), direita.join('\n\n')];
-}
-
-function criarColunaCifra(texto) {
   const coluna = document.createElement('div');
   coluna.className = 'cifra-compacta-coluna';
-  coluna.textContent = texto;
-  return coluna;
+
+  String(texto || '')
+    .replace(/\r/g, '')
+    .split('\n')
+    .forEach(linha => {
+      const el = document.createElement('span');
+
+      if (!linha.trim()) {
+        el.className = 'linha-cifra vazia';
+        el.innerHTML = '&nbsp;';
+      } else if (linhaPareceAcorde(linha)) {
+        el.className = 'linha-cifra acorde';
+        el.textContent = linha;
+      } else {
+        el.className = 'linha-cifra texto';
+        el.textContent = linha;
+      }
+
+      coluna.appendChild(el);
+    });
+
+  grade.appendChild(coluna);
 }
 
-function cabeCifraCompacta() {
-  const area = document.getElementById('cifraCompactaArea');
-  const grade = document.getElementById('cifraCompactaGrade');
-  const colunas = grade.querySelectorAll('.cifra-compacta-coluna');
-
-  return Array.from(colunas).every(coluna =>
-    coluna.scrollHeight <= area.clientHeight + 2 &&
-    coluna.scrollWidth <= coluna.clientWidth + 2
+function aplicarFonteCifra() {
+  tamanhoFonteCifra = Math.max(
+    FONTE_CIFRA_MIN,
+    Math.min(FONTE_CIFRA_MAX, tamanhoFonteCifra)
   );
-}
 
-function aplicarFonteCompacta(tamanho) {
   document
     .querySelectorAll('#cifraCompactaGrade .cifra-compacta-coluna')
     .forEach(el => {
-      el.style.fontSize = tamanho + 'px';
-      el.style.lineHeight = tamanho <= 9 ? '1' : '1.04';
+      el.style.fontSize = tamanhoFonteCifra + 'px';
     });
-}
 
-function montarCifraCompacta(texto) {
-  const grade = document.getElementById('cifraCompactaGrade');
-  const blocos = blocosDaCifra(texto);
-
-  grade.innerHTML = '';
-  grade.classList.remove('duas-colunas');
-  grade.appendChild(criarColunaCifra(blocos.join('\n\n')));
-
-  requestAnimationFrame(() => {
-    // Primeiro tenta uma coluna, preservando boa legibilidade.
-    for (let fonte = 15; fonte >= 8; fonte--) {
-      aplicarFonteCompacta(fonte);
-      if (cabeCifraCompacta()) return;
-    }
-
-    // Se não couber, distribui as partes em duas colunas.
-    const partes = distribuirBlocos(blocos);
-    grade.innerHTML = '';
-    grade.classList.add('duas-colunas');
-    grade.appendChild(criarColunaCifra(partes[0]));
-    grade.appendChild(criarColunaCifra(partes[1]));
-
-    requestAnimationFrame(() => {
-      for (let fonte = 14; fonte >= 6; fonte--) {
-        aplicarFonteCompacta(fonte);
-        if (cabeCifraCompacta()) return;
-      }
-      aplicarFonteCompacta(6);
-    });
-  });
-}
-
-window.addEventListener('resize', () => {
-  const overlay = document.getElementById('cifraCompactaOverlay');
-  if (overlay && overlay.classList.contains('ativa')) {
-    montarCifraCompacta(document.getElementById('detalheCifra')?.textContent || '');
+  const valor = document.getElementById('cifraFonteValor');
+  if (valor) {
+    valor.textContent =
+      Math.round((tamanhoFonteCifra / FONTE_CIFRA_BASE) * 100) + '%';
   }
-});
+
+  localStorage.setItem('cara_louvor_fonte_cifra', String(tamanhoFonteCifra));
+}
+
+function aumentarFonteCifra() {
+  tamanhoFonteCifra += FONTE_CIFRA_PASSO;
+  aplicarFonteCifra();
+}
+
+function diminuirFonteCifra() {
+  tamanhoFonteCifra -= FONTE_CIFRA_PASSO;
+  aplicarFonteCifra();
+}
 
 document.addEventListener('keydown', e => {
+  const overlay = document.getElementById('cifraCompactaOverlay');
+  const aberto = overlay && overlay.classList.contains('ativa');
+
+  if (!aberto) return;
+
   if (e.key === 'Escape') fecharCifraCompacta();
+  if (e.key === '+' || e.key === '=') aumentarFonteCifra();
+  if (e.key === '-') diminuirFonteCifra();
 });
 </script>
 
