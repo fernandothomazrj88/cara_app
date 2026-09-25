@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CARA Agenda</title>
+
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+
+  <meta name="theme-color" content="#051326">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --azul: #051326;
+      --azul-2: #081b32;
+      --azul-3: #102c52;
+      --amarelo: #FFFF00;
+      --branco: #fff;
+      --texto: #dbe6f3;
+      --linha: rgba(255,255,255,.10);
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--azul);
+      color: var(--branco);
+      padding-bottom: 30px;
+    }
+
+    .app { width: 100%; min-height: 100vh; }
+
+    .topo {
+      position: relative;
+      width: 100%;
+      height: clamp(220px, 31vw, 390px);
+      background: url("./banner-agenda.png") center center / cover no-repeat;
+      border-bottom: 3px solid var(--amarelo);
+    }
+
+    .voltar {
+      position: absolute;
+      z-index: 2;
+      top: calc(12px + env(safe-area-inset-top));
+      left: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 38px;
+      padding: 0 13px;
+      border: 1px solid rgba(255,255,0,.55);
+      border-radius: 11px;
+      background: rgba(5,19,38,.84);
+      color: var(--amarelo);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 13px;
+      backdrop-filter: blur(5px);
+    }
+
+    main {
+      width: min(100% - 28px, 980px);
+      margin: 0 auto;
+      padding: 30px 0 20px;
+    }
+
+    .saudacao h1 {
+      font-size: clamp(25px, 4vw, 34px);
+      margin-bottom: 7px;
+    }
+
+    .saudacao p {
+      color: #b9c9db;
+      line-height: 1.5;
+      margin-bottom: 26px;
+    }
+
+    .rotulo {
+      color: var(--amarelo);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.7px;
+      margin: 22px 0 11px;
+    }
+
+    .destaque {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 90% 10%, #12355f 0%, #0a2341 40%, #081b32 100%);
+      border: 1px solid rgba(255,255,0,.18);
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    }
+
+    .destaque::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: var(--amarelo);
+    }
+
+    .evento-topo {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .evento-icone {
+      flex: 0 0 auto;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: var(--amarelo);
+      color: #000;
+      font-size: 25px;
+    }
+
+    .evento-titulo {
+      font-size: clamp(20px, 3vw, 27px);
+      line-height: 1.15;
+    }
+
+    .evento-tipo {
+      color: var(--amarelo);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-top: 6px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 18px;
+      padding-top: 17px;
+      border-top: 1px solid var(--linha);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--texto);
+      font-size: 14px;
+    }
+
+    .descricao {
+      margin-top: 16px;
+      color: #c6d3e2;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .lista {
+      display: grid;
+      gap: 11px;
+    }
+
+    .card-evento {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.09);
+      border-left: 4px solid var(--amarelo);
+      border-radius: 16px;
+      padding: 16px;
+      background: #0a213c;
+      color: #fff;
+      text-align: left;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 62px 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .data-box {
+      width: 62px;
+      min-height: 62px;
+      border-radius: 13px;
+      background: #102c52;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,0,.18);
+    }
+
+    .data-box strong {
+      color: var(--amarelo);
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .data-box span {
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .card-evento h3 {
+      font-size: 17px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .card-evento p {
+      color: #b9c9db;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .seta {
+      color: var(--amarelo);
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .estado {
+      border-radius: 16px;
+      padding: 22px;
+      background: #0a213c;
+      color: #c9d6e4;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(0,0,0,.68);
+      padding: 18px;
+    }
+
+    .modal.ativo { display: flex; }
+
+    .modal-card {
+      width: min(100%, 620px);
+      max-height: 85vh;
+      overflow: auto;
+      border-radius: 22px;
+      background: #081b32;
+      border: 1px solid rgba(255,255,0,.22);
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+
+    .modal-cabecalho {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: flex-start;
+      padding: 20px;
+      border-bottom: 1px solid var(--linha);
+    }
+
+    .modal-cabecalho h2 {
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .fechar {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,255,0,.35);
+      background: #102c52;
+      color: var(--amarelo);
+      border-radius: 10px;
+      min-width: 42px;
+      min-height: 42px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .modal-corpo { padding: 20px; }
+
+    .modal-corpo .meta {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .modal-descricao {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--linha);
+      color: #c6d3e2;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .topo {
+        height: 235px;
+        background-position: 57% center;
+      }
+
+      main {
+        width: min(100% - 22px, 980px);
+        padding-top: 23px;
+      }
+
+      .destaque { padding: 18px; }
+
+      .card-evento {
+        grid-template-columns: 55px 1fr auto;
+        gap: 11px;
+        padding: 13px;
+      }
+
+      .data-box {
+        width: 55px;
+        min-height: 58px;
+      }
+
+      .data-box strong { font-size: 22px; }
+      .card-evento h3 { font-size: 15px; }
+
+      .modal {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="app">
+  <header class="topo" aria-label="Agenda e Eventos">
+    <a class="voltar" href="./index.html">← Início</a>
+  </header>
+
+  <main>
+    <section class="saudacao">
+      <h1>Agenda C.A.R.A. 📅</h1>
+      <p>Acompanhe os cultos, estudos, reuniões e demais programações da comunidade.</p>
+    </section>
+
+    <div class="rotulo">PRÓXIMO EVENTO</div>
+    <section id="proximoEvento" class="estado">Carregando próximo evento...</section>
+
+    <div class="rotulo">PRÓXIMOS EVENTOS</div>
+    <section id="listaEventos" class="lista">
+      <div class="estado">Carregando agenda...</div>
+    </section>
+  </main>
+</div>
+
+<div id="modalEvento" class="modal" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-cabecalho">
+      <h2 id="modalTitulo">Evento</h2>
+      <button class="fechar" type="button" onclick="fecharModal()">✕</button>
+    </div>
+    <div id="modalCorpo" class="modal-corpo"></div>
+  </div>
+</div>
+
+<script>
+const API_CARA =
+  'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+
+let eventosCarregados = [];
+
+function esc(valor) {
+  return String(valor ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function partesData(dataISO) {
+  if (!dataISO) return null;
+  const p = String(dataISO).split('-');
+  if (p.length !== 3) return null;
+  return {
+    ano: Number(p[0]),
+    mes: Number(p[1]),
+    dia: Number(p[2])
+  };
+}
+
+function formatarData(dataISO, longa = true) {
+  const p = partesData(dataISO);
+  if (!p) return 'Data a definir';
+
+  const d = new Date(p.ano, p.mes - 1, p.dia);
+  const dias = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+  const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+
+  if (!longa) {
+    return String(p.dia).padStart(2,'0') + '/' + String(p.mes).padStart(2,'0');
+  }
+
+  return dias[d.getDay()] + ', ' + p.dia + ' de ' + meses[p.mes - 1];
+}
+
+function mesCurto(dataISO) {
+  const p = partesData(dataISO);
+  if (!p) return '—';
+  return ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'][p.mes - 1];
+}
+
+function iconeEvento(tipo) {
+  const v = String(tipo || '').toUpperCase();
+  if (v.includes('SANTA CEIA')) return '🍞';
+  if (v.includes('ESTUDO')) return '📖';
+  if (v.includes('CULTO')) return '🙌';
+  if (v.includes('REUNI')) return '👥';
+  if (v.includes('DISCIPULADO')) return '🛡️';
+  if (v.includes('ENCONTRO')) return '🤝';
+  return '📅';
+}
+
+function horaTexto(e) {
+  if (!e.horaInicio) return 'Horário a definir';
+  return e.horaFim ? `${e.horaInicio} – ${e.horaFim}` : e.horaInicio;
+}
+
+function localTexto(e) {
+  return e.local || (e.modalidade === 'ONLINE' ? 'Online' : 'Local a definir');
+}
+
+function destaqueHTML(e) {
+  return `
+    <div class="destaque">
+      <div class="evento-topo">
+        <div class="evento-icone">${iconeEvento(e.tipo)}</div>
+        <div>
+          <h2 class="evento-titulo">${esc(e.titulo || 'Evento')}</h2>
+          <div class="evento-tipo">${esc(e.tipo || 'C.A.R.A.')}</div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <div class="meta-item">📅 ${esc(formatarData(e.data))}</div>
+        <div class="meta-item">🕘 ${esc(horaTexto(e))}</div>
+        <div class="meta-item">📍 ${esc(localTexto(e))}</div>
+        ${e.modalidade ? `<div class="meta-item">◉ ${esc(e.modalidade)}</div>` : ''}
+      </div>
+
+      ${e.descricao ? `<div class="descricao">${esc(e.descricao)}</div>` : ''}
+    </div>
+  `;
+}
+
+function cardHTML(e, indice) {
+  const p = partesData(e.data);
+  return `
+    <button class="card-evento" type="button" onclick="abrirEvento(${indice})">
+      <div class="data-box">
+        <strong>${p ? String(p.dia).padStart(2,'0') : '—'}</strong>
+        <span>${esc(mesCurto(e.data))}</span>
+      </div>
+
+      <div>
+        <h3>${esc(e.titulo || 'Evento')}</h3>
+        <p>${esc(horaTexto(e))} • ${esc(localTexto(e))}</p>
+      </div>
+
+      <div class="seta">›</div>
+    </button>
+  `;
+}
+
+async function buscarJSON(rota) {
+  const resposta = await fetch(`${API_CARA}?rota=${encodeURIComponent(rota)}`, {
+    method: 'GET',
+    credentials: 'omit',
+    redirect: 'follow',
+    cache: 'no-store'
+  });
+
+  if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
+  return resposta.json();
+}
+
+async function carregarAgenda() {
+  const proximo = document.getElementById('proximoEvento');
+  const lista = document.getElementById('listaEventos');
+
+  try {
+    const [jsonProximo, jsonEventos] = await Promise.all([
+      buscarJSON('proximoevento'),
+      buscarJSON('eventos')
+    ]);
+
+    if (jsonProximo.sucesso && jsonProximo.evento) {
+      proximo.className = '';
+      proximo.innerHTML = destaqueHTML(jsonProximo.evento);
+    } else {
+      proximo.className = 'estado';
+      proximo.textContent = 'Nenhum próximo evento publicado.';
+    }
+
+    /*
+      A API pode devolver a coleção em "eventos".
+      Também aceitamos "dados" para manter o front tolerante a pequenas
+      mudanças futuras do envelope JSON.
+    */
+    eventosCarregados =
+      Array.isArray(jsonEventos.eventos) ? jsonEventos.eventos :
+      Array.isArray(jsonEventos.dados) ? jsonEventos.dados :
+      [];
+
+    if (!jsonEventos.sucesso || eventosCarregados.length === 0) {
+      lista.innerHTML = '<div class="estado">Nenhum evento futuro publicado na agenda.</div>';
+      return;
+    }
+
+    lista.innerHTML = eventosCarregados
+      .map((evento, indice) => cardHTML(evento, indice))
+      .join('');
+
+  } catch (erro) {
+    console.error('Erro ao carregar Agenda C.A.R.A.:', erro);
+    proximo.className = 'estado';
+    proximo.textContent = 'Não foi possível carregar o próximo evento agora.';
+    lista.innerHTML = '<div class="estado">Não foi possível carregar a agenda. Tente novamente em instantes.</div>';
+  }
+}
+
+function abrirEvento(indice) {
+  const e = eventosCarregados[indice];
+  if (!e) return;
+
+  document.getElementById('modalTitulo').textContent = e.titulo || 'Evento';
+
+  document.getElementById('modalCorpo').innerHTML = `
+    <div class="meta">
+      <div class="meta-item">📅 ${esc(formatarData(e.data))}</div>
+      <div class="meta-item">🕘 ${esc(horaTexto(e))}</div>
+      <div class="meta-item">📍 ${esc(localTexto(e))}</div>
+      ${e.modalidade ? `<div class="meta-item">◉ ${esc(e.modalidade)}</div>` : ''}
+      ${e.tipo ? `<div class="meta-item">🏷️ ${esc(e.tipo)}</div>` : ''}
+    </div>
+    ${e.descricao ? `<div class="modal-descricao">${esc(e.descricao)}</div>` : ''}
+  `;
+
+  const modal = document.getElementById('modalEvento');
+  modal.classList.add('ativo');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharModal() {
+  const modal = document.getElementById('modalEvento');
+  modal.classList.remove('ativo');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalEvento').addEventListener('click', e => {
+  if (e.target.id === 'modalEvento') fecharModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') fecharModal();
+});
+
+carregarAgenda();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(console.error);
+  });
+}
+</script>
+</body>
+</html>
