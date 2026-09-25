@@ -80,10 +80,19 @@ const API='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UX
 let ministerios=[];
 
 const icones={
- 'LOUVOR':'♫','MÍDIA':'▣','MIDIA':'▣','ENSINO':'📖','DISCIPULADO':'📖',
- 'HOMENS':'♙','MULHERES':'♙','CASAIS':'👥','JOVENS':'👥',
+ 'LOUVOR':'🎵',
+ 'MÍDIA':'📱','MIDIA':'📱',
+ 'ENSINO':'📖','DISCIPULADO':'📖',
+ 'HOMENS':'🛡️',
+ 'MULHERES':'🌷',
+ 'CASAIS':'💍',
+ 'JOVENS':'🙋‍♂️',
  'ORAÇÃO':'🙏','ORACAO':'🙏','INTERCESSÃO':'🙏','INTERCESSAO':'🙏',
- 'DIACONIA':'🤲','APOIO':'⚙','LÍDERES':'◆','LIDERES':'◆'
+ 'DIACONIA':'🤲',
+ 'APOIO':'⚙️',
+ 'LÍDERES':'👥','LIDERES':'👥',
+ 'EMPRESARIAL':'💼',
+ 'ANIVERSARIANTES':'🎂'
 };
 
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -91,7 +100,7 @@ function nome(m){return m.nome||m.NOME||m.ministerio||m.MINISTERIO||m.titulo||'M
 function id(m){return m.id||m.ID||m.idMinisterio||m.ID_MINISTERIO||''}
 function descricao(m){return m.descricao||m.DESCRICAO||m.proposito||m.PROPOSITO||''}
 function ativo(m){return String(m.status||m.STATUS||'ATIVO').toUpperCase()!=='INATIVO'}
-function icon(n){const u=n.toUpperCase();for(const k in icones)if(u.includes(k))return icones[k];return '◆'}
+function icon(n){const u=n.toUpperCase();for(const k in icones)if(u.includes(k))return icones[k];return '✨'}
 
 function render(lista){
  const c=document.getElementById('conteudo');
