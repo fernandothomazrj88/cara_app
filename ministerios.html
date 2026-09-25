@@ -27,9 +27,21 @@ main{width:min(100% - 28px,1050px);margin:auto;padding:24px 0}
 .modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);align-items:flex-end;justify-content:center;padding:12px}.modal.on{display:flex}
 .sheet{width:min(100%,620px);background:#081b32;border:1px solid rgba(255,255,0,.25);border-radius:22px 22px 15px 15px;padding:22px;max-height:80vh;overflow:auto}
 .sheetTop{display:flex;justify-content:space-between;gap:15px}.sheet h2{font-size:24px}.close{width:42px;height:42px;border-radius:11px;border:1px solid rgba(255,255,0,.3);background:#102c52;color:var(--yellow);font-weight:bold}.sheet p{color:#c7d4e2;line-height:1.55;margin-top:16px}.tag{display:inline-block;margin-top:13px;padding:7px 10px;border-radius:9px;background:rgba(255,255,0,.1);color:var(--yellow);font-size:12px;font-weight:bold}
-.bottom{position:fixed;z-index:50;bottom:0;left:0;right:0;height:74px;padding-bottom:env(safe-area-inset-bottom);display:flex;justify-content:space-around;align-items:center;background:rgba(4,15,29,.97);border-top:1px solid var(--line);backdrop-filter:blur(8px)}
-.bottom a{color:#aeb9c8;text-decoration:none;text-align:center;font-size:11px;min-width:58px}.bottom b{display:block;font-size:22px;margin-bottom:3px}.bottom .active{color:var(--yellow)}
-@media(max-width:600px){.hero{height:235px;background-position:50% center}main{width:min(100% - 20px,1050px);padding-top:16px}.fundamento{border-radius:12px}.grid{grid-template-columns:1fr}.card{min-height:116px}}
+.bottom{
+position:fixed;left:50%;bottom:0;transform:translateX(-50%);
+width:100%;max-width:900px;min-height:82px;
+padding-bottom:env(safe-area-inset-bottom);
+background:linear-gradient(135deg,#06141a,#091c24);
+display:grid;grid-template-columns:repeat(5,1fr);
+border-radius:24px 24px 0 0;
+box-shadow:0 -6px 24px rgba(0,0,0,.18);
+z-index:50}
+.bottom a{
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:5px;color:#eee;text-decoration:none;font-size:10px;min-width:0}
+.bottom b{font-size:23px;line-height:1;margin:0;font-weight:normal}
+.bottom .active{color:var(--yellow);font-weight:800}
+@media(max-width:600px){.hero{height:auto;aspect-ratio:8/3;background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#051326}main{width:min(100% - 20px,1050px);padding-top:16px}.fundamento{border-radius:12px}.grid{grid-template-columns:1fr}.card{min-height:116px}}
 </style>
 </head>
 <body>
@@ -38,7 +50,7 @@ main{width:min(100% - 28px,1050px);margin:auto;padding:24px 0}
 </header>
 
 <main>
-  <img class="fundamento" src="./banner-fundamento-ministerios.png" alt="Servir não é obrigação, é um privilégio. Colossenses 3:23-24">
+  <img class="fundamento" src="./banner-fundamento-ministerios-corrigido.png" alt="Servir não é obrigação, é um privilégio. Colossenses 3:23-24">
 
   <label class="busca">
     <span>⌕</span>
@@ -56,11 +68,11 @@ main{width:min(100% - 28px,1050px);margin:auto;padding:24px 0}
 </div>
 
 <nav class="bottom">
-  <a href="./index.html"><b>⌂</b>Início</a>
-  <a href="./louvor.html"><b>♫</b>Louvor</a>
-  <a class="active" href="./ministerios.html"><b>♟</b>Ministérios</a>
-  <a href="./agenda.html"><b>▣</b>Agenda</a>
-  <a href="./index.html"><b>•••</b>Mais</a>
+  <a href="./index.html"><b>🏠</b>Início</a>
+  <a href="./agenda.html"><b>📅</b>Agenda</a>
+  <a class="active" href="./ministerios.html"><b>▦</b>Ministérios</a>
+  <a href="#"><b>🔔</b>Avisos</a>
+  <a href="#"><b>☰</b>Mais</a>
 </nav>
 
 <script>
