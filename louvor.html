@@ -1004,6 +1004,44 @@
       }
     }
 
+
+    /* Cabeçalho próprio do Ministério de Louvor */
+    .topo {
+      padding: 0 !important;
+      overflow: hidden;
+      background: #051326;
+      border-bottom: 3px solid #FFFF00;
+    }
+
+    .banner-ministerio {
+      width: 100%;
+      height: clamp(210px, 31vw, 390px);
+      background: url("./banner-louvor.png") center center / cover no-repeat;
+      position: relative;
+    }
+
+    .banner-ministerio::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 30%;
+      background: linear-gradient(180deg, transparent, rgba(5,19,38,.55));
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      .banner-ministerio {
+        height: 235px;
+        background-position: 57% center;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .banner-ministerio {
+        height: 360px;
+      }
+    }
+
   </style>
 
 <script>
@@ -1104,19 +1142,12 @@ function mensagemFalhaServidor(erro) {
 
 <div id="toast" class="toast"></div>
 
-<header class="topo">
-
-  
-
-  <img
-    src="https://fernandothomazrj88.github.io/cara_app/logo-cara.png"
-    class="logo-cara"
-  >
-
-  <h1>
-    MINISTÉRIO DE LOUVOR
-  </h1>
-
+<header class="topo" aria-label="Ministério de Louvor">
+  <div
+    class="banner-ministerio"
+    role="img"
+    aria-label="Ministério de Louvor — teclado, violão, microfone e bateria"
+  ></div>
 </header>
 
 
