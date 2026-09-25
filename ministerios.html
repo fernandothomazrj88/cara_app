@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>C.A.R.A. — Ministérios</title>
+<meta name="theme-color" content="#051326">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#051326;--card:#0a213c;--yellow:#ffff00;--text:#fff;--muted:#b9c9db;--line:rgba(255,255,255,.1)}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--navy);color:#fff;min-height:100vh;padding-bottom:92px}
+.hero{height:clamp(220px,31vw,390px);background:url("./banner-ministerios.png") center/cover no-repeat;border-bottom:3px solid var(--yellow);position:relative}
+.back{position:absolute;top:calc(12px + env(safe-area-inset-top));left:14px;padding:10px 13px;border:1px solid rgba(255,255,0,.5);border-radius:11px;background:rgba(5,19,38,.85);color:var(--yellow);font-weight:800;text-decoration:none;backdrop-filter:blur(5px)}
+main{width:min(100% - 28px,1050px);margin:auto;padding:24px 0}
+.fundamento{width:100%;display:block;border-radius:18px;border:1px solid rgba(255,255,0,.16);margin-bottom:22px}
+.busca{display:flex;align-items:center;gap:12px;background:#10233b;border:1px solid var(--line);border-radius:18px;padding:0 17px;height:56px;margin-bottom:20px}
+.busca span{font-size:22px}.busca input{width:100%;background:none;border:0;outline:0;color:#fff;font-size:16px}.busca input::placeholder{color:#9fb0c4}
+.status{padding:24px;text-align:center;color:var(--muted);background:var(--card);border-radius:16px;border:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.card{min-height:135px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:17px;background:linear-gradient(135deg,#0b2747,#07192d);padding:18px;cursor:pointer;color:#fff;text-align:left}
+.card::after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-45px;bottom:-55px;background:rgba(255,255,0,.045)}
+.icon{font-size:31px;margin-bottom:12px}.card h2{font-size:18px;line-height:1.15;margin-right:24px}.card p{font-size:13px;color:var(--muted);margin-top:7px}.arrow{position:absolute;right:15px;bottom:13px;color:var(--yellow);font-size:27px}
+.empty{grid-column:1/-1}
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);align-items:flex-end;justify-content:center;padding:12px}.modal.on{display:flex}
+.sheet{width:min(100%,620px);background:#081b32;border:1px solid rgba(255,255,0,.25);border-radius:22px 22px 15px 15px;padding:22px;max-height:80vh;overflow:auto}
+.sheetTop{display:flex;justify-content:space-between;gap:15px}.sheet h2{font-size:24px}.close{width:42px;height:42px;border-radius:11px;border:1px solid rgba(255,255,0,.3);background:#102c52;color:var(--yellow);font-weight:bold}.sheet p{color:#c7d4e2;line-height:1.55;margin-top:16px}.tag{display:inline-block;margin-top:13px;padding:7px 10px;border-radius:9px;background:rgba(255,255,0,.1);color:var(--yellow);font-size:12px;font-weight:bold}
+.bottom{position:fixed;z-index:50;bottom:0;left:0;right:0;height:74px;padding-bottom:env(safe-area-inset-bottom);display:flex;justify-content:space-around;align-items:center;background:rgba(4,15,29,.97);border-top:1px solid var(--line);backdrop-filter:blur(8px)}
+.bottom a{color:#aeb9c8;text-decoration:none;text-align:center;font-size:11px;min-width:58px}.bottom b{display:block;font-size:22px;margin-bottom:3px}.bottom .active{color:var(--yellow)}
+@media(max-width:600px){.hero{height:235px;background-position:50% center}main{width:min(100% - 20px,1050px);padding-top:16px}.fundamento{border-radius:12px}.grid{grid-template-columns:1fr}.card{min-height:116px}}
+</style>
+</head>
+<body>
+<header class="hero" aria-label="Ministérios">
+  <a class="back" href="./index.html">← Início</a>
+</header>
+
+<main>
+  <img class="fundamento" src="./banner-fundamento-ministerios.png" alt="Servir não é obrigação, é um privilégio. Colossenses 3:23-24">
+
+  <label class="busca">
+    <span>⌕</span>
+    <input id="busca" type="search" placeholder="Buscar ministério..." autocomplete="off">
+  </label>
+
+  <section id="conteudo" class="status">Carregando ministérios...</section>
+</main>
+
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="sheet">
+    <div class="sheetTop"><h2 id="mTitulo"></h2><button class="close" onclick="fechar()">✕</button></div>
+    <div id="mCorpo"></div>
+  </div>
+</div>
+
+<nav class="bottom">
+  <a href="./index.html"><b>⌂</b>Início</a>
+  <a href="./louvor.html"><b>♫</b>Louvor</a>
+  <a class="active" href="./ministerios.html"><b>♟</b>Ministérios</a>
+  <a href="./agenda.html"><b>▣</b>Agenda</a>
+  <a href="./index.html"><b>•••</b>Mais</a>
+</nav>
+
+<script>
+const API='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+let ministerios=[];
+
+const icones={
+ 'LOUVOR':'♫','MÍDIA':'▣','MIDIA':'▣','ENSINO':'📖','DISCIPULADO':'📖',
+ 'HOMENS':'♙','MULHERES':'♙','CASAIS':'👥','JOVENS':'👥',
+ 'ORAÇÃO':'🙏','ORACAO':'🙏','INTERCESSÃO':'🙏','INTERCESSAO':'🙏',
+ 'DIACONIA':'🤲','APOIO':'⚙','LÍDERES':'◆','LIDERES':'◆'
+};
+
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function nome(m){return m.nome||m.NOME||m.ministerio||m.MINISTERIO||m.titulo||'Ministério'}
+function id(m){return m.id||m.ID||m.idMinisterio||m.ID_MINISTERIO||''}
+function descricao(m){return m.descricao||m.DESCRICAO||m.proposito||m.PROPOSITO||''}
+function ativo(m){return String(m.status||m.STATUS||'ATIVO').toUpperCase()!=='INATIVO'}
+function icon(n){const u=n.toUpperCase();for(const k in icones)if(u.includes(k))return icones[k];return '◆'}
+
+function render(lista){
+ const c=document.getElementById('conteudo');
+ c.className='grid';
+ if(!lista.length){c.innerHTML='<div class="status empty">Nenhum ministério encontrado.</div>';return}
+ c.innerHTML=lista.map((m,i)=>`
+   <button class="card" onclick="abrir(${i})">
+    <div class="icon">${icon(nome(m))}</div>
+    <h2>${esc(nome(m))}</h2>
+    ${descricao(m)?`<p>${esc(descricao(m))}</p>`:''}
+    <span class="arrow">›</span>
+   </button>`).join('');
+}
+
+async function carregar(){
+ try{
+  const r=await fetch(API+'?rota=ministerios',{credentials:'omit',redirect:'follow',cache:'no-store'});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const j=await r.json();
+  ministerios=(Array.isArray(j.ministerios)?j.ministerios:Array.isArray(j.dados)?j.dados:[]).filter(ativo);
+  render(ministerios);
+ }catch(e){
+  console.error(e);
+  const c=document.getElementById('conteudo');
+  c.className='status';
+  c.textContent='Não foi possível carregar os ministérios agora.';
+ }
+}
+
+function abrir(i){
+ const m=ministerios[i]; if(!m)return;
+ document.getElementById('mTitulo').textContent=nome(m);
+ document.getElementById('mCorpo').innerHTML=
+   (descricao(m)?`<p>${esc(descricao(m))}</p>`:'<p>Área ministerial da Comunidade Apostólica Restaurando Almas.</p>')+
+   (id(m)?`<span class="tag">${esc(id(m))}</span>`:'');
+ const modal=document.getElementById('modal');modal.classList.add('on');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+}
+function fechar(){const m=document.getElementById('modal');m.classList.remove('on');m.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')fechar()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')fechar()})
+document.getElementById('busca').addEventListener('input',e=>{
+ const q=e.target.value.trim().toLowerCase();
+ render(ministerios.filter(m=>nome(m).toLowerCase().includes(q)));
+});
+carregar();
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error));
+</script>
+</body>
+</html>
