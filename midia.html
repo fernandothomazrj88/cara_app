@@ -1,17 +1,161 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#051326"><title>Mídia Social | C.A.R.A.</title><link rel="icon" href="./icon-192.png"><link rel="apple-touch-icon" href="./icon-192.png"><style>
-:root{--n:#051326;--y:#ffff00;--c:#0b2039;--c2:#0e2948;--m:#aebdce}*{box-sizing:border-box}body{margin:0;background:var(--n);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;padding-bottom:105px}.hero{width:100%;aspect-ratio:1900/800;background:var(--n) url("./banner-midia.png") center/contain no-repeat;border-bottom:3px solid var(--y)}.wrap{width:min(1120px,calc(100% - 28px));margin:auto}.intro{padding:28px 0 6px}.intro h1{margin:0 0 7px;font-size:clamp(25px,4vw,35px)}.intro p{margin:0;color:var(--m);line-height:1.5}.section{margin-top:28px}.ey{font-size:11px;font-weight:900;letter-spacing:1.8px;color:var(--y);margin-bottom:5px}.section h2{margin:0 0 14px;font-size:22px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card{display:flex;align-items:center;gap:14px;min-height:100px;padding:17px;border-radius:19px;background:linear-gradient(145deg,var(--c2),var(--c));border:1px solid rgba(255,255,255,.09);color:#fff;text-decoration:none;box-shadow:0 10px 24px #0003}.ico{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;border-radius:15px;background:#ffff0015;border:1px solid #ffff0029;font-size:27px}.txt{flex:1}.txt strong{display:block;margin-bottom:5px}.txt span{display:block;color:var(--m);font-size:13px;line-height:1.35}.arr{font-size:25px;color:var(--y)}.badge{display:inline-block;margin-top:7px;padding:4px 8px;border-radius:999px;background:#ffff0012;color:#e7e77c;font-size:9px;font-weight:900}.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:900px;min-height:82px;padding-bottom:env(safe-area-inset-bottom);background:linear-gradient(135deg,#06141a,#091c24);display:grid;grid-template-columns:repeat(5,1fr);border-radius:24px 24px 0 0;box-shadow:0 -6px 24px #0003;z-index:50}.bottom a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#eee;text-decoration:none;font-size:10px}.bottom b{font-size:23px;line-height:1;font-weight:normal}.bottom .active{color:var(--y);font-weight:800}.overlay{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;padding:18px;z-index:80}.overlay.open{display:flex}.sheet{width:min(620px,100%);background:#081a30;border:1px solid #ffffff1a;border-radius:24px;padding:22px}.sheettop{display:flex;justify-content:space-between;align-items:center}.sheet h3{margin:0}.sheet p{color:#c7d4e2;line-height:1.55}.close{width:40px;height:40px;border:0;border-radius:12px;background:#122b48;color:#fff;font-size:20px}.status{padding:13px;border-radius:13px;background:#0d2747;color:var(--m);font-size:13px}@media(max-width:720px){.grid{grid-template-columns:1fr}.card{min-height:91px;padding:15px}.intro{padding-top:21px}}
-</style></head><body><header class="hero"></header><main class="wrap"><section class="intro"><h1>Central da Mídia</h1><p>Conteúdos, artes, comunicação e recursos do Ministério de Mídia da C.A.R.A.</p></section>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#051326">
+<title>Mídia Social | C.A.R.A.</title>
+<link rel="icon" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<style>
+:root{--n:#051326;--y:#ffff00;--c:#0b2039;--c2:#0e2948;--m:#aebdce}
+*{box-sizing:border-box}
+body{margin:0;background:var(--n);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;padding-bottom:105px}
+.hero{width:100%;aspect-ratio:1900/800;background:var(--n) url("./banner-midia.png") center/contain no-repeat;border-bottom:3px solid var(--y)}
+.wrap{width:min(1120px,calc(100% - 28px));margin:auto}
+.intro{padding:28px 0 6px}.intro h1{margin:0 0 7px;font-size:clamp(25px,4vw,35px)}.intro p{margin:0;color:var(--m);line-height:1.5}
+.section{margin-top:28px}.ey{font-size:11px;font-weight:900;letter-spacing:1.8px;color:var(--y);margin-bottom:5px}.section h2{margin:0 0 14px;font-size:22px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.card{display:flex;align-items:center;gap:14px;min-height:100px;padding:17px;border-radius:19px;background:linear-gradient(145deg,var(--c2),var(--c));border:1px solid rgba(255,255,255,.09);color:#fff;text-decoration:none;box-shadow:0 10px 24px #0003;cursor:pointer}
+.ico{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;border-radius:15px;background:#ffff0015;border:1px solid #ffff0029;font-size:27px}
+.txt{flex:1}.txt strong{display:block;margin-bottom:5px}.txt span{display:block;color:var(--m);font-size:13px;line-height:1.35}.arr{font-size:25px;color:var(--y)}
+.badge{display:inline-block;margin-top:7px;padding:4px 8px;border-radius:999px;background:#ffff0012;color:#e7e77c;font-size:9px;font-weight:900}
+.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:900px;min-height:82px;padding-bottom:env(safe-area-inset-bottom);background:linear-gradient(135deg,#06141a,#091c24);display:grid;grid-template-columns:repeat(5,1fr);border-radius:24px 24px 0 0;box-shadow:0 -6px 24px #0003;z-index:50}
+.bottom a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#eee;text-decoration:none;font-size:10px}.bottom b{font-size:23px;line-height:1;font-weight:normal}.bottom .active{color:var(--y);font-weight:800}
+.overlay{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;padding:18px;z-index:80}.overlay.open{display:flex}
+.sheet{width:min(620px,100%);background:#081a30;border:1px solid #ffffff1a;border-radius:24px;padding:22px}.sheettop{display:flex;justify-content:space-between;align-items:center}.sheet h3{margin:0}.sheet p{color:#c7d4e2;line-height:1.55}.close{width:40px;height:40px;border:0;border-radius:12px;background:#122b48;color:#fff;font-size:20px}.status{padding:13px;border-radius:13px;background:#0d2747;color:var(--m);font-size:13px}
+.catalog-overlay{position:fixed;inset:0;background:var(--n);z-index:70;display:none;overflow:auto;padding-bottom:105px}.catalog-overlay.open{display:block}
+.catalog-head{position:sticky;top:0;z-index:3;background:#051326f2;backdrop-filter:blur(10px);border-bottom:1px solid #ffffff18}
+.catalog-head-inner{width:min(1120px,calc(100% - 28px));margin:auto;display:flex;align-items:center;gap:14px;padding:15px 0}
+.back{border:0;background:#102b4c;color:#fff;width:44px;height:44px;border-radius:14px;font-size:24px;cursor:pointer}.catalog-title h2{margin:0;font-size:21px}.catalog-title p{margin:3px 0 0;color:var(--m);font-size:12px}
+.catalog{width:min(1120px,calc(100% - 28px));margin:20px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.msg{grid-column:1/-1;background:#0b2039;border:1px solid #ffffff14;border-radius:18px;padding:28px;text-align:center;color:var(--m)}
+.arte{background:#fff;color:#171717;border-radius:18px;overflow:hidden;box-shadow:0 10px 26px #0005}
+.arte img{display:block;width:100%;height:420px;object-fit:contain;background:#fff}
+.arte-body{padding:17px}.codigo{font-size:11px;color:#777;text-transform:uppercase}.nome{font-size:19px;font-weight:850;margin-top:5px}.tamanho{font-size:13px;color:#666;margin-top:6px}.valor{font-size:20px;font-weight:900;margin-top:10px;color:#765d13}.disp{display:inline-block;margin-top:10px;padding:5px 10px;border-radius:999px;background:#e7f4e9;color:#257436;font-size:11px;font-weight:800}.desc{font-size:13px;color:#555;line-height:1.5;margin-top:12px}
+.insta{display:block;margin-top:14px;padding:12px;border-radius:11px;background:#051326;color:#fff;text-align:center;text-decoration:none;font-weight:800}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.card{min-height:91px;padding:15px}.intro{padding-top:21px}.catalog{grid-template-columns:1fr}.arte img{height:auto;max-height:520px}}
+</style>
+</head>
+<body>
+<header class="hero"></header>
+<main class="wrap">
+<section class="intro"><h1>Central da Mídia</h1><p>Conteúdos, artes, comunicação e recursos do Ministério de Mídia da C.A.R.A.</p></section>
 <section class="section"><div class="ey">PARA TODOS</div><h2>Área Pública</h2><div class="grid">
-<a class="card" href="#" data-t="Artes dos Quadros" data-d="Galeria das artes utilizadas nos quadros e projetos visuais da comunidade."><div class="ico">🖼️</div><div class="txt"><strong>Artes dos Quadros</strong><span>Veja as artes disponíveis para os quadros.</span></div><div class="arr">›</div></a>
-<a class="card" href="#" data-t="Quadros com Propósito" data-d="Conheça o projeto dos quadros e sua proposta de comunicar mensagens que edificam e apoiam a comunidade."><div class="ico">✨</div><div class="txt"><strong>Quadros com Propósito</strong><span>Conheça o projeto e sua missão.</span></div><div class="arr">›</div></a>
-<a class="card" href="#" data-t="C.A.R.A. nas Redes" data-d="Central de acesso às redes e canais oficiais da Comunidade Apostólica Restaurando Almas."><div class="ico">📱</div><div class="txt"><strong>C.A.R.A. nas Redes</strong><span>Acesse nossos canais e redes oficiais.</span></div><div class="arr">›</div></a>
-<a class="card" href="#" data-t="Divulgações e Conteúdos" data-d="Espaço para conteúdos, chamadas, divulgações e materiais públicos da C.A.R.A."><div class="ico">📢</div><div class="txt"><strong>Divulgações e Conteúdos</strong><span>Materiais, chamadas e conteúdos públicos.</span></div><div class="arr">›</div></a></div></section>
+<a class="card" href="#" id="abrirArtes"><div class="ico">🖼️</div><div class="txt"><strong>Artes dos Quadros</strong><span>Veja as artes disponíveis para os quadros.</span></div><div class="arr">›</div></a>
+<a class="card placeholder" href="#" data-t="Quadros com Propósito" data-d="Conheça o projeto dos quadros e sua proposta de comunicar mensagens que edificam e apoiam a comunidade."><div class="ico">✨</div><div class="txt"><strong>Quadros com Propósito</strong><span>Conheça o projeto e sua missão.</span></div><div class="arr">›</div></a>
+<a class="card" href="https://instagram.com/comunidadecara" target="_blank" rel="noopener"><div class="ico">📱</div><div class="txt"><strong>C.A.R.A. nas Redes</strong><span>Acesse nosso Instagram oficial.</span></div><div class="arr">›</div></a>
+<a class="card placeholder" href="#" data-t="Divulgações e Conteúdos" data-d="Espaço para conteúdos, chamadas, divulgações e materiais públicos da C.A.R.A."><div class="ico">📢</div><div class="txt"><strong>Divulgações e Conteúdos</strong><span>Materiais, chamadas e conteúdos públicos.</span></div><div class="arr">›</div></a>
+</div></section>
 <section class="section"><div class="ey">ORGANIZAÇÃO</div><h2>Área da Equipe</h2><div class="grid">
-<a class="card" href="#" data-t="Pauta de Conteúdo" data-d="Organização das ideias, conteúdos a produzir, responsáveis e andamento das publicações."><div class="ico">📝</div><div class="txt"><strong>Pauta de Conteúdo</strong><span>Planejamento e andamento das publicações.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
-<a class="card" href="#" data-t="Calendário da Mídia" data-d="Planejamento das coberturas, divulgações e publicações conectado à programação da comunidade."><div class="ico">📅</div><div class="txt"><strong>Calendário da Mídia</strong><span>Coberturas, divulgações e programação.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
-<a class="card" href="#" data-t="Central de Artes" data-d="Acervo organizado de artes, modelos e materiais produzidos pelo Ministério de Mídia."><div class="ico">🎨</div><div class="txt"><strong>Central de Artes</strong><span>Acervo de artes e materiais visuais.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
-<a class="card" href="#" data-t="Banco de Ideias" data-d="Espaço para registrar ideias de conteúdo, campanhas, quadros e novas ações de comunicação."><div class="ico">💡</div><div class="txt"><strong>Banco de Ideias</strong><span>Ideias para conteúdos e novas ações.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
-<a class="card" href="#" data-t="Transmissão" data-d="Central de apoio às transmissões dos cultos e eventos, com organização operacional e recursos necessários."><div class="ico">📡</div><div class="txt"><strong>Transmissão</strong><span>Operação e recursos para transmissões.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a></div></section></main>
+<a class="card placeholder" href="#" data-t="Pauta de Conteúdo" data-d="Organização das ideias, conteúdos a produzir, responsáveis e andamento das publicações."><div class="ico">📝</div><div class="txt"><strong>Pauta de Conteúdo</strong><span>Planejamento e andamento das publicações.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
+<a class="card placeholder" href="#" data-t="Calendário da Mídia" data-d="Planejamento das coberturas, divulgações e publicações conectado à programação da comunidade."><div class="ico">📅</div><div class="txt"><strong>Calendário da Mídia</strong><span>Coberturas, divulgações e programação.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
+<a class="card placeholder" href="#" data-t="Central de Artes" data-d="Acervo organizado de artes, modelos e materiais produzidos pelo Ministério de Mídia."><div class="ico">🎨</div><div class="txt"><strong>Central de Artes</strong><span>Acervo de artes e materiais visuais.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
+<a class="card placeholder" href="#" data-t="Banco de Ideias" data-d="Espaço para registrar ideias de conteúdo, campanhas, quadros e novas ações de comunicação."><div class="ico">💡</div><div class="txt"><strong>Banco de Ideias</strong><span>Ideias para conteúdos e novas ações.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
+<a class="card placeholder" href="#" data-t="Transmissão" data-d="Central de apoio às transmissões dos cultos e eventos, com organização operacional e recursos necessários."><div class="ico">📡</div><div class="txt"><strong>Transmissão</strong><span>Operação e recursos para transmissões.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
+</div></section>
+</main>
+
 <nav class="bottom"><a href="./index.html"><b>🏠</b>Início</a><a href="./agenda.html"><b>📅</b>Agenda</a><a href="./ministerios.html"><b>▦</b>Ministérios</a><a href="#"><b>🔔</b>Avisos</a><a class="active" href="./midia.html"><b>📱</b>Mídia</a></nav>
+
+<div class="catalog-overlay" id="catalogView">
+  <div class="catalog-head"><div class="catalog-head-inner">
+    <button class="back" id="fecharCatalogo" aria-label="Voltar">‹</button>
+    <div class="catalog-title"><h2>Artes dos Quadros</h2><p>Escolha uma arte que fale ao seu coração.</p></div>
+  </div></div>
+  <div class="catalog" id="catalogo"><div class="msg">Carregando artes...</div></div>
+</div>
+
 <div class="overlay" id="ov"><div class="sheet"><div class="sheettop"><h3 id="st"></h3><button class="close" id="cl">×</button></div><p id="sd"></p><div class="status">Esta área já está prevista na estrutura do C.A.R.A. e será conectada conforme construirmos cada função.</div></div></div>
-<script>const ov=document.getElementById('ov'),st=document.getElementById('st'),sd=document.getElementById('sd');document.querySelectorAll('.card').forEach(c=>c.onclick=e=>{e.preventDefault();st.textContent=c.dataset.t;sd.textContent=c.dataset.d;ov.classList.add('open')});function f(){ov.classList.remove('open')}document.getElementById('cl').onclick=f;ov.onclick=e=>{if(e.target===ov)f()};document.onkeydown=e=>{if(e.key==='Escape')f()}</script></body></html>
+
+<script>
+const API_MIDIA = 'https://script.google.com/macros/s/AKfycbxqc0KdWNFA9Ouvu4M-V9jiTwPquLZyuBeDcyAz6T_CEE6YityPhL_ctZfV6ZdXGkj0/exec';
+const INSTAGRAM = 'https://instagram.com/comunidadecara';
+
+const catalogView=document.getElementById('catalogView');
+const catalogo=document.getElementById('catalogo');
+
+document.getElementById('abrirArtes').addEventListener('click',e=>{
+  e.preventDefault();
+  catalogView.classList.add('open');
+  document.body.style.overflow='hidden';
+  carregarArtes();
+});
+
+document.getElementById('fecharCatalogo').addEventListener('click',()=>{
+  catalogView.classList.remove('open');
+  document.body.style.overflow='';
+});
+
+function converterLinkImagem(url){
+  if(!url) return '';
+  url=String(url).trim();
+  const m1=url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if(m1&&m1[1]) return 'https://drive.google.com/thumbnail?id='+m1[1]+'&sz=w1200';
+  const m2=url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if(m2&&m2[1]) return 'https://drive.google.com/thumbnail?id='+m2[1]+'&sz=w1200';
+  return url;
+}
+
+function esc(v){
+  return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function carregarArtes(){
+  catalogo.innerHTML='<div class="msg">Carregando artes...</div>';
+  try{
+    const r=await fetch(API_MIDIA+'?rota=artes',{method:'GET',credentials:'omit',redirect:'follow',cache:'no-store'});
+    if(!r.ok) throw new Error('Falha HTTP '+r.status);
+    const json=await r.json();
+    if(!json.sucesso) throw new Error(json.erro||'Falha ao carregar catálogo');
+    montarCatalogo(json.artes||[]);
+  }catch(err){
+    console.error(err);
+    catalogo.innerHTML='<div class="msg">Não foi possível carregar as artes agora. Tente novamente em instantes.</div>';
+  }
+}
+
+function montarCatalogo(artes){
+  if(!artes.length){
+    catalogo.innerHTML='<div class="msg">Nenhuma arte cadastrada ainda.</div>';
+    return;
+  }
+  catalogo.innerHTML='';
+  artes.forEach(arte=>{
+    const el=document.createElement('article');
+    el.className='arte';
+    const img=converterLinkImagem(arte.imagem);
+    const interesse='Olá! Tenho interesse na arte '+(arte.codigo||'')+' - '+(arte.nome||'')+'.';
+    const dm=INSTAGRAM;
+    el.innerHTML=`
+      ${img?`<img src="${esc(img)}" alt="${esc(arte.nome||'Arte C.A.R.A.')}" loading="lazy">`:''}
+      <div class="arte-body">
+        <div class="codigo">${esc(arte.codigo||'')}</div>
+        <div class="nome">${esc(arte.nome||'')}</div>
+        ${arte.tamanho?`<div class="tamanho">${esc(arte.tamanho)}</div>`:''}
+        ${arte.valor?`<div class="valor">${esc(arte.valor)}</div>`:''}
+        ${arte.disponivel?`<div class="disp">${esc(arte.disponivel)}</div>`:''}
+        ${arte.descricao?`<div class="desc">${esc(arte.descricao)}</div>`:''}
+        <a class="insta" href="${dm}" target="_blank" rel="noopener" title="${esc(interesse)}">Tenho interesse nesta arte</a>
+      </div>`;
+    catalogo.appendChild(el);
+  });
+}
+
+const ov=document.getElementById('ov'),st=document.getElementById('st'),sd=document.getElementById('sd');
+document.querySelectorAll('.placeholder').forEach(c=>c.onclick=e=>{
+  e.preventDefault();st.textContent=c.dataset.t;sd.textContent=c.dataset.d;ov.classList.add('open')
+});
+function fecharSheet(){ov.classList.remove('open')}
+document.getElementById('cl').onclick=fecharSheet;
+ov.onclick=e=>{if(e.target===ov)fecharSheet()};
+document.onkeydown=e=>{
+  if(e.key==='Escape'){
+    if(catalogView.classList.contains('open')){
+      catalogView.classList.remove('open');document.body.style.overflow='';
+    }else fecharSheet();
+  }
+};
+</script>
+</body>
+</html>
