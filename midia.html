@@ -38,6 +38,21 @@
 .fluxo{width:min(920px,calc(100% - 28px));margin:18px auto 0;padding:15px;border-radius:17px;background:#081a30;border:1px solid #ffffff15;overflow-x:auto}
 .fluxo-linha{display:flex;align-items:center;gap:7px;min-width:max-content;font-size:11px;font-weight:850;color:#9fb0c2}.fluxo-linha span{padding:7px 10px;border-radius:999px;background:#102b4c}.fluxo-linha b{color:var(--y);font-size:15px}
 
+
+.calendario{max-width:1100px;margin:0 auto;padding:18px 16px 110px}
+.cal-resumo{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.cal-resumo div{background:#0b1c31;border:1px solid #ffffff12;border-radius:16px;padding:14px;text-align:center}
+.cal-resumo strong{display:block;color:#ffff00;font-size:22px}.cal-resumo span{font-size:11px;color:#b9c7d6;font-weight:800}
+.cal-grupo{margin:18px 0}.cal-data{display:flex;align-items:center;gap:10px;margin-bottom:9px;color:#fff;font-weight:950}
+.cal-data:after{content:"";height:1px;background:#ffffff15;flex:1}
+.cal-item{background:#0b1c31;border:1px solid #ffffff12;border-radius:17px;padding:14px;margin-bottom:9px}
+.cal-item-top{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.cal-chip{font-size:10px;font-weight:950;border-radius:999px;padding:5px 8px;background:#ffff00;color:#061326}
+.cal-status{font-size:10px;font-weight:900;border-radius:999px;padding:5px 8px;background:#ffffff10;color:#d8e3ee}
+.cal-item h3{font-size:15px;margin:0 0 7px}.cal-item p{font-size:12px;color:#bdcad7;line-height:1.45}
+.cal-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:9px;font-size:11px;color:#91a5b8}
+.cal-vazio{padding:28px 16px;text-align:center;color:#aebdcb;background:#0b1c31;border:1px dashed #ffffff20;border-radius:18px}
+@media(max-width:720px){.cal-resumo{grid-template-columns:1fr 1fr 1fr}.cal-resumo strong{font-size:18px}}
 .acao-pauta{margin-top:16px;padding-top:14px;border-top:1px solid #ffffff15;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .btn-avancar{border:0;border-radius:13px;padding:12px 15px;background:#ffff00;color:#061326;font-weight:950;font-size:13px;cursor:pointer;box-shadow:0 7px 18px #0004}
 .btn-avancar:disabled{opacity:.55;cursor:wait}
@@ -57,7 +72,7 @@
 </div></section>
 <section class="section"><div class="ey">ORGANIZAÇÃO</div><h2>Área da Equipe</h2><div class="grid">
 <a class="card" href="#" id="abrirPautas"><div class="ico">📝</div><div class="txt"><strong>Pauta de Conteúdo</strong><span>Planejamento e andamento das publicações.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
-<a class="card placeholder" href="#" data-t="Calendário da Mídia" data-d="Planejamento das coberturas, divulgações e publicações conectado à programação da comunidade."><div class="ico">📅</div><div class="txt"><strong>Calendário da Mídia</strong><span>Coberturas, divulgações e programação.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
+<a class="card" id="abrirCalendario" href="#"><div class="ico">📅</div><div class="txt"><strong>Calendário da Mídia</strong><span>Coberturas, divulgações e programação.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
 <a class="card placeholder" href="#" data-t="Central de Artes" data-d="Acervo organizado de artes, modelos e materiais produzidos pelo Ministério de Mídia."><div class="ico">🎨</div><div class="txt"><strong>Central de Artes</strong><span>Acervo de artes e materiais visuais.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
 <a class="card" href="#" id="abrirIdeias"><div class="ico">💡</div><div class="txt"><strong>Banco de Ideias</strong><span>Ideias para conteúdos e novas ações.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
 <a class="card placeholder" href="#" data-t="Transmissão" data-d="Central de apoio às transmissões dos cultos e eventos, com organização operacional e recursos necessários."><div class="ico">📡</div><div class="txt"><strong>Transmissão</strong><span>Operação e recursos para transmissões.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
@@ -78,12 +93,13 @@
 
 <div class="fullview" id="divulgacoesView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="divulgacoesView">‹</button><div class="vtitle"><h2>Divulgações e Conteúdos</h2><p>Cultos, eventos, chamadas e materiais da C.A.R.A.</p></div></div></div><div class="divulgacoes" id="divulgacoesLista"><div class="msg">Carregando divulgações...</div></div></div><div class="fullview" id="ideiasView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="ideiasView">‹</button><div class="vtitle"><h2>Banco de Ideias</h2><p>Ideias e propostas de conteúdo da equipe de Mídia.</p></div></div></div><div class="ideias" id="ideiasLista"><div class="msg">Carregando ideias...</div></div></div>
 <div class="fullview" id="pautasView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="pautasView">‹</button><div class="vtitle"><h2>Pauta de Conteúdo</h2><p>Planejamento e andamento das produções da Mídia.</p></div></div></div><div class="fluxo"><div class="fluxo-linha"><span>📝 PAUTA</span><b>›</b><span>🎨 EM PRODUÇÃO</span><b>›</b><span>👀 EM REVISÃO</span><b>›</b><span>✅ APROVADO</span><b>›</b><span>📅 AGENDADO</span><b>›</b><span>📱 PUBLICADO</span></div></div><div class="pautas" id="pautasLista"><div class="msg">Carregando pautas...</div></div></div>
+<div class="fullview" id="calendarioView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="calendarioView">‹</button><div class="vtitle"><h2>Calendário da Mídia</h2><p>Publicações programadas a partir da pauta da equipe.</p></div></div></div><div class="calendario"><div class="cal-resumo" id="calResumo"></div><div id="calendarioLista"><div class="msg">Carregando calendário...</div></div></div></div>
 <div class="overlay" id="ov"><div class="sheet"><div class="sheettop"><h3 id="st"></h3><button class="close" id="cl">×</button></div><p id="sd"></p><div class="status">Esta função já faz parte da estrutura do módulo e será conectada à base de dados na próxima etapa.</div></div></div>
 
 <script>
 const API_MIDIA='https://script.google.com/macros/s/AKfycbxqc0KdWNFA9Ouvu4M-V9jiTwPquLZyuBeDcyAz6T_CEE6YityPhL_ctZfV6ZdXGkj0/exec';
 const INSTAGRAM='https://instagram.com/comunidadecara';
-const catalogView=document.getElementById('catalogView'),propositoView=document.getElementById('propositoView'),divulgacoesView=document.getElementById('divulgacoesView'),ideiasView=document.getElementById('ideiasView'),pautasView=document.getElementById('pautasView'),catalogo=document.getElementById('catalogo'),divulgacoesLista=document.getElementById('divulgacoesLista'),ideiasLista=document.getElementById('ideiasLista'),pautasLista=document.getElementById('pautasLista');
+const catalogView=document.getElementById('catalogView'),propositoView=document.getElementById('propositoView'),divulgacoesView=document.getElementById('divulgacoesView'),ideiasView=document.getElementById('ideiasView'),pautasView=document.getElementById('pautasView'),calendarioView=document.getElementById('calendarioView'),catalogo=document.getElementById('catalogo'),divulgacoesLista=document.getElementById('divulgacoesLista'),ideiasLista=document.getElementById('ideiasLista'),pautasLista=document.getElementById('pautasLista'),calendarioLista=document.getElementById('calendarioLista'),calResumo=document.getElementById('calResumo');
 function abrirView(v){v.classList.add('open');document.body.style.overflow='hidden'}
 function fecharView(v){v.classList.remove('open');if(!document.querySelector('.fullview.open'))document.body.style.overflow=''}
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>fecharView(document.getElementById(b.dataset.close)));
@@ -92,6 +108,7 @@ document.getElementById('abrirProposito').onclick=e=>{e.preventDefault();abrirVi
 document.getElementById('abrirDivulgacoes').onclick=e=>{e.preventDefault();abrirView(divulgacoesView);carregarDivulgacoes()};
 document.getElementById('abrirIdeias').onclick=e=>{e.preventDefault();abrirView(ideiasView);carregarIdeias()};
 document.getElementById('abrirPautas').onclick=e=>{e.preventDefault();abrirView(pautasView);carregarPautas()};
+document.getElementById('abrirCalendario').onclick=e=>{e.preventDefault();abrirView(calendarioView);carregarCalendario()};
 document.getElementById('verArtesProposito').onclick=e=>{e.preventDefault();fecharView(propositoView);abrirView(catalogView);carregarArtes()};
 function converterLinkImagem(url){if(!url)return'';url=String(url).trim();const m1=url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);if(m1&&m1[1])return'https://drive.google.com/thumbnail?id='+m1[1]+'&sz=w1200';const m2=url.match(/[?&]id=([a-zA-Z0-9_-]+)/);if(m2&&m2[1])return'https://drive.google.com/thumbnail?id='+m2[1]+'&sz=w1200';return url}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -145,6 +162,53 @@ async function avancarConteudo(item,btn){
 }
 
 const ov=document.getElementById('ov'),st=document.getElementById('st'),sd=document.getElementById('sd');
+
+function dataBRparaChave(v){
+ const m=String(v||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+ return m?`${m[3]}-${m[2]}-${m[1]}`:'';
+}
+function rotuloData(v){
+ const m=String(v||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+ if(!m)return esc(v||'Sem data');
+ const d=new Date(Number(m[3]),Number(m[2])-1,Number(m[1]));
+ const dias=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+ return `${dias[d.getDay()]} • ${m[1]}/${m[2]}/${m[3]}`;
+}
+async function carregarCalendario(){
+ calendarioLista.innerHTML='<div class="msg">Carregando calendário...</div>';
+ calResumo.innerHTML='';
+ try{
+  const r=await fetch(API_MIDIA+'?rota=conteudos',{credentials:'omit',redirect:'follow',cache:'no-store'});
+  const j=await r.json();
+  if(!j.sucesso)throw new Error(j.erro||'Erro na API');
+  const todos=Array.isArray(j.conteudos)?j.conteudos:[];
+  const itens=todos.filter(i=>i.dataPublicacao&&dataBRparaChave(i.dataPublicacao))
+    .sort((a,b)=>dataBRparaChave(a.dataPublicacao).localeCompare(dataBRparaChave(b.dataPublicacao)));
+  montarCalendario(itens);
+ }catch(e){
+  console.error(e);calendarioLista.innerHTML='<div class="cal-vazio">Não foi possível carregar o calendário agora.</div>';
+ }
+}
+function montarCalendario(itens){
+ const agendados=itens.filter(i=>i.status==='AGENDADO').length;
+ const publicados=itens.filter(i=>i.status==='PUBLICADO').length;
+ calResumo.innerHTML=`<div><strong>${itens.length}</strong><span>COM DATA</span></div><div><strong>${agendados}</strong><span>AGENDADOS</span></div><div><strong>${publicados}</strong><span>PUBLICADOS</span></div>`;
+ if(!itens.length){calendarioLista.innerHTML='<div class="cal-vazio">Ainda não há conteúdos com DATA_PUBLICACAO definida.<br><br>Quando uma pauta receber uma data, ela aparecerá aqui automaticamente.</div>';return}
+ const grupos={};
+ itens.forEach(i=>(grupos[i.dataPublicacao]||(grupos[i.dataPublicacao]=[])).push(i));
+ calendarioLista.innerHTML='';
+ Object.keys(grupos).sort((a,b)=>dataBRparaChave(a).localeCompare(dataBRparaChave(b))).forEach(data=>{
+  const sec=document.createElement('section');sec.className='cal-grupo';
+  sec.innerHTML=`<div class="cal-data">📅 ${rotuloData(data)}</div>`;
+  grupos[data].forEach(i=>{
+   const el=document.createElement('article');el.className='cal-item';
+   el.innerHTML=`<div class="cal-item-top">${i.tipo?`<span class="cal-chip">${esc(i.tipo)}</span>`:''}<span class="cal-status">${esc(i.status||'')}</span></div><h3>${esc(i.titulo||'Conteúdo')}</h3>${i.descricao?`<p>${esc(i.descricao)}</p>`:''}<div class="cal-meta">${i.canal?`<span>📱 ${esc(i.canal)}</span>`:''}${i.responsavel?`<span>👤 ${esc(i.responsavel)}</span>`:''}${i.prioridade?`<span>⚡ ${esc(i.prioridade)}</span>`:''}</div>`;
+   sec.appendChild(el);
+  });
+  calendarioLista.appendChild(sec);
+ });
+}
+
 document.querySelectorAll('.placeholder').forEach(c=>c.onclick=e=>{e.preventDefault();st.textContent=c.dataset.t;sd.textContent=c.dataset.d;ov.classList.add('open')});
 function fecharSheet(){ov.classList.remove('open')} document.getElementById('cl').onclick=fecharSheet;ov.onclick=e=>{if(e.target===ov)fecharSheet()};
 document.onkeydown=e=>{if(e.key==='Escape'){const v=[...document.querySelectorAll('.fullview.open')].pop();if(v)fecharView(v);else fecharSheet()}};
