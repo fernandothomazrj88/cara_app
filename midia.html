@@ -37,6 +37,12 @@
 .ideia-meta strong,.pauta-meta strong{display:block;color:#fff;font-size:10px;text-transform:uppercase;margin-bottom:3px}
 .fluxo{width:min(920px,calc(100% - 28px));margin:18px auto 0;padding:15px;border-radius:17px;background:#081a30;border:1px solid #ffffff15;overflow-x:auto}
 .fluxo-linha{display:flex;align-items:center;gap:7px;min-width:max-content;font-size:11px;font-weight:850;color:#9fb0c2}.fluxo-linha span{padding:7px 10px;border-radius:999px;background:#102b4c}.fluxo-linha b{color:var(--y);font-size:15px}
+
+.acao-pauta{margin-top:16px;padding-top:14px;border-top:1px solid #ffffff15;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn-avancar{border:0;border-radius:13px;padding:12px 15px;background:#ffff00;color:#061326;font-weight:950;font-size:13px;cursor:pointer;box-shadow:0 7px 18px #0004}
+.btn-avancar:disabled{opacity:.55;cursor:wait}
+.btn-finalizado{display:inline-block;border-radius:13px;padding:10px 13px;background:#ffffff10;color:#aebdcb;font-weight:850;font-size:12px}
+.retorno-acao{font-size:12px;color:#cbd8e5}
 @media(max-width:720px){.grid{grid-template-columns:1fr} .card{min-height:91px;padding:15px} .intro{padding-top:21px} .catalog{grid-template-columns:1fr} .arte img{height:auto;max-height:520px} .purposeHero,.purposeText{padding:20px}}
 </style></head>
 <body>
@@ -97,7 +103,46 @@ function montarDivulgacoes(itens){if(!itens.length){divulgacoesLista.innerHTML='
 async function carregarIdeias(){ideiasLista.innerHTML='<div class="msg">Carregando ideias...</div>';try{const r=await fetch(API_MIDIA+'?rota=ideias',{credentials:'omit',redirect:'follow',cache:'no-store'});const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarIdeias(j.ideias||[])}catch(e){console.error(e);ideiasLista.innerHTML='<div class="msg">Não foi possível carregar o Banco de Ideias agora.</div>'}}
 function montarIdeias(itens){if(!itens.length){ideiasLista.innerHTML='<div class="msg">Nenhuma ideia cadastrada no momento.</div>';return}ideiasLista.innerHTML='';itens.forEach(i=>{const el=document.createElement('article');el.className='ideia-card';el.innerHTML=`<div class="ideia-top">${i.tipo?`<span class="ideia-chip">${esc(i.tipo)}</span>`:''}<span class="ideia-status">${esc(i.status||'IDEIA')}</span>${i.prioridade?`<span class="ideia-prioridade">PRIORIDADE ${esc(i.prioridade)}</span>`:''}</div><h3>${esc(i.titulo||'Ideia')}</h3>${i.descricao?`<div class="ideia-desc">${esc(i.descricao)}</div>`:''}<div class="ideia-meta">${i.canal?`<div><strong>Canal</strong>${esc(i.canal)}</div>`:''}${i.origem?`<div><strong>Origem</strong>${esc(i.origem)}</div>`:''}${i.responsavel?`<div><strong>Responsável</strong>${esc(i.responsavel)}</div>`:''}</div>${i.observacoes?`<div class="ideia-desc"><strong>Observações:</strong> ${esc(i.observacoes)}</div>`:''}`;ideiasLista.appendChild(el)})}
 async function carregarPautas(){pautasLista.innerHTML='<div class="msg">Carregando pautas...</div>';try{const r=await fetch(API_MIDIA+'?rota=pautas',{credentials:'omit',redirect:'follow',cache:'no-store'});const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarPautas(j.pautas||[])}catch(e){console.error(e);pautasLista.innerHTML='<div class="msg">Não foi possível carregar a Pauta de Conteúdo agora.</div>'}}
-function montarPautas(itens){if(!itens.length){pautasLista.innerHTML='<div class="msg">Nenhuma pauta cadastrada no momento.</div>';return}pautasLista.innerHTML='';itens.forEach(i=>{const el=document.createElement('article');el.className='pauta-card';el.innerHTML=`<div class="pauta-top">${i.tipo?`<span class="pauta-chip">${esc(i.tipo)}</span>`:''}<span class="pauta-status">${esc(i.status||'PAUTA')}</span>${i.prioridade?`<span class="pauta-prioridade">PRIORIDADE ${esc(i.prioridade)}</span>`:''}</div><h3>${esc(i.titulo||'Pauta')}</h3>${i.descricao?`<div class="pauta-desc">${esc(i.descricao)}</div>`:''}<div class="pauta-meta">${i.responsavel?`<div><strong>Responsável</strong>${esc(i.responsavel)}</div>`:''}${i.canal?`<div><strong>Canal</strong>${esc(i.canal)}</div>`:''}${i.dataPublicacao?`<div><strong>Data de publicação</strong>${esc(i.dataPublicacao)}</div>`:''}${i.origem?`<div><strong>Origem</strong>${esc(i.origem)}</div>`:''}</div>${i.observacoes?`<div class="pauta-desc"><strong>Observações:</strong> ${esc(i.observacoes)}</div>`:''}`;pautasLista.appendChild(el)})}
+const ACAO_STATUS={
+'PAUTA':'🎨 Iniciar produção',
+'EM PRODUCAO':'👀 Enviar para revisão',
+'EM REVISAO':'✅ Aprovar conteúdo',
+'APROVADO':'📅 Agendar publicação',
+'AGENDADO':'📱 Marcar como publicado'
+};
+function montarPautas(itens){
+ if(!itens.length){pautasLista.innerHTML='<div class="msg">Nenhuma pauta cadastrada no momento.</div>';return}
+ pautasLista.innerHTML='';
+ itens.forEach(i=>{
+  const el=document.createElement('article');el.className='pauta-card';
+  const acao=ACAO_STATUS[i.status]||'';
+  const controle=i.status==='PUBLICADO'
+   ? `<div class="acao-pauta"><span class="btn-finalizado">✓ Conteúdo publicado</span></div>`
+   : acao
+    ? `<div class="acao-pauta"><button class="btn-avancar" data-id="${esc(i.id)}">${acao}</button><span class="retorno-acao"></span></div>`
+    : '';
+  el.innerHTML=`<div class="pauta-top">${i.tipo?`<span class="pauta-chip">${esc(i.tipo)}</span>`:''}<span class="pauta-status">${esc(i.status||'PAUTA')}</span>${i.prioridade?`<span class="pauta-prioridade">PRIORIDADE ${esc(i.prioridade)}</span>`:''}</div><h3>${esc(i.titulo||'Pauta')}</h3>${i.descricao?`<div class="pauta-desc">${esc(i.descricao)}</div>`:''}<div class="pauta-meta">${i.responsavel?`<div><strong>Responsável</strong>${esc(i.responsavel)}</div>`:''}${i.canal?`<div><strong>Canal</strong>${esc(i.canal)}</div>`:''}${i.dataPublicacao?`<div><strong>Data de publicação</strong>${esc(i.dataPublicacao)}</div>`:''}${i.origem?`<div><strong>Origem</strong>${esc(i.origem)}</div>`:''}</div>${i.observacoes?`<div class="pauta-desc"><strong>Observações:</strong> ${esc(i.observacoes)}</div>`:''}${controle}`;
+  const btn=el.querySelector('.btn-avancar');
+  if(btn)btn.onclick=()=>avancarConteudo(i,btn);
+  pautasLista.appendChild(el);
+ })
+}
+async function avancarConteudo(item,btn){
+ const textoOriginal=btn.textContent;
+ const retorno=btn.parentElement.querySelector('.retorno-acao');
+ btn.disabled=true;btn.textContent='Atualizando...';retorno.textContent='';
+ try{
+  const url=API_MIDIA+'?rota=avancar-status&id='+encodeURIComponent(item.id);
+  const r=await fetch(url,{credentials:'omit',redirect:'follow',cache:'no-store'});
+  const j=await r.json();
+  if(!j.sucesso)throw new Error(j.erro||'Não foi possível avançar.');
+  retorno.textContent='✓ '+(j.statusAnterior||item.status)+' → '+j.statusAtual;
+  setTimeout(()=>carregarPautas(),650);
+ }catch(e){
+  console.error(e);btn.disabled=false;btn.textContent=textoOriginal;
+  retorno.textContent='⚠ '+(e.message||'Erro ao atualizar.');
+ }
+}
 
 const ov=document.getElementById('ov'),st=document.getElementById('st'),sd=document.getElementById('sd');
 document.querySelectorAll('.placeholder').forEach(c=>c.onclick=e=>{e.preventDefault();st.textContent=c.dataset.t;sd.textContent=c.dataset.d;ov.classList.add('open')});
