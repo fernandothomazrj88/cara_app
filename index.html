@@ -671,6 +671,57 @@
 
     }
 
+
+    /* ========================================
+       CONTA / SESSÃO C.A.R.A.
+    ======================================== */
+    .conta-cara {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(8px);
+    }
+    .conta-info { min-width: 0; }
+    .conta-nome {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .conta-perfil {
+      margin-top: 3px;
+      color: var(--dourado);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+    }
+    .conta-acao {
+      flex-shrink: 0;
+      border: 0;
+      border-radius: 12px;
+      min-height: 38px;
+      padding: 0 14px;
+      background: var(--dourado);
+      color: #111;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .conta-acao:active { transform: scale(.97); }
+
   </style>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="mobile-web-app-capable" content="yes">
@@ -713,13 +764,21 @@
 
     <div class="boas-vindas">
 
-      <div class="bem-vindo">
+      <div class="bem-vindo" id="saudacaoLabel">
         BEM-VINDO
       </div>
 
-      <h1>
+      <h1 id="saudacaoTitulo">
         Shalom, Shalom!
       </h1>
+
+      <div class="conta-cara" id="contaCARA">
+        <div class="conta-info">
+          <div class="conta-nome" id="contaNome">Área pública</div>
+          <div class="conta-perfil" id="contaPerfil">C.A.R.A.</div>
+        </div>
+        <a class="conta-acao" id="contaAcao" href="login.html">Entrar</a>
+      </div>
 
     </div>
 
@@ -1082,6 +1141,105 @@
 <script>
 const API_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 
+const CHAVE_SESSAO_CARA = 'cara_auth_token';
+
+function primeiroNomeCARA(nome) {
+  return String(nome || '').trim().split(/\s+/)[0] || '';
+}
+
+function nomePerfilCARA(perfil) {
+  const mapa = {
+    ADMIN: 'ADMINISTRADOR',
+    SECRETARIA: 'SECRETARIA',
+    LIDERANCA: 'LIDERANÇA',
+    MINISTERIO: 'MINISTÉRIO',
+    MEMBRO: 'MEMBRO'
+  };
+  return mapa[String(perfil || '').toUpperCase()] || String(perfil || 'USUÁRIO');
+}
+
+async function postCARA(payload) {
+  const resposta = await fetch(API_CARA, {
+    method: 'POST',
+    credentials: 'omit',
+    redirect: 'follow',
+    cache: 'no-store',
+    headers: {'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(payload)
+  });
+  if (!resposta.ok) throw new Error('Falha HTTP ' + resposta.status);
+  return resposta.json();
+}
+
+function mostrarVisitanteCARA() {
+  document.getElementById('saudacaoLabel').textContent = 'BEM-VINDO';
+  document.getElementById('saudacaoTitulo').textContent = 'Shalom, Shalom!';
+  document.getElementById('contaNome').textContent = 'Área pública';
+  document.getElementById('contaPerfil').textContent = 'C.A.R.A.';
+  const acao = document.getElementById('contaAcao');
+  acao.textContent = 'Entrar';
+  acao.href = 'login.html';
+  acao.onclick = null;
+}
+
+function mostrarUsuarioCARA(usuario) {
+  const primeiroNome = primeiroNomeCARA(usuario && usuario.nome);
+  document.getElementById('saudacaoLabel').textContent = 'SHALOM';
+  document.getElementById('saudacaoTitulo').textContent =
+    primeiroNome ? 'Shalom, ' + primeiroNome + '!' : 'Shalom!';
+  document.getElementById('contaNome').textContent =
+    (usuario && usuario.nome) || (usuario && usuario.email) || 'Usuário C.A.R.A.';
+  document.getElementById('contaPerfil').textContent =
+    nomePerfilCARA(usuario && usuario.perfil);
+
+  const acao = document.getElementById('contaAcao');
+  acao.textContent = 'Sair';
+  acao.removeAttribute('href');
+  acao.onclick = sairCARA;
+}
+
+async function carregarSessaoCARA() {
+  const token = localStorage.getItem(CHAVE_SESSAO_CARA);
+  if (!token) {
+    mostrarVisitanteCARA();
+    return;
+  }
+
+  try {
+    const json = await postCARA({acao:'sessao', token});
+    if (!json.sucesso || !json.autenticado || !json.usuario) {
+      localStorage.removeItem(CHAVE_SESSAO_CARA);
+      localStorage.removeItem('cara_usuario');
+      mostrarVisitanteCARA();
+      return;
+    }
+    localStorage.setItem('cara_usuario', JSON.stringify(json.usuario));
+    mostrarUsuarioCARA(json.usuario);
+  } catch (erro) {
+    console.error('Não foi possível validar a sessão C.A.R.A.:', erro);
+    const salvo = localStorage.getItem('cara_usuario');
+    if (salvo) {
+      try { mostrarUsuarioCARA(JSON.parse(salvo)); return; } catch (_) {}
+    }
+    mostrarVisitanteCARA();
+  }
+}
+
+async function sairCARA(evento) {
+  if (evento) evento.preventDefault();
+  const token = localStorage.getItem(CHAVE_SESSAO_CARA);
+
+  localStorage.removeItem(CHAVE_SESSAO_CARA);
+  localStorage.removeItem('cara_usuario');
+  mostrarVisitanteCARA();
+
+  if (token) {
+    try { await postCARA({acao:'logout', token}); }
+    catch (erro) { console.warn('Sessão local encerrada; backend indisponível.', erro); }
+  }
+}
+
+
 const card = document.getElementById('cardProximoEvento');
 const titulo = document.getElementById('eventoTitulo');
 const tipo = document.getElementById('eventoTipo');
@@ -1138,6 +1296,7 @@ async function carregarProximoEvento() {
   }
 }
 
+carregarSessaoCARA();
 carregarProximoEvento();
 
 if ('serviceWorker' in navigator) {
