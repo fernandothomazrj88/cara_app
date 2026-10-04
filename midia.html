@@ -97,7 +97,7 @@
 <div class="overlay" id="ov"><div class="sheet"><div class="sheettop"><h3 id="st"></h3><button class="close" id="cl">×</button></div><p id="sd"></p><div class="status">Esta função já faz parte da estrutura do módulo e será conectada à base de dados na próxima etapa.</div></div></div>
 
 <script>
-const API_MIDIA='https://script.google.com/macros/s/AKfycbxqc0KdWNFA9Ouvu4M-V9jiTwPquLZyuBeDcyAz6T_CEE6YityPhL_ctZfV6ZdXGkj0/exec';
+const API_MIDIA='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 const API_CENTRAL='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 const CHAVE_SESSAO_CARA='cara_auth_token';
 const INSTAGRAM='https://instagram.com/comunidadecara';
@@ -147,7 +147,7 @@ function montarPautas(itens){
  })
 }
 async function avancarConteudo(item,btn){
- const textoOriginal=btn.textContent;
+ const card=btn.closest('.pauta-card');
  const retorno=btn.parentElement.querySelector('.retorno-acao');
  const token=localStorage.getItem(CHAVE_SESSAO_CARA);
 
@@ -157,7 +157,7 @@ async function avancarConteudo(item,btn){
 
  if(!token){
   btn.disabled=false;
-  btn.textContent=textoOriginal;
+  btn.textContent=ACAO_STATUS[item.status]||'Avançar';
   retorno.textContent='⚠ Sua sessão não foi encontrada. Entre novamente no C.A.R.A.';
   return;
  }
@@ -176,9 +176,7 @@ async function avancarConteudo(item,btn){
    cache:'no-store'
   });
 
-  if(!resposta.ok){
-   throw new Error('HTTP '+resposta.status);
-  }
+  if(!resposta.ok) throw new Error('HTTP '+resposta.status);
 
   const j=await resposta.json();
 
@@ -195,13 +193,53 @@ async function avancarConteudo(item,btn){
    throw new Error(j.mensagem||j.erro||'Não foi possível avançar o conteúdo.');
   }
 
-  retorno.textContent='✓ '+(j.statusAnterior||item.status)+' → '+(j.statusAtual||'atualizado');
-  setTimeout(()=>carregarPautas(),650);
+  const novoStatus=String(j.statusAtual||'').trim().toUpperCase();
+  const statusAnterior=String(j.statusAnterior||item.status||'').trim().toUpperCase();
+
+  // Atualiza o objeto local.
+  item.status=novoStatus;
+
+  // Atualiza imediatamente o selo de status do cartão.
+  const statusEl=card ? card.querySelector('.pauta-status') : null;
+  if(statusEl) statusEl.textContent=novoStatus;
+
+  // Atualiza imediatamente o botão conforme o novo status.
+  const novaAcao=ACAO_STATUS[novoStatus]||'';
+
+  if(card){
+   const area=card.querySelector('.acao-pauta');
+
+   if(area){
+    if(novoStatus==='PUBLICADO'){
+     area.innerHTML='<span class="btn-finalizado">✓ Conteúdo publicado</span>';
+    }else if(novaAcao){
+     area.innerHTML=
+      '<button class="btn-avancar" data-id="'+esc(item.id)+'">'+
+      esc(novaAcao)+
+      '</button>'+
+      '<span class="retorno-acao">✓ '+esc(statusAnterior)+' → '+esc(novoStatus)+'</span>';
+
+     const novoBtn=area.querySelector('.btn-avancar');
+     if(novoBtn) novoBtn.onclick=()=>avancarConteudo(item,novoBtn);
+    }else{
+     area.innerHTML='<span class="btn-finalizado">✓ '+esc(novoStatus)+'</span>';
+    }
+   }
+  }
+
+  // Se não foi possível reconstruir a área visual, pelo menos mantém o retorno.
+  if(retorno && retorno.isConnected){
+   retorno.textContent='✓ '+statusAnterior+' → '+novoStatus;
+  }
+
+  // Sincroniza novamente com a Base Central após um pequeno intervalo.
+  // Isso corrige qualquer diferença entre a resposta da operação e a leitura da lista.
+  setTimeout(()=>carregarPautas(),1000);
 
  }catch(e){
   console.error('C.A.R.A. — avanço de Mídia:',e);
   btn.disabled=false;
-  btn.textContent=textoOriginal;
+  btn.textContent=ACAO_STATUS[item.status]||'Avançar';
   retorno.textContent='⚠ '+(e.message||'Erro ao atualizar o conteúdo.');
  }
 }
