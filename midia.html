@@ -212,20 +212,63 @@ async function avancarConteudo(item,btn){
   return;
  }
  const token=localStorage.getItem(CHAVE_SESSAO_CARA);
+ if(!token){
+  retorno.textContent='🔒 Sua sessão expirou. Entre novamente.';
+  await verificarAcessoMidia();
+  return;
+ }
+
+ btn.disabled=true;
+ retorno.textContent='⏳ Atualizando status...';
+
  try{
-  const auth=await postCentral({acao:'autorizar',token,modulo:'MIDIA',acaoPermissao:'EDITAR'});
+  // Validação adicional no frontend antes da escrita.
+  const auth=await postCentral({
+   acao:'autorizar',
+   token,
+   modulo:'MIDIA',
+   acaoPermissao:'EDITAR'
+  });
+
   if(!auth.sucesso||!auth.autorizado){
    retorno.textContent='🔒 A edição não foi autorizada pela Base Central.';
+   btn.disabled=false;
    return;
   }
-  /* Segurança:
-     O antigo endpoint ?rota=avancar-status era uma escrita pública via GET.
-     Ele fica deliberadamente desativado até o backend da Mídia validar
-     a sessão C.A.R.A. no próprio endpoint de escrita. */
-  retorno.textContent='🔐 Acesso de edição confirmado. Escrita aguardando proteção no backend da Mídia.';
+
+  // A escrita acontece SOMENTE via POST no backend protegido da Mídia.
+  const r=await fetch(API_MIDIA,{
+   method:'POST',
+   credentials:'omit',
+   redirect:'follow',
+   cache:'no-store',
+   headers:{'Content-Type':'text/plain;charset=utf-8'},
+   body:JSON.stringify({
+    acao:'avancar-status',
+    token:token,
+    id:String(item.id||'').trim()
+   })
+  });
+
+  if(!r.ok)throw new Error('HTTP '+r.status);
+
+  const resultado=await r.json();
+
+  if(!resultado.sucesso){
+   retorno.textContent='⚠ '+(resultado.mensagem||resultado.erro||'Não foi possível atualizar o status.');
+   btn.disabled=false;
+   return;
+  }
+
+  retorno.textContent='✅ '+(resultado.mensagem||'Status atualizado com sucesso.');
+
+  // Recarrega a pauta para refletir imediatamente a nova etapa do fluxo.
+  await carregarPautas();
+
  }catch(e){
   console.error(e);
-  retorno.textContent='⚠ Não foi possível validar a permissão agora.';
+  retorno.textContent='⚠ Não foi possível atualizar o status agora.';
+  btn.disabled=false;
  }
 }
 
