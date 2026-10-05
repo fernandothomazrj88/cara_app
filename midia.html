@@ -24,6 +24,34 @@
 .arte{background:#fff;color:#171717;border-radius:18px;overflow:hidden;box-shadow:0 10px 26px #0005} .arte img{display:block;width:100%;height:420px;object-fit:contain;background:#fff} .arte-body{padding:17px} .codigo{font-size:11px;color:#777;text-transform:uppercase} .nome{font-size:19px;font-weight:850;margin-top:5px} .tamanho{font-size:13px;color:#666;margin-top:6px} .valor{font-size:20px;font-weight:900;margin-top:10px;color:#765d13} .disp{display:inline-block;margin-top:10px;padding:5px 10px;border-radius:999px;background:#e7f4e9;color:#257436;font-size:11px;font-weight:800} .desc{font-size:13px;color:#555;line-height:1.5;margin-top:12px} .insta{display:block;margin-top:14px;padding:12px;border-radius:11px;background:#051326;color:#fff;text-align:center;text-decoration:none;font-weight:800}
 .proposito{width:min(760px,calc(100% - 28px));margin:24px auto} .purposeHero{padding:28px;border-radius:22px;background:linear-gradient(145deg,#102d50,#081a30);border:1px solid #ffff0030;margin-bottom:16px} .purposeHero .heart{font-size:38px} .purposeHero h3{font-size:27px;margin:10px 0 7px;color:var(--y)} .purposeHero p{margin:0;color:#d6e1ec;line-height:1.6} .purposeText{padding:24px;border-radius:20px;background:#0b2039;border:1px solid #ffffff15} .purposeText p{margin:0 0 18px;color:#d7e1ec;line-height:1.75;font-size:16px} .purposeText p:last-child{margin-bottom:0} .purposeText strong,.purposeText .hi{color:var(--y)} .purposeCta{display:block;text-align:center;text-decoration:none;margin-top:16px;padding:15px;border-radius:14px;background:var(--y);color:#071321;font-weight:900}
 .overlay{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;padding:18px;z-index:80} .overlay.open{display:flex} .sheet{width:min(620px,100%);background:#081a30;border:1px solid #ffffff1a;border-radius:24px;padding:22px} .sheettop{display:flex;justify-content:space-between;align-items:center} .sheet h3{margin:0} .sheet p{color:#c7d4e2;line-height:1.55} .close{width:40px;height:40px;border:0;border-radius:12px;background:#122b48;color:#fff;font-size:20px} .status{padding:13px;border-radius:13px;background:#0d2747;color:var(--m);font-size:13px}
+
+.central-artes-toolbar{width:min(1120px,calc(100% - 28px));margin:20px auto 10px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.central-artes-search{flex:1;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:15px;background:#0b2039;border:1px solid #ffffff15}
+.central-artes-search span{font-size:18px}.central-artes-search input{width:100%;border:0;outline:0;background:transparent;color:#fff;font:inherit}
+.central-artes-search input::placeholder{color:#8295aa}
+.central-artes-count{color:#aebdce;font-size:12px;font-weight:850;white-space:nowrap}
+.central-artes-filtros{width:min(1120px,calc(100% - 28px));margin:0 auto 16px;display:flex;gap:8px;flex-wrap:wrap}
+.filtro-arte{border:1px solid #ffffff15;background:#0b2039;color:#cbd8e5;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:850;cursor:pointer}
+.filtro-arte.ativo{background:#ffff00;color:#061326;border-color:#ffff00}
+.central-artes-grid{width:min(1120px,calc(100% - 28px));margin:0 auto 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.central-arte-card{background:#fff;color:#171717;border-radius:20px;overflow:hidden;box-shadow:0 10px 26px #0005}
+.central-arte-img{display:block;width:100%;height:260px;object-fit:contain;background:#f4f4f4}
+.central-arte-sem-img{height:260px;display:grid;place-items:center;background:#e9edf2;color:#6b7280;font-size:46px}
+.central-arte-body{padding:17px}
+.central-arte-codigo{font-size:10px;color:#777;text-transform:uppercase;font-weight:900;letter-spacing:.7px}
+.central-arte-nome{font-size:19px;font-weight:900;margin-top:5px}
+.central-arte-meta{font-size:12px;color:#666;margin-top:6px}
+.central-arte-valor{font-size:18px;font-weight:900;margin-top:10px;color:#765d13}
+.central-arte-status{display:inline-block;margin-top:10px;padding:5px 10px;border-radius:999px;background:#e7f4e9;color:#257436;font-size:10px;font-weight:900}
+.central-arte-status.off{background:#f0f0f0;color:#666}
+.central-arte-desc{font-size:13px;color:#555;line-height:1.5;margin-top:11px}
+.central-arte-link{display:block;margin-top:14px;padding:12px;border-radius:11px;background:#051326;color:#fff;text-align:center;text-decoration:none;font-weight:850}
+@media(max-width:720px){
+  .central-artes-toolbar{align-items:stretch;flex-direction:column}
+  .central-artes-count{padding-left:3px}
+  .central-artes-grid{grid-template-columns:1fr}
+}
+
 .divulgacoes{width:min(920px,calc(100% - 28px));margin:20px auto;display:grid;gap:16px}.div-card{background:linear-gradient(145deg,#0e2948,#0b2039);border:1px solid #ffffff15;border-radius:20px;overflow:hidden;box-shadow:0 10px 26px #0004}.div-card.destaque{border-color:#ffff0055}.div-img{display:block;width:100%;max-height:540px;object-fit:contain;background:#071526}.div-body{padding:20px}.div-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.div-tipo,.div-destaque{display:inline-block;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900}.div-tipo{background:#ffffff12;color:#dce7f2}.div-destaque{background:#ffff00;color:#071321}.div-title{margin:0;font-size:22px}.div-date{margin-top:8px;color:#ffff00;font-size:13px;font-weight:800}.div-desc{margin-top:13px;color:#cbd8e5;line-height:1.6;font-size:14px}.div-link{display:inline-block;margin-top:15px;padding:12px 15px;border-radius:12px;background:#ffff00;color:#071321;text-decoration:none;font-weight:900}
 .ideias,.pautas{width:min(920px,calc(100% - 28px));margin:20px auto;display:grid;gap:14px}
 .ideia-card,.pauta-card{background:linear-gradient(145deg,#0e2948,#0b2039);border:1px solid #ffffff15;border-radius:20px;padding:20px;box-shadow:0 10px 26px #0004}
@@ -73,13 +101,44 @@
 <section class="section"><div class="ey">ORGANIZAÇÃO</div><h2>Área da Equipe</h2><div class="grid">
 <a class="card" href="#" id="abrirPautas"><div class="ico">📝</div><div class="txt"><strong>Pauta de Conteúdo</strong><span>Planejamento e andamento das publicações.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
 <a class="card" id="abrirCalendario" href="#"><div class="ico">📅</div><div class="txt"><strong>Calendário da Mídia</strong><span>Coberturas, divulgações e programação.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
-<a class="card placeholder" href="#" data-t="Central de Artes" data-d="Acervo organizado de artes, modelos e materiais produzidos pelo Ministério de Mídia."><div class="ico">🎨</div><div class="txt"><strong>Central de Artes</strong><span>Acervo de artes e materiais visuais.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
+<a class="card" href="#" id="abrirCentralArtes"><div class="ico">🎨</div><div class="txt"><strong>Central de Artes</strong><span>Acervo de artes e materiais visuais.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
 <a class="card" href="#" id="abrirIdeias"><div class="ico">💡</div><div class="txt"><strong>Banco de Ideias</strong><span>Ideias para conteúdos e novas ações.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
 <a class="card placeholder" href="#" data-t="Transmissão" data-d="Central de apoio às transmissões dos cultos e eventos, com organização operacional e recursos necessários."><div class="ico">📡</div><div class="txt"><strong>Transmissão</strong><span>Operação e recursos para transmissões.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
 </div></section></main>
 <nav class="bottom"><a href="./index.html"><b>🏠</b>Início</a><a href="./agenda.html"><b>📅</b>Agenda</a><a href="./ministerios.html"><b>▦</b>Ministérios</a><a href="#"><b>🔔</b>Avisos</a><a class="active" href="./midia.html"><b>📱</b>Mídia</a></nav>
 
 <div class="fullview" id="catalogView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="catalogView">‹</button><div class="vtitle"><h2>Artes dos Quadros</h2><p>Escolha uma arte que fale ao seu coração.</p></div></div></div><div class="catalog" id="catalogo"><div class="msg">Carregando artes...</div></div></div>
+
+
+<div class="fullview" id="centralArtesView">
+  <div class="viewhead">
+    <div class="viewheadin">
+      <button class="back" data-close="centralArtesView">‹</button>
+      <div class="vtitle">
+        <h2>Central de Artes</h2>
+        <p>Acervo de artes e materiais visuais do Ministério de Mídia.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="central-artes-toolbar">
+    <div class="central-artes-search">
+      <span>🔎</span>
+      <input id="buscaArtes" type="search" placeholder="Buscar por código ou nome..." autocomplete="off">
+    </div>
+    <div class="central-artes-count" id="contadorArtes">Carregando...</div>
+  </div>
+
+  <div class="central-artes-filtros">
+    <button class="filtro-arte ativo" data-filtro="TODAS">Todas</button>
+    <button class="filtro-arte" data-filtro="DISPONIVEIS">Disponíveis</button>
+    <button class="filtro-arte" data-filtro="INDISPONIVEIS">Indisponíveis</button>
+  </div>
+
+  <div class="central-artes-grid" id="centralArtesLista">
+    <div class="msg">Carregando artes...</div>
+  </div>
+</div>
 
 <div class="fullview" id="propositoView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="propositoView">‹</button><div class="vtitle"><h2>Quadros com Propósito</h2><p>Mais do que decoração: uma mensagem e um propósito.</p></div></div></div>
 <div class="proposito"><div class="purposeHero"><div class="heart">🤍</div><h3>Mais do que uma arte.</h3><p>Uma forma de levar uma mensagem e contribuir com a obra.</p></div>
@@ -105,6 +164,109 @@ const catalogView=document.getElementById('catalogView'),propositoView=document.
 function abrirView(v){v.classList.add('open');document.body.style.overflow='hidden'}
 function fecharView(v){v.classList.remove('open');if(!document.querySelector('.fullview.open'))document.body.style.overflow=''}
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>fecharView(document.getElementById(b.dataset.close)));
+
+let artesCentral = [];
+let filtroArtesAtual = 'TODAS';
+
+document.getElementById('abrirCentralArtes').onclick = e => {
+  e.preventDefault();
+  abrirView(centralArtesView);
+  carregarCentralArtes();
+};
+
+document.getElementById('buscaArtes').addEventListener('input', renderizarCentralArtes);
+
+document.querySelectorAll('.filtro-arte').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.filtro-arte').forEach(b => b.classList.remove('ativo'));
+    btn.classList.add('ativo');
+    filtroArtesAtual = btn.dataset.filtro || 'TODAS';
+    renderizarCentralArtes();
+  };
+});
+
+async function carregarCentralArtes() {
+  const lista = document.getElementById('centralArtesLista');
+  lista.innerHTML = '<div class="msg">Carregando artes...</div>';
+  document.getElementById('contadorArtes').textContent = 'Carregando...';
+
+  try {
+    const r = await fetch(API_CENTRAL + '?rota=artes', {
+      credentials:'omit',
+      redirect:'follow',
+      cache:'no-store'
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+
+    const j = await r.json();
+    if (!j.sucesso) throw new Error(j.mensagem || j.erro || 'Falha ao carregar artes.');
+
+    artesCentral = Array.isArray(j.artes) ? j.artes : [];
+    renderizarCentralArtes();
+  } catch(e) {
+    console.error('C.A.R.A. — Central de Artes:', e);
+    lista.innerHTML = '<div class="msg">Não foi possível carregar a Central de Artes agora.</div>';
+    document.getElementById('contadorArtes').textContent = 'Erro ao carregar';
+  }
+}
+
+function renderizarCentralArtes() {
+  const lista = document.getElementById('centralArtesLista');
+  const busca = String(document.getElementById('buscaArtes').value || '').trim().toLowerCase();
+
+  let itens = artesCentral.filter(a => {
+    const disponivel = String(a.disponivel || '').trim().toUpperCase();
+    const texto = (String(a.codigo || '') + ' ' + String(a.nome || '')).toLowerCase();
+
+    if (busca && !texto.includes(busca)) return false;
+    if (filtroArtesAtual === 'DISPONIVEIS' && !['SIM','DISPONIVEL','DISPONÍVEL'].includes(disponivel)) return false;
+    if (filtroArtesAtual === 'INDISPONIVEIS' && ['SIM','DISPONIVEL','DISPONÍVEL'].includes(disponivel)) return false;
+
+    return true;
+  });
+
+  document.getElementById('contadorArtes').textContent =
+    itens.length + (itens.length === 1 ? ' arte' : ' artes');
+
+  if (!itens.length) {
+    lista.innerHTML = '<div class="msg">Nenhuma arte encontrada com esses filtros.</div>';
+    return;
+  }
+
+  lista.innerHTML = '';
+
+  itens.forEach(a => {
+    const el = document.createElement('article');
+    el.className = 'central-arte-card';
+
+    const img = converterLinkImagem(a.imagem);
+    const disp = String(a.disponivel || '').trim();
+    const disponivel = ['SIM','DISPONIVEL','DISPONÍVEL'].includes(disp.toUpperCase());
+
+    el.innerHTML = `
+      ${img
+        ? `<img class="central-arte-img" src="${esc(img)}" alt="${esc(a.nome || 'Arte C.A.R.A.')}" loading="lazy">`
+        : `<div class="central-arte-sem-img">🎨</div>`
+      }
+      <div class="central-arte-body">
+        <div class="central-arte-codigo">${esc(a.codigo || '')}</div>
+        <div class="central-arte-nome">${esc(a.nome || 'Arte sem nome')}</div>
+        ${a.tamanho ? `<div class="central-arte-meta">📐 ${esc(a.tamanho)}</div>` : ''}
+        ${a.valor ? `<div class="central-arte-valor">${esc(a.valor)}</div>` : ''}
+        <span class="central-arte-status ${disponivel ? '' : 'off'}">
+          ${esc(disp || 'STATUS NÃO INFORMADO')}
+        </span>
+        ${a.descricao ? `<div class="central-arte-desc">${esc(a.descricao)}</div>` : ''}
+        <a class="central-arte-link" href="${INSTAGRAM}" target="_blank" rel="noopener">
+          Ver no Instagram ›
+        </a>
+      </div>
+    `;
+
+    lista.appendChild(el);
+  });
+}
+
 document.getElementById('abrirArtes').onclick=e=>{e.preventDefault();abrirView(catalogView);carregarArtes()};
 document.getElementById('abrirProposito').onclick=e=>{e.preventDefault();abrirView(propositoView)};
 document.getElementById('abrirDivulgacoes').onclick=e=>{e.preventDefault();abrirView(divulgacoesView);carregarDivulgacoes()};
@@ -114,7 +276,7 @@ document.getElementById('abrirCalendario').onclick=e=>{e.preventDefault();abrirV
 document.getElementById('verArtesProposito').onclick=e=>{e.preventDefault();fecharView(propositoView);abrirView(catalogView);carregarArtes()};
 function converterLinkImagem(url){if(!url)return'';url=String(url).trim();const m1=url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);if(m1&&m1[1])return'https://drive.google.com/thumbnail?id='+m1[1]+'&sz=w1200';const m2=url.match(/[?&]id=([a-zA-Z0-9_-]+)/);if(m2&&m2[1])return'https://drive.google.com/thumbnail?id='+m2[1]+'&sz=w1200';return url}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-async function carregarArtes(){catalogo.innerHTML='<div class="msg">Carregando artes...</div>';try{const r=await fetch(API_MIDIA+'?rota=artes',{credentials:'omit',redirect:'follow',cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarCatalogo(j.artes||[])}catch(e){console.error(e);catalogo.innerHTML='<div class="msg">Não foi possível carregar as artes agora. Tente novamente em instantes.</div>'}}
+async function carregarArtes(){catalogo.innerHTML='<div class="msg">Carregando artes...</div>';try{const r=await fetch(API_CENTRAL+'?rota=artes',{credentials:'omit',redirect:'follow',cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarCatalogo(j.artes||[])}catch(e){console.error(e);catalogo.innerHTML='<div class="msg">Não foi possível carregar as artes agora. Tente novamente em instantes.</div>'}}
 function montarCatalogo(artes){if(!artes.length){catalogo.innerHTML='<div class="msg">Nenhuma arte cadastrada ainda.</div>';return}catalogo.innerHTML='';artes.forEach(a=>{const el=document.createElement('article');el.className='arte';const img=converterLinkImagem(a.imagem);el.innerHTML=`${img?`<img src="${esc(img)}" alt="${esc(a.nome||'Arte C.A.R.A.')}" loading="lazy">`:''}<div class="arte-body"><div class="codigo">${esc(a.codigo||'')}</div><div class="nome">${esc(a.nome||'')}</div>${a.tamanho?`<div class="tamanho">${esc(a.tamanho)}</div>`:''}${a.valor?`<div class="valor">${esc(a.valor)}</div>`:''}${a.disponivel?`<div class="disp">${esc(a.disponivel)}</div>`:''}${a.descricao?`<div class="desc">${esc(a.descricao)}</div>`:''}<a class="insta" href="${INSTAGRAM}" target="_blank" rel="noopener">Tenho interesse nesta arte</a></div>`;catalogo.appendChild(el)})}
 async function carregarDivulgacoes(){divulgacoesLista.innerHTML='<div class="msg">Carregando divulgações...</div>';try{const r=await fetch(API_MIDIA+'?rota=divulgacoes',{credentials:'omit',redirect:'follow',cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarDivulgacoes(j.divulgacoes||[])}catch(e){console.error(e);divulgacoesLista.innerHTML='<div class="msg">Não foi possível carregar as divulgações agora. Tente novamente em instantes.</div>'}}
 function montarDivulgacoes(itens){if(!itens.length){divulgacoesLista.innerHTML='<div class="msg">Nenhuma divulgação publicada no momento.</div>';return}divulgacoesLista.innerHTML='';itens.forEach(d=>{const el=document.createElement('article');el.className='div-card'+(String(d.destaque).toUpperCase()==='SIM'?' destaque':'');const img=converterLinkImagem(d.imagem),link=String(d.link||'').trim();el.innerHTML=`${img?`<img class="div-img" src="${esc(img)}" alt="${esc(d.titulo||'Divulgação C.A.R.A.')}" loading="lazy">`:''}<div class="div-body"><div class="div-top">${d.tipo?`<span class="div-tipo">${esc(d.tipo)}</span>`:''}${String(d.destaque).toUpperCase()==='SIM'?'<span class="div-destaque">DESTAQUE</span>':''}</div><h3 class="div-title">${esc(d.titulo||'Divulgação')}</h3>${d.data?`<div class="div-date">📅 ${esc(d.data)}</div>`:''}${d.descricao?`<div class="div-desc">${esc(d.descricao)}</div>`:''}${link?`<a class="div-link" href="${esc(link)}" target="_blank" rel="noopener">Abrir conteúdo ›</a>`:''}</div>`;divulgacoesLista.appendChild(el)})}
