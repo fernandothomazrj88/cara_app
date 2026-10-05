@@ -265,7 +265,9 @@ async function carregarCalendario(){
   const j=await r.json();
   if(!j.sucesso)throw new Error(j.erro||'Erro na API');
   const todos=Array.isArray(j.conteudos)?j.conteudos:[];
-  const itens=todos.filter(i=>i.dataPublicacao&&dataBRparaChave(i.dataPublicacao))
+  const itens=todos
+    .filter(i=>i.dataPublicacao&&dataBRparaChave(i.dataPublicacao))
+    .filter(i=>['AGENDADO','PUBLICADO'].includes(String(i.status||'').trim().toUpperCase()))
     .sort((a,b)=>dataBRparaChave(a.dataPublicacao).localeCompare(dataBRparaChave(b.dataPublicacao)));
   montarCalendario(itens);
  }catch(e){
@@ -275,8 +277,8 @@ async function carregarCalendario(){
 function montarCalendario(itens){
  const agendados=itens.filter(i=>i.status==='AGENDADO').length;
  const publicados=itens.filter(i=>i.status==='PUBLICADO').length;
- calResumo.innerHTML=`<div><strong>${itens.length}</strong><span>COM DATA</span></div><div><strong>${agendados}</strong><span>AGENDADOS</span></div><div><strong>${publicados}</strong><span>PUBLICADOS</span></div>`;
- if(!itens.length){calendarioLista.innerHTML='<div class="cal-vazio">Ainda não há conteúdos com DATA_PUBLICACAO definida.<br><br>Quando uma pauta receber uma data, ela aparecerá aqui automaticamente.</div>';return}
+ calResumo.innerHTML=`<div><strong>${itens.length}</strong><span>NA PROGRAMAÇÃO</span></div><div><strong>${agendados}</strong><span>AGENDADOS</span></div><div><strong>${publicados}</strong><span>PUBLICADOS</span></div>`;
+ if(!itens.length){calendarioLista.innerHTML='<div class="cal-vazio">Ainda não há conteúdos agendados com DATA_PUBLICACAO definida.<br><br>Quando uma pauta for agendada com uma data, ela aparecerá aqui automaticamente.</div>';return}
  const grupos={};
  itens.forEach(i=>(grupos[i.dataPublicacao]||(grupos[i.dataPublicacao]=[])).push(i));
  calendarioLista.innerHTML='';
