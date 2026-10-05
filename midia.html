@@ -53,6 +53,12 @@
 }
 
 .divulgacoes{width:min(920px,calc(100% - 28px));margin:20px auto;display:grid;gap:16px}.div-card{background:linear-gradient(145deg,#0e2948,#0b2039);border:1px solid #ffffff15;border-radius:20px;overflow:hidden;box-shadow:0 10px 26px #0004}.div-card.destaque{border-color:#ffff0055}.div-img{display:block;width:100%;max-height:540px;object-fit:contain;background:#071526}.div-body{padding:20px}.div-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.div-tipo,.div-destaque{display:inline-block;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900}.div-tipo{background:#ffffff12;color:#dce7f2}.div-destaque{background:#ffff00;color:#071321}.div-title{margin:0;font-size:22px}.div-date{margin-top:8px;color:#ffff00;font-size:13px;font-weight:800}.div-desc{margin-top:13px;color:#cbd8e5;line-height:1.6;font-size:14px}.div-link{display:inline-block;margin-top:15px;padding:12px 15px;border-radius:12px;background:#ffff00;color:#071321;text-decoration:none;font-weight:900}
+.ideias-toolbar{width:min(920px,calc(100% - 28px));margin:20px auto 10px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.ideias-search{flex:1;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:15px;background:#0b2039;border:1px solid #ffffff15}
+.ideias-search span{font-size:18px}.ideias-search input{width:100%;border:0;outline:0;background:transparent;color:#fff;font:inherit}.ideias-search input::placeholder{color:#8295aa}
+.ideias-count{color:#aebdce;font-size:12px;font-weight:850;white-space:nowrap}
+.ideias-intro{width:min(920px,calc(100% - 28px));margin:8px auto 0;padding:13px 15px;border-radius:15px;background:#081a30;border:1px solid #ffffff12;color:#b9c9d9;font-size:12px;line-height:1.5}
+@media(max-width:720px){.ideias-toolbar{align-items:stretch;flex-direction:column}.ideias-count{padding-left:3px}}
 .ideias,.pautas{width:min(920px,calc(100% - 28px));margin:20px auto;display:grid;gap:14px}
 .ideia-card,.pauta-card{background:linear-gradient(145deg,#0e2948,#0b2039);border:1px solid #ffffff15;border-radius:20px;padding:20px;box-shadow:0 10px 26px #0004}
 .ideia-top,.pauta-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
@@ -150,13 +156,12 @@
 <p><strong>Obrigado por fazer parte disso conosco! 🤍</strong></p>
 </div><a class="purposeCta" href="#" id="verArtesProposito">Ver Artes dos Quadros ›</a></div></div>
 
-<div class="fullview" id="divulgacoesView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="divulgacoesView">‹</button><div class="vtitle"><h2>Divulgações e Conteúdos</h2><p>Cultos, eventos, chamadas e materiais da C.A.R.A.</p></div></div></div><div class="divulgacoes" id="divulgacoesLista"><div class="msg">Carregando divulgações...</div></div></div><div class="fullview" id="ideiasView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="ideiasView">‹</button><div class="vtitle"><h2>Banco de Ideias</h2><p>Ideias e propostas de conteúdo da equipe de Mídia.</p></div></div></div><div class="ideias" id="ideiasLista"><div class="msg">Carregando ideias...</div></div></div>
+<div class="fullview" id="divulgacoesView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="divulgacoesView">‹</button><div class="vtitle"><h2>Divulgações e Conteúdos</h2><p>Cultos, eventos, chamadas e materiais da C.A.R.A.</p></div></div></div><div class="divulgacoes" id="divulgacoesLista"><div class="msg">Carregando divulgações...</div></div></div><div class="fullview" id="ideiasView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="ideiasView">‹</button><div class="vtitle"><h2>Banco de Ideias</h2><p>Ideias e propostas de conteúdo da equipe de Mídia.</p></div></div></div><div class="ideias-toolbar"><div class="ideias-search"><span>💡</span><input id="buscaIdeias" type="search" placeholder="Buscar por título, tipo ou canal..." autocomplete="off"></div><div class="ideias-count" id="contadorIdeias">Carregando...</div></div><div class="ideias-intro">💡 Este é o ponto de partida do fluxo de Mídia. Ideias registradas aqui podem posteriormente seguir para a <strong>Pauta de Conteúdo</strong> e avançar pelo processo de produção.</div><div class="ideias" id="ideiasLista"><div class="msg">Carregando ideias...</div></div></div>
 <div class="fullview" id="pautasView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="pautasView">‹</button><div class="vtitle"><h2>Pauta de Conteúdo</h2><p>Planejamento e andamento das produções da Mídia.</p></div></div></div><div class="fluxo"><div class="fluxo-linha"><span>📝 PAUTA</span><b>›</b><span>🎨 EM PRODUÇÃO</span><b>›</b><span>👀 EM REVISÃO</span><b>›</b><span>✅ APROVADO</span><b>›</b><span>📅 AGENDADO</span><b>›</b><span>📱 PUBLICADO</span></div></div><div class="pautas" id="pautasLista"><div class="msg">Carregando pautas...</div></div></div>
 <div class="fullview" id="calendarioView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="calendarioView">‹</button><div class="vtitle"><h2>Calendário da Mídia</h2><p>Publicações programadas a partir da pauta da equipe.</p></div></div></div><div class="calendario"><div class="cal-resumo" id="calResumo"></div><div id="calendarioLista"><div class="msg">Carregando calendário...</div></div></div></div>
 <div class="overlay" id="ov"><div class="sheet"><div class="sheettop"><h3 id="st"></h3><button class="close" id="cl">×</button></div><p id="sd"></p><div class="status">Esta função já faz parte da estrutura do módulo e será conectada à base de dados na próxima etapa.</div></div></div>
 
 <script>
-const API_MIDIA='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 const API_CENTRAL='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 const CHAVE_SESSAO_CARA='cara_auth_token';
 const INSTAGRAM='https://instagram.com/comunidadecara';
@@ -184,6 +189,7 @@ document.querySelectorAll('.filtro-arte').forEach(btn => {
     renderizarCentralArtes();
   };
 });
+document.getElementById('buscaIdeias').addEventListener('input', () => renderizarIdeiasBanco());
 
 async function carregarCentralArtes() {
   const lista = document.getElementById('centralArtesLista');
@@ -278,12 +284,50 @@ function converterLinkImagem(url){if(!url)return'';url=String(url).trim();const 
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 async function carregarArtes(){catalogo.innerHTML='<div class="msg">Carregando artes...</div>';try{const r=await fetch(API_CENTRAL+'?rota=artes',{credentials:'omit',redirect:'follow',cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarCatalogo(j.artes||[])}catch(e){console.error(e);catalogo.innerHTML='<div class="msg">Não foi possível carregar as artes agora. Tente novamente em instantes.</div>'}}
 function montarCatalogo(artes){if(!artes.length){catalogo.innerHTML='<div class="msg">Nenhuma arte cadastrada ainda.</div>';return}catalogo.innerHTML='';artes.forEach(a=>{const el=document.createElement('article');el.className='arte';const img=converterLinkImagem(a.imagem);el.innerHTML=`${img?`<img src="${esc(img)}" alt="${esc(a.nome||'Arte C.A.R.A.')}" loading="lazy">`:''}<div class="arte-body"><div class="codigo">${esc(a.codigo||'')}</div><div class="nome">${esc(a.nome||'')}</div>${a.tamanho?`<div class="tamanho">${esc(a.tamanho)}</div>`:''}${a.valor?`<div class="valor">${esc(a.valor)}</div>`:''}${a.disponivel?`<div class="disp">${esc(a.disponivel)}</div>`:''}${a.descricao?`<div class="desc">${esc(a.descricao)}</div>`:''}<a class="insta" href="${INSTAGRAM}" target="_blank" rel="noopener">Tenho interesse nesta arte</a></div>`;catalogo.appendChild(el)})}
-async function carregarDivulgacoes(){divulgacoesLista.innerHTML='<div class="msg">Carregando divulgações...</div>';try{const r=await fetch(API_MIDIA+'?rota=divulgacoes',{credentials:'omit',redirect:'follow',cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarDivulgacoes(j.divulgacoes||[])}catch(e){console.error(e);divulgacoesLista.innerHTML='<div class="msg">Não foi possível carregar as divulgações agora. Tente novamente em instantes.</div>'}}
+async function carregarDivulgacoes(){divulgacoesLista.innerHTML='<div class="msg">Carregando divulgações...</div>';try{const r=await fetch(API_CENTRAL+'?rota=divulgacoes',{credentials:'omit',redirect:'follow',cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarDivulgacoes(j.divulgacoes||[])}catch(e){console.error(e);divulgacoesLista.innerHTML='<div class="msg">Não foi possível carregar as divulgações agora. Tente novamente em instantes.</div>'}}
 function montarDivulgacoes(itens){if(!itens.length){divulgacoesLista.innerHTML='<div class="msg">Nenhuma divulgação publicada no momento.</div>';return}divulgacoesLista.innerHTML='';itens.forEach(d=>{const el=document.createElement('article');el.className='div-card'+(String(d.destaque).toUpperCase()==='SIM'?' destaque':'');const img=converterLinkImagem(d.imagem),link=String(d.link||'').trim();el.innerHTML=`${img?`<img class="div-img" src="${esc(img)}" alt="${esc(d.titulo||'Divulgação C.A.R.A.')}" loading="lazy">`:''}<div class="div-body"><div class="div-top">${d.tipo?`<span class="div-tipo">${esc(d.tipo)}</span>`:''}${String(d.destaque).toUpperCase()==='SIM'?'<span class="div-destaque">DESTAQUE</span>':''}</div><h3 class="div-title">${esc(d.titulo||'Divulgação')}</h3>${d.data?`<div class="div-date">📅 ${esc(d.data)}</div>`:''}${d.descricao?`<div class="div-desc">${esc(d.descricao)}</div>`:''}${link?`<a class="div-link" href="${esc(link)}" target="_blank" rel="noopener">Abrir conteúdo ›</a>`:''}</div>`;divulgacoesLista.appendChild(el)})}
 
-async function carregarIdeias(){ideiasLista.innerHTML='<div class="msg">Carregando ideias...</div>';try{const r=await fetch(API_MIDIA+'?rota=ideias',{credentials:'omit',redirect:'follow',cache:'no-store'});const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarIdeias(j.ideias||[])}catch(e){console.error(e);ideiasLista.innerHTML='<div class="msg">Não foi possível carregar o Banco de Ideias agora.</div>'}}
-function montarIdeias(itens){if(!itens.length){ideiasLista.innerHTML='<div class="msg">Nenhuma ideia cadastrada no momento.</div>';return}ideiasLista.innerHTML='';itens.forEach(i=>{const el=document.createElement('article');el.className='ideia-card';el.innerHTML=`<div class="ideia-top">${i.tipo?`<span class="ideia-chip">${esc(i.tipo)}</span>`:''}<span class="ideia-status">${esc(i.status||'IDEIA')}</span>${i.prioridade?`<span class="ideia-prioridade">PRIORIDADE ${esc(i.prioridade)}</span>`:''}</div><h3>${esc(i.titulo||'Ideia')}</h3>${i.descricao?`<div class="ideia-desc">${esc(i.descricao)}</div>`:''}<div class="ideia-meta">${i.canal?`<div><strong>Canal</strong>${esc(i.canal)}</div>`:''}${i.origem?`<div><strong>Origem</strong>${esc(i.origem)}</div>`:''}${i.responsavel?`<div><strong>Responsável</strong>${esc(i.responsavel)}</div>`:''}</div>${i.observacoes?`<div class="ideia-desc"><strong>Observações:</strong> ${esc(i.observacoes)}</div>`:''}`;ideiasLista.appendChild(el)})}
-async function carregarPautas(){pautasLista.innerHTML='<div class="msg">Carregando pautas...</div>';try{const r=await fetch(API_MIDIA+'?rota=pautas',{credentials:'omit',redirect:'follow',cache:'no-store'});const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarPautas(j.pautas||[])}catch(e){console.error(e);pautasLista.innerHTML='<div class="msg">Não foi possível carregar a Pauta de Conteúdo agora.</div>'}}
+let ideiasBanco = [];
+
+async function carregarIdeias(){
+ ideiasLista.innerHTML='<div class="msg">Carregando ideias...</div>';
+ document.getElementById('contadorIdeias').textContent='Carregando...';
+ try{
+  const r=await fetch(API_CENTRAL+'?rota=ideias',{credentials:'omit',redirect:'follow',cache:'no-store'});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const j=await r.json();
+  if(!j.sucesso)throw new Error(j.erro||j.mensagem||'Falha ao carregar ideias.');
+  ideiasBanco=Array.isArray(j.ideias)?j.ideias:[];
+  renderizarIdeiasBanco();
+ }catch(e){
+  console.error('C.A.R.A. — Banco de Ideias:',e);
+  ideiasLista.innerHTML='<div class="msg">Não foi possível carregar o Banco de Ideias agora.</div>';
+  document.getElementById('contadorIdeias').textContent='Erro ao carregar';
+ }
+}
+
+function renderizarIdeiasBanco(){
+ const busca=String(document.getElementById('buscaIdeias').value||'').trim().toLowerCase();
+ const itens=ideiasBanco.filter(i=>{
+  if(!busca)return true;
+  const texto=[i.titulo,i.tipo,i.canal,i.origem,i.responsavel,i.descricao,i.observacoes].map(v=>String(v||'')).join(' ').toLowerCase();
+  return texto.includes(busca);
+ });
+ document.getElementById('contadorIdeias').textContent=itens.length+(itens.length===1?' ideia':' ideias');
+ if(!itens.length){
+  ideiasLista.innerHTML='<div class="msg">'+(busca?'Nenhuma ideia encontrada para essa busca.':'Nenhuma ideia cadastrada no momento.')+'</div>';
+  return;
+ }
+ ideiasLista.innerHTML='';
+ itens.forEach(i=>{
+  const el=document.createElement('article');
+  el.className='ideia-card';
+  el.innerHTML=`<div class="ideia-top">${i.tipo?`<span class="ideia-chip">${esc(i.tipo)}</span>`:''}<span class="ideia-status">${esc(i.status||'IDEIA')}</span>${i.prioridade?`<span class="ideia-prioridade">PRIORIDADE ${esc(i.prioridade)}</span>`:''}</div><h3>${esc(i.titulo||'Ideia')}</h3>${i.descricao?`<div class="ideia-desc">${esc(i.descricao)}</div>`:''}<div class="ideia-meta">${i.canal?`<div><strong>Canal</strong>${esc(i.canal)}</div>`:''}${i.origem?`<div><strong>Origem</strong>${esc(i.origem)}</div>`:''}${i.responsavel?`<div><strong>Responsável</strong>${esc(i.responsavel)}</div>`:''}${i.dataPublicacao?`<div><strong>Data prevista</strong>${esc(i.dataPublicacao)}</div>`:''}</div>${i.observacoes?`<div class="ideia-desc"><strong>Observações:</strong> ${esc(i.observacoes)}</div>`:''}`;
+  ideiasLista.appendChild(el);
+ });
+}
+
+async function carregarPautas(){pautasLista.innerHTML='<div class="msg">Carregando pautas...</div>';try{const r=await fetch(API_CENTRAL+'?rota=pautas',{credentials:'omit',redirect:'follow',cache:'no-store'});const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarPautas(j.pautas||[])}catch(e){console.error(e);pautasLista.innerHTML='<div class="msg">Não foi possível carregar a Pauta de Conteúdo agora.</div>'}}
 const ACAO_STATUS={
 'PAUTA':'🎨 Iniciar produção',
 'EM PRODUCAO':'👀 Enviar para revisão',
@@ -423,7 +467,7 @@ async function carregarCalendario(){
  calendarioLista.innerHTML='<div class="msg">Carregando calendário...</div>';
  calResumo.innerHTML='';
  try{
-  const r=await fetch(API_MIDIA+'?rota=conteudos',{credentials:'omit',redirect:'follow',cache:'no-store'});
+  const r=await fetch(API_CENTRAL+'?rota=conteudos',{credentials:'omit',redirect:'follow',cache:'no-store'});
   const j=await r.json();
   if(!j.sucesso)throw new Error(j.erro||'Erro na API');
   const todos=Array.isArray(j.conteudos)?j.conteudos:[];
