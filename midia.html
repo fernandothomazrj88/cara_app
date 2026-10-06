@@ -67,6 +67,8 @@
 .equipe-acesso .login-equipe{flex:0 0 auto;padding:10px 13px;border-radius:11px;background:var(--y);color:#071321;text-decoration:none;font-size:11px;font-weight:900}
 .card.bloqueado{opacity:.62}.card.bloqueado .arr{font-size:18px}.card.bloqueado .badge{color:#cbd6e1;background:#ffffff0c}
 @media(max-width:520px){.equipe-acesso{align-items:flex-start}.equipe-acesso .login-equipe{margin-top:2px}}
+
+.agendamento-overlay{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:18px;z-index:95}.agendamento-overlay.open{display:flex}.agendamento-sheet{width:min(620px,100%);max-height:90vh;overflow:auto;background:#081a30;border:1px solid #ffff0030;border-radius:24px;padding:22px;box-shadow:0 20px 60px #0008}.agendamento-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.agendamento-top h3{margin:0;font-size:22px}.agendamento-top p{margin:5px 0 0;color:#aebdce;font-size:13px}.agendamento-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.agendamento-sheet label{display:block;color:#cbd8e5;font-size:12px;font-weight:800}.agendamento-sheet input,.agendamento-sheet select,.agendamento-sheet textarea{display:block;width:100%;margin-top:6px;padding:12px;border-radius:12px;border:1px solid #ffffff18;background:#071a30;color:#fff;font:inherit;outline:none}.agendamento-sheet textarea{resize:vertical}.agendamento-acoes{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.btn-agendar{border:0;border-radius:13px;padding:12px 15px;background:#ffff00;color:#061326;font-weight:950;cursor:pointer}.agendamento-status{margin-top:10px;min-height:18px;color:#cbd8e5;font-size:12px}@media(max-width:600px){.agendamento-grid{grid-template-columns:1fr}.agendamento-overlay{padding:10px}.agendamento-sheet{max-height:94vh}}
 </style></head>
 <body>
 <header class="hero"></header>
@@ -107,6 +109,26 @@
 <div class="fullview" id="divulgacoesView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="divulgacoesView">‹</button><div class="vtitle"><h2>Divulgações e Conteúdos</h2><p>Cultos, eventos, chamadas e materiais da C.A.R.A.</p></div></div></div><div class="divulgacoes" id="divulgacoesLista"><div class="msg">Carregando divulgações...</div></div></div><div class="fullview" id="centralArtesView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="centralArtesView">‹</button><div class="vtitle"><h2>Central de Artes</h2><p>Acervo organizado de artes e materiais visuais da Mídia.</p></div></div></div><div class="artes-filtros"><input id="buscaCentralArtes" type="search" placeholder="🔎 Buscar por código ou nome..."><div id="filtroArtesStatus" class="filtro-botoes"><button class="filtro-ativo" data-filtro="TODAS">Todas</button><button data-filtro="DISPONIVEIS">Disponíveis</button><button data-filtro="INDISPONIVEIS">Indisponíveis</button></div></div><div class="catalog" id="centralArtesLista"><div class="msg">Carregando artes...</div></div></div><div class="fullview" id="ideiasView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="ideiasView">‹</button><div class="vtitle"><h2>Banco de Ideias</h2><p>Ideias e propostas de conteúdo da equipe de Mídia.</p></div></div></div><div class="ideias-topbar"><div><strong>Ideias da equipe</strong><span id="ideiasResumo">Carregando...</span></div><button id="btnNovaIdeia" class="btn-nova-ideia" style="display:none">＋ Nova ideia</button></div><div id="novaIdeiaBox" class="nova-ideia-box" style="display:none"><form id="formNovaIdeia"><div class="form-grid"><label>Título *<input id="ideiaTitulo" required maxlength="150" placeholder="Ex.: Vídeo convite para o culto"></label><label>Tipo<select id="ideiaTipo"><option value="POST">POST</option><option value="VIDEO">VÍDEO</option><option value="REELS">REELS</option><option value="STORY">STORY</option><option value="CARROSSEL">CARROSSEL</option><option value="OUTRO">OUTRO</option></select></label><label>Canal<select id="ideiaCanal"><option value="Instagram">Instagram</option><option value="WhatsApp">WhatsApp</option><option value="Facebook">Facebook</option><option value="YouTube">YouTube</option><option value="Outro">Outro</option></select></label><label>Prioridade<select id="ideiaPrioridade"><option value="NORMAL">NORMAL</option><option value="ALTA">ALTA</option><option value="BAIXA">BAIXA</option></select></label></div><label>Descrição<textarea id="ideiaDescricao" rows="4" placeholder="Explique a ideia..."></textarea></label><label>Observações<textarea id="ideiaObservacoes" rows="3" placeholder="Alguma orientação adicional?"></textarea></label><div class="form-acoes"><button type="button" id="cancelarNovaIdeia" class="btn-cancelar">Cancelar</button><button type="submit" id="salvarNovaIdeia" class="btn-salvar-ideia">💾 Salvar ideia</button></div><div id="statusNovaIdeia" class="form-status"></div></form></div><div class="ideias" id="ideiasLista"><div class="msg">Carregando ideias...</div></div></div>
 <div class="fullview" id="pautasView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="pautasView">‹</button><div class="vtitle"><h2>Pauta de Conteúdo</h2><p>Planejamento e andamento das produções da Mídia.</p></div></div></div><div class="fluxo"><div class="fluxo-linha"><span>📝 PAUTA</span><b>›</b><span>🎨 EM PRODUÇÃO</span><b>›</b><span>👀 EM REVISÃO</span><b>›</b><span>✅ APROVADO</span><b>›</b><span>📅 AGENDADO</span><b>›</b><span>📱 PUBLICADO</span></div></div><div class="pautas" id="pautasLista"><div class="msg">Carregando pautas...</div></div></div>
 <div class="fullview" id="calendarioView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="calendarioView">‹</button><div class="vtitle"><h2>Calendário da Mídia</h2><p>Publicações programadas a partir da pauta da equipe.</p></div></div></div><div class="calendario"><div class="cal-resumo" id="calResumo"></div><div id="calendarioLista"><div class="msg">Carregando calendário...</div></div></div></div>
+
+<div class="agendamento-overlay" id="agendamentoOverlay">
+  <div class="agendamento-sheet">
+    <div class="agendamento-top">
+      <div><h3>📅 Agendar publicação</h3><p id="agendamentoTitulo">Defina quando este conteúdo será publicado.</p></div>
+      <button class="close" id="fecharAgendamento" type="button">×</button>
+    </div>
+    <form id="formAgendamento">
+      <div class="agendamento-grid">
+        <label>Data da publicação *<input id="agendamentoData" type="date" required></label>
+        <label>Horário *<input id="agendamentoHora" type="time" required></label>
+        <label>Canal<select id="agendamentoCanal"><option value="Instagram">Instagram</option><option value="WhatsApp">WhatsApp</option><option value="Facebook">Facebook</option><option value="YouTube">YouTube</option><option value="Outro">Outro</option></select></label>
+        <label>Link da arte<input id="agendamentoLinkArte" type="url" placeholder="https://..."></label>
+      </div>
+      <label style="margin-top:12px">Observações<textarea id="agendamentoObservacoes" rows="3" placeholder="Orientações para a publicação..."></textarea></label>
+      <div class="agendamento-acoes"><button class="btn-cancelar" id="cancelarAgendamento" type="button">Cancelar</button><button class="btn-agendar" id="salvarAgendamento" type="submit">📅 Salvar agendamento</button></div>
+      <div class="agendamento-status" id="statusAgendamento"></div>
+    </form>
+  </div>
+</div>
 <div class="overlay" id="ov"><div class="sheet"><div class="sheettop"><h3 id="st"></h3><button class="close" id="cl">×</button></div><p id="sd"></p><div class="status">Esta função já faz parte da estrutura do módulo e será conectada à base de dados na próxima etapa.</div></div></div>
 
 <script>
@@ -242,14 +264,75 @@ function montarPautas(itens){
   const acao=ACAO_STATUS[i.status]||'';
   const controle=i.status==='PUBLICADO'
    ? `<div class="acao-pauta"><span class="btn-finalizado">✓ Conteúdo publicado</span></div>`
-   : acao
-    ? `<div class="acao-pauta"><button class="btn-avancar" data-id="${esc(i.id)}">${acao}</button><span class="retorno-acao"></span></div>`
-    : '';
+   : i.status==='APROVADO'
+    ? `<div class="acao-pauta"><button class="btn-avancar btn-agendamento" data-id="${esc(i.id)}">📅 Agendar publicação</button><span class="retorno-acao"></span></div>`
+    : acao
+     ? `<div class="acao-pauta"><button class="btn-avancar" data-id="${esc(i.id)}">${acao}</button><span class="retorno-acao"></span></div>`
+     : '';
   el.innerHTML=`<div class="pauta-top">${i.tipo?`<span class="pauta-chip">${esc(i.tipo)}</span>`:''}<span class="pauta-status">${esc(i.status||'PAUTA')}</span>${i.prioridade?`<span class="pauta-prioridade">PRIORIDADE ${esc(i.prioridade)}</span>`:''}</div><h3>${esc(i.titulo||'Pauta')}</h3>${i.descricao?`<div class="pauta-desc">${esc(i.descricao)}</div>`:''}<div class="pauta-meta">${i.responsavel?`<div><strong>Responsável</strong>${esc(i.responsavel)}</div>`:''}${i.canal?`<div><strong>Canal</strong>${esc(i.canal)}</div>`:''}${i.dataPublicacao?`<div><strong>Data de publicação</strong>${esc(i.dataPublicacao)}</div>`:''}${i.origem?`<div><strong>Origem</strong>${esc(i.origem)}</div>`:''}</div>${i.observacoes?`<div class="pauta-desc"><strong>Observações:</strong> ${esc(i.observacoes)}</div>`:''}${controle}`;
   const btn=el.querySelector('.btn-avancar');
-  if(btn)btn.onclick=()=>avancarConteudo(i,btn);
+  if(btn){
+   if(i.status==='APROVADO') btn.onclick=()=>abrirAgendamento(i,btn);
+   else btn.onclick=()=>avancarConteudo(i,btn);
+  }
   pautasLista.appendChild(el);
  })
+}
+
+let itemAgendamentoAtual=null;
+function abrirAgendamento(item,btn){
+ const token=localStorage.getItem(CHAVE_SESSAO_CARA);
+ if(!PERMISSOES_MIDIA.editar){
+  const retorno=btn.parentElement.querySelector('.retorno-acao');
+  if(retorno)retorno.textContent='🔒 Sua conta não possui permissão MIDIA / EDITAR.';
+  return;
+ }
+ if(!token){
+  const retorno=btn.parentElement.querySelector('.retorno-acao');
+  if(retorno)retorno.textContent='🔒 Sua sessão expirou. Entre novamente.';
+  verificarAcessoMidia();
+  return;
+ }
+ itemAgendamentoAtual=item;
+ document.getElementById('agendamentoTitulo').textContent=item.titulo||'Defina quando este conteúdo será publicado.';
+ document.getElementById('agendamentoData').value='';
+ document.getElementById('agendamentoHora').value='';
+ document.getElementById('agendamentoCanal').value=item.canal||'Instagram';
+ document.getElementById('agendamentoLinkArte').value=item.linkArte||'';
+ document.getElementById('agendamentoObservacoes').value='';
+ document.getElementById('statusAgendamento').textContent='';
+ document.getElementById('agendamentoOverlay').classList.add('open');
+ document.body.style.overflow='hidden';
+ setTimeout(()=>document.getElementById('agendamentoData').focus(),50);
+}
+function fecharAgendamento(){
+ document.getElementById('agendamentoOverlay').classList.remove('open');
+ itemAgendamentoAtual=null;
+ if(!document.querySelector('.fullview.open'))document.body.style.overflow='';
+}
+async function salvarAgendamento(e){
+ e.preventDefault();
+ const status=document.getElementById('statusAgendamento');
+ const botao=document.getElementById('salvarAgendamento');
+ const token=localStorage.getItem(CHAVE_SESSAO_CARA);
+ if(!itemAgendamentoAtual)return;
+ if(!token){status.textContent='⚠ Sua sessão expirou. Entre novamente.';return}
+ const data=document.getElementById('agendamentoData').value;
+ const hora=document.getElementById('agendamentoHora').value;
+ if(!data||!hora){status.textContent='⚠ Informe a data e o horário.';return}
+ botao.disabled=true;botao.textContent='Salvando...';status.textContent='⏳ Registrando agendamento...';
+ try{
+  const auth=await postCentral({acao:'autorizar',token,modulo:'MIDIA',acaoPermissao:'EDITAR'});
+  if(!auth.sucesso||!auth.autorizado)throw new Error('A Base Central não autorizou o agendamento.');
+  const r=await postCentral({acao:'agendar-publicacao',token,id:String(itemAgendamentoAtual.id||'').trim(),dados:{data,hora,canal:document.getElementById('agendamentoCanal').value,linkArte:document.getElementById('agendamentoLinkArte').value.trim(),observacoes:document.getElementById('agendamentoObservacoes').value.trim()}});
+  if(!r.sucesso)throw new Error(r.mensagem||r.erro||'Não foi possível agendar a publicação.');
+  status.textContent='✓ Publicação agendada com sucesso.';
+  fecharAgendamento();
+  await carregarPautas();
+  await carregarCalendario();
+ }catch(err){
+  console.error(err);status.textContent='⚠ '+(err.message||'Erro ao agendar.');
+ }finally{botao.disabled=false;botao.textContent='📅 Salvar agendamento'}
 }
 async function avancarConteudo(item,btn){
  const retorno=btn.parentElement.querySelector('.retorno-acao');
@@ -314,16 +397,20 @@ async function avancarConteudo(item,btn){
 
 const ov=document.getElementById('ov'),st=document.getElementById('st'),sd=document.getElementById('sd');
 
+function separarDataHora(v){
+ const m=String(v||'').match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}:\d{2}))?$/);
+ return m?{dia:m[1],mes:m[2],ano:m[3],hora:m[4]||''}:null;
+}
 function dataBRparaChave(v){
- const m=String(v||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
- return m?`${m[3]}-${m[2]}-${m[1]}`:'';
+ const m=separarDataHora(v);
+ return m?`${m.ano}-${m.mes}-${m.dia}`:'';
 }
 function rotuloData(v){
- const m=String(v||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+ const m=separarDataHora(v);
  if(!m)return esc(v||'Sem data');
- const d=new Date(Number(m[3]),Number(m[2])-1,Number(m[1]));
+ const d=new Date(Number(m.ano),Number(m.mes)-1,Number(m.dia));
  const dias=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
- return `${dias[d.getDay()]} • ${m[1]}/${m[2]}/${m[3]}`;
+ return `${dias[d.getDay()]} • ${m.dia}/${m.mes}/${m.ano}`+(m.hora?` • ${m.hora}`:'');
 }
 async function carregarCalendario(){
  calendarioLista.innerHTML='<div class="msg">Carregando calendário...</div>';
@@ -353,15 +440,20 @@ function montarCalendario(itens){
   sec.innerHTML=`<div class="cal-data">📅 ${rotuloData(data)}</div>`;
   grupos[data].forEach(i=>{
    const el=document.createElement('article');el.className='cal-item';
-   el.innerHTML=`<div class="cal-item-top">${i.tipo?`<span class="cal-chip">${esc(i.tipo)}</span>`:''}<span class="cal-status">${esc(i.status||'')}</span></div><h3>${esc(i.titulo||'Conteúdo')}</h3>${i.descricao?`<p>${esc(i.descricao)}</p>`:''}<div class="cal-meta">${i.canal?`<span>📱 ${esc(i.canal)}</span>`:''}${i.responsavel?`<span>👤 ${esc(i.responsavel)}</span>`:''}${i.prioridade?`<span>⚡ ${esc(i.prioridade)}</span>`:''}</div>`;
+   const dh=separarDataHora(i.dataPublicacao);
+   el.innerHTML=`<div class="cal-item-top">${i.tipo?`<span class="cal-chip">${esc(i.tipo)}</span>`:''}<span class="cal-status">${esc(i.status||'')}</span></div><h3>${esc(i.titulo||'Conteúdo')}</h3>${i.descricao?`<p>${esc(i.descricao)}</p>`:''}<div class="cal-meta">${dh&&dh.hora?`<span>🕐 ${esc(dh.hora)}</span>`:''}${i.canal?`<span>📱 ${esc(i.canal)}</span>`:''}${i.responsavel?`<span>👤 ${esc(i.responsavel)}</span>`:''}${i.prioridade?`<span>⚡ ${esc(i.prioridade)}</span>`:''}</div>`;
    sec.appendChild(el);
   });
   calendarioLista.appendChild(sec);
  });
 }
 
+document.getElementById('fecharAgendamento').onclick=fecharAgendamento;
+document.getElementById('cancelarAgendamento').onclick=fecharAgendamento;
+document.getElementById('formAgendamento').onsubmit=salvarAgendamento;
+document.getElementById('agendamentoOverlay').onclick=e=>{if(e.target===document.getElementById('agendamentoOverlay'))fecharAgendamento()};
 document.querySelectorAll('.placeholder').forEach(c=>c.onclick=e=>{e.preventDefault();exigirMidia(()=>{st.textContent=c.dataset.t;sd.textContent=c.dataset.d;ov.classList.add('open')})});
 function fecharSheet(){ov.classList.remove('open')} document.getElementById('cl').onclick=fecharSheet;ov.onclick=e=>{if(e.target===ov)fecharSheet()};
-document.onkeydown=e=>{if(e.key==='Escape'){const v=[...document.querySelectorAll('.fullview.open')].pop();if(v)fecharView(v);else fecharSheet()}};
+document.onkeydown=e=>{if(e.key==='Escape'){if(document.getElementById('agendamentoOverlay').classList.contains('open')){fecharAgendamento();return}const v=[...document.querySelectorAll('.fullview.open')].pop();if(v)fecharView(v);else fecharSheet()}};
 verificarAcessoMidia();
 </script></body></html>
