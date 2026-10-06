@@ -26,7 +26,7 @@
 .overlay{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;padding:18px;z-index:80} .overlay.open{display:flex} .sheet{width:min(620px,100%);background:#081a30;border:1px solid #ffffff1a;border-radius:24px;padding:22px} .sheettop{display:flex;justify-content:space-between;align-items:center} .sheet h3{margin:0} .sheet p{color:#c7d4e2;line-height:1.55} .close{width:40px;height:40px;border:0;border-radius:12px;background:#122b48;color:#fff;font-size:20px} .status{padding:13px;border-radius:13px;background:#0d2747;color:var(--m);font-size:13px}
 .divulgacoes{width:min(920px,calc(100% - 28px));margin:20px auto;display:grid;gap:16px}.div-card{background:linear-gradient(145deg,#0e2948,#0b2039);border:1px solid #ffffff15;border-radius:20px;overflow:hidden;box-shadow:0 10px 26px #0004}.div-card.destaque{border-color:#ffff0055}.div-img{display:block;width:100%;max-height:540px;object-fit:contain;background:#071526}.div-body{padding:20px}.div-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.div-tipo,.div-destaque{display:inline-block;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900}.div-tipo{background:#ffffff12;color:#dce7f2}.div-destaque{background:#ffff00;color:#071321}.div-title{margin:0;font-size:22px}.div-date{margin-top:8px;color:#ffff00;font-size:13px;font-weight:800}.div-desc{margin-top:13px;color:#cbd8e5;line-height:1.6;font-size:14px}.div-link{display:inline-block;margin-top:15px;padding:12px 15px;border-radius:12px;background:#ffff00;color:#071321;text-decoration:none;font-weight:900}
 .artes-filtros{width:min(1120px,calc(100% - 28px));margin:18px auto 0;display:grid;gap:10px}.artes-filtros input{width:100%;padding:13px 15px;border-radius:14px;border:1px solid #ffffff18;background:#0b2039;color:#fff;outline:none}.filtro-botoes{display:flex;gap:8px;overflow:auto}.filtro-botoes button{border:1px solid #ffffff18;background:#102b4c;color:#dce7f2;border-radius:999px;padding:9px 13px;font-weight:800;white-space:nowrap;cursor:pointer}.filtro-botoes button.filtro-ativo{background:#ffff00;color:#061326}.ideias-topbar{width:min(920px,calc(100% - 28px));margin:20px auto 0;display:flex;align-items:center;justify-content:space-between;gap:12px}.ideias-topbar strong{display:block;font-size:17px}.ideias-topbar span{display:block;color:#9fb0c2;font-size:12px;margin-top:3px}.btn-nova-ideia,.btn-salvar-ideia{border:0;border-radius:13px;padding:12px 15px;background:#ffff00;color:#061326;font-weight:950;cursor:pointer}.nova-ideia-box{width:min(920px,calc(100% - 28px));margin:14px auto 0;background:#081a30;border:1px solid #ffff0030;border-radius:20px;padding:18px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.nova-ideia-box label{display:block;color:#cbd8e5;font-size:12px;font-weight:800;margin-bottom:12px}.nova-ideia-box input,.nova-ideia-box select,.nova-ideia-box textarea{display:block;width:100%;margin-top:6px;padding:12px;border-radius:12px;border:1px solid #ffffff18;background:#071a30;color:#fff;font:inherit;outline:none}.nova-ideia-box textarea{resize:vertical}.form-acoes{display:flex;justify-content:flex-end;gap:8px}.btn-cancelar{border:1px solid #ffffff18;border-radius:13px;padding:12px 15px;background:#102b4c;color:#fff;font-weight:850;cursor:pointer}.form-status{margin-top:10px;color:#cbd8e5;font-size:12px;min-height:18px}@media(max-width:720px){.form-grid{grid-template-columns:1fr}.ideias-topbar{align-items:stretch;flex-direction:column}.btn-nova-ideia{width:100%}}
-.ideias,.pautas{width:min(920px,calc(100% - 28px));margin:20px auto;display:grid;gap:14px}
+.ideias,.pautas{width:min(920px,calc(100% - 28px));margin:20px auto;display:grid;gap:14px}.ideia-acoes{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid #ffffff12}.btn-enviar-pauta{border:0;border-radius:12px;padding:11px 14px;background:#ffff00;color:#061326;font-weight:950;cursor:pointer}.btn-enviar-pauta:disabled{opacity:.55;cursor:wait}.retorno-ideia{font-size:12px;color:#b9c8d7}
 .ideia-card,.pauta-card{background:linear-gradient(145deg,#0e2948,#0b2039);border:1px solid #ffffff15;border-radius:20px;padding:20px;box-shadow:0 10px 26px #0004}
 .ideia-top,.pauta-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 .ideia-chip,.pauta-chip{display:inline-block;padding:5px 9px;border-radius:999px;background:#ffffff12;color:#dce7f2;font-size:10px;font-weight:900}
@@ -187,7 +187,45 @@ async function carregarDivulgacoes(){divulgacoesLista.innerHTML='<div class="msg
 function montarDivulgacoes(itens){if(!itens.length){divulgacoesLista.innerHTML='<div class="msg">Nenhuma divulgação publicada no momento.</div>';return}divulgacoesLista.innerHTML='';itens.forEach(d=>{const el=document.createElement('article');el.className='div-card'+(String(d.destaque).toUpperCase()==='SIM'?' destaque':'');const img=converterLinkImagem(d.imagem),link=String(d.link||'').trim();el.innerHTML=`${img?`<img class="div-img" src="${esc(img)}" alt="${esc(d.titulo||'Divulgação C.A.R.A.')}" loading="lazy">`:''}<div class="div-body"><div class="div-top">${d.tipo?`<span class="div-tipo">${esc(d.tipo)}</span>`:''}${String(d.destaque).toUpperCase()==='SIM'?'<span class="div-destaque">DESTAQUE</span>':''}</div><h3 class="div-title">${esc(d.titulo||'Divulgação')}</h3>${d.data?`<div class="div-date">📅 ${esc(d.data)}</div>`:''}${d.descricao?`<div class="div-desc">${esc(d.descricao)}</div>`:''}${link?`<a class="div-link" href="${esc(link)}" target="_blank" rel="noopener">Abrir conteúdo ›</a>`:''}</div>`;divulgacoesLista.appendChild(el)})}
 
 async function carregarIdeias(){ideiasLista.innerHTML='<div class="msg">Carregando ideias...</div>';try{const r=await fetch(API_CENTRAL+'?rota=ideias',{credentials:'omit',redirect:'follow',cache:'no-store'});const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarIdeias(j.ideias||[])}catch(e){console.error(e);ideiasLista.innerHTML='<div class="msg">Não foi possível carregar o Banco de Ideias agora.</div>'}}
-function montarIdeias(itens){configurarNovaIdeia();if(!itens.length){ideiasLista.innerHTML='<div class="msg">Nenhuma ideia cadastrada no momento.</div>';return}ideiasLista.innerHTML='';itens.forEach(i=>{const el=document.createElement('article');el.className='ideia-card';el.innerHTML=`<div class="ideia-top">${i.tipo?`<span class="ideia-chip">${esc(i.tipo)}</span>`:''}<span class="ideia-status">${esc(i.status||'IDEIA')}</span>${i.prioridade?`<span class="ideia-prioridade">PRIORIDADE ${esc(i.prioridade)}</span>`:''}</div><h3>${esc(i.titulo||'Ideia')}</h3>${i.descricao?`<div class="ideia-desc">${esc(i.descricao)}</div>`:''}<div class="ideia-meta">${i.canal?`<div><strong>Canal</strong>${esc(i.canal)}</div>`:''}${i.origem?`<div><strong>Origem</strong>${esc(i.origem)}</div>`:''}${i.responsavel?`<div><strong>Responsável</strong>${esc(i.responsavel)}</div>`:''}</div>${i.observacoes?`<div class="ideia-desc"><strong>Observações:</strong> ${esc(i.observacoes)}</div>`:''}`;ideiasLista.appendChild(el)})}
+function montarIdeias(itens){
+ configurarNovaIdeia();
+ const resumo=document.getElementById('ideiasResumo');
+ if(resumo) resumo.textContent=itens.length===1?'1 ideia cadastrada':`${itens.length} ideias cadastradas`;
+ if(!itens.length){ideiasLista.innerHTML='<div class="msg">Nenhuma ideia cadastrada no momento.</div>';return}
+ ideiasLista.innerHTML='';
+ itens.forEach(i=>{
+  const el=document.createElement('article');el.className='ideia-card';
+  const podeEnviar=PERMISSOES_MIDIA.editar;
+  const controle=podeEnviar
+   ? `<div class="ideia-acoes"><span class="retorno-ideia"></span><button class="btn-enviar-pauta" data-id="${esc(i.id)}">📝 Enviar para pauta</button></div>`
+   : '';
+  el.innerHTML=`<div class="ideia-top">${i.tipo?`<span class="ideia-chip">${esc(i.tipo)}</span>`:''}<span class="ideia-status">${esc(i.status||'IDEIA')}</span>${i.prioridade?`<span class="ideia-prioridade">PRIORIDADE ${esc(i.prioridade)}</span>`:''}</div><h3>${esc(i.titulo||'Ideia')}</h3>${i.descricao?`<div class="ideia-desc">${esc(i.descricao)}</div>`:''}<div class="ideia-meta">${i.canal?`<div><strong>Canal</strong>${esc(i.canal)}</div>`:''}${i.origem?`<div><strong>Origem</strong>${esc(i.origem)}</div>`:''}${i.responsavel?`<div><strong>Responsável</strong>${esc(i.responsavel)}</div>`:''}</div>${i.observacoes?`<div class="ideia-desc"><strong>Observações:</strong> ${esc(i.observacoes)}</div>`:''}${controle}`;
+  ideiasLista.appendChild(el);
+  const btn=el.querySelector('.btn-enviar-pauta');
+  if(btn) btn.onclick=()=>enviarIdeiaParaPauta(i,btn);
+ })
+}
+async function enviarIdeiaParaPauta(item,btn){
+ const card=btn.closest('.ideia-card');
+ const retorno=card?card.querySelector('.retorno-ideia'):null;
+ const token=localStorage.getItem(CHAVE_SESSAO_CARA);
+ if(!PERMISSOES_MIDIA.editar){if(retorno)retorno.textContent='🔒 Sua conta não possui permissão MIDIA / EDITAR.';return}
+ if(!token){if(retorno)retorno.textContent='🔒 Sua sessão expirou. Entre novamente.';await verificarAcessoMidia();return}
+ btn.disabled=true;btn.textContent='Enviando...';if(retorno)retorno.textContent='⏳ Atualizando status...';
+ try{
+  const auth=await postCentral({acao:'autorizar',token,modulo:'MIDIA',acaoPermissao:'EDITAR'});
+  if(!auth.sucesso||!auth.autorizado)throw new Error('A Base Central não autorizou a edição desta ideia.');
+  const r=await postCentral({acao:'avancar-status',token,id:String(item.id||'').trim()});
+  if(!r.sucesso)throw new Error(r.mensagem||r.erro||'Não foi possível enviar a ideia para a pauta.');
+  if(retorno)retorno.textContent='✓ Ideia enviada para a Pauta de Conteúdo.';
+  await carregarIdeias();
+  await carregarPautas();
+ }catch(e){
+  console.error(e);
+  if(retorno)retorno.textContent='⚠ '+(e.message||'Não foi possível avançar a ideia.');
+  btn.disabled=false;btn.textContent='📝 Enviar para pauta';
+ }
+}
 async function carregarPautas(){pautasLista.innerHTML='<div class="msg">Carregando pautas...</div>';try{const r=await fetch(API_CENTRAL+'?rota=pautas',{credentials:'omit',redirect:'follow',cache:'no-store'});const j=await r.json();if(!j.sucesso)throw new Error(j.erro||'Falha');montarPautas(j.pautas||[])}catch(e){console.error(e);pautasLista.innerHTML='<div class="msg">Não foi possível carregar a Pauta de Conteúdo agora.</div>'}}
 const ACAO_STATUS={
 'PAUTA':'🎨 Iniciar produção',
