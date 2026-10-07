@@ -7,28 +7,40 @@ const APP_SHELL = [
   './louvor.html',
   './ministerios.html',
   './midia.html',
+  './estudos.html',
   './manifest.webmanifest',
+
   './logo-cara.png',
   './banner-louvor.png',
   './banner-agenda.png',
   './banner-ministerios.png',
   './banner-fundamento-ministerios-corrigido.png',
   './banner-midia.png',
+  './banner-estudos.png',
+
   './icon-192.png',
   './icon-512.png'
 ];
 
 self.addEventListener('install', event => {
   self.skipWaiting();
-  event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(APP_SHELL)));
+
+  event.waitUntil(
+    caches.open(CACHE_VERSION)
+      .then(cache => cache.addAll(APP_SHELL))
+  );
 });
 
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(key => key !== CACHE_VERSION).map(key => caches.delete(key))
-      ))
+      .then(keys =>
+        Promise.all(
+          keys
+            .filter(key => key !== CACHE_VERSION)
+            .map(key => caches.delete(key))
+        )
+      )
       .then(() => self.clients.claim())
   );
 });
@@ -38,17 +50,21 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(event.request.url);
 
-  if (url.hostname === 'script.google.com' && url.pathname.includes('/macros/s/')) {
+  // A API da Base Central nunca deve ser presa ao cache do PWA.
+  if (
+    url.hostname === 'script.google.com' &&
+    url.pathname.includes('/macros/s/')
+  ) {
     event.respondWith(
       fetch(event.request, {
         credentials: 'omit',
-        redirect: 'follow',
-        cache: 'no-store'
+        redirect: 'follow'
       })
     );
     return;
   }
 
+  // Não interferir em recursos externos.
   if (url.origin !== self.location.origin) return;
 
   event.respondWith(
@@ -56,12 +72,18 @@ self.addEventListener('fetch', event => {
       .then(response => {
         if (response && response.ok) {
           const copy = response.clone();
-          caches.open(CACHE_VERSION).then(cache => cache.put(event.request, copy));
+
+          caches.open(CACHE_VERSION)
+            .then(cache => cache.put(event.request, copy));
         }
+
         return response;
       })
-      .catch(() => caches.match(event.request).then(
-        cached => cached || caches.match('./index.html')
-      ))
+      .catch(() =>
+        caches.match(event.request)
+          .then(cached =>
+            cached || caches.match('./index.html')
+          )
+      )
   );
 });
