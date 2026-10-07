@@ -15,7 +15,7 @@
 
 
   <!-- ÍCONE / ATALHO DO CARA LOUVOR -->
-  <meta name="theme-color" content="#c8952d">
+  <meta name="theme-color" content="#051326">
   <meta name="application-name" content="CARA Louvor">
   <meta name="apple-mobile-web-app-title" content="CARA Louvor">
   <meta name="mobile-web-app-capable" content="yes">
@@ -855,7 +855,231 @@
       .boas-vindas h2 { font-size: 24px; }
     }
 
-  </style>
+  
+
+    /* ======================================================
+       C.A.R.A. — IDENTIDADE VISUAL OFICIAL / LOUVOR
+       Mesmo padrão visual da Agenda, Mídia e módulos internos.
+       ====================================================== */
+    html, body {
+      background: #051326;
+      color: #FFFFFF;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .topo.topo-hero {
+      position: relative;
+      width: 100%;
+      padding: 0;
+      background: #051326;
+      border-bottom: 3px solid #FFFF00;
+      box-shadow: none;
+      overflow: hidden;
+    }
+
+    .banner-louvor {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 390px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .voltar-app-principal {
+      top: 14px;
+      left: 14px;
+      padding: 9px 13px;
+      border: 1px solid #FFFF00;
+      border-radius: 10px;
+      background: rgba(5,19,38,.82);
+      color: #FFFF00;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 14px rgba(0,0,0,.22);
+    }
+
+    .conteudo {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 34px 22px 46px;
+    }
+
+    .boas-vindas {
+      margin-bottom: 28px;
+    }
+
+    .boas-vindas h2 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      color: #FFFFFF;
+    }
+
+    .boas-vindas p {
+      margin: 0;
+      color: #C7D5E3;
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .titulo-area {
+      color: #FFFF00;
+      margin: 30px 0 13px;
+      font-size: 14px;
+      letter-spacing: 1.1px;
+    }
+
+    .card,
+    .formulario,
+    .detalhe,
+    .login-box {
+      background: #0B2340;
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,.18);
+      color: #FFFFFF;
+    }
+
+    .card {
+      border-left: 4px solid #FFFF00;
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.24);
+      background: #102D4D;
+    }
+
+    .icone {
+      background: #FFFF00;
+      color: #051326;
+      border-radius: 12px;
+    }
+
+    .card h3 {
+      color: #FFFFFF;
+    }
+
+    .card p,
+    .mensagem,
+    .status-ministerio {
+      color: #C7D5E3;
+    }
+
+    .seta {
+      color: #FFFF00;
+    }
+
+    .cabecalho-tela h2,
+    .formulario h3,
+    .detalhe h3,
+    .login-box h3 {
+      color: #FFFFFF;
+    }
+
+    .voltar {
+      background: #102D4D;
+      color: #FFFFFF;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .campo label {
+      color: #FFFFFF;
+    }
+
+    .campo input,
+    .campo textarea,
+    .campo select {
+      background: #071A30;
+      color: #FFFFFF;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .campo input::placeholder,
+    .campo textarea::placeholder {
+      color: #8FA4B9;
+    }
+
+    .botao,
+    .botao-dourado {
+      background: #FFFF00 !important;
+      color: #051326 !important;
+      border: none;
+      box-shadow: none;
+    }
+
+    .botao:hover,
+    .botao-dourado:hover {
+      filter: brightness(.94);
+    }
+
+    .abas-louvor {
+      background: #071A30;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .aba-louvor {
+      color: #B9C8D6;
+    }
+
+    .aba-louvor.ativa {
+      background: #FFFF00;
+      color: #051326;
+    }
+
+    .letra,
+    .cifra,
+    #detalheCantor,
+    #repDetalheInfo {
+      color: #FFFFFF;
+    }
+
+    .rodape {
+      background: #040F1D;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: #B9C8D6;
+    }
+
+    .rodape strong {
+      color: #FFFF00;
+    }
+
+    .toast-info {
+      background: #0B2340;
+      border-color: rgba(255,255,0,.35);
+      color: #FFFFFF;
+    }
+
+    @media (max-width: 700px) {
+      .banner-louvor {
+        min-height: 185px;
+        object-fit: cover;
+        object-position: center;
+      }
+      .conteudo {
+        padding: 28px 15px 40px;
+      }
+      .boas-vindas h2 {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .voltar-app-principal {
+        top: 10px;
+        left: 10px;
+        padding: 8px 11px;
+        font-size: 12px;
+      }
+      .banner-louvor {
+        min-height: 155px;
+      }
+    }
+</style>
 
 <script>
 /* ==========================================================
@@ -954,23 +1178,15 @@ async function getCentral(rota) {
 </head>
 
 <body>
-<a class="voltar-app-principal" href="index.html" aria-label="Voltar ao início do App C.A.R.A.">← Início</a>
-
 <div id="toast" class="toast"></div>
 
-<header class="topo">
-
-  
-
+<header class="topo topo-hero">
+  <a class="voltar-app-principal" href="index.html" aria-label="Voltar ao início do App C.A.R.A.">← Início</a>
   <img
-    src="https://fernandothomazrj88.github.io/cara_app/logo-cara.png"
-    class="logo-cara"
+    src="./banner-louvor.png"
+    class="banner-louvor"
+    alt="Ministério de Louvor C.A.R.A."
   >
-
-  <h1>
-    MINISTÉRIO DE LOUVOR
-  </h1>
-
 </header>
 
 
