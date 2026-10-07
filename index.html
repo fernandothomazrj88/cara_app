@@ -391,6 +391,20 @@
       transform: scale(.97);
     }
 
+    .modulo-desabilitado {
+      border: 0;
+      outline: none;
+      font-family: inherit;
+      text-align: left;
+      cursor: default;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .modulo-desabilitado:active {
+      transform: none;
+    }
+
     .modulo-icone {
       font-size: 34px;
       line-height: 1;
@@ -554,6 +568,11 @@
       text-decoration: none;
 
       font-size: 10px;
+
+      border: 0;
+      background: transparent;
+      font-family: inherit;
+      cursor: pointer;
     }
 
     .menu-item span {
@@ -815,7 +834,7 @@
 
 
         <a
-          href="#"
+          href="./agenda.html"
           class="evento-botao"
         >
 
@@ -958,9 +977,10 @@
 
       <!-- PREGAÇÕES -->
 
-      <a
-        href="#"
-        class="modulo pregacoes"
+      <button
+        type="button"
+        class="modulo pregacoes modulo-desabilitado"
+        aria-disabled="true"
       >
 
         <div class="modulo-icone">
@@ -979,15 +999,16 @@
 
         </div>
 
-      </a>
+      </button>
 
 
 
       <!-- MEMBROS -->
 
-      <a
-        href="#"
-        class="modulo membros"
+      <button
+        type="button"
+        class="modulo membros modulo-desabilitado"
+        aria-disabled="true"
       >
 
         <div class="modulo-icone">
@@ -1006,7 +1027,7 @@
 
         </div>
 
-      </a>
+      </button>
 
 
 
@@ -1039,9 +1060,10 @@
 
       <!-- SECRETARIA -->
 
-      <a
-        href="#"
-        class="modulo secretaria"
+      <button
+        type="button"
+        class="modulo secretaria modulo-desabilitado"
+        aria-disabled="true"
       >
 
         <div class="modulo-icone">
@@ -1060,7 +1082,7 @@
 
         </div>
 
-      </a>
+      </button>
 
 
     </section>
@@ -1081,7 +1103,7 @@
 
 
   <a
-    href="#"
+    href="./index.html"
     class="menu-item ativo"
   >
 
@@ -1095,7 +1117,7 @@
 
 
   <a
-    href="#"
+    href="./agenda.html"
     class="menu-item"
   >
 
@@ -1109,7 +1131,7 @@
 
 
   <a
-    href="#"
+    href="./ministerios.html"
     class="menu-item"
   >
 
@@ -1122,9 +1144,10 @@
   </a>
 
 
-  <a
-    href="#"
-    class="menu-item"
+  <button
+    type="button"
+    class="menu-item menu-desabilitado"
+    aria-disabled="true"
   >
 
     <span>
@@ -1133,12 +1156,13 @@
 
     Avisos
 
-  </a>
+  </button>
 
 
-  <a
-    href="#"
-    class="menu-item"
+  <button
+    type="button"
+    class="menu-item menu-desabilitado"
+    aria-disabled="true"
   >
 
     <span>
@@ -1147,7 +1171,7 @@
 
     Mais
 
-  </a>
+  </button>
 
 
 </nav>
