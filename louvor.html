@@ -15,15 +15,24 @@
 
 
   <!-- ÍCONE / ATALHO DO CARA LOUVOR -->
-  <meta name="theme-color" content="#051326">
+  <meta name="theme-color" content="#c8952d">
   <meta name="application-name" content="CARA Louvor">
   <meta name="apple-mobile-web-app-title" content="CARA Louvor">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="https://drive.google.com/thumbnail?id=1TI-K49OA4nBa3z3lAYV-FNQxHVldQtKi&sz=w192"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    sizes="192x192"
+    href="https://drive.google.com/thumbnail?id=1TI-K49OA4nBa3z3lAYV-FNQxHVldQtKi&sz=w192"
+  >
 
   <style>
     * {
@@ -631,29 +640,29 @@
        Mantém a lógica e as funções existentes; altera somente a UI.
        ========================================================= */
     :root {
-      --cara-bg: #051326;
-      --cara-bg-2: #081b32;
-      --cara-surface: #0a213c;
-      --cara-surface-2: #102c52;
-      --cara-accent: #FFFF00;
-      --cara-accent-2: #FFFF00;
+      --cara-bg: #071820;
+      --cara-bg-2: #0b222c;
+      --cara-surface: #102a35;
+      --cara-surface-2: #153541;
+      --cara-accent: #b17b00;
+      --cara-accent-2: #d5a62e;
       --cara-text: #f7f5ef;
       --cara-muted: #aebbc0;
-      --cara-line: rgba(255,255,0,.30);
-      --cara-input: #081b32;
+      --cara-line: rgba(213,166,46,.30);
+      --cara-input: #0b2029;
     }
 
     html { background: var(--cara-bg); }
 
     body {
-      background: linear-gradient(180deg, #051326 0%, #081b32 48%, #051326 100%);
+      background: linear-gradient(180deg, #071820 0%, #0a2029 48%, #071820 100%);
       color: var(--cara-text);
       min-height: 100vh;
       padding-bottom: 18px;
     }
 
     .topo {
-      background: linear-gradient(180deg, #081b32 0%, #051326 100%);
+      background: linear-gradient(180deg, #0b222c 0%, #071820 100%);
       border-bottom: 3px solid var(--cara-accent);
       box-shadow: 0 8px 24px rgba(0,0,0,.24);
       padding: 18px 18px 16px;
@@ -727,8 +736,8 @@
     }
 
     .icone {
-      background: linear-gradient(145deg, #FFFF00, #dada00);
-      color: #000;
+      background: linear-gradient(145deg, #8d6200, #b17b00);
+      color: #fff;
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.10);
     }
 
@@ -776,8 +785,8 @@
 
     .botao-dourado,
     .botao-add {
-      background: linear-gradient(135deg, #FFFF00, #dada00);
-      color: #000;
+      background: linear-gradient(135deg, #8d6200, #b17b00);
+      color: #fff;
       box-shadow: 0 6px 16px rgba(177,123,0,.20);
     }
 
@@ -817,7 +826,7 @@
 
     .aba-louvor.ativa {
       background: var(--cara-accent);
-      color: #000;
+      color: #fff;
     }
 
     .letra,
@@ -846,210 +855,15 @@
       .boas-vindas h2 { font-size: 24px; }
     }
 
-  
-    /* ===== MODO CIFRA PARA MÚSICO ===== */
-    .botao-cifra-compacta {
-      width: 100%;
-      margin: 0 0 14px;
-      border: 1px solid rgba(255,255,0,.35);
-      border-radius: 12px;
-      padding: 13px 14px;
-      background: #0a213c;
-      color: #FFFF00;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .cifra-compacta-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 100000;
-      background: #051326;
-      color: #fff;
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .cifra-compacta-overlay.ativa { display: flex; }
-
-    .cifra-compacta-topo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex: 0 0 auto;
-      padding: 9px 10px;
-      background: #081b32;
-      border-bottom: 2px solid #FFFF00;
-      box-shadow: 0 3px 14px rgba(0,0,0,.28);
-    }
-
-    .cifra-compacta-titulo {
-      flex: 1;
-      min-width: 0;
-      font-size: 16px;
-      font-weight: 800;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #fff;
-    }
-
-    .cifra-controles-fonte {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex: 0 0 auto;
-    }
-
-    .cifra-fonte-btn,
-    .cifra-compacta-fechar {
-      min-height: 40px;
-      border: 1px solid rgba(255,255,0,.38);
-      border-radius: 9px;
-      background: #102c52;
-      color: #FFFF00;
-      padding: 7px 11px;
-      font-weight: 900;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .cifra-fonte-btn:active,
-    .cifra-compacta-fechar:active {
-      transform: scale(.97);
-    }
-
-    .cifra-fonte-valor {
-      min-width: 48px;
-      text-align: center;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .cifra-compacta-area {
-      flex: 1 1 auto;
-      min-height: 0;
-      overflow: auto;
-      padding: 18px clamp(12px, 3vw, 34px) 40px;
-      overscroll-behavior: contain;
-    }
-
-    .cifra-compacta-grade {
-      width: min(100%, 1050px);
-      margin: 0 auto;
-      display: block;
-    }
-
-    .cifra-compacta-coluna {
-      min-width: 0;
-      font-family: "Courier New", Courier, monospace;
-      white-space: pre;
-      line-height: 1.45;
-      font-size: 22px;
-      color: #fff;
-      overflow-x: auto;
-      tab-size: 4;
-    }
-
-    /* Linhas identificadas como acordes recebem o amarelo vivo oficial. */
-    .linha-cifra {
-      display: block;
-      min-height: 1.45em;
-    }
-
-    .linha-cifra.acorde {
-      color: #FFFF00;
-      font-weight: 900;
-    }
-
-    .linha-cifra.texto {
-      color: #fff;
-      font-weight: 500;
-    }
-
-    .linha-cifra.vazia {
-      height: .75em;
-      min-height: .75em;
-    }
-
-    @media (max-width: 600px) {
-      .cifra-compacta-topo {
-        flex-wrap: wrap;
-      }
-
-      .cifra-compacta-titulo {
-        flex-basis: calc(100% - 90px);
-        font-size: 15px;
-      }
-
-      .cifra-controles-fonte {
-        order: 3;
-        width: 100%;
-        justify-content: center;
-      }
-
-      .cifra-fonte-btn {
-        min-width: 64px;
-        font-size: 16px;
-      }
-
-      .cifra-compacta-area {
-        padding: 14px 10px 34px;
-      }
-
-      .cifra-compacta-coluna {
-        font-size: 20px;
-      }
-    }
-
-
-    /* Cabeçalho próprio do Ministério de Louvor */
-    .topo {
-      padding: 0 !important;
-      overflow: hidden;
-      background: #051326;
-      border-bottom: 3px solid #FFFF00;
-    }
-
-    .banner-ministerio {
-      width: 100%;
-      height: clamp(210px, 31vw, 390px);
-      background: url("./banner-louvor.png") center center / cover no-repeat;
-      position: relative;
-    }
-
-    .banner-ministerio::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 30%;
-      background: linear-gradient(180deg, transparent, rgba(5,19,38,.55));
-      pointer-events: none;
-    }
-
-    @media (max-width: 600px) {
-      .banner-ministerio {
-        height: 235px;
-        background-position: 57% center;
-      }
-    }
-
-    @media (min-width: 900px) {
-      .banner-ministerio {
-        height: 360px;
-      }
-    }
-
   </style>
 
 <script>
 /* ==========================================================
-   PONTE GITHUB -> APPS SCRIPT (JSONP)
-   Mantém a interface no GitHub Pages.
+   C.A.R.A. — LOUVOR / API CENTRAL
+   O módulo usa a mesma sessão Google da aplicação principal.
    ========================================================== */
-const CARA_LOUVOR_API = "https://script.google.com/macros/s/AKfycbxRkkDNaw2NsmnxulJKrQnGBKXr_7KJ-RgIjWRRj2Bb1nnGlcsQaPXRcejV_ope2im8EA/exec";
+const API_CENTRAL = "https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec";
+const CHAVE_SESSAO_CARA = 'cara_auth_token';
 
 function mensagemFalhaServidor(erro) {
   const msg = (erro && erro.message) ? erro.message : String(erro || 'Falha de comunicação');
@@ -1057,76 +871,78 @@ function mensagemFalhaServidor(erro) {
   return msg;
 }
 
+async function postCentral(payload) {
+  const resposta = await fetch(API_CENTRAL, {
+    method: 'POST',
+    credentials: 'omit',
+    redirect: 'follow',
+    cache: 'no-store',
+    headers: {'Content-Type': 'text/plain;charset=utf-8'},
+    body: JSON.stringify(payload)
+  });
+  if (!resposta.ok) throw new Error('HTTP ' + resposta.status);
+  return resposta.json();
+}
+
+async function getCentral(rota) {
+  const resposta = await fetch(API_CENTRAL + '?rota=' + encodeURIComponent(rota) + '&_=' + Date.now(), {
+    credentials: 'omit',
+    redirect: 'follow',
+    cache: 'no-store'
+  });
+  if (!resposta.ok) throw new Error('HTTP ' + resposta.status);
+  return resposta.json();
+}
 
 (function () {
-  function chamarApi(funcao, args) {
-    return new Promise((resolve, reject) => {
-      const callback = "__cara_cb_" + Date.now() + "_" + Math.random().toString(36).slice(2);
-      const script = document.createElement("script");
-      const timeout = setTimeout(() => {
-        cleanup();
-        reject(new Error("Tempo esgotado ao comunicar com o servidor."));
-      }, 20000);
-
-      function cleanup() {
-        clearTimeout(timeout);
-        delete window[callback];
-        if (script.parentNode) script.parentNode.removeChild(script);
-      }
-
-      window[callback] = (resposta) => {
-        cleanup();
-        if (resposta && resposta.ok === false) {
-          reject(new Error(resposta.erro || "Erro no servidor."));
-          return;
-        }
-        resolve(resposta ? resposta.dados : null);
-      };
-
-      const payload = encodeURIComponent(JSON.stringify(args || []));
-      script.src = CARA_LOUVOR_API
-        + "?api=1&funcao=" + encodeURIComponent(funcao)
-        + "&args=" + payload
-        + "&callback=" + encodeURIComponent(callback)
-        + "&_=" + Date.now();
-
-      script.onerror = () => {
-        cleanup();
-        reject(new Error("Não foi possível acessar o servidor do Louvor."));
-      };
-
-      document.body.appendChild(script);
-    });
-  }
-
   function novoRunner(successHandler, failureHandler) {
     return new Proxy({}, {
       get(_target, prop) {
-        if (prop === "withSuccessHandler") {
-          return (fn) => novoRunner(fn, failureHandler);
-        }
-        if (prop === "withFailureHandler") {
-          return (fn) => novoRunner(successHandler, fn);
-        }
+        if (prop === 'withSuccessHandler') return (fn) => novoRunner(fn, failureHandler);
+        if (prop === 'withFailureHandler') return (fn) => novoRunner(successHandler, fn);
         return (...args) => {
-          chamarApi(String(prop), args)
-            .then((dados) => {
-              if (typeof successHandler === "function") successHandler(dados);
-            })
-            .catch((erro) => {
-              if (typeof failureHandler === "function") failureHandler(erro);
-              else console.error(erro);
-            });
+          (async () => {
+            switch (String(prop)) {
+              case 'verificarSessao': {
+                const r = await postCentral({acao:'sessao', token:args[0]});
+                return r;
+              }
+              case 'cadastrarLouvor': {
+                const r = await postCentral({acao:'cadastrar-louvor', token:args[0], dados:args[1] || {}});
+                if (!r.sucesso) throw new Error(r.mensagem || r.erro || 'Não foi possível cadastrar o louvor.');
+                return r;
+              }
+              case 'cadastrarRepertorio': {
+                const r = await postCentral({acao:'cadastrar-repertorio', token:args[0], dados:args[1] || {}});
+                if (!r.sucesso) throw new Error(r.mensagem || r.erro || 'Não foi possível cadastrar o repertório.');
+                return r;
+              }
+              case 'listarLouvores': {
+                const r = await getCentral('louvores');
+                if (!r.sucesso) throw new Error(r.mensagem || r.erro || 'Não foi possível carregar os louvores.');
+                return r.louvores || [];
+              }
+              case 'listarRepertorios': {
+                const r = await getCentral('repertorios');
+                if (!r.sucesso) throw new Error(r.mensagem || r.erro || 'Não foi possível carregar os repertórios.');
+                return r.repertorios || [];
+              }
+              default:
+                throw new Error('A função ' + String(prop) + ' não faz mais parte do acesso centralizado do Louvor.');
+            }
+          })().then((dados) => {
+            if (typeof successHandler === 'function') successHandler(dados);
+          }).catch((erro) => {
+            if (typeof failureHandler === 'function') failureHandler(erro);
+            else console.error(erro);
+          });
         };
       }
     });
   }
-
   window.google = window.google || {};
   google.script = google.script || {};
-  Object.defineProperty(google.script, "run", {
-    get() { return novoRunner(null, null); }
-  });
+  Object.defineProperty(google.script, 'run', {get() { return novoRunner(null, null); }});
 })();
 </script>
 
@@ -1142,12 +958,19 @@ function mensagemFalhaServidor(erro) {
 
 <div id="toast" class="toast"></div>
 
-<header class="topo" aria-label="Ministério de Louvor">
-  <div
-    class="banner-ministerio"
-    role="img"
-    aria-label="Ministério de Louvor — teclado, violão, microfone e bateria"
-  ></div>
+<header class="topo">
+
+  
+
+  <img
+    src="https://fernandothomazrj88.github.io/cara_app/logo-cara.png"
+    class="logo-cara"
+  >
+
+  <h1>
+    MINISTÉRIO DE LOUVOR
+  </h1>
+
 </header>
 
 
@@ -1218,53 +1041,19 @@ function mensagemFalhaServidor(erro) {
     class="login-box"
   >
 
-    <h3>
-      🔐 Entrar
-    </h3>
+    <h3>🔐 Acesso pela Central C.A.R.A.</h3>
 
+    <p id="mensagemLogin" class="mensagem" style="display:block;">
+      Verificando sua sessão Google...
+    </p>
 
-    <div class="campo">
-
-      <label>
-        E-mail
-      </label>
-
-      <input
-        id="loginEmail"
-        type="email"
-      >
-
-    </div>
-
-
-    <div class="campo">
-
-      <label>
-        PIN
-      </label>
-
-      <input
-        id="loginPin"
-        type="password"
-        inputmode="numeric"
-        maxlength="6"
-      >
-
-    </div>
-
-
-    <button
+    <a
       class="botao botao-dourado"
-      onclick="fazerLogin()"
+      href="index.html"
+      style="display:inline-flex;text-decoration:none;justify-content:center;"
     >
-      Entrar na Área do Ministério
-    </button>
-
-
-    <div
-      id="mensagemLogin"
-      class="mensagem"
-    ></div>
+      ← Ir para a Central de Acesso
+    </a>
 
   </div>
 
@@ -1281,6 +1070,7 @@ function mensagemFalhaServidor(erro) {
 
 
     <div
+      id="cardCadastrarLouvor"
       class="card"
       onclick="abrirCadastro()"
     >
@@ -1300,6 +1090,7 @@ function mensagemFalhaServidor(erro) {
 
 
     <div
+      id="cardMontarRepertorio"
       class="card"
       onclick="abrirMontarRepertorio()"
     >
@@ -1318,33 +1109,10 @@ function mensagemFalhaServidor(erro) {
     </div>
 
 
-    <div
-      id="cardGerenciarUsuarios"
-      class="card"
-      style="display:none;"
-      onclick="abrirUsuarios()"
-    >
-
-      <div class="icone">
-        👥
-      </div>
-
-      <div class="card-texto">
-        <h3>Gerenciar Usuários</h3>
-        <p>Cadastre usuários e configure os PINs.</p>
-      </div>
-
-      <div class="seta">›</div>
-
-    </div>
 
 
-    <button
-      class="botao botao-cinza"
-      onclick="sairMinisterio()"
-    >
-      Sair da Área do Ministério
-    </button>
+
+    <div class="status-ministerio" style="margin-top:14px;">🔐 Acesso controlado pela conta Google e pelas permissões da Central C.A.R.A.</div>
 
   </div>
 
@@ -1562,14 +1330,6 @@ function mensagemFalhaServidor(erro) {
       id="conteudoCifra"
       class="conteudo-louvor"
     >
-      <button
-        type="button"
-        class="botao-cifra-compacta"
-        onclick="abrirCifraCompacta()"
-      >
-        ⛶ VER CIFRA INTEIRA NA TELA
-      </button>
-
       <div
         id="detalheCifra"
         class="cifra"
@@ -1874,25 +1634,6 @@ function mensagemFalhaServidor(erro) {
 
 </section>
 
-
-<div id="cifraCompactaOverlay" class="cifra-compacta-overlay" aria-hidden="true">
-  <div class="cifra-compacta-topo">
-    <div id="cifraCompactaTitulo" class="cifra-compacta-titulo">Cifra</div>
-
-    <div class="cifra-controles-fonte" aria-label="Tamanho da cifra">
-      <button type="button" class="cifra-fonte-btn" onclick="diminuirFonteCifra()" aria-label="Diminuir fonte">A−</button>
-      <span id="cifraFonteValor" class="cifra-fonte-valor">100%</span>
-      <button type="button" class="cifra-fonte-btn" onclick="aumentarFonteCifra()" aria-label="Aumentar fonte">A+</button>
-    </div>
-
-    <button type="button" class="cifra-compacta-fechar" onclick="fecharCifraCompacta()">✕ Fechar</button>
-  </div>
-
-  <div id="cifraCompactaArea" class="cifra-compacta-area">
-    <div id="cifraCompactaGrade" class="cifra-compacta-grade"></div>
-  </div>
-</div>
-
 </main>
 
 
@@ -1914,259 +1655,82 @@ function mensagemFalhaServidor(erro) {
 <script>
 
 let tokenMinisterio = '';
-
 let timerToast = null;
-
 let usuarioAtual = null;
-
+let PERMISSOES_LOUVOR = {visualizar:false, criar:false, editar:false, excluir:false};
 let louvores = [];
-
 let repertorios = [];
-
 let itensRepertorio = [];
-
 let repertorioAtual = null;
-
 let indiceLouvorAtual = -1;
+let origemDetalheLouvor = 'biblioteca';
 
-let origemDetalheLouvor =
-  'biblioteca';
+window.addEventListener('load', iniciarApp);
 
-
-window.addEventListener(
-  'load',
-  iniciarApp
-);
-
-
-function iniciarApp() {
-
-  tokenMinisterio =
-    localStorage.getItem(
-      'cara_louvor_token'
-    ) || '';
-
+async function iniciarApp() {
+  tokenMinisterio = localStorage.getItem(CHAVE_SESSAO_CARA) || '';
 
   if (!tokenMinisterio) {
+    usuarioAtual = null;
+    PERMISSOES_LOUVOR = {visualizar:false, criar:false, editar:false, excluir:false};
     atualizarAreaMinisterio();
     return;
   }
 
-
-  google.script.run
-
-    .withSuccessHandler(
-      function(resposta) {
-
-        if (
-          resposta &&
-          resposta.autenticado
-        ) {
-
-          usuarioAtual =
-            resposta.usuario;
-
-        } else {
-
-          tokenMinisterio = '';
-
-          localStorage.removeItem(
-            'cara_louvor_token'
-          );
-
-        }
-
-
-        atualizarAreaMinisterio();
-
-      }
-    )
-
-    .withFailureHandler(
-      function() {
-
-        tokenMinisterio = '';
-
-        localStorage.removeItem(
-          'cara_louvor_token'
-        );
-
-        atualizarAreaMinisterio();
-
-      }
-    )
-
-    .verificarSessao(
-      tokenMinisterio
-    );
-
-}
-
-
-function fazerLogin() {
-
-  const email =
-    document
-      .getElementById(
-        'loginEmail'
-      )
-      .value
-      .trim();
-
-
-  const pin =
-    document
-      .getElementById(
-        'loginPin'
-      )
-      .value
-      .trim();
-
-
-  mostrarMensagem(
-    'mensagemLogin',
-    'Entrando...',
-    'processando'
-  );
-
-
-  google.script.run
-
-    .withSuccessHandler(
-      function(resposta) {
-
-        tokenMinisterio =
-          resposta.token;
-
-
-        usuarioAtual =
-          resposta.usuario;
-
-
-        localStorage.setItem(
-          'cara_louvor_token',
-          tokenMinisterio
-        );
-
-
-        atualizarAreaMinisterio();
-
-      }
-    )
-
-    .withFailureHandler(
-      function(erro) {
-
-        mostrarMensagem(
-          'mensagemLogin',
-          obterMensagemErro(
-            erro
-          ),
-          'erro'
-        );
-
-      }
-    )
-
-    .loginMinisterio(
-      email,
-      pin
-    );
-
-}
-
-
-function sairMinisterio() {
-
-  tokenMinisterio = '';
-
-  usuarioAtual = null;
-
-
-  localStorage.removeItem(
-    'cara_louvor_token'
-  );
-
-
-  atualizarAreaMinisterio();
-
-}
-
-
-function atualizarAreaMinisterio() {
-
-  const login =
-    document.getElementById(
-      'areaLogin'
-    );
-
-
-  const area =
-    document.getElementById(
-      'areaMinisterio'
-    );
-
-
-  const gerenciar =
-    document.getElementById(
-      'cardGerenciarUsuarios'
-    );
-
-
-  if (
-    usuarioAtual &&
-    tokenMinisterio
-  ) {
-
-    login.style.display =
-      'none';
-
-
-    area.style.display =
-      'block';
-
-
-    document.getElementById(
-      'statusUsuario'
-    ).innerHTML =
-
-      '👤 Olá, <strong>' +
-
-      escaparHtml(
-        usuarioAtual.nome ||
-        usuarioAtual.email
-      ) +
-
-      '</strong><br>' +
-
-      'Acesso: ' +
-
-      escaparHtml(
-        usuarioAtual.funcao
-      );
-
-
-    gerenciar.style.display =
-      usuarioAtual.funcao ===
-      'ADMIN'
-        ? 'flex'
-        : 'none';
-
-  } else {
-
-    login.style.display =
-      'block';
-
-
-    area.style.display =
-      'none';
-
-
-    gerenciar.style.display =
-      'none';
-
+  try {
+    const sessao = await postCentral({acao:'sessao', token:tokenMinisterio});
+    if (!sessao.sucesso || !sessao.autenticado) throw new Error('Sua sessão Google expirou. Entre novamente pela Central C.A.R.A.');
+
+    const autorizacao = await postCentral({acao:'autorizar', token:tokenMinisterio, modulo:'LOUVOR', acaoPermissao:'VISUALIZAR'});
+    if (!autorizacao.sucesso || !autorizacao.autorizado) {
+      usuarioAtual = sessao.usuario || null;
+      PERMISSOES_LOUVOR = (sessao.usuario && sessao.usuario.permissoes && sessao.usuario.permissoes.LOUVOR) || {visualizar:false, criar:false, editar:false, excluir:false};
+      atualizarAreaMinisterio();
+      return;
+    }
+
+    usuarioAtual = sessao.usuario || null;
+    PERMISSOES_LOUVOR = (usuarioAtual && usuarioAtual.permissoes && usuarioAtual.permissoes.LOUVOR) || {visualizar:true, criar:false, editar:false, excluir:false};
+    atualizarAreaMinisterio();
+  } catch (erro) {
+    console.error(erro);
+    tokenMinisterio = '';
+    usuarioAtual = null;
+    PERMISSOES_LOUVOR = {visualizar:false, criar:false, editar:false, excluir:false};
+    atualizarAreaMinisterio(erro.message || 'Não foi possível validar sua sessão.');
   }
+}
 
+function atualizarAreaMinisterio(mensagemErro) {
+  const login = document.getElementById('areaLogin');
+  const area = document.getElementById('areaMinisterio');
+  const status = document.getElementById('statusUsuario');
+  const cardCadastro = document.getElementById('cardCadastrarLouvor');
+  const cardRepertorio = document.getElementById('cardMontarRepertorio');
+
+  if (usuarioAtual && tokenMinisterio && PERMISSOES_LOUVOR.visualizar) {
+    login.style.display = 'none';
+    area.style.display = 'block';
+
+    if (status) {
+      status.innerHTML = '👤 Olá, <strong>' + escaparHtml(usuarioAtual.nome || usuarioAtual.email || '') + '</strong><br>Acesso ao Ministério de Louvor liberado pela Central C.A.R.A.';
+    }
+
+    if (cardCadastro) cardCadastro.style.display = PERMISSOES_LOUVOR.criar ? 'flex' : 'none';
+    if (cardRepertorio) cardRepertorio.style.display = (PERMISSOES_LOUVOR.criar || PERMISSOES_LOUVOR.editar) ? 'flex' : 'none';
+  } else {
+    login.style.display = 'block';
+    area.style.display = 'none';
+    if (cardCadastro) cardCadastro.style.display = 'none';
+    if (cardRepertorio) cardRepertorio.style.display = 'none';
+
+    const msg = document.getElementById('mensagemLogin');
+    if (msg) {
+      msg.textContent = mensagemErro || (!tokenMinisterio
+        ? 'O Ministério de Louvor usa a mesma conta Google do aplicativo C.A.R.A. Faça login na Central e volte para cá.'
+        : 'Sua conta Google está ativa, mas não possui permissão para visualizar o Ministério de Louvor.');
+    }
+  }
 }
 
 
@@ -2210,9 +1774,11 @@ function voltarInicio() {
 
 
 function abrirCadastro() {
-  mostrarTela(
-    'telaCadastro'
-  );
+  if (!tokenMinisterio || !PERMISSOES_LOUVOR.criar) {
+    mostrarToast('Acesso restrito', 'Sua conta não possui permissão para cadastrar louvores.', 'erro');
+    return;
+  }
+  mostrarTela('telaCadastro');
 }
 
 
@@ -2648,6 +2214,11 @@ function voltarDaTelaLouvor() {
 
 
 function abrirMontarRepertorio() {
+
+  if (!tokenMinisterio || (!PERMISSOES_LOUVOR.criar && !PERMISSOES_LOUVOR.editar)) {
+    mostrarToast('Acesso restrito', 'Sua conta não possui permissão para montar repertórios.', 'erro');
+    return;
+  }
 
   mostrarTela(
     'telaMontarRepertorio'
@@ -4345,143 +3916,6 @@ function escaparHtml(texto) {
 }
 
 </script>
-
-
-<script>
-/* ===== MODO CIFRA PARA MÚSICO =====
-   Prioriza legibilidade: uma coluna, rolagem natural, A-/A+ e acordes amarelos.
-   O tamanho escolhido fica salvo neste aparelho.
-*/
-let tamanhoFonteCifra = Number(localStorage.getItem('cara_louvor_fonte_cifra')) || 22;
-const FONTE_CIFRA_MIN = 14;
-const FONTE_CIFRA_MAX = 42;
-const FONTE_CIFRA_PASSO = 2;
-const FONTE_CIFRA_BASE = 22;
-
-function abrirCifraCompacta() {
-  const origem = document.getElementById('detalheCifra');
-  const overlay = document.getElementById('cifraCompactaOverlay');
-  const titulo = document.getElementById('cifraCompactaTitulo');
-
-  if (!origem || !overlay) return;
-
-  titulo.textContent =
-    (document.getElementById('detalheTitulo')?.textContent || 'Cifra') +
-    (document.getElementById('detalheTom')?.textContent
-      ? ' — ' + document.getElementById('detalheTom').textContent
-      : '');
-
-  overlay.classList.add('ativa');
-  overlay.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-
-  montarCifraMusico(origem.textContent || '');
-  aplicarFonteCifra();
-}
-
-function fecharCifraCompacta() {
-  const overlay = document.getElementById('cifraCompactaOverlay');
-  if (!overlay) return;
-
-  overlay.classList.remove('ativa');
-  overlay.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-
-function linhaPareceAcorde(linha) {
-  const t = String(linha || '').trim();
-  if (!t) return false;
-
-  // Não colore títulos de seções como [Intro], [Verso], etc.
-  if (/^\[[^\]]+\]$/.test(t)) return false;
-
-  // Tokens comuns de acordes: C, G/B, F#m7, Bb, Asus4, D/F#, (Em), |, etc.
-  const tokens = t.split(/\s+/).filter(Boolean);
-  if (!tokens.length) return false;
-
-  const acorde = /^[|:()\[\],.\-]*[A-G](?:#|b)?(?:m|maj|min|dim|aug|sus|add)?\d*(?:\([^)]+\))?(?:\/[A-G](?:#|b)?)?[|:()\[\],.\-]*$/i;
-  const simbolo = /^[|:.,()\-]+$/;
-
-  const validos = tokens.filter(token => acorde.test(token) || simbolo.test(token)).length;
-
-  return validos === tokens.length;
-}
-
-function montarCifraMusico(texto) {
-  const grade = document.getElementById('cifraCompactaGrade');
-  if (!grade) return;
-
-  grade.innerHTML = '';
-
-  const coluna = document.createElement('div');
-  coluna.className = 'cifra-compacta-coluna';
-
-  String(texto || '')
-    .replace(/\r/g, '')
-    .split('\n')
-    .forEach(linha => {
-      const el = document.createElement('span');
-
-      if (!linha.trim()) {
-        el.className = 'linha-cifra vazia';
-        el.innerHTML = '&nbsp;';
-      } else if (linhaPareceAcorde(linha)) {
-        el.className = 'linha-cifra acorde';
-        el.textContent = linha;
-      } else {
-        el.className = 'linha-cifra texto';
-        el.textContent = linha;
-      }
-
-      coluna.appendChild(el);
-    });
-
-  grade.appendChild(coluna);
-}
-
-function aplicarFonteCifra() {
-  tamanhoFonteCifra = Math.max(
-    FONTE_CIFRA_MIN,
-    Math.min(FONTE_CIFRA_MAX, tamanhoFonteCifra)
-  );
-
-  document
-    .querySelectorAll('#cifraCompactaGrade .cifra-compacta-coluna')
-    .forEach(el => {
-      el.style.fontSize = tamanhoFonteCifra + 'px';
-    });
-
-  const valor = document.getElementById('cifraFonteValor');
-  if (valor) {
-    valor.textContent =
-      Math.round((tamanhoFonteCifra / FONTE_CIFRA_BASE) * 100) + '%';
-  }
-
-  localStorage.setItem('cara_louvor_fonte_cifra', String(tamanhoFonteCifra));
-}
-
-function aumentarFonteCifra() {
-  tamanhoFonteCifra += FONTE_CIFRA_PASSO;
-  aplicarFonteCifra();
-}
-
-function diminuirFonteCifra() {
-  tamanhoFonteCifra -= FONTE_CIFRA_PASSO;
-  aplicarFonteCifra();
-}
-
-document.addEventListener('keydown', e => {
-  const overlay = document.getElementById('cifraCompactaOverlay');
-  const aberto = overlay && overlay.classList.contains('ativa');
-
-  if (!aberto) return;
-
-  if (e.key === 'Escape') fecharCifraCompacta();
-  if (e.key === '+' || e.key === '=') aumentarFonteCifra();
-  if (e.key === '-') diminuirFonteCifra();
-});
-</script>
-
 
 <script>
 if ('serviceWorker' in navigator) {
