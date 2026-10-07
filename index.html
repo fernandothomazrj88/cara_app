@@ -10,11 +10,10 @@
 
   <title>CARA — Comunidade Apostólica Restaurando Almas</title>
 
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+  <link rel="icon" href="icone-cara.png">
+  <link rel="apple-touch-icon" href="icone-cara.png">
 
-  <meta name="theme-color" content="#051326">
+  <meta name="theme-color" content="#081820">
 
   <style>
 
@@ -29,9 +28,9 @@
     }
 
     :root {
-      --fundo-topo: #051326;
-      --fundo-menu: #051326;
-      --dourado: #FFFF00;
+      --fundo-topo: #081820;
+      --fundo-menu: #06141a;
+      --dourado: #dca51f;
       --branco: #ffffff;
       --fundo-pagina: #f4f3ef;
       --texto-escuro: #161616;
@@ -68,10 +67,10 @@
       background:
         radial-gradient(
           circle at 50% 20%,
-          #102b50 0%,
-          #091d36 38%,
-          #051326 72%,
-          #030c18 100%
+          #12313d 0%,
+          #0b2029 38%,
+          #081820 72%,
+          #06141a 100%
         );
 
       color: white;
@@ -202,9 +201,9 @@
       background:
         radial-gradient(
           circle at 90% 20%,
-          #102c52 0%,
-          #081c35 42%,
-          #051326 100%
+          #143341 0%,
+          #0d252f 40%,
+          #0a1c24 100%
         );
 
       color: white;
@@ -482,11 +481,6 @@
           #00726e,
           #009e98
         );
-      color: #ffffff;
-    }
-
-    .ministerios p {
-      color: rgba(255,255,255,.88);
     }
 
     .secretaria {
@@ -671,63 +665,7 @@
 
     }
 
-
-    /* ========================================
-       CONTA / SESSÃO C.A.R.A.
-    ======================================== */
-    .conta-cara {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 13px 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 16px;
-      background: rgba(255,255,255,.06);
-      backdrop-filter: blur(8px);
-    }
-    .conta-info { min-width: 0; }
-    .conta-nome {
-      color: #fff;
-      font-size: 14px;
-      font-weight: 800;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .conta-perfil {
-      margin-top: 3px;
-      color: var(--dourado);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.3px;
-    }
-    .conta-acao {
-      flex-shrink: 0;
-      border: 0;
-      border-radius: 12px;
-      min-height: 38px;
-      padding: 0 14px;
-      background: var(--dourado);
-      color: #111;
-      font: inherit;
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .conta-acao:active { transform: scale(.97); }
-
   </style>
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
 </head>
 
 
@@ -764,21 +702,13 @@
 
     <div class="boas-vindas">
 
-      <div class="bem-vindo" id="saudacaoLabel">
+      <div class="bem-vindo">
         BEM-VINDO
       </div>
 
-      <h1 id="saudacaoTitulo">
+      <h1>
         Shalom, Shalom!
       </h1>
-
-      <div class="conta-cara" id="contaCARA">
-        <div class="conta-info">
-          <div class="conta-nome" id="contaNome">Área pública</div>
-          <div class="conta-perfil" id="contaPerfil">C.A.R.A.</div>
-        </div>
-        <a class="conta-acao" id="contaAcao" href="login.html">Entrar</a>
-      </div>
 
     </div>
 
@@ -795,29 +725,105 @@
 
 
     <!-- ==================================
-         PRÓXIMO EVENTO — API CENTRAL
+         PRÓXIMO EVENTO
     =================================== -->
 
-    <section class="evento carregando" id="cardProximoEvento">
-      <div class="evento-label">PRÓXIMO EVENTO</div>
+    <section class="evento">
+
+
+      <div class="evento-label">
+        PRÓXIMO EVENTO
+      </div>
+
 
       <div class="evento-principal">
-        <div class="evento-icone" id="eventoIcone">⏳</div>
-        <div class="evento-texto">
-          <h2 id="eventoTitulo">Carregando...</h2>
-          <p id="eventoTipo">Consultando agenda</p>
+
+
+        <div class="evento-icone">
+          📖
         </div>
+
+
+        <div class="evento-texto">
+
+          <h2>
+            Estudo Bíblico
+          </h2>
+
+          <p>
+            Romanos — Aula 03
+          </p>
+
+        </div>
+
+
       </div>
+
 
       <div class="evento-linha"></div>
 
+
       <div class="evento-rodape">
-        <div class="evento-info"><span class="icone">📅</span><span id="eventoData">—</span></div>
-        <div class="evento-info"><span class="icone">🕘</span><span id="eventoHora">—</span></div>
-        <div class="evento-info"><span class="icone">📍</span><span id="eventoLocal">—</span></div>
-        <a href="agenda.html" class="evento-botao" id="eventoBotao">Ver detalhes <span>›</span></a>
+
+
+        <div class="evento-info">
+
+          <span class="icone">
+            📅
+          </span>
+
+          <span>
+            Terça-feira
+          </span>
+
+        </div>
+
+
+        <div class="evento-info">
+
+          <span class="icone">
+            🕘
+          </span>
+
+          <span>
+            21h45
+          </span>
+
+        </div>
+
+
+        <div class="evento-info">
+
+          <span class="icone">
+            📍
+          </span>
+
+          <span>
+            Na congregação
+          </span>
+
+        </div>
+
+
+        <a
+          href="#"
+          class="evento-botao"
+        >
+
+          Ver detalhes
+
+          <span>
+            ›
+          </span>
+
+        </a>
+
+
       </div>
+
+
     </section>
+
 
 
     <!-- ==================================
@@ -836,7 +842,7 @@
       <!-- AGENDA -->
 
       <a
-        href="agenda.html"
+        href="#"
         class="modulo agenda"
       >
 
@@ -890,7 +896,7 @@
       <!-- MÍDIA -->
 
       <a
-        href="midia.html"
+        href="#"
         class="modulo midia"
       >
 
@@ -917,7 +923,7 @@
       <!-- ESTUDOS -->
 
       <a
-        href="#"
+        href="estudos.html"
         class="modulo estudos"
       >
 
@@ -998,7 +1004,7 @@
       <!-- MINISTÉRIOS -->
 
       <a
-        href="ministerios.html"
+        href="#"
         class="modulo ministerios"
       >
 
@@ -1066,7 +1072,7 @@
 
 
   <a
-    href="index.html"
+    href="#"
     class="menu-item ativo"
   >
 
@@ -1080,7 +1086,7 @@
 
 
   <a
-    href="agenda.html"
+    href="#"
     class="menu-item"
   >
 
@@ -1094,7 +1100,7 @@
 
 
   <a
-    href="ministerios.html"
+    href="#"
     class="menu-item"
   >
 
@@ -1137,174 +1143,6 @@
 
 </nav>
 
-
-<script>
-const API_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
-
-const CHAVE_SESSAO_CARA = 'cara_auth_token';
-
-function primeiroNomeCARA(nome) {
-  return String(nome || '').trim().split(/\s+/)[0] || '';
-}
-
-function nomePerfilCARA(perfil) {
-  const mapa = {
-    ADMIN: 'ADMINISTRADOR',
-    SECRETARIA: 'SECRETARIA',
-    LIDERANCA: 'LIDERANÇA',
-    MINISTERIO: 'MINISTÉRIO',
-    MEMBRO: 'MEMBRO'
-  };
-  return mapa[String(perfil || '').toUpperCase()] || String(perfil || 'USUÁRIO');
-}
-
-async function postCARA(payload) {
-  const resposta = await fetch(API_CARA, {
-    method: 'POST',
-    credentials: 'omit',
-    redirect: 'follow',
-    cache: 'no-store',
-    headers: {'Content-Type':'text/plain;charset=utf-8'},
-    body: JSON.stringify(payload)
-  });
-  if (!resposta.ok) throw new Error('Falha HTTP ' + resposta.status);
-  return resposta.json();
-}
-
-function mostrarVisitanteCARA() {
-  document.getElementById('saudacaoLabel').textContent = 'BEM-VINDO';
-  document.getElementById('saudacaoTitulo').textContent = 'Shalom, Shalom!';
-  document.getElementById('contaNome').textContent = 'Área pública';
-  document.getElementById('contaPerfil').textContent = 'C.A.R.A.';
-  const acao = document.getElementById('contaAcao');
-  acao.textContent = 'Entrar';
-  acao.href = 'login.html';
-  acao.onclick = null;
-}
-
-function mostrarUsuarioCARA(usuario) {
-  const primeiroNome = primeiroNomeCARA(usuario && usuario.nome);
-  document.getElementById('saudacaoLabel').textContent = 'SHALOM';
-  document.getElementById('saudacaoTitulo').textContent =
-    primeiroNome ? 'Shalom, ' + primeiroNome + '!' : 'Shalom!';
-  document.getElementById('contaNome').textContent =
-    (usuario && usuario.nome) || (usuario && usuario.email) || 'Usuário C.A.R.A.';
-  document.getElementById('contaPerfil').textContent =
-    nomePerfilCARA(usuario && usuario.perfil);
-
-  const acao = document.getElementById('contaAcao');
-  acao.textContent = 'Sair';
-  acao.removeAttribute('href');
-  acao.onclick = sairCARA;
-}
-
-async function carregarSessaoCARA() {
-  const token = localStorage.getItem(CHAVE_SESSAO_CARA);
-  if (!token) {
-    mostrarVisitanteCARA();
-    return;
-  }
-
-  try {
-    const json = await postCARA({acao:'sessao', token});
-    if (!json.sucesso || !json.autenticado || !json.usuario) {
-      localStorage.removeItem(CHAVE_SESSAO_CARA);
-      localStorage.removeItem('cara_usuario');
-      mostrarVisitanteCARA();
-      return;
-    }
-    localStorage.setItem('cara_usuario', JSON.stringify(json.usuario));
-    mostrarUsuarioCARA(json.usuario);
-  } catch (erro) {
-    console.error('Não foi possível validar a sessão C.A.R.A.:', erro);
-    const salvo = localStorage.getItem('cara_usuario');
-    if (salvo) {
-      try { mostrarUsuarioCARA(JSON.parse(salvo)); return; } catch (_) {}
-    }
-    mostrarVisitanteCARA();
-  }
-}
-
-async function sairCARA(evento) {
-  if (evento) evento.preventDefault();
-  const token = localStorage.getItem(CHAVE_SESSAO_CARA);
-
-  localStorage.removeItem(CHAVE_SESSAO_CARA);
-  localStorage.removeItem('cara_usuario');
-  mostrarVisitanteCARA();
-
-  if (token) {
-    try { await postCARA({acao:'logout', token}); }
-    catch (erro) { console.warn('Sessão local encerrada; backend indisponível.', erro); }
-  }
-}
-
-
-const card = document.getElementById('cardProximoEvento');
-const titulo = document.getElementById('eventoTitulo');
-const tipo = document.getElementById('eventoTipo');
-const data = document.getElementById('eventoData');
-const hora = document.getElementById('eventoHora');
-const local = document.getElementById('eventoLocal');
-const icone = document.getElementById('eventoIcone');
-
-function formatarDataCARA(dataISO) {
-  if (!dataISO) return 'Data a definir';
-  const partes = dataISO.split('-');
-  if (partes.length !== 3) return dataISO;
-  const ano = Number(partes[0]), mes = Number(partes[1]) - 1, dia = Number(partes[2]);
-  const d = new Date(ano, mes, dia);
-  const dias = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
-  return dias[d.getDay()] + ' • ' + String(dia).padStart(2,'0') + '/' + String(mes + 1).padStart(2,'0');
-}
-
-function iconeEventoCARA(tipoEvento) {
-  const v = String(tipoEvento || '').toUpperCase();
-  if (v.includes('SANTA CEIA')) return '🍞';
-  if (v.includes('ESTUDO')) return '📖';
-  if (v.includes('CULTO')) return '🙌';
-  if (v.includes('REUNI')) return '👥';
-  return '📅';
-}
-
-async function carregarProximoEvento() {
-  try {
-    const resposta = await fetch(API_CARA + '?rota=proximoevento', {
-      method: 'GET', credentials: 'omit', redirect: 'follow', cache: 'no-store'
-    });
-    if (!resposta.ok) throw new Error('Falha HTTP ' + resposta.status);
-    const json = await resposta.json();
-    if (!json.sucesso || !json.evento) throw new Error('Nenhum próximo evento');
-
-    const evento = json.evento;
-    titulo.textContent = evento.titulo || 'Próximo evento';
-    tipo.textContent = evento.tipo || 'C.A.R.A.';
-    data.textContent = formatarDataCARA(evento.data);
-    hora.textContent = evento.horaInicio || 'Horário a definir';
-    local.textContent = evento.local || (evento.modalidade === 'ONLINE' ? 'Online' : 'Local a definir');
-    icone.textContent = iconeEventoCARA(evento.tipo);
-    card.classList.remove('carregando');
-  } catch (erro) {
-    console.error('Erro ao carregar próximo evento:', erro);
-    titulo.textContent = 'Agenda C.A.R.A.';
-    tipo.textContent = 'Consulte nossa programação';
-    data.textContent = 'Programação';
-    hora.textContent = '—';
-    local.textContent = '—';
-    icone.textContent = '📅';
-    card.classList.remove('carregando');
-  }
-}
-
-carregarSessaoCARA();
-carregarProximoEvento();
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(console.error);
-  });
-}
-</script>
 
 </body>
 </html>
