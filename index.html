@@ -14,8 +14,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
   <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
 
-  <meta name="theme-color" content="#081820">
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <meta name="theme-color" content="#051326">
 
   <style>
 
@@ -30,9 +29,9 @@
     }
 
     :root {
-      --fundo-topo: #081820;
-      --fundo-menu: #06141a;
-      --dourado: #dca51f;
+      --fundo-topo: #051326;
+      --fundo-menu: #051326;
+      --dourado: #FFFF00;
       --branco: #ffffff;
       --fundo-pagina: #f4f3ef;
       --texto-escuro: #161616;
@@ -69,10 +68,10 @@
       background:
         radial-gradient(
           circle at 50% 20%,
-          #12313d 0%,
-          #0b2029 38%,
-          #081820 72%,
-          #06141a 100%
+          #102b50 0%,
+          #091d36 38%,
+          #051326 72%,
+          #030c18 100%
         );
 
       color: white;
@@ -203,9 +202,9 @@
       background:
         radial-gradient(
           circle at 90% 20%,
-          #143341 0%,
-          #0d252f 40%,
-          #0a1c24 100%
+          #102c52 0%,
+          #081c35 42%,
+          #051326 100%
         );
 
       color: white;
@@ -393,14 +392,6 @@
       transform: scale(.97);
     }
 
-    .modulo-desabilitado {
-      cursor: default;
-    }
-
-    .modulo-desabilitado:active {
-      transform: none;
-    }
-
     .modulo-icone {
       font-size: 34px;
       line-height: 1;
@@ -491,6 +482,11 @@
           #00726e,
           #009e98
         );
+      color: #ffffff;
+    }
+
+    .ministerios p {
+      color: rgba(255,255,255,.88);
     }
 
     .secretaria {
@@ -575,15 +571,6 @@
       color: var(--dourado);
 
       font-weight: 800;
-    }
-
-    .menu-item.menu-desabilitado {
-      opacity: .55;
-      cursor: default;
-    }
-
-    .menu-item.menu-desabilitado:active {
-      transform: none;
     }
 
 
@@ -684,47 +671,50 @@
 
     }
 
+  
+    /* STATUS DE ACESSO */
+    .status-acesso{
+      margin:18px 18px 0;
+      padding:13px 15px;
+      border-radius:16px;
+      background:#051326;
+      border:1px solid #FFFF0040;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      box-shadow:0 7px 18px rgba(0,0,0,.12);
+    }
+    .status-acesso-info{min-width:0;display:flex;align-items:center;gap:10px}
+    .status-acesso-icone{
+      width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;
+      border-radius:11px;background:#FFFF0015;color:#FFFF00;font-size:18px
+    }
+    .status-acesso-texto{min-width:0}
+    .status-acesso-principal{font-size:12px;font-weight:900;color:#fff;line-height:1.25}
+    .status-acesso-secundario{
+      margin-top:3px;color:#aebdce;font-size:10px;line-height:1.3;
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap
+    }
+    .status-acesso-perfil{color:#FFFF00;font-weight:900}
+    .botao-sair{
+      flex:0 0 auto;min-height:36px;padding:0 11px;border:1px solid #ffffff20;
+      border-radius:10px;background:#122b48;color:#fff;font:inherit;
+      font-size:10px;font-weight:900;cursor:pointer
+    }
+    .botao-sair:active{transform:scale(.97)}
+    @media(max-width:600px){
+      .status-acesso{margin:14px 12px 0}
+      .status-acesso-principal{font-size:11px}
+      .botao-sair{min-height:34px;padding:0 9px}
+    }
+
   </style>
-
-<script>
-(function(){
-  const API = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
-
-  async function validarSessao(){
-    const token=localStorage.getItem('cara_sessao_token');
-
-    if(!token){
-      location.replace('./login.html?next='+encodeURIComponent('./index.html'));
-      return;
-    }
-
-    try{
-      const r=await fetch(API,{
-        method:'POST',
-        headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body:JSON.stringify({acao:'sessao',token}),
-        credentials:'omit'
-      });
-
-      const resposta=await r.json();
-
-      if(!resposta || !resposta.sucesso || !resposta.autenticado){
-        localStorage.removeItem('cara_sessao_token');
-        location.replace('./login.html?next='+encodeURIComponent('./index.html'));
-        return;
-      }
-
-      document.documentElement.classList.add('cara-autenticado');
-    }catch(e){
-      console.error('Falha ao validar sessão C.A.R.A.:',e);
-      localStorage.removeItem('cara_sessao_token');
-      location.replace('./login.html?next='+encodeURIComponent('./index.html'));
-    }
-  }
-
-  validarSessao();
-})();
-</script>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 </head>
 
@@ -781,109 +771,45 @@
        CONTEÚDO
   =================================== -->
 
+  <section class="status-acesso" id="statusAcesso" aria-live="polite">
+    <div class="status-acesso-info">
+      <div class="status-acesso-icone">🔐</div>
+      <div class="status-acesso-texto">
+        <div class="status-acesso-principal" id="statusPrincipal">Verificando seu acesso...</div>
+        <div class="status-acesso-secundario" id="statusSecundario">Aguarde enquanto a C.A.R.A. confirma sua sessão.</div>
+      </div>
+    </div>
+    <button class="botao-sair" type="button" id="btnSair" onclick="sairCARA()">Sair</button>
+  </section>
+
+
   <main class="conteudo">
 
 
     <!-- ==================================
-         PRÓXIMO EVENTO
+         PRÓXIMO EVENTO — API CENTRAL
     =================================== -->
 
-    <section class="evento">
-
-
-      <div class="evento-label">
-        PRÓXIMO EVENTO
-      </div>
-
+    <section class="evento carregando" id="cardProximoEvento">
+      <div class="evento-label">PRÓXIMO EVENTO</div>
 
       <div class="evento-principal">
-
-
-        <div class="evento-icone">
-          📖
-        </div>
-
-
+        <div class="evento-icone" id="eventoIcone">⏳</div>
         <div class="evento-texto">
-
-          <h2>
-            Estudo Bíblico
-          </h2>
-
-          <p>
-            Romanos — Aula 03
-          </p>
-
+          <h2 id="eventoTitulo">Carregando...</h2>
+          <p id="eventoTipo">Consultando agenda</p>
         </div>
-
-
       </div>
-
 
       <div class="evento-linha"></div>
 
-
       <div class="evento-rodape">
-
-
-        <div class="evento-info">
-
-          <span class="icone">
-            📅
-          </span>
-
-          <span>
-            Terça-feira
-          </span>
-
-        </div>
-
-
-        <div class="evento-info">
-
-          <span class="icone">
-            🕘
-          </span>
-
-          <span>
-            21h45
-          </span>
-
-        </div>
-
-
-        <div class="evento-info">
-
-          <span class="icone">
-            📍
-          </span>
-
-          <span>
-            Na congregação
-          </span>
-
-        </div>
-
-
-        <a
-          href="./agenda.html"
-          class="evento-botao"
-        >
-
-          Ver detalhes
-
-          <span>
-            ›
-          </span>
-
-        </a>
-
-
+        <div class="evento-info"><span class="icone">📅</span><span id="eventoData">—</span></div>
+        <div class="evento-info"><span class="icone">🕘</span><span id="eventoHora">—</span></div>
+        <div class="evento-info"><span class="icone">📍</span><span id="eventoLocal">—</span></div>
+        <a href="#" class="evento-botao" id="eventoBotao">Ver detalhes <span>›</span></a>
       </div>
-
-
     </section>
-
 
 
     <!-- ==================================
@@ -1010,10 +936,8 @@
       <!-- PREGAÇÕES -->
 
       <a
-        href="./index.html"
-        class="modulo pregacoes modulo-desabilitado"
-        aria-disabled="true"
-        onclick="return false;"
+        href="#"
+        class="modulo pregacoes"
       >
 
         <div class="modulo-icone">
@@ -1039,7 +963,7 @@
       <!-- MEMBROS -->
 
       <a
-        href="./membros.html"
+        href="membros.html"
         class="modulo membros"
       >
 
@@ -1093,10 +1017,8 @@
       <!-- SECRETARIA -->
 
       <a
-        href="./index.html"
-        class="modulo secretaria modulo-desabilitado"
-        aria-disabled="true"
-        onclick="return false;"
+        href="secretaria.html"
+        class="modulo secretaria"
       >
 
         <div class="modulo-icone">
@@ -1136,7 +1058,7 @@
 
 
   <a
-    href="./index.html"
+    href="#"
     class="menu-item ativo"
   >
 
@@ -1150,7 +1072,7 @@
 
 
   <a
-    href="./agenda.html"
+    href="agenda.html"
     class="menu-item"
   >
 
@@ -1164,7 +1086,7 @@
 
 
   <a
-    href="./ministerios.html"
+    href="ministerios.html"
     class="menu-item"
   >
 
@@ -1178,10 +1100,8 @@
 
 
   <a
-    href="./index.html"
-    class="menu-item menu-desabilitado"
-    aria-disabled="true"
-    onclick="return false;"
+    href="#"
+    class="menu-item"
   >
 
     <span>
@@ -1194,10 +1114,8 @@
 
 
   <a
-    href="./index.html"
-    class="menu-item menu-desabilitado"
-    aria-disabled="true"
-    onclick="return false;"
+    href="#"
+    class="menu-item"
   >
 
     <span>
@@ -1211,6 +1129,173 @@
 
 </nav>
 
+
+<script>
+const API_SESSAO_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+
+function obterUsuarioLocalCARA(){
+  try{
+    return JSON.parse(localStorage.getItem('cara_usuario') || '{}') || {};
+  }catch(e){
+    return {};
+  }
+}
+
+function escaparHtmlCARA(v){
+  return String(v ?? '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+function mostrarStatusAcessoCARA(usuario){
+  const principal=document.getElementById('statusPrincipal');
+  const secundario=document.getElementById('statusSecundario');
+  if(!principal || !secundario) return;
+
+  const nome=usuario.nome || usuario.nomePessoa || usuario.email || 'Usuário';
+  const perfil=String(usuario.perfil || usuario.funcao || usuario.role || 'USUÁRIO').toUpperCase();
+
+  principal.innerHTML='Você está logado · acesso: <span class="status-acesso-perfil">'+escaparHtmlCARA(perfil)+'</span>';
+  secundario.textContent=nome + (usuario.email && usuario.email !== nome ? ' · '+usuario.email : '');
+}
+
+async function validarSessaoCARA(){
+  const token=localStorage.getItem('cara_sessao_token');
+
+  if(!token){
+    location.replace('./login.html?next='+encodeURIComponent('./index.html'));
+    return;
+  }
+
+  try{
+    const resposta=await fetch(API_SESSAO_CARA,{
+      method:'POST',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({acao:'sessao',token}),
+      credentials:'omit',
+      redirect:'follow',
+      cache:'no-store'
+    });
+
+    if(!resposta.ok) throw new Error('HTTP '+resposta.status);
+
+    const dados=await resposta.json();
+
+    if(!dados || !dados.sucesso || !dados.autenticado){
+      localStorage.removeItem('cara_sessao_token');
+      localStorage.removeItem('cara_usuario');
+      location.replace('./login.html?next='+encodeURIComponent('./index.html'));
+      return;
+    }
+
+    const usuario=dados.usuario || obterUsuarioLocalCARA();
+    localStorage.setItem('cara_usuario',JSON.stringify(usuario));
+    mostrarStatusAcessoCARA(usuario);
+
+  }catch(erro){
+    console.error('Falha ao validar sessão C.A.R.A.:',erro);
+    localStorage.removeItem('cara_sessao_token');
+    localStorage.removeItem('cara_usuario');
+    location.replace('./login.html?next='+encodeURIComponent('./index.html'));
+  }
+}
+
+async function sairCARA(){
+  const token=localStorage.getItem('cara_sessao_token');
+
+  try{
+    if(token){
+      await fetch(API_SESSAO_CARA,{
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify({acao:'logout',token}),
+        credentials:'omit',
+        redirect:'follow',
+        cache:'no-store'
+      });
+    }
+  }catch(e){
+    console.warn('Não foi possível encerrar a sessão no servidor:',e);
+  }
+
+  localStorage.removeItem('cara_sessao_token');
+  localStorage.removeItem('cara_usuario');
+  location.replace('./login.html?next='+encodeURIComponent('./index.html'));
+}
+
+validarSessaoCARA();
+</script>
+
+<script>
+const API_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+
+const card = document.getElementById('cardProximoEvento');
+const titulo = document.getElementById('eventoTitulo');
+const tipo = document.getElementById('eventoTipo');
+const data = document.getElementById('eventoData');
+const hora = document.getElementById('eventoHora');
+const local = document.getElementById('eventoLocal');
+const icone = document.getElementById('eventoIcone');
+
+function formatarDataCARA(dataISO) {
+  if (!dataISO) return 'Data a definir';
+  const partes = dataISO.split('-');
+  if (partes.length !== 3) return dataISO;
+  const ano = Number(partes[0]), mes = Number(partes[1]) - 1, dia = Number(partes[2]);
+  const d = new Date(ano, mes, dia);
+  const dias = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+  return dias[d.getDay()] + ' • ' + String(dia).padStart(2,'0') + '/' + String(mes + 1).padStart(2,'0');
+}
+
+function iconeEventoCARA(tipoEvento) {
+  const v = String(tipoEvento || '').toUpperCase();
+  if (v.includes('SANTA CEIA')) return '🍞';
+  if (v.includes('ESTUDO')) return '📖';
+  if (v.includes('CULTO')) return '🙌';
+  if (v.includes('REUNI')) return '👥';
+  return '📅';
+}
+
+async function carregarProximoEvento() {
+  try {
+    const resposta = await fetch(API_CARA + '?rota=proximoevento', {
+      method: 'GET', credentials: 'omit', redirect: 'follow', cache: 'no-store'
+    });
+    if (!resposta.ok) throw new Error('Falha HTTP ' + resposta.status);
+    const json = await resposta.json();
+    if (!json.sucesso || !json.evento) throw new Error('Nenhum próximo evento');
+
+    const evento = json.evento;
+    titulo.textContent = evento.titulo || 'Próximo evento';
+    tipo.textContent = evento.tipo || 'C.A.R.A.';
+    data.textContent = formatarDataCARA(evento.data);
+    hora.textContent = evento.horaInicio || 'Horário a definir';
+    local.textContent = evento.local || (evento.modalidade === 'ONLINE' ? 'Online' : 'Local a definir');
+    icone.textContent = iconeEventoCARA(evento.tipo);
+    card.classList.remove('carregando');
+  } catch (erro) {
+    console.error('Erro ao carregar próximo evento:', erro);
+    titulo.textContent = 'Agenda C.A.R.A.';
+    tipo.textContent = 'Consulte nossa programação';
+    data.textContent = 'Programação';
+    hora.textContent = '—';
+    local.textContent = '—';
+    icone.textContent = '📅';
+    card.classList.remove('carregando');
+  }
+}
+
+carregarProximoEvento();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(console.error);
+  });
+}
+</script>
 
 </body>
 </html>
