@@ -472,7 +472,23 @@
         padding:8px;
       }
     }
+
+    .ficha-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .campo{padding:12px;border-radius:12px;background:#081a30;border:1px solid #ffffff10}
+    .campo-label{color:#8fa6bd;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+    .campo-valor{color:#fff;font-size:13px;font-weight:700;line-height:1.35;word-break:break-word}
+    .ficha-bloco{margin-top:14px;padding:16px;border-radius:17px;background:#0c223b;border:1px solid #ffffff10}
+    .ficha-bloco-titulo{color:var(--y);font-size:10px;font-weight:900;letter-spacing:1.6px;margin-bottom:10px}
+    .ministerio-ficha{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff0d}
+    .ministerio-ficha:last-child{border-bottom:0}
+    .ministerio-nome{font-weight:900;font-size:13px}
+    .ministerio-funcao{color:#aebdce;font-size:11px;margin-top:3px}
+    .privado-aviso{padding:13px;border-radius:13px;background:#ffff0010;border:1px solid #ffff0025;color:#dfe9f4;font-size:12px;line-height:1.45}
+    .botao-login{display:inline-flex;align-items:center;gap:8px;margin-top:12px;min-height:42px;padding:0 14px;border:1px solid #ffffff25;border-radius:12px;background:#fff;color:#111;font-weight:900;cursor:pointer}
+    .login-msg{margin-top:10px;color:#ffb5b5;font-size:12px}
+    @media(max-width:600px){.ficha-grid{grid-template-columns:1fr}}
   </style>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -537,6 +553,9 @@
     Membros
   </a>
 </nav>
+
+
+<div id="loginGoogle" style="display:none"></div>
 
 <div id="modal" class="modal" aria-hidden="true">
   <section class="sheet" role="dialog" aria-modal="true">
@@ -665,43 +684,34 @@ function render(lista){
   }).join('');
 }
 
-function abrirPerfil(index){
+async function abrirPerfil(index){
   const pessoa = membrosExibidos[index];
   if(!pessoa) return;
-
-  const mins = Array.isArray(pessoa.ministerios)
-    ? pessoa.ministerios
-    : [];
 
   document.getElementById('perfil').innerHTML = `
     <div class="perfil-topo">
       ${renderAvatar(pessoa,true)}
-
       <div>
         <div class="perfil-nome">${esc(pessoa.nome)}</div>
-        <div class="perfil-status">
-          ${esc(pessoa.status || 'ATIVO')}
-        </div>
+        <div class="perfil-status">${esc(pessoa.status || 'ATIVO')}</div>
       </div>
     </div>
 
-    <section class="secao">
-      <div class="secao-titulo">MINISTÉRIOS</div>
-
+    <section class="ficha-bloco">
+      <div class="ficha-bloco-titulo">MINISTÉRIOS</div>
       <div class="lista-min">
-        ${
-          mins.length
-            ? mins.map(m => `<span class="tag">${esc(m)}</span>`).join('')
-            : '<span class="observacao">Nenhum ministério vinculado no momento.</span>'
-        }
+        ${(pessoa.ministerios||[]).length
+          ? (pessoa.ministerios||[]).map(m=>`<span class="tag">${esc(m)}</span>`).join('')
+          : '<span class="observacao">Nenhum ministério vinculado no momento.</span>'}
       </div>
     </section>
 
-    <section class="secao">
-      <div class="secao-titulo">CADASTRO</div>
-      <div class="observacao">
-        O perfil completo será ampliado com os dados da ficha cadastral,
-        discipulado e demais informações autorizadas pela liderança.
+    <section class="ficha-bloco">
+      <div class="ficha-bloco-titulo">FICHA COMPLETA</div>
+      <div class="privado-aviso">
+        🔐 Os dados pessoais completos são protegidos e só ficam disponíveis para usuários autorizados da C.A.R.A.
+        <br><button class="botao-login" type="button" onclick="entrarParaFicha('${esc(pessoa.id)}')">🔐 Entrar para ver a ficha</button>
+        <div id="loginMsg" class="login-msg"></div>
       </div>
     </section>
   `;
@@ -709,7 +719,144 @@ function abrirPerfil(index){
   const modal = document.getElementById('modal');
   modal.classList.add('aberto');
   modal.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
+
+  await tentarCarregarFichaProtegida(pessoa.id);
+}
+
+async function tentarCarregarFichaProtegida(id){
+  const token=localStorage.getItem('cara_sessao_token');
+  if(!token) return;
+  await buscarFichaCompleta(id,token);
+}
+
+async function entrarParaFicha(id){
+  const token=localStorage.getItem('cara_sessao_token');
+  if(token){ await buscarFichaCompleta(id,token); return; }
+
+  const msg=document.getElementById('loginMsg');
+  if(msg) msg.textContent='Abrindo login do Google...';
+
+  iniciarLoginGoogle(async credential=>{
+    try{
+      const resposta=await postCentral({acao:'login',credential});
+      if(!resposta.sucesso || !resposta.token){
+        if(msg) msg.textContent=resposta.mensagem || 'Não foi possível iniciar sua sessão.';
+        return;
+      }
+      localStorage.setItem('cara_sessao_token',resposta.token);
+      localStorage.setItem('cara_usuario',JSON.stringify(resposta.usuario||{}));
+      await buscarFichaCompleta(id,resposta.token);
+    }catch(e){
+      console.error(e);
+      if(msg) msg.textContent='Não foi possível concluir o login.';
+    }
+  });
+}
+
+async function buscarFichaCompleta(id,token){
+  try{
+    const r=await fetch(API+'?rota=membro&id='+encodeURIComponent(id)+'&token='+encodeURIComponent(token),{
+      credentials:'omit',redirect:'follow',cache:'no-store'
+    });
+    const dados=await r.json();
+    if(!dados.sucesso){
+      const msg=document.getElementById('loginMsg');
+      if(msg) msg.textContent=dados.mensagem || 'Sem permissão para visualizar esta ficha.';
+      return;
+    }
+    renderFichaCompleta(dados.membro);
+  }catch(e){
+    console.error(e);
+    const msg=document.getElementById('loginMsg');
+    if(msg) msg.textContent='Não foi possível carregar a ficha completa.';
+  }
+}
+
+function campoFicha(label,valor){
+  return `<div class="campo"><div class="campo-label">${esc(label)}</div><div class="campo-valor">${esc(valor||'Não informado')}</div></div>`;
+}
+
+function renderFichaCompleta(p){
+  const mins=p.ministerios||[];
+  document.getElementById('perfil').innerHTML=`
+    <div class="perfil-topo">
+      ${renderAvatar(p,true)}
+      <div>
+        <div class="perfil-nome">${esc(p.nome)}</div>
+        <div class="perfil-status">${esc(p.status||'ATIVO')}</div>
+      </div>
+    </div>
+
+    <section class="ficha-bloco">
+      <div class="ficha-bloco-titulo">DADOS PESSOAIS</div>
+      <div class="ficha-grid">
+        ${campoFicha('Nome completo',p.nome)}
+        ${campoFicha('Data de nascimento',p.nascimento)}
+        ${campoFicha('Telefone',p.telefone)}
+        ${campoFicha('E-mail',p.email)}
+        ${campoFicha('Estado civil',p.estadoCivil)}
+        ${campoFicha('Cônjuge',p.conjuge)}
+        ${campoFicha('Filhos',p.filhos)}
+        ${campoFicha('Profissão',p.profissao)}
+        ${campoFicha('Endereço',p.endereco)}
+      </div>
+    </section>
+
+    <section class="ficha-bloco">
+      <div class="ficha-bloco-titulo">VIDA CRISTÃ</div>
+      <div class="ficha-grid">
+        ${campoFicha('Data de conversão',p.conversao)}
+        ${campoFicha('Batizado',p.batizado)}
+        ${campoFicha('Igreja anterior',p.igrejaAnterior)}
+        ${campoFicha('Data do cadastro',p.dataCadastro)}
+      </div>
+    </section>
+
+    <section class="ficha-bloco">
+      <div class="ficha-bloco-titulo">MINISTÉRIOS</div>
+      ${mins.length ? mins.map(m=>`
+        <div class="ministerio-ficha">
+          <div>
+            <div class="ministerio-nome">${esc(m.nome)}</div>
+            <div class="ministerio-funcao">${esc(m.funcao||m.tipoVinculo||'Membro')}</div>
+          </div>
+          <span class="tag">${esc(m.tipoVinculo||'')}</span>
+        </div>
+      `).join('') : '<div class="observacao">Nenhum ministério vinculado.</div>'}
+    </section>
+
+    <section class="ficha-bloco">
+      <div class="ficha-bloco-titulo">CUIDADO E ORAÇÃO</div>
+      ${campoFicha('Pedido de oração',p.pedidoOracao)}
+    </section>
+
+    <section class="ficha-bloco">
+      <div class="ficha-bloco-titulo">OBSERVAÇÕES DA SECRETARIA</div>
+      <div class="observacao">${esc(p.observacoes||'Nenhuma observação registrada.')}</div>
+    </section>
+  `;
+}
+
+function iniciarLoginGoogle(callback){
+  const clientId='678445465166-bt0tirg4jgiv6op258e4eav89m3b34uq.apps.googleusercontent.com';
+  const iniciar=()=>{
+    if(!window.google || !google.accounts || !google.accounts.id){
+      const msg=document.getElementById('loginMsg');
+      if(msg) msg.textContent='O login do Google ainda está carregando. Tente novamente em alguns segundos.';
+      return;
+    }
+    google.accounts.id.initialize({client_id:clientId,callback:response=>callback(response.credential)});
+    google.accounts.id.prompt();
+  };
+  if(window.google && google.accounts && google.accounts.id) iniciar();
+  else setTimeout(iniciar,700);
+}
+
+async function postCentral(payload){
+  const r=await fetch(API,{method:'POST',credentials:'omit',redirect:'follow',cache:'no-store',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return r.json();
 }
 
 function fecharPerfil(){
