@@ -14,7 +14,13 @@
 
   <style>
     *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+
+    html,body{
+      margin:0;
+      min-height:100%;
+      font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+    }
+
     body{
       min-height:100vh;
       display:flex;
@@ -23,149 +29,378 @@
       padding:24px;
       color:#fff;
       background:
-        radial-gradient(circle at 50% 15%,#17375b 0,#0b2039 28%,#051326 68%,#020812 100%);
+        radial-gradient(circle at 50% 10%,#173b4c 0%,#0c2733 28%,#051326 68%,#020812 100%);
     }
+
+    .pagina{
+      width:100%;
+      max-width:900px;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
     .login{
-      width:min(440px,100%);
+      width:min(470px,100%);
       text-align:center;
-      padding:34px 26px 28px;
-      border:1px solid #ffffff18;
-      border-radius:28px;
-      background:rgba(7,25,44,.92);
-      box-shadow:0 25px 70px #0008;
+      padding:34px 28px 30px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:30px;
+      background:
+        linear-gradient(145deg,rgba(12,38,50,.97),rgba(5,19,38,.97));
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.48),
+        0 0 0 1px rgba(255,255,0,.025);
+      position:relative;
+      overflow:hidden;
     }
+
+    .login::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:0;
+      height:4px;
+      background:#FFFF00;
+    }
+
     .logo{
-      width:min(310px,80%);
-      max-height:180px;
+      width:min(330px,88%);
+      max-height:190px;
       object-fit:contain;
-      margin:0 auto 20px;
+      margin:4px auto 18px;
       display:block;
     }
+
     .eyebrow{
       color:#FFFF00;
       font-size:11px;
-      font-weight:950;
-      letter-spacing:2px;
+      font-weight:900;
+      letter-spacing:3px;
       margin-bottom:8px;
     }
-    h1{margin:0;font-size:28px;line-height:1.1}
-    .sub{margin:10px 0 24px;color:#b9c8d8;font-size:14px;line-height:1.5}
+
+    h1{
+      margin:0;
+      font-size:30px;
+      line-height:1.1;
+      font-weight:850;
+    }
+
+    .sub{
+      margin:12px auto 25px;
+      max-width:360px;
+      color:#c2d0dc;
+      font-size:14px;
+      line-height:1.55;
+    }
+
     .google-area{
       min-height:48px;
       display:flex;
       justify-content:center;
       align-items:center;
-      margin:12px 0 8px;
+      margin:14px 0 10px;
     }
+
     .status{
       min-height:22px;
       margin-top:14px;
       color:#b9c8d8;
       font-size:12px;
-      line-height:1.45;
+      line-height:1.5;
     }
-    .status.erro{color:#ffb6b6}
+
+    .status.erro{
+      color:#ffb8b8;
+    }
+
+    .status.sucesso{
+      color:#dfffdf;
+    }
+
+    .protecao{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+      margin-top:20px;
+      padding:8px 13px;
+      border-radius:999px;
+      background:rgba(255,255,0,.07);
+      border:1px solid rgba(255,255,0,.10);
+      color:#f4f4c0;
+      font-size:10px;
+      font-weight:750;
+    }
+
     .rodape{
-      margin-top:22px;
+      margin:20px auto 0;
+      max-width:360px;
+      padding-top:17px;
+      border-top:1px solid rgba(255,255,255,.08);
       color:#71859a;
       font-size:10px;
-      line-height:1.45;
+      line-height:1.5;
     }
+
     .voltar{
       display:inline-block;
-      margin-top:14px;
-      color:#aebdce;
+      margin-top:15px;
+      color:#9eafc1;
       text-decoration:none;
       font-size:11px;
     }
-    .voltar:hover{color:#FFFF00}
+
+    .voltar:hover{
+      color:#FFFF00;
+    }
+
+    @media(max-width:520px){
+      body{
+        padding:14px;
+      }
+
+      .login{
+        padding:29px 19px 25px;
+        border-radius:25px;
+      }
+
+      .logo{
+        width:min(310px,92%);
+        max-height:170px;
+        margin-bottom:17px;
+      }
+
+      h1{
+        font-size:28px;
+      }
+
+      .sub{
+        font-size:13px;
+        margin-bottom:22px;
+      }
+    }
+
+    @media(max-width:390px){
+      body{
+        padding:10px;
+      }
+
+      .login{
+        padding:27px 16px 23px;
+      }
+
+      h1{
+        font-size:26px;
+      }
+
+      .logo{
+        max-height:150px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <main class="login">
-    <img class="logo" src="./logo-cara.png" alt="C.A.R.A.">
+  <main class="pagina">
+    <section class="login">
 
-    <div class="eyebrow">CENTRAL DE ACESSO</div>
-    <h1>Shalom, Shalom!</h1>
-    <p class="sub">
-      Entre com a sua conta Google cadastrada na C.A.R.A.
-    </p>
+      <img
+        class="logo"
+        src="./logo-cara.png"
+        alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas"
+      >
 
-    <div id="googleButton" class="google-area"></div>
+      <div class="eyebrow">CENTRAL DE ACESSO</div>
 
-    <div id="status" class="status">
-      Preparando o acesso...
-    </div>
+      <h1>Shalom, Shalom!</h1>
 
-    <div class="rodape">
-      O acesso é controlado pela lista de usuários e permissões da Base Central.
-    </div>
+      <p class="sub">
+        Entre com a sua conta Google cadastrada na C.A.R.A.
+        para acessar as áreas autorizadas do aplicativo.
+      </p>
 
-    <a class="voltar" href="./index.html" id="voltar">Voltar</a>
+      <div id="googleButton" class="google-area"></div>
+
+      <div id="status" class="status">
+        Preparando o acesso...
+      </div>
+
+      <div class="protecao">
+        🔐 Acesso protegido pela Base Central
+      </div>
+
+      <div class="rodape">
+        Somente usuários ativos e cadastrados na C.A.R.A.
+        poderão iniciar uma sessão.
+      </div>
+
+      <a
+        class="voltar"
+        href="./index.html"
+        id="voltar"
+      >
+        Voltar
+      </a>
+
+    </section>
   </main>
 
 <script>
 const API = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
-const CLIENT_ID = '678445465166-bt0tirg4jgiv6op258e4eav89m3b34uq.apps.googleusercontent.com';
 
-function setStatus(text, erro=false){
-  const el=document.getElementById('status');
-  el.textContent=text||'';
-  el.classList.toggle('erro',!!erro);
+const CLIENT_ID =
+  '678445465166-bt0tirg4jgiv6op258e4eav89m3b34uq.apps.googleusercontent.com';
+
+const CHAVE_TOKEN = 'cara_sessao_token';
+const CHAVE_USUARIO = 'cara_usuario';
+
+function setStatus(text, tipo='') {
+  const el = document.getElementById('status');
+
+  if (!el) return;
+
+  el.textContent = text || '';
+
+  el.classList.remove('erro', 'sucesso');
+
+  if (tipo) {
+    el.classList.add(tipo);
+  }
 }
 
-async function postCentral(payload){
-  const r=await fetch(API,{
-    method:'POST',
-    headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body:JSON.stringify(payload),
-    credentials:'omit'
+async function postCentral(payload) {
+  const r = await fetch(API, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8'
+    },
+    body: JSON.stringify(payload),
+    credentials: 'omit'
   });
-  if(!r.ok) throw new Error('HTTP '+r.status);
+
+  if (!r.ok) {
+    throw new Error('Não foi possível comunicar com a Central de Acesso.');
+  }
+
   return await r.json();
 }
 
-async function validarSessaoExistente(){
-  const token=localStorage.getItem('cara_sessao_token');
-  if(!token) return false;
+function destinoSeguro() {
+  const params = new URLSearchParams(location.search);
+  const destino = params.get('next') || './index.html';
 
-  try{
-    const resposta=await postCentral({acao:'sessao',token});
-    if(resposta && resposta.sucesso && resposta.autenticado){
-      setStatus('Sessão encontrada. Entrando...');
-      const params=new URLSearchParams(location.search);
-      const destino=params.get('next') || './index.html';
-      location.replace(destino);
-      return true;
-    }
-  }catch(e){
-    console.warn('Sessão não pôde ser validada:',e);
+  /*
+   * Aceita somente destinos internos do próprio PWA.
+   * Isso evita redirecionamentos externos indevidos.
+   */
+  if (
+    destino.startsWith('./') &&
+    !destino.includes('://') &&
+    !destino.startsWith('//')
+  ) {
+    return destino;
   }
 
-  localStorage.removeItem('cara_sessao_token');
+  return './index.html';
+}
+
+async function validarSessaoExistente() {
+  const token = localStorage.getItem(CHAVE_TOKEN);
+
+  if (!token) {
+    return false;
+  }
+
+  try {
+    setStatus('Verificando sua sessão...');
+
+    const resposta = await postCentral({
+      acao: 'sessao',
+      token: token
+    });
+
+    if (
+      resposta &&
+      resposta.sucesso &&
+      resposta.autenticado
+    ) {
+      if (resposta.usuario) {
+        localStorage.setItem(
+          CHAVE_USUARIO,
+          JSON.stringify(resposta.usuario)
+        );
+      }
+
+      setStatus('Sessão encontrada. Entrando...', 'sucesso');
+
+      setTimeout(() => {
+        location.replace(destinoSeguro());
+      }, 250);
+
+      return true;
+    }
+
+  } catch (e) {
+    console.warn(
+      'Sessão anterior não pôde ser validada:',
+      e
+    );
+  }
+
+  localStorage.removeItem(CHAVE_TOKEN);
+  localStorage.removeItem(CHAVE_USUARIO);
+
   return false;
 }
 
-function iniciarGoogle(){
-  if(!window.google || !google.accounts || !google.accounts.id){
+function iniciarGoogle() {
+
+  if (
+    !window.google ||
+    !google.accounts ||
+    !google.accounts.id
+  ) {
     setStatus('Carregando o acesso do Google...');
-    setTimeout(iniciarGoogle,500);
+
+    setTimeout(iniciarGoogle, 500);
+
     return;
   }
 
   google.accounts.id.initialize({
-    client_id:CLIENT_ID,
-    callback:async response=>{
-      try{
-        setStatus('Validando sua conta Google...');
+    client_id: CLIENT_ID,
 
-        const resposta=await postCentral({
-          acao:'login',
-          credential:response.credential
+    callback: async function(response) {
+
+      try {
+
+        if (
+          !response ||
+          !response.credential
+        ) {
+          throw new Error(
+            'O Google não retornou a credencial de acesso.'
+          );
+        }
+
+        setStatus(
+          'Validando sua conta Google...'
+        );
+
+        const resposta = await postCentral({
+          acao: 'login',
+          credential: response.credential
         });
 
-        if(!resposta || !resposta.sucesso || !resposta.token){
+        if (
+          !resposta ||
+          !resposta.sucesso ||
+          !resposta.token
+        ) {
           throw new Error(
             resposta && resposta.mensagem
               ? resposta.mensagem
@@ -173,40 +408,79 @@ function iniciarGoogle(){
           );
         }
 
-        localStorage.setItem('cara_sessao_token',resposta.token);
+        /*
+         * IMPORTANTE:
+         * A Home index.html usa exatamente esta chave.
+         */
+        localStorage.setItem(
+          CHAVE_TOKEN,
+          resposta.token
+        );
 
-        const params=new URLSearchParams(location.search);
-        const destino=params.get('next') || './index.html';
+        localStorage.setItem(
+          CHAVE_USUARIO,
+          JSON.stringify(resposta.usuario || {})
+        );
 
-        setStatus('Acesso autorizado. Entrando...');
-        location.replace(destino);
+        setStatus(
+          'Acesso autorizado. Entrando...',
+          'sucesso'
+        );
 
-      }catch(e){
-        console.error(e);
-        setStatus(e.message || 'Não foi possível concluir o login.',true);
+        setTimeout(() => {
+          location.replace(destinoSeguro());
+        }, 350);
+
+      } catch (e) {
+
+        console.error(
+          'Erro de login C.A.R.A.:',
+          e
+        );
+
+        setStatus(
+          e.message ||
+          'Não foi possível validar seu acesso.',
+          'erro'
+        );
       }
-    }
+    },
+
+    ux_mode: 'popup',
+    auto_select: false,
+    cancel_on_tap_outside: true
   });
 
   google.accounts.id.renderButton(
     document.getElementById('googleButton'),
     {
-      theme:'outline',
-      size:'large',
-      text:'signin_with',
-      shape:'rectangular',
-      logo_alignment:'left',
-      width:320
+      type: 'standard',
+      theme: 'filled_blue',
+      size: 'large',
+      text: 'continue_with',
+      shape: 'pill',
+      logo_alignment: 'left',
+      width: 320,
+      locale: 'pt-BR'
     }
   );
 
-  setStatus('Escolha a conta Google para entrar.');
+  setStatus(
+    'Escolha a conta Google para entrar.'
+  );
 }
 
-(async function(){
-  const entrou=await validarSessaoExistente();
-  if(!entrou) iniciarGoogle();
+(async function() {
+
+  const entrou =
+    await validarSessaoExistente();
+
+  if (!entrou) {
+    iniciarGoogle();
+  }
+
 })();
 </script>
+
 </body>
 </html>
