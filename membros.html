@@ -486,7 +486,22 @@
     .privado-aviso{padding:13px;border-radius:13px;background:#ffff0010;border:1px solid #ffff0025;color:#dfe9f4;font-size:12px;line-height:1.45}
     .botao-login{display:inline-flex;align-items:center;gap:8px;margin-top:12px;min-height:42px;padding:0 14px;border:1px solid #ffffff25;border-radius:12px;background:#fff;color:#111;font-weight:900;cursor:pointer}
     .login-msg{margin-top:10px;color:#ffb5b5;font-size:12px}
-    @media(max-width:600px){.ficha-grid{grid-template-columns:1fr}}
+    .acoes-ficha{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+    .botao-ficha{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 15px;border:1px solid #ffffff20;border-radius:12px;font-weight:900;cursor:pointer;font-family:inherit}
+    .botao-editar{background:var(--y);color:#071321}
+    .botao-cancelar{background:#122b48;color:#fff}
+    .botao-salvar{background:#2f7900;color:#fff}
+    .campo-input,.campo-select,.campo-textarea{width:100%;border:1px solid #ffffff18;border-radius:10px;background:#06172b;color:#fff;padding:10px;font:inherit;font-size:13px;outline:none}
+    .campo-input:focus,.campo-select:focus,.campo-textarea:focus{border-color:#ffff00}
+    .campo-textarea{min-height:90px;resize:vertical}
+    .foto-editor{display:flex;align-items:center;gap:16px;padding:14px;border-radius:16px;background:#081a30;border:1px dashed #ffff0055;margin-bottom:14px}
+    .foto-editor .avatar-grande{flex:0 0 110px;width:110px;height:110px}
+    .foto-acoes{display:flex;flex-direction:column;gap:7px}
+    .botao-foto{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 12px;border-radius:10px;background:#17385d;color:#fff;border:1px solid #ffffff20;font-weight:800;cursor:pointer}
+    .foto-ajuda{color:#8fa6bd;font-size:10px;line-height:1.4}
+    .salvando{opacity:.65;pointer-events:none}
+    .sucesso-msg{color:#b9ed69;font-size:12px;margin-top:8px}
+    @media(max-width:600px){.ficha-grid{grid-template-columns:1fr}.foto-editor{align-items:flex-start;flex-direction:column}.foto-acoes{width:100%}}
   </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -765,6 +780,8 @@ async function buscarFichaCompleta(id,token){
       if(msg) msg.textContent=dados.mensagem || 'Sem permissão para visualizar esta ficha.';
       return;
     }
+    window.fichaAtual=dados.membro;
+    fotoNova=null;
     renderFichaCompleta(dados.membro);
   }catch(e){
     console.error(e);
@@ -779,6 +796,12 @@ function campoFicha(label,valor){
 
 function renderFichaCompleta(p){
   const mins=p.ministerios||[];
+  const botoes = p.podeEditar ? `
+    <div class="acoes-ficha">
+      <button class="botao-ficha botao-editar" type="button" onclick="editarFichaAtual()">✏️ Editar ficha</button>
+    </div>
+  ` : '';
+
   document.getElementById('perfil').innerHTML=`
     <div class="perfil-topo">
       ${renderAvatar(p,true)}
@@ -787,7 +810,7 @@ function renderFichaCompleta(p){
         <div class="perfil-status">${esc(p.status||'ATIVO')}</div>
       </div>
     </div>
-
+    ${botoes}
     <section class="ficha-bloco">
       <div class="ficha-bloco-titulo">DADOS PESSOAIS</div>
       <div class="ficha-grid">
@@ -802,7 +825,6 @@ function renderFichaCompleta(p){
         ${campoFicha('Endereço',p.endereco)}
       </div>
     </section>
-
     <section class="ficha-bloco">
       <div class="ficha-bloco-titulo">VIDA CRISTÃ</div>
       <div class="ficha-grid">
@@ -812,30 +834,76 @@ function renderFichaCompleta(p){
         ${campoFicha('Data do cadastro',p.dataCadastro)}
       </div>
     </section>
-
     <section class="ficha-bloco">
       <div class="ficha-bloco-titulo">MINISTÉRIOS</div>
       ${mins.length ? mins.map(m=>`
         <div class="ministerio-ficha">
-          <div>
-            <div class="ministerio-nome">${esc(m.nome)}</div>
-            <div class="ministerio-funcao">${esc(m.funcao||m.tipoVinculo||'Membro')}</div>
-          </div>
+          <div><div class="ministerio-nome">${esc(m.nome)}</div><div class="ministerio-funcao">${esc(m.funcao||m.tipoVinculo||'Membro')}</div></div>
           <span class="tag">${esc(m.tipoVinculo||'')}</span>
         </div>
       `).join('') : '<div class="observacao">Nenhum ministério vinculado.</div>'}
     </section>
-
-    <section class="ficha-bloco">
-      <div class="ficha-bloco-titulo">CUIDADO E ORAÇÃO</div>
-      ${campoFicha('Pedido de oração',p.pedidoOracao)}
-    </section>
-
-    <section class="ficha-bloco">
-      <div class="ficha-bloco-titulo">OBSERVAÇÕES DA SECRETARIA</div>
-      <div class="observacao">${esc(p.observacoes||'Nenhuma observação registrada.')}</div>
-    </section>
+    <section class="ficha-bloco"><div class="ficha-bloco-titulo">CUIDADO E ORAÇÃO</div>${campoFicha('Pedido de oração',p.pedidoOracao)}</section>
+    <section class="ficha-bloco"><div class="ficha-bloco-titulo">OBSERVAÇÕES DA SECRETARIA</div><div class="observacao">${esc(p.observacoes||'Nenhuma observação registrada.')}</div></section>
   `;
+}
+
+function dataInput(v){
+  const s=String(v||'').trim();
+  if(!s) return '';
+  if(/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+  const m=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+  if(m) return `${m[3]}-${String(m[2]).padStart(2,'0')}-${String(m[1]).padStart(2,'0')}`;
+  return '';
+}
+function dataBr(v){
+  const s=String(v||'').trim();
+  const m=s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return m ? `${m[3]}/${m[2]}/${m[1]}` : s;
+}
+function campoEdit(id,label,valor,tipo='text'){
+  if(tipo==='textarea') return `<div class="campo"><div class="campo-label">${esc(label)}</div><textarea class="campo-textarea" id="${id}">${esc(valor||'')}</textarea></div>`;
+  return `<div class="campo"><div class="campo-label">${esc(label)}</div><input class="campo-input" id="${id}" type="${tipo}" value="${esc(tipo==='date'?dataInput(valor):valor||'')}"></div>`;
+}
+function selectEdit(id,label,valor,opcoes){
+  return `<div class="campo"><div class="campo-label">${esc(label)}</div><select class="campo-select" id="${id}">${opcoes.map(o=>`<option value="${esc(o)}" ${String(valor||'').toUpperCase()===String(o).toUpperCase()?'selected':''}>${esc(o)}</option>`).join('')}</select></div>`;
+}
+function editarFichaAtual(){
+  const token=localStorage.getItem('cara_sessao_token');
+  const p=window.fichaAtual;
+  if(!token || !p || !p.podeEditar) return;
+  document.getElementById('perfil').innerHTML=`
+    <div class="perfil-topo">${renderAvatar(p,true)}<div><div class="perfil-nome">Editar membro</div><div class="perfil-status">${esc(p.status||'ATIVO')}</div></div></div>
+    <div class="acoes-ficha"><button class="botao-ficha botao-salvar" id="btnSalvarFicha" type="button" onclick="salvarFichaEditada()">💾 Salvar alterações</button><button class="botao-ficha botao-cancelar" type="button" onclick="renderFichaCompleta(window.fichaAtual)">Cancelar</button></div>
+    <section class="ficha-bloco"><div class="ficha-bloco-titulo">FOTO DO MEMBRO</div><div class="foto-editor">
+      ${renderAvatar(p,true)}
+      <div class="foto-acoes"><label class="botao-foto" for="fotoMembro">📷 Inserir / trocar foto</label><input id="fotoMembro" type="file" accept="image/jpeg,image/png,image/webp" hidden onchange="prepararFoto(event)"><div class="foto-ajuda">JPG, PNG ou WEBP. A imagem será ajustada automaticamente.</div><div id="fotoNome" class="foto-ajuda">${p.fotoUrl?'Foto atual cadastrada.':'Nenhuma foto nova selecionada.'}</div></div>
+    </div></section>
+    <section class="ficha-bloco"><div class="ficha-bloco-titulo">DADOS PESSOAIS</div><div class="ficha-grid">
+      ${campoEdit('editNome','Nome completo',p.nome)}${campoEdit('editNascimento','Data de nascimento',p.nascimento,'date')}${campoEdit('editTelefone','Telefone',p.telefone)}${campoEdit('editEmail','E-mail',p.email,'email')}
+      ${selectEdit('editEstadoCivil','Estado civil',p.estadoCivil,['Solteiro(a)','Casado(a)','Divorciado(a)','Viúvo(a)','Outro'])}${campoEdit('editConjuge','Cônjuge',p.conjuge)}${campoEdit('editFilhos','Filhos',p.filhos)}${campoEdit('editProfissao','Profissão',p.profissao)}${campoEdit('editEndereco','Endereço',p.endereco)}
+    </div></section>
+    <section class="ficha-bloco"><div class="ficha-bloco-titulo">VIDA CRISTÃ</div><div class="ficha-grid">
+      ${campoEdit('editConversao','Data de conversão',p.conversao,'date')}${selectEdit('editBatizado','Batizado',p.batizado,['SIM','NÃO',''])}${campoEdit('editIgreja','Igreja anterior',p.igrejaAnterior)}${selectEdit('editStatus','Status',p.status||'ATIVO',['ATIVO','INATIVO'])}
+    </div></section>
+    <section class="ficha-bloco"><div class="ficha-bloco-titulo">CUIDADO E ORAÇÃO</div>${campoEdit('editPedido','Pedido de oração',p.pedidoOracao,'textarea')}</section>
+    <section class="ficha-bloco"><div class="ficha-bloco-titulo">OBSERVAÇÕES DA SECRETARIA</div>${campoEdit('editObservacoes','Observações',p.observacoes,'textarea')}</section>
+    <div id="saveMsg" class="sucesso-msg"></div>`;
+}
+let fotoNova=null;
+function prepararFoto(event){
+  const file=event.target.files && event.target.files[0]; if(!file) return;
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)){alert('Escolha uma foto JPG, PNG ou WEBP.');event.target.value='';return;}
+  const reader=new FileReader();
+  reader.onload=()=>{const img=new Image();img.onload=()=>{const max=1200,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);const dataUrl=canvas.toDataURL('image/jpeg',.82);fotoNova={base64:dataUrl,mime:'image/jpeg'};const nome=document.getElementById('fotoNome');if(nome) nome.textContent='Nova foto selecionada: '+file.name;const avatar=document.querySelector('.foto-editor .avatar-grande');if(avatar) avatar.innerHTML=`<img src="${dataUrl}" alt="Nova foto">`;};img.src=reader.result;};
+  reader.readAsDataURL(file);
+}
+async function salvarFichaEditada(){
+  const token=localStorage.getItem('cara_sessao_token'),p=window.fichaAtual;if(!token||!p)return;
+  const btn=document.getElementById('btnSalvarFicha'),msg=document.getElementById('saveMsg');if(btn){btn.classList.add('salvando');btn.textContent='⏳ Salvando...';}if(msg)msg.textContent='';
+  const dados={id:p.id,nome:document.getElementById('editNome').value.trim(),nascimento:dataBr(document.getElementById('editNascimento').value),telefone:document.getElementById('editTelefone').value.trim(),email:document.getElementById('editEmail').value.trim(),endereco:document.getElementById('editEndereco').value.trim(),estadoCivil:document.getElementById('editEstadoCivil').value,conjuge:document.getElementById('editConjuge').value.trim(),filhos:document.getElementById('editFilhos').value.trim(),conversao:dataBr(document.getElementById('editConversao').value),batizado:document.getElementById('editBatizado').value,igrejaAnterior:document.getElementById('editIgreja').value.trim(),profissao:document.getElementById('editProfissao').value.trim(),pedidoOracao:document.getElementById('editPedido').value.trim(),status:document.getElementById('editStatus').value,observacoes:document.getElementById('editObservacoes').value.trim()};
+  if(fotoNova)dados.foto=fotoNova;
+  try{const resposta=await postCentral({acao:'salvar-membro',token,dados});if(!resposta.sucesso)throw new Error(resposta.mensagem||'Não foi possível salvar.');if(resposta.fotoUrl)p.fotoUrl=resposta.fotoUrl;Object.assign(p,{nome:dados.nome,status:dados.status,nascimento:dados.nascimento,telefone:dados.telefone,email:dados.email,endereco:dados.endereco,estadoCivil:dados.estadoCivil,conjuge:dados.conjuge,filhos:dados.filhos,conversao:dados.conversao,batizado:dados.batizado,igrejaAnterior:dados.igrejaAnterior,profissao:dados.profissao,pedidoOracao:dados.pedidoOracao,observacoes:dados.observacoes,podeEditar:true});fotoNova=null;render(membros);renderFichaCompleta(p);}catch(e){console.error(e);if(msg)msg.textContent=e.message||'Erro ao salvar a ficha.';if(btn){btn.classList.remove('salvando');btn.textContent='💾 Salvar alterações';}}
 }
 
 function iniciarLoginGoogle(callback){
