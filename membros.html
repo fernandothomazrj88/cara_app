@@ -619,17 +619,53 @@ function iniciais(nome){
   ).toUpperCase();
 }
 
+function normalizarFotoMembro(url){
+  const original = String(url || '').trim();
+  if(!original) return '';
+
+  try{
+    const u = new URL(original);
+
+    // URLs do Google Drive/Drive UserContent:
+    // transforma em thumbnail, que é mais estável para <img> no navegador.
+    const id = u.searchParams.get('id');
+
+    if(id){
+      return 'https://drive.google.com/thumbnail?id=' +
+             encodeURIComponent(id) +
+             '&sz=w1000';
+    }
+
+    // Também aceita links no formato /file/d/ID/...
+    const match = u.pathname.match(/\/d\/([^/]+)/);
+    if(match && match[1]){
+      return 'https://drive.google.com/thumbnail?id=' +
+             encodeURIComponent(match[1]) +
+             '&sz=w1000';
+    }
+
+    return original;
+  }catch(e){
+    return original;
+  }
+}
+
 function renderAvatar(pessoa, grande=false){
   const classe = grande ? 'avatar-grande' : 'avatar';
+  const foto = normalizarFotoMembro(pessoa.fotoUrl);
 
-  if(pessoa.fotoUrl){
+  if(foto){
+    const inic = esc(iniciais(pessoa.nome));
+
     return `
       <div class="${classe}">
         <img
-          src="${esc(pessoa.fotoUrl)}"
+          src="${esc(foto)}"
           alt="Foto de ${esc(pessoa.nome)}"
-          loading="lazy"
-          onerror="this.parentElement.innerHTML='${iniciais(pessoa.nome)}';"
+          loading="eager"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          onerror="this.onerror=null;this.parentElement.innerHTML='${inic}';"
         >
       </div>
     `;
