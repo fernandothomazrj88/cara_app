@@ -3,147 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>C.A.R.A. — Acesso</title>
+  <meta name="theme-color" content="#051326">
+  <title>Acesso — C.A.R.A.</title>
+
   <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
   <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
-  <meta name="theme-color" content="#051326">
+
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    :root{--navy:#051326;--yellow:#FFFF00;--white:#fff;--muted:#aeb8c5;--panel:#091d36;--danger:#ffdddd;--success:#dfffe6}
-    html,body{min-height:100%}
-    body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% 15%,#12345d 0%,#091d36 34%,#051326 68%,#020812 100%);color:var(--white);min-height:100vh}
-    .page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:calc(24px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom))}
-    .card{width:100%;max-width:460px;background:rgba(5,19,38,.92);border:1px solid rgba(255,255,255,.10);border-radius:28px;box-shadow:0 24px 70px rgba(0,0,0,.38);overflow:hidden}
-    .top{padding:26px 26px 20px;border-bottom:3px solid var(--yellow);text-align:center}
-    .logo{display:block;width:100%;max-width:360px;height:auto;margin:0 auto}
-    .tagline{font-family:Georgia,"Times New Roman",serif;font-style:italic;color:#eef2f7;font-size:14px;line-height:1.5;margin:12px auto 0;max-width:350px}
-    .content{padding:30px 26px 28px;text-align:center}
-    .eyebrow{font-size:11px;letter-spacing:3px;font-weight:800;color:var(--yellow);margin-bottom:10px}
-    h1{font-size:30px;line-height:1.08;margin-bottom:10px}
-    .subtitle{font-size:14px;line-height:1.55;color:var(--muted);margin:0 auto 24px;max-width:350px}
-    #googleButton{display:flex;justify-content:center;min-height:44px}
-    .loading{display:none;margin-top:18px;color:#fff;font-size:14px}
-    .spinner{width:22px;height:22px;border:3px solid rgba(255,255,255,.18);border-top-color:var(--yellow);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .message{display:none;margin-top:18px;padding:13px 14px;border-radius:14px;font-size:13px;line-height:1.45;text-align:left}
-    .message.error{display:block;background:rgba(160,30,30,.20);border:1px solid rgba(255,120,120,.35);color:#ffdede}
-    .message.success{display:block;background:rgba(30,150,70,.18);border:1px solid rgba(100,255,150,.28);color:#e2ffe9}
-    .foot{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.09);font-size:11px;line-height:1.5;color:#8795a6}
-    .badge{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:8px 12px;border-radius:999px;background:rgba(255,255,0,.08);color:#f7f7ba;font-size:11px;font-weight:700}
-    @media(max-width:390px){.card{border-radius:22px}.top{padding:22px 18px 18px}.content{padding:25px 18px}.logo{max-width:320px}h1{font-size:27px}}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+    body{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      color:#fff;
+      background:
+        radial-gradient(circle at 50% 15%,#17375b 0,#0b2039 28%,#051326 68%,#020812 100%);
+    }
+    .login{
+      width:min(440px,100%);
+      text-align:center;
+      padding:34px 26px 28px;
+      border:1px solid #ffffff18;
+      border-radius:28px;
+      background:rgba(7,25,44,.92);
+      box-shadow:0 25px 70px #0008;
+    }
+    .logo{
+      width:min(310px,80%);
+      max-height:180px;
+      object-fit:contain;
+      margin:0 auto 20px;
+      display:block;
+    }
+    .eyebrow{
+      color:#FFFF00;
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:2px;
+      margin-bottom:8px;
+    }
+    h1{margin:0;font-size:28px;line-height:1.1}
+    .sub{margin:10px 0 24px;color:#b9c8d8;font-size:14px;line-height:1.5}
+    .google-area{
+      min-height:48px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin:12px 0 8px;
+    }
+    .status{
+      min-height:22px;
+      margin-top:14px;
+      color:#b9c8d8;
+      font-size:12px;
+      line-height:1.45;
+    }
+    .status.erro{color:#ffb6b6}
+    .rodape{
+      margin-top:22px;
+      color:#71859a;
+      font-size:10px;
+      line-height:1.45;
+    }
+    .voltar{
+      display:inline-block;
+      margin-top:14px;
+      color:#aebdce;
+      text-decoration:none;
+      font-size:11px;
+    }
+    .voltar:hover{color:#FFFF00}
   </style>
 </head>
+
 <body>
-  <main class="page">
-    <section class="card">
-      <div class="top">
-        <img src="./logo-cara.png" alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas" class="logo">
-        <p class="tagline">“Um amor que acolhe, a verdade que liberta e a graça que restaura!”</p>
-      </div>
-      <div class="content">
-        <div class="eyebrow">CENTRAL DE ACESSO</div>
-        <h1>Shalom, Shalom!</h1>
-        <p class="subtitle">Entre com a conta Google cadastrada na C.A.R.A. para acessar as áreas autorizadas do aplicativo.</p>
-        <div id="googleButton"></div>
-        <div id="loading" class="loading"><div class="spinner"></div><div>Validando seu acesso...</div></div>
-        <div id="message" class="message"></div>
-        <div class="badge">🔐 Acesso protegido pela Base Central</div>
-        <div class="foot">Somente usuários ativos e cadastrados na C.A.R.A. poderão iniciar uma sessão.</div>
-      </div>
-    </section>
+  <main class="login">
+    <img class="logo" src="./logo-cara.png" alt="C.A.R.A.">
+
+    <div class="eyebrow">CENTRAL DE ACESSO</div>
+    <h1>Shalom, Shalom!</h1>
+    <p class="sub">
+      Entre com a sua conta Google cadastrada na C.A.R.A.
+    </p>
+
+    <div id="googleButton" class="google-area"></div>
+
+    <div id="status" class="status">
+      Preparando o acesso...
+    </div>
+
+    <div class="rodape">
+      O acesso é controlado pela lista de usuários e permissões da Base Central.
+    </div>
+
+    <a class="voltar" href="./index.html" id="voltar">Voltar</a>
   </main>
 
 <script>
-const API_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
-const GOOGLE_CLIENT_ID = '678445465166-bt0tirg4jgiv6op258e4eav89m3b34uq.apps.googleusercontent.com';
-const CHAVE_TOKEN = 'cara_auth_token';
-const CHAVE_USUARIO = 'cara_auth_usuario';
+const API = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+const CLIENT_ID = '678445465166-bt0tirg4jgiv6op258e4eav89m3b34uq.apps.googleusercontent.com';
 
-const loading = document.getElementById('loading');
-const message = document.getElementById('message');
-const googleButton = document.getElementById('googleButton');
-
-function mostrarMensagem(texto, tipo='error'){
-  message.className = 'message ' + tipo;
-  message.textContent = texto;
+function setStatus(text, erro=false){
+  const el=document.getElementById('status');
+  el.textContent=text||'';
+  el.classList.toggle('erro',!!erro);
 }
-function limparMensagem(){ message.className='message'; message.textContent=''; }
-function carregando(ativo){ loading.style.display=ativo?'block':'none'; googleButton.style.opacity=ativo?'.45':'1'; googleButton.style.pointerEvents=ativo?'none':'auto'; }
 
-async function postCARA(payload){
-  const resposta = await fetch(API_CARA, {
+async function postCentral(payload){
+  const r=await fetch(API,{
     method:'POST',
-    credentials:'omit',
-    redirect:'follow',
-    cache:'no-store',
     headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body:JSON.stringify(payload)
+    body:JSON.stringify(payload),
+    credentials:'omit'
   });
-  if(!resposta.ok) throw new Error('Falha HTTP ' + resposta.status);
-  return await resposta.json();
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return await r.json();
 }
 
 async function validarSessaoExistente(){
-  const token = localStorage.getItem(CHAVE_TOKEN);
+  const token=localStorage.getItem('cara_sessao_token');
   if(!token) return false;
+
   try{
-    const json = await postCARA({acao:'sessao',token});
-    if(json.sucesso && json.autenticado){
-      localStorage.setItem(CHAVE_USUARIO, JSON.stringify(json.usuario || {}));
-      window.location.replace('./index.html');
+    const resposta=await postCentral({acao:'sessao',token});
+    if(resposta && resposta.sucesso && resposta.autenticado){
+      setStatus('Sessão encontrada. Entrando...');
+      const params=new URLSearchParams(location.search);
+      const destino=params.get('next') || './index.html';
+      location.replace(destino);
       return true;
     }
-  }catch(e){ console.warn('Sessão anterior não pôde ser validada:', e); }
-  localStorage.removeItem(CHAVE_TOKEN);
-  localStorage.removeItem(CHAVE_USUARIO);
+  }catch(e){
+    console.warn('Sessão não pôde ser validada:',e);
+  }
+
+  localStorage.removeItem('cara_sessao_token');
   return false;
 }
 
-async function handleCredentialResponse(response){
-  limparMensagem();
-  carregando(true);
-  try{
-    if(!response || !response.credential) throw new Error('O Google não retornou a credencial de acesso.');
-    const json = await postCARA({acao:'login',credential:response.credential});
-    if(!json.sucesso || !json.token){
-      throw new Error(json.mensagem || 'Não foi possível entrar no C.A.R.A. App.');
-    }
-    localStorage.setItem(CHAVE_TOKEN, json.token);
-    localStorage.setItem(CHAVE_USUARIO, JSON.stringify(json.usuario || {}));
-    mostrarMensagem('Acesso autorizado. Entrando no C.A.R.A. App...', 'success');
-    setTimeout(()=>window.location.replace('./index.html'), 550);
-  }catch(erro){
-    console.error('Erro de login:', erro);
-    mostrarMensagem(erro.message || 'Não foi possível validar seu acesso.');
-    carregando(false);
+function iniciarGoogle(){
+  if(!window.google || !google.accounts || !google.accounts.id){
+    setStatus('Carregando o acesso do Google...');
+    setTimeout(iniciarGoogle,500);
+    return;
   }
+
+  google.accounts.id.initialize({
+    client_id:CLIENT_ID,
+    callback:async response=>{
+      try{
+        setStatus('Validando sua conta Google...');
+
+        const resposta=await postCentral({
+          acao:'login',
+          credential:response.credential
+        });
+
+        if(!resposta || !resposta.sucesso || !resposta.token){
+          throw new Error(
+            resposta && resposta.mensagem
+              ? resposta.mensagem
+              : 'Não foi possível concluir o acesso.'
+          );
+        }
+
+        localStorage.setItem('cara_sessao_token',resposta.token);
+
+        const params=new URLSearchParams(location.search);
+        const destino=params.get('next') || './index.html';
+
+        setStatus('Acesso autorizado. Entrando...');
+        location.replace(destino);
+
+      }catch(e){
+        console.error(e);
+        setStatus(e.message || 'Não foi possível concluir o login.',true);
+      }
+    }
+  });
+
+  google.accounts.id.renderButton(
+    document.getElementById('googleButton'),
+    {
+      theme:'outline',
+      size:'large',
+      text:'signin_with',
+      shape:'rectangular',
+      logo_alignment:'left',
+      width:320
+    }
+  );
+
+  setStatus('Escolha a conta Google para entrar.');
 }
 
-window.handleCredentialResponse = handleCredentialResponse;
-
-window.onGoogleLibraryLoad = async () => {
-  const redirecionou = await validarSessaoExistente();
-  if(redirecionou) return;
-  google.accounts.id.initialize({
-    client_id: GOOGLE_CLIENT_ID,
-    callback: handleCredentialResponse,
-    ux_mode: 'popup',
-    auto_select: false,
-    cancel_on_tap_outside: true
-  });
-  google.accounts.id.renderButton(googleButton, {
-    type:'standard',
-    theme:'filled_blue',
-    size:'large',
-    text:'continue_with',
-    shape:'pill',
-    logo_alignment:'left',
-    width:320,
-    locale:'pt-BR'
-  });
-};
+(async function(){
+  const entrou=await validarSessaoExistente();
+  if(!entrou) iniciarGoogle();
+})();
 </script>
 </body>
 </html>

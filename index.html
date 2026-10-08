@@ -15,6 +15,7 @@
   <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
 
   <meta name="theme-color" content="#081820">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <style>
 
@@ -684,6 +685,47 @@
     }
 
   </style>
+
+<script>
+(function(){
+  const API = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+
+  async function validarSessao(){
+    const token=localStorage.getItem('cara_sessao_token');
+
+    if(!token){
+      location.replace('./login.html?next='+encodeURIComponent('./index.html'));
+      return;
+    }
+
+    try{
+      const r=await fetch(API,{
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify({acao:'sessao',token}),
+        credentials:'omit'
+      });
+
+      const resposta=await r.json();
+
+      if(!resposta || !resposta.sucesso || !resposta.autenticado){
+        localStorage.removeItem('cara_sessao_token');
+        location.replace('./login.html?next='+encodeURIComponent('./index.html'));
+        return;
+      }
+
+      document.documentElement.classList.add('cara-autenticado');
+    }catch(e){
+      console.error('Falha ao validar sessão C.A.R.A.:',e);
+      localStorage.removeItem('cara_sessao_token');
+      location.replace('./login.html?next='+encodeURIComponent('./index.html'));
+    }
+  }
+
+  validarSessao();
+})();
+</script>
+
 </head>
 
 
@@ -997,8 +1039,10 @@
       <!-- MEMBROS -->
 
       <a
-        href="./membros.html"
-        class="modulo membros"
+        href="./index.html"
+        class="modulo membros modulo-desabilitado"
+        aria-disabled="true"
+        onclick="return false;"
       >
 
         <div class="modulo-icone">
