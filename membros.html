@@ -44,34 +44,32 @@
 
     .hero{
       position:relative;
-      min-height:285px;
-      display:flex;
-      align-items:flex-end;
+      width:100%;
+      aspect-ratio:16/5.35;
+      min-height:240px;
       overflow:hidden;
-      background:
-        radial-gradient(circle at 75% 30%,#18375c 0%,#0b2039 35%,#051326 75%,#030b15 100%);
+      background:#051326 url("./banner-membros.png") center center / cover no-repeat;
       border-bottom:3px solid var(--y);
-      padding:22px;
     }
 
-    .hero::before{
-      content:"👥";
+    .hero::after{
+      content:"";
       position:absolute;
-      right:8%;
-      top:28px;
-      font-size:130px;
-      opacity:.10;
-      filter:grayscale(1);
+      inset:0;
+      background:linear-gradient(90deg,rgba(5,19,38,.08),rgba(5,19,38,.02) 55%,rgba(5,19,38,.08));
+      pointer-events:none;
     }
 
     .hero-content{
-      position:relative;
-      z-index:1;
-      width:min(900px,100%);
-      margin:auto;
+      position:absolute;
+      inset:0;
+      z-index:2;
     }
 
     .back{
+      position:absolute;
+      left:clamp(16px,5vw,70px);
+      top:18px;
       display:inline-flex;
       align-items:center;
       min-height:42px;
@@ -79,30 +77,13 @@
       border:1px solid var(--y);
       border-radius:12px;
       color:var(--y);
+      background:rgba(5,19,38,.28);
       text-decoration:none;
       font-weight:900;
-      margin-bottom:70px;
+      backdrop-filter:blur(3px);
     }
 
-    .eyebrow{
-      color:var(--y);
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:2px;
-      margin-bottom:7px;
-    }
-
-    h1{
-      margin:0;
-      font-size:clamp(32px,6vw,48px);
-      line-height:1;
-    }
-
-    .hero p{
-      margin:10px 0 0;
-      color:#d5dfeb;
-      font-size:15px;
-    }
+    .eyebrow,h1,.hero p{display:none;}
 
     main{
       width:min(1000px,calc(100% - 28px));
@@ -454,12 +435,14 @@
 
     @media(max-width:600px){
       .hero{
-        min-height:250px;
-        padding:16px;
+        aspect-ratio:16/7.2;
+        min-height:190px;
+        background-position:center center;
       }
 
       .back{
-        margin-bottom:48px;
+        left:12px;
+        top:12px;
       }
 
       main{
@@ -500,9 +483,7 @@
     <div class="hero-content">
       <a class="back" href="./index.html">← Início</a>
 
-      <div class="eyebrow">COMUNIDADE C.A.R.A.</div>
-      <h1>👥 Membros</h1>
-      <p>Pessoas que fazem parte da nossa comunidade.</p>
+      <span aria-label="Membros"></span>
     </div>
   </header>
 
