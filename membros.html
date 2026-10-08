@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#051326">
+
+  <title>Membros — C.A.R.A.</title>
+
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+
+  <style>
+    *{box-sizing:border-box}
+
+    :root{
+      --n:#051326;
+      --n2:#0b2039;
+      --n3:#102b50;
+      --y:#FFFF00;
+      --w:#ffffff;
+      --muted:#aebdce;
+      --page:#071321;
+      --green:#4e8f00;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      background:var(--page);
+      color:var(--w);
+      font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+      padding-bottom:105px;
+    }
+
+    .app{
+      width:min(1120px,100%);
+      margin:auto;
+    }
+
+    .hero{
+      position:relative;
+      min-height:285px;
+      display:flex;
+      align-items:flex-end;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 75% 30%,#18375c 0%,#0b2039 35%,#051326 75%,#030b15 100%);
+      border-bottom:3px solid var(--y);
+      padding:22px;
+    }
+
+    .hero::before{
+      content:"👥";
+      position:absolute;
+      right:8%;
+      top:28px;
+      font-size:130px;
+      opacity:.10;
+      filter:grayscale(1);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:1;
+      width:min(900px,100%);
+      margin:auto;
+    }
+
+    .back{
+      display:inline-flex;
+      align-items:center;
+      min-height:42px;
+      padding:0 14px;
+      border:1px solid var(--y);
+      border-radius:12px;
+      color:var(--y);
+      text-decoration:none;
+      font-weight:900;
+      margin-bottom:70px;
+    }
+
+    .eyebrow{
+      color:var(--y);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:2px;
+      margin-bottom:7px;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(32px,6vw,48px);
+      line-height:1;
+    }
+
+    .hero p{
+      margin:10px 0 0;
+      color:#d5dfeb;
+      font-size:15px;
+    }
+
+    main{
+      width:min(1000px,calc(100% - 28px));
+      margin:auto;
+    }
+
+    .toolbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin:24px 0 18px;
+    }
+
+    .search{
+      flex:1;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-height:50px;
+      padding:0 15px;
+      border-radius:15px;
+      background:#0c223b;
+      border:1px solid #ffffff15;
+    }
+
+    .search span{
+      font-size:21px;
+    }
+
+    .search input{
+      width:100%;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:#fff;
+      font:inherit;
+      font-size:15px;
+    }
+
+    .search input::placeholder{
+      color:#8295a9;
+    }
+
+    .contador{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .card{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-height:118px;
+      padding:15px;
+      border-radius:20px;
+      border:1px solid #ffffff12;
+      background:linear-gradient(145deg,#102d4d,#0b2039);
+      color:#fff;
+      text-decoration:none;
+      cursor:pointer;
+      text-align:left;
+      box-shadow:0 10px 25px #0004;
+      transition:transform .15s ease,filter .15s ease;
+    }
+
+    .card:hover{
+      filter:brightness(1.06);
+    }
+
+    .card:active{
+      transform:scale(.98);
+    }
+
+    .avatar{
+      width:70px;
+      height:70px;
+      flex:0 0 70px;
+      border-radius:20px;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg,#1d4c78,#0c2947);
+      border:2px solid #ffff0050;
+      color:var(--y);
+      font-size:25px;
+      font-weight:900;
+    }
+
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .dados{
+      min-width:0;
+      flex:1;
+    }
+
+    .nome{
+      font-size:17px;
+      font-weight:900;
+      line-height:1.15;
+      word-break:break-word;
+    }
+
+    .status{
+      display:inline-flex;
+      margin-top:7px;
+      padding:4px 8px;
+      border-radius:999px;
+      background:#4e8f0022;
+      color:#b9ed69;
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:.7px;
+    }
+
+    .ministerios{
+      display:flex;
+      flex-wrap:wrap;
+      gap:5px;
+      margin-top:8px;
+    }
+
+    .ministerio{
+      max-width:100%;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      padding:4px 7px;
+      border-radius:8px;
+      background:#ffff0010;
+      color:#dce7f2;
+      font-size:9px;
+      font-weight:800;
+    }
+
+    .seta{
+      color:var(--y);
+      font-size:26px;
+      flex:0 0 auto;
+    }
+
+    .loading,
+    .vazio,
+    .erro{
+      grid-column:1/-1;
+      padding:25px;
+      border-radius:18px;
+      background:#0c223b;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    .erro{
+      color:#ffb5b5;
+      border:1px solid #ff6b6b33;
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      padding:18px;
+      background:#000b;
+      z-index:100;
+    }
+
+    .modal.aberto{
+      display:flex;
+    }
+
+    .sheet{
+      width:min(620px,100%);
+      max-height:90vh;
+      overflow:auto;
+      border-radius:26px 26px 18px 18px;
+      background:#081a30;
+      border:1px solid #ffffff18;
+      box-shadow:0 20px 60px #0008;
+    }
+
+    .sheet-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      padding:20px 20px 12px;
+      position:sticky;
+      top:0;
+      background:#081a30ee;
+      backdrop-filter:blur(10px);
+    }
+
+    .sheet-top h2{
+      margin:0;
+      font-size:21px;
+    }
+
+    .fechar{
+      width:40px;
+      height:40px;
+      border:0;
+      border-radius:12px;
+      background:#122b48;
+      color:#fff;
+      font-size:19px;
+      cursor:pointer;
+    }
+
+    .perfil{
+      padding:10px 20px 24px;
+    }
+
+    .perfil-topo{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:10px 0 20px;
+    }
+
+    .avatar-grande{
+      width:100px;
+      height:100px;
+      flex:0 0 100px;
+      border-radius:28px;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg,#1d4c78,#0c2947);
+      border:2px solid var(--y);
+      color:var(--y);
+      font-size:35px;
+      font-weight:900;
+    }
+
+    .avatar-grande img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .perfil-nome{
+      font-size:24px;
+      font-weight:900;
+      line-height:1.1;
+    }
+
+    .perfil-status{
+      margin-top:7px;
+      color:#b9ed69;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:1px;
+    }
+
+    .secao{
+      margin-top:18px;
+      padding:16px;
+      border-radius:17px;
+      background:#0c223b;
+      border:1px solid #ffffff10;
+    }
+
+    .secao-titulo{
+      color:var(--y);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:1.6px;
+      margin-bottom:10px;
+    }
+
+    .lista-min{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+    }
+
+    .tag{
+      padding:7px 10px;
+      border-radius:10px;
+      background:#ffff0010;
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .observacao{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .bottom{
+      position:fixed;
+      left:50%;
+      bottom:0;
+      transform:translateX(-50%);
+      width:100%;
+      max-width:900px;
+      min-height:82px;
+      padding-bottom:env(safe-area-inset-bottom);
+      background:linear-gradient(135deg,#06141a,#091c24);
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      border-radius:24px 24px 0 0;
+      box-shadow:0 -6px 24px #0003;
+      z-index:50;
+    }
+
+    .bottom a{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:5px;
+      color:#eee;
+      text-decoration:none;
+      font-size:10px;
+    }
+
+    .bottom a b{
+      font-size:23px;
+      line-height:1;
+    }
+
+    .bottom .ativo{
+      color:var(--y);
+      font-weight:900;
+    }
+
+    @media(max-width:800px){
+      .grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media(max-width:600px){
+      .hero{
+        min-height:250px;
+        padding:16px;
+      }
+
+      .back{
+        margin-bottom:48px;
+      }
+
+      main{
+        width:min(100% - 20px,1000px);
+      }
+
+      .toolbar{
+        align-items:stretch;
+        flex-direction:column;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .card{
+        min-height:105px;
+      }
+
+      .avatar{
+        width:64px;
+        height:64px;
+        flex-basis:64px;
+      }
+
+      .modal{
+        padding:8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header class="hero">
+    <div class="hero-content">
+      <a class="back" href="./index.html">← Início</a>
+
+      <div class="eyebrow">COMUNIDADE C.A.R.A.</div>
+      <h1>👥 Membros</h1>
+      <p>Pessoas que fazem parte da nossa comunidade.</p>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="toolbar">
+      <label class="search">
+        <span>🔎</span>
+        <input
+          id="busca"
+          type="search"
+          placeholder="Buscar membro..."
+          autocomplete="off"
+        >
+      </label>
+
+      <div id="contador" class="contador">Carregando...</div>
+    </div>
+
+    <section id="lista" class="grid">
+      <div class="loading">Carregando membros...</div>
+    </section>
+
+  </main>
+
+</div>
+
+<nav class="bottom">
+  <a href="./index.html">
+    <b>🏠</b>
+    Início
+  </a>
+
+  <a href="./agenda.html">
+    <b>📅</b>
+    Agenda
+  </a>
+
+  <a href="./ministerios.html">
+    <b>▦</b>
+    Ministérios
+  </a>
+
+  <a href="./index.html" onclick="return false;" aria-disabled="true">
+    <b>🔔</b>
+    Avisos
+  </a>
+
+  <a class="ativo" href="./membros.html">
+    <b>👥</b>
+    Membros
+  </a>
+</nav>
+
+<div id="modal" class="modal" aria-hidden="true">
+  <section class="sheet" role="dialog" aria-modal="true">
+
+    <div class="sheet-top">
+      <h2>Perfil do membro</h2>
+      <button class="fechar" type="button" onclick="fecharPerfil()">✕</button>
+    </div>
+
+    <div id="perfil" class="perfil"></div>
+
+  </section>
+</div>
+
+<script>
+const API =
+  'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+
+let membros = [];
+let membrosExibidos = [];
+
+function esc(v){
+  return String(v ?? '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+function iniciais(nome){
+  const partes = String(nome || 'Membro')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if(!partes.length) return 'M';
+
+  if(partes.length === 1){
+    return partes[0].slice(0,2).toUpperCase();
+  }
+
+  return (
+    partes[0][0] +
+    partes[partes.length - 1][0]
+  ).toUpperCase();
+}
+
+function renderAvatar(pessoa, grande=false){
+  const classe = grande ? 'avatar-grande' : 'avatar';
+
+  if(pessoa.fotoUrl){
+    return `
+      <div class="${classe}">
+        <img
+          src="${esc(pessoa.fotoUrl)}"
+          alt="Foto de ${esc(pessoa.nome)}"
+          loading="lazy"
+          onerror="this.parentElement.innerHTML='${iniciais(pessoa.nome)}';"
+        >
+      </div>
+    `;
+  }
+
+  return `<div class="${classe}">${esc(iniciais(pessoa.nome))}</div>`;
+}
+
+function render(lista){
+  const container = document.getElementById('lista');
+  const contador = document.getElementById('contador');
+
+  membrosExibidos = lista;
+
+  contador.textContent =
+    `${lista.length} ${lista.length === 1 ? 'membro' : 'membros'}`;
+
+  if(!lista.length){
+    container.innerHTML = `
+      <div class="vazio">
+        Nenhum membro encontrado.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = lista.map((pessoa, index) => {
+    const mins = Array.isArray(pessoa.ministerios)
+      ? pessoa.ministerios
+      : [];
+
+    return `
+      <a
+        href="#"
+        class="card"
+        onclick="abrirPerfil(${index}); return false;"
+      >
+        ${renderAvatar(pessoa)}
+
+        <div class="dados">
+          <div class="nome">${esc(pessoa.nome)}</div>
+
+          <span class="status">
+            ${esc(pessoa.status || 'ATIVO')}
+          </span>
+
+          <div class="ministerios">
+            ${
+              mins.length
+                ? mins.slice(0,2).map(m =>
+                    `<span class="ministerio">${esc(m)}</span>`
+                  ).join('')
+                : '<span class="ministerio">Sem ministério informado</span>'
+            }
+
+            ${
+              mins.length > 2
+                ? `<span class="ministerio">+${mins.length-2}</span>`
+                : ''
+            }
+          </div>
+        </div>
+
+        <div class="seta">›</div>
+      </a>
+    `;
+  }).join('');
+}
+
+function abrirPerfil(index){
+  const pessoa = membrosExibidos[index];
+  if(!pessoa) return;
+
+  const mins = Array.isArray(pessoa.ministerios)
+    ? pessoa.ministerios
+    : [];
+
+  document.getElementById('perfil').innerHTML = `
+    <div class="perfil-topo">
+      ${renderAvatar(pessoa,true)}
+
+      <div>
+        <div class="perfil-nome">${esc(pessoa.nome)}</div>
+        <div class="perfil-status">
+          ${esc(pessoa.status || 'ATIVO')}
+        </div>
+      </div>
+    </div>
+
+    <section class="secao">
+      <div class="secao-titulo">MINISTÉRIOS</div>
+
+      <div class="lista-min">
+        ${
+          mins.length
+            ? mins.map(m => `<span class="tag">${esc(m)}</span>`).join('')
+            : '<span class="observacao">Nenhum ministério vinculado no momento.</span>'
+        }
+      </div>
+    </section>
+
+    <section class="secao">
+      <div class="secao-titulo">CADASTRO</div>
+      <div class="observacao">
+        O perfil completo será ampliado com os dados da ficha cadastral,
+        discipulado e demais informações autorizadas pela liderança.
+      </div>
+    </section>
+  `;
+
+  const modal = document.getElementById('modal');
+  modal.classList.add('aberto');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharPerfil(){
+  const modal = document.getElementById('modal');
+
+  modal.classList.remove('aberto');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal').addEventListener('click', e => {
+  if(e.target.id === 'modal'){
+    fecharPerfil();
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){
+    fecharPerfil();
+  }
+});
+
+document.getElementById('busca').addEventListener('input', e => {
+  const termo = String(e.target.value || '')
+    .trim()
+    .toLocaleLowerCase('pt-BR');
+
+  if(!termo){
+    render(membros);
+    return;
+  }
+
+  const filtrados = membros.filter(pessoa => {
+    const nome = String(pessoa.nome || '')
+      .toLocaleLowerCase('pt-BR');
+
+    const ministerios = (pessoa.ministerios || [])
+      .join(' ')
+      .toLocaleLowerCase('pt-BR');
+
+    return (
+      nome.includes(termo) ||
+      ministerios.includes(termo)
+    );
+  });
+
+  render(filtrados);
+});
+
+async function carregar(){
+  const lista = document.getElementById('lista');
+
+  try{
+    const resposta = await fetch(
+      API + '?rota=membros',
+      {
+        credentials:'omit',
+        redirect:'follow',
+        cache:'no-store'
+      }
+    );
+
+    if(!resposta.ok){
+      throw new Error('HTTP ' + resposta.status);
+    }
+
+    const dados = await resposta.json();
+
+    if(!dados.sucesso){
+      throw new Error(
+        dados.mensagem || 'Não foi possível carregar os membros.'
+      );
+    }
+
+    membros = Array.isArray(dados.membros)
+      ? dados.membros
+      : [];
+
+    render(membros);
+
+  }catch(erro){
+    console.error(erro);
+
+    document.getElementById('contador').textContent = '';
+
+    lista.innerHTML = `
+      <div class="erro">
+        Não foi possível carregar os membros agora.
+      </div>
+    `;
+  }
+}
+
+carregar();
+</script>
+
+</body>
+</html>
