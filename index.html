@@ -46,7 +46,7 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--fundo-pagina);
       color: var(--texto-escuro);
-      padding-bottom: 96px;
+      padding-bottom: calc(132px + env(safe-area-inset-bottom));
     }
 
     .app {
@@ -710,6 +710,111 @@
       .botao-sair{min-height:34px;padding:0 9px}
     }
 
+
+    /* ACESSO RÁPIDO OFICIAL: INÍCIO · AVISOS · MAIS */
+    .menu-inferior {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      min-height: 78px;
+      padding: 6px 12px calc(6px + env(safe-area-inset-bottom));
+      background: linear-gradient(135deg, #06141a, #091c24);
+      border: 1px solid rgba(255,255,0,.12);
+      border-bottom: 0;
+    }
+    .menu-item {
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 11px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .menu-item span { font-size: 23px; line-height: 1; }
+    .menu-item.ativo { color: var(--dourado); font-weight: 800; }
+    .menu-item:focus-visible {
+      outline: 2px solid var(--dourado);
+      outline-offset: -4px;
+      border-radius: 12px;
+    }
+    .home-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 14px 14px calc(14px + env(safe-area-inset-bottom));
+      background: rgba(0,0,0,.72);
+    }
+    .home-overlay.aberto { display: flex; }
+    .home-painel {
+      width: min(560px, 100%);
+      max-height: min(78vh, 720px);
+      overflow: auto;
+      padding: 18px;
+      border: 1px solid rgba(255,255,0,.32);
+      border-radius: 24px;
+      background: #071a30;
+      color: #fff;
+      box-shadow: 0 20px 70px rgba(0,0,0,.55);
+    }
+    .home-painel-topo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .home-painel-topo h2 { color: #fff; font-size: 22px; }
+    .home-fechar {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border: 0;
+      border-radius: 12px;
+      background: #102b4c;
+      color: #fff;
+      font-size: 25px;
+      cursor: pointer;
+    }
+    .home-links-modulos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .home-links-modulos a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      background: #0b2039;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .home-links-modulos a span { font-size: 22px; }
+    .home-painel-aviso p { color: #fff; font-size: 14px; line-height: 1.6; }
+    .home-link-agenda {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 13px;
+      background: #0b2039;
+      color: #ffff00;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    body.home-modal-aberto { overflow: hidden; }
+    @media (max-width: 390px) {
+      body { padding-bottom: calc(124px + env(safe-area-inset-bottom)); }
+      .home-links-modulos { grid-template-columns: 1fr; }
+    }
+
   </style>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="mobile-web-app-capable" content="yes">
@@ -822,7 +927,7 @@
 
 
 
-    <section class="modulos">
+    <section class="modulos" id="modulos">
 
 
       <!-- AGENDA -->
@@ -1054,83 +1159,96 @@
      MENU INFERIOR
 =================================== -->
 
-<nav class="menu-inferior">
-
-
-  <a
-    href="#"
-    class="menu-item ativo"
-  >
-
-    <span>
-      🏠
-    </span>
-
+<nav class="menu-inferior" aria-label="Acesso rápido principal">
+  <a href="./index.html" class="menu-item ativo" aria-current="page">
+    <span>🏠</span>
     Início
-
   </a>
-
-
-  <a
-    href="agenda.html"
-    class="menu-item"
-  >
-
-    <span>
-      📅
-    </span>
-
-    Agenda
-
-  </a>
-
-
-  <a
-    href="ministerios.html"
-    class="menu-item"
-  >
-
-    <span>
-      ▦
-    </span>
-
-    Ministérios
-
-  </a>
-
-
-  <a
-    href="#"
-    class="menu-item"
-  >
-
-    <span>
-      🔔
-    </span>
-
+  <button type="button" class="menu-item" id="abrirAvisosHome" aria-haspopup="dialog" aria-controls="painelAvisosHome">
+    <span>🔔</span>
     Avisos
-
-  </a>
-
-
-  <a
-    href="#"
-    class="menu-item"
-  >
-
-    <span>
-      ☰
-    </span>
-
+  </button>
+  <button type="button" class="menu-item" id="abrirMaisHome" aria-haspopup="dialog" aria-controls="painelMaisHome">
+    <span>☰</span>
     Mais
-
-  </a>
-
-
+  </button>
 </nav>
+
+<div class="home-overlay" id="painelMaisHome" role="dialog" aria-modal="true" aria-labelledby="tituloMaisHome">
+  <section class="home-painel">
+    <header class="home-painel-topo">
+      <h2 id="tituloMaisHome">Todos os módulos</h2>
+      <button type="button" class="home-fechar" id="fecharMaisHome" aria-label="Fechar menu">×</button>
+    </header>
+    <div class="home-links-modulos">
+      <a href="./agenda.html"><span>📅</span>Agenda</a>
+      <a href="./louvor.html"><span>🎵</span>Louvor</a>
+      <a href="./midia.html"><span>📱</span>Mídia</a>
+      <a href="./estudos.html"><span>📖</span>Estudos Bíblicos</a>
+      <a href="./ministerios.html"><span>🤝</span>Ministérios</a>
+      <a href="./membros.html"><span>👥</span>Membros</a>
+      <a href="./secretaria.html"><span>🗂️</span>Secretaria</a>
+      <a href="./index.html#modulos"><span>⚡</span>Acesso rápido</a>
+    </div>
+  </section>
+</div>
+
+<div class="home-overlay" id="painelAvisosHome" role="dialog" aria-modal="true" aria-labelledby="tituloAvisosHome">
+  <section class="home-painel home-painel-aviso">
+    <header class="home-painel-topo">
+      <h2 id="tituloAvisosHome">Avisos da C.A.R.A.</h2>
+      <button type="button" class="home-fechar" id="fecharAvisosHome" aria-label="Fechar avisos">×</button>
+    </header>
+    <p>Consulte a Agenda para acompanhar os cultos, estudos, reuniões e eventos da comunidade.</p>
+    <a class="home-link-agenda" href="./agenda.html">📅 Abrir Agenda <span>›</span></a>
+  </section>
+</div>
 
 
 <script>
+(function configurarAcessoRapidoHomeCARA(){
+  const mais = document.getElementById('painelMaisHome');
+  const avisos = document.getElementById('painelAvisosHome');
+  const abrirMais = document.getElementById('abrirMaisHome');
+  const fecharMais = document.getElementById('fecharMaisHome');
+  const abrirAvisos = document.getElementById('abrirAvisosHome');
+  const fecharAvisos = document.getElementById('fecharAvisosHome');
+
+  function abrir(painel, foco) {
+    mais.classList.remove('aberto');
+    avisos.classList.remove('aberto');
+    painel.classList.add('aberto');
+    document.body.classList.add('home-modal-aberto');
+    foco.focus();
+  }
+  function fechar(painel, retorno) {
+    painel.classList.remove('aberto');
+    document.body.classList.remove('home-modal-aberto');
+    retorno.focus();
+  }
+
+  abrirMais.addEventListener('click', () => abrir(mais, fecharMais));
+  fecharMais.addEventListener('click', () => fechar(mais, abrirMais));
+  abrirAvisos.addEventListener('click', () => abrir(avisos, fecharAvisos));
+  fecharAvisos.addEventListener('click', () => fechar(avisos, abrirAvisos));
+
+  [mais, avisos].forEach(painel => {
+    painel.addEventListener('click', event => {
+      if (event.target === painel) {
+        const retorno = painel === mais ? abrirMais : abrirAvisos;
+        fechar(painel, retorno);
+      }
+    });
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      if (mais.classList.contains('aberto')) fechar(mais, abrirMais);
+      if (avisos.classList.contains('aberto')) fechar(avisos, abrirAvisos);
+    }
+  });
+})();
+
 const API_SESSAO_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 
 function obterUsuarioLocalCARA(){
