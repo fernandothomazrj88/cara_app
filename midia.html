@@ -8,15 +8,16 @@
 <link rel="icon" href="./icon-192.png"><link rel="apple-touch-icon" href="./icon-192.png">
 <style>
 :root{--n:#051326;--y:#ffff00;--c:#0b2039;--c2:#0e2948;--m:#aebdce}
-*{box-sizing:border-box} body{margin:0;background:var(--n);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;padding-bottom:105px}
-.hero{width:100%;aspect-ratio:1900/800;background:var(--n) url("./banner-midia.png") center/contain no-repeat;border-bottom:3px solid var(--y)}
+*{box-sizing:border-box} body{margin:0;background:var(--n);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;padding-bottom:120px}
+.hero{position:relative;width:100%;aspect-ratio:1900/800;min-height:150px;max-height:620px;background:var(--n) url("./banner-midia.png") center/contain no-repeat;border-bottom:3px solid var(--y)}
+.hero-back{position:absolute;top:12px;left:14px;z-index:5;display:inline-flex;align-items:center;gap:7px;padding:10px 15px;border:1px solid var(--y);border-radius:13px;background:#051326eF;color:var(--y);font-weight:900;text-decoration:none;box-shadow:0 6px 18px #0005}.hero-back:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .wrap{width:min(1120px,calc(100% - 28px));margin:auto} .intro{padding:28px 0 6px} .intro h1{margin:0 0 7px;font-size:clamp(25px,4vw,35px)} .intro p{margin:0;color:var(--m);line-height:1.5}
 .section{margin-top:28px} .ey{font-size:11px;font-weight:900;letter-spacing:1.8px;color:var(--y);margin-bottom:5px} .section h2{margin:0 0 14px;font-size:22px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
 .card{display:flex;align-items:center;gap:14px;min-height:100px;padding:17px;border-radius:19px;background:linear-gradient(145deg,var(--c2),var(--c));border:1px solid rgba(255,255,255,.09);color:#fff;text-decoration:none;box-shadow:0 10px 24px #0003;cursor:pointer}
 .ico{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;border-radius:15px;background:#ffff0015;border:1px solid #ffff0029;font-size:27px} .txt{flex:1} .txt strong{display:block;margin-bottom:5px} .txt span{display:block;color:var(--m);font-size:13px;line-height:1.35} .arr{font-size:25px;color:var(--y)} .badge{display:inline-block;margin-top:7px;padding:4px 8px;border-radius:999px;background:#ffff0012;color:#e7e77c;font-size:9px;font-weight:900}
-.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:900px;min-height:82px;padding-bottom:env(safe-area-inset-bottom);background:linear-gradient(135deg,#06141a,#091c24);display:grid;grid-template-columns:repeat(5,1fr);border-radius:24px 24px 0 0;box-shadow:0 -6px 24px #0003;z-index:50}
-.bottom a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#eee;text-decoration:none;font-size:10px} .bottom b{font-size:23px;line-height:1;font-weight:normal} .bottom .active{color:var(--y);font-weight:800}
+.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:900px;min-height:76px;padding:5px 8px env(safe-area-inset-bottom);background:linear-gradient(135deg,#06141a,#091c24);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-radius:24px 24px 0 0;box-shadow:0 -6px 24px #0005;z-index:50;border:1px solid #ffff0014}
+.bottom a,.bottom button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#eee;text-decoration:none;font:inherit;font-size:11px;border:0;background:transparent;cursor:pointer;min-width:0}.bottom b{font-size:23px;line-height:1;font-weight:normal}.bottom .active{color:var(--y);font-weight:900}.bottom a:focus-visible,.bottom button:focus-visible{outline:2px solid var(--y);outline-offset:-4px;border-radius:12px}
 .fullview{position:fixed;inset:0;background:var(--n);z-index:70;display:none;overflow:auto;padding-bottom:105px} .fullview.open{display:block}
 .viewhead{position:sticky;top:0;z-index:3;background:#051326f2;backdrop-filter:blur(10px);border-bottom:1px solid #ffffff18} .viewheadin{width:min(1120px,calc(100% - 28px));margin:auto;display:flex;align-items:center;gap:14px;padding:15px 0}
 .back{border:0;background:#102b4c;color:#fff;width:44px;height:44px;border-radius:14px;font-size:24px;cursor:pointer} .vtitle h2{margin:0;font-size:21px} .vtitle p{margin:3px 0 0;color:var(--m);font-size:12px}
@@ -69,9 +70,45 @@
 @media(max-width:520px){.equipe-acesso{align-items:flex-start}.equipe-acesso .login-equipe{margin-top:2px}}
 
 .agendamento-overlay{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:18px;z-index:95}.agendamento-overlay.open{display:flex}.agendamento-sheet{width:min(620px,100%);max-height:90vh;overflow:auto;background:#081a30;border:1px solid #ffff0030;border-radius:24px;padding:22px;box-shadow:0 20px 60px #0008}.agendamento-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.agendamento-top h3{margin:0;font-size:22px}.agendamento-top p{margin:5px 0 0;color:#aebdce;font-size:13px}.agendamento-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.agendamento-sheet label{display:block;color:#cbd8e5;font-size:12px;font-weight:800}.agendamento-sheet input,.agendamento-sheet select,.agendamento-sheet textarea{display:block;width:100%;margin-top:6px;padding:12px;border-radius:12px;border:1px solid #ffffff18;background:#071a30;color:#fff;font:inherit;outline:none}.agendamento-sheet textarea{resize:vertical}.agendamento-acoes{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.btn-agendar{border:0;border-radius:13px;padding:12px 15px;background:#ffff00;color:#061326;font-weight:950;cursor:pointer}.agendamento-status{margin-top:10px;min-height:18px;color:#cbd8e5;font-size:12px}@media(max-width:600px){.agendamento-grid{grid-template-columns:1fr}.agendamento-overlay{padding:10px}.agendamento-sheet{max-height:94vh}}
+
+.fundamento-modulo{width:min(1120px,calc(100% - 28px));margin:16px auto 0;padding:0;border:1px solid #ffff0055;border-radius:20px;overflow:hidden;background:linear-gradient(110deg,#061321,#0b2039);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:118px}
+.fundamento-texto{padding:18px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.fundamento-texto strong{font-size:clamp(17px,2vw,24px);line-height:1.3;color:#fff}
+.fundamento-texto strong span{color:var(--y);font-style:italic}
+.fundamento-texto p{margin:7px 0 0;color:#e1eaf4;font-size:clamp(12px,1.3vw,16px);line-height:1.45;font-style:italic}
+.fundamento-texto small{display:block;margin-top:7px;color:var(--y);font-size:14px}
+.fundamento-imagem{min-height:118px;background:#061321 url("./banner-midia.png") right center/cover no-repeat;mask-image:linear-gradient(90deg,transparent 0%,#000 35%)}
+.mais-overlay{position:fixed;inset:0;z-index:110;background:#000b;display:none;align-items:flex-end;justify-content:center;padding:14px}
+.mais-overlay.open{display:flex}
+.mais-painel{width:min(560px,100%);max-height:min(78vh,720px);overflow:auto;background:#071a30;border:1px solid #ffff0040;border-radius:24px;padding:18px;box-shadow:0 20px 70px #0009}
+.mais-topo{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.mais-topo h2{margin:0;color:#fff;font-size:22px}
+.mais-fechar{width:40px;height:40px;border:0;border-radius:12px;background:#102b4c;color:#fff;font-size:24px;cursor:pointer}
+.mais-grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.mais-grade a{display:flex;align-items:center;gap:10px;padding:13px;border-radius:13px;background:#0b2039;border:1px solid #ffffff14;color:#fff;text-decoration:none;font-weight:800;font-size:13px}
+.mais-grade a span{font-size:21px}.mais-grade a:active{border-color:#ffff00}
+body.mais-aberto{overflow:hidden}
+@media(max-width:720px){
+ .hero{aspect-ratio:1900/800;min-height:0;max-height:none;background-position:center;background-size:contain}
+ .hero-back{top:9px;left:9px;padding:8px 11px;font-size:12px}
+ .fundamento-modulo{grid-template-columns:1fr;min-height:0}
+ .fundamento-texto{padding:18px 16px}
+ .fundamento-imagem{min-height:78px;background-position:right 58%;mask-image:linear-gradient(0deg,#000 0%,#000 100%)}
+ .bottom{min-height:72px;border-radius:19px 19px 0 0}
+ .mais-grade{grid-template-columns:1fr 1fr}
+}
+
 </style></head>
 <body>
-<header class="hero"></header>
+<header class="hero" aria-label="Mídia Social da C.A.R.A."><a class="hero-back" href="./index.html" aria-label="Voltar para a página inicial">← Início</a></header>
+<section class="fundamento-modulo" aria-label="Fundamento bíblico do Ministério de Mídia">
+  <div class="fundamento-texto">
+    <strong>Comunicando a verdade <span>que restaura!</span></strong>
+    <p>“E disse-lhes: Ide por todo o mundo e pregai o evangelho a toda criatura.”</p>
+    <small>Marcos 16:15</small>
+  </div>
+  <div class="fundamento-imagem" role="img" aria-label="Bíblia e recursos de comunicação"></div>
+</section>
 <main class="wrap">
 <section class="intro"><h1>Central da Mídia</h1><p>Conteúdos, artes, comunicação e recursos do Ministério de Mídia da C.A.R.A.</p></section>
 <section class="section"><div class="ey">PARA TODOS</div><h2>Área Pública</h2><div class="grid">
@@ -92,7 +129,9 @@
 <a class="card equipe-card" href="#" id="abrirIdeias"><div class="ico">💡</div><div class="txt"><strong>Banco de Ideias</strong><span>Ideias para conteúdos e novas ações.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
 <a class="card placeholder equipe-card" href="#" data-t="Transmissão" data-d="Central de apoio às transmissões dos cultos e eventos, com organização operacional e recursos necessários."><div class="ico">📡</div><div class="txt"><strong>Transmissão</strong><span>Operação e recursos para transmissões.</span><em class="badge">EQUIPE DE MÍDIA</em></div><div class="arr">›</div></a>
 </div></section></main>
-<nav class="bottom"><a href="./index.html"><b>🏠</b>Início</a><a href="./agenda.html"><b>📅</b>Agenda</a><a href="./ministerios.html"><b>▦</b>Ministérios</a><a href="#"><b>🔔</b>Avisos</a><a class="active" href="./midia.html"><b>📱</b>Mídia</a></nav>
+<nav class="bottom" aria-label="Acesso rápido"><a href="./index.html"><b>🏠</b>Início</a><button type="button" id="abrirAvisosRapido"><b>🔔</b>Avisos</button><button type="button" id="abrirMenuMais" aria-haspopup="dialog" aria-controls="menuMais"><b>☰</b>Mais</button></nav>
+<div class="mais-overlay" id="menuMais" role="dialog" aria-modal="true" aria-labelledby="menuMaisTitulo"><div class="mais-painel"><div class="mais-topo"><h2 id="menuMaisTitulo">Acesso rápido aos módulos</h2><button class="mais-fechar" id="fecharMenuMais" type="button" aria-label="Fechar menu">×</button></div><div class="mais-grade"><a href="./agenda.html"><span>📅</span>Agenda</a><a href="./louvor.html"><span>🎵</span>Louvor</a><a href="./midia.html"><span>📱</span>Mídia</a><a href="./estudos.html"><span>📖</span>Estudos Bíblicos</a><a href="./ministerios.html"><span>▦</span>Ministérios</a><a href="./membros.html"><span>👥</span>Membros</a><a href="./secretaria.html"><span>🗂️</span>Secretaria</a><a href="#" id="abrirAvisosMenu"><span>🔔</span>Avisos</a></div></div></div>
+<div class="mais-overlay" id="avisosRapidos" role="dialog" aria-modal="true" aria-labelledby="avisosTitulo"><div class="mais-painel"><div class="mais-topo"><h2 id="avisosTitulo">Avisos da C.A.R.A.</h2><button class="mais-fechar" id="fecharAvisosRapidos" type="button" aria-label="Fechar avisos">×</button></div><div class="msg">A área de Avisos será conectada à Base Central na próxima etapa. Por enquanto, consulte a programação pela Agenda.</div><a class="purposeCta" href="./agenda.html">Abrir Agenda ›</a></div></div>
 
 <div class="fullview" id="catalogView"><div class="viewhead"><div class="viewheadin"><button class="back" data-close="catalogView">‹</button><div class="vtitle"><h2>Artes dos Quadros</h2><p>Escolha uma arte que fale ao seu coração.</p></div></div></div><div class="catalog" id="catalogo"><div class="msg">Carregando artes...</div></div></div>
 
@@ -131,6 +170,30 @@
 </div>
 <div class="overlay" id="ov"><div class="sheet"><div class="sheettop"><h3 id="st"></h3><button class="close" id="cl">×</button></div><p id="sd"></p><div class="status">Esta função já faz parte da estrutura do módulo e será conectada à base de dados na próxima etapa.</div></div></div>
 
+<script>
+(function configurarMenuRapidoCARA(){
+ const menu=document.getElementById('menuMais');
+ const abrir=document.getElementById('abrirMenuMais');
+ const fechar=document.getElementById('fecharMenuMais');
+ if(!menu||!abrir||!fechar)return;
+ function abrirMenu(){menu.classList.add('open');document.body.classList.add('mais-aberto');fechar.focus()}
+ function fecharMenu(){menu.classList.remove('open');document.body.classList.remove('mais-aberto');abrir.focus()}
+ abrir.addEventListener('click',abrirMenu);
+ fechar.addEventListener('click',fecharMenu);
+ menu.addEventListener('click',e=>{if(e.target===menu)fecharMenu()});
+ const avisos=document.getElementById('avisosRapidos');
+ const abrirAvisos=document.getElementById('abrirAvisosRapido');
+ const abrirAvisosMenu=document.getElementById('abrirAvisosMenu');
+ const fecharAvisos=document.getElementById('fecharAvisosRapidos');
+ function mostrarAvisos(){menu.classList.remove('open');avisos.classList.add('open');document.body.classList.add('mais-aberto');fecharAvisos.focus()}
+ function ocultarAvisos(){avisos.classList.remove('open');document.body.classList.remove('mais-aberto');if(abrirAvisos)abrirAvisos.focus()}
+ if(abrirAvisos)abrirAvisos.addEventListener('click',mostrarAvisos);
+ if(abrirAvisosMenu)abrirAvisosMenu.addEventListener('click',e=>{e.preventDefault();mostrarAvisos()});
+ if(fecharAvisos)fecharAvisos.addEventListener('click',ocultarAvisos);
+ if(avisos)avisos.addEventListener('click',e=>{if(e.target===avisos)ocultarAvisos()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(menu.classList.contains('open'))fecharMenu();if(avisos.classList.contains('open'))ocultarAvisos()}});
+})();
+</script>
 <script>
 const API_MIDIA='https://script.google.com/macros/s/AKfycbxqc0KdWNFA9Ouvu4M-V9jiTwPquLZyuBeDcyAz6T_CEE6YityPhL_ctZfV6ZdXGkj0/exec';
 
