@@ -37,8 +37,11 @@
     .topo {
       position: relative;
       width: 100%;
-      height: clamp(220px, 31vw, 390px);
-      background: url("./banner-agenda.png") center center / cover no-repeat;
+      aspect-ratio: 8 / 3;
+      min-height: 0;
+      max-height: 620px;
+      background: url("./banner-agenda.png") center center / contain no-repeat;
+      background-color: var(--azul);
       border-bottom: 3px solid var(--amarelo);
     }
 
@@ -54,7 +57,8 @@
       padding: 0 13px;
       border: 1px solid rgba(255,255,0,.55);
       border-radius: 11px;
-      background: rgba(5,19,38,.84);
+      background: #051326;
+      opacity: 1;
       color: var(--amarelo);
       text-decoration: none;
       font-weight: 800;
@@ -305,6 +309,7 @@
       .topo {
         height: auto;
         aspect-ratio: 8 / 3;
+        min-height: 0;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -335,15 +340,125 @@
       .modal {
         padding: 10px;
       }
+      .fundamento { width: calc(100% - 22px); padding: 17px 14px; border-radius: 16px; }
+      .acesso-rapido { min-height: 72px; border-radius: 19px 19px 0 0; }
+      .mais-grade { grid-template-columns: repeat(2,minmax(0,1fr)); }
+
     }
+
+    .fundamento {
+      width: min(100% - 28px, 1120px);
+      margin: 16px auto 0;
+      padding: 20px 24px;
+      border: 1px solid rgba(255,255,0,.55);
+      border-radius: 20px;
+      background: linear-gradient(110deg, #061321, #0b2039);
+      text-align: center;
+      box-shadow: 0 10px 28px rgba(0,0,0,.18);
+    }
+    .fundamento strong {
+      display: block;
+      color: #fff;
+      font-size: clamp(17px, 2.2vw, 24px);
+      line-height: 1.35;
+    }
+    .fundamento strong span { color: var(--amarelo); font-style: italic; }
+    .fundamento p {
+      margin: 8px auto 0;
+      max-width: 850px;
+      color: #e5edf7;
+      font-size: clamp(12px, 1.35vw, 16px);
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .fundamento small {
+      display: block;
+      margin-top: 8px;
+      color: var(--amarelo);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* Acesso rápido oficial C.A.R.A. */
+    body { padding-bottom: 112px; }
+    .acesso-rapido {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      z-index: 900;
+      width: min(100%, 900px);
+      min-height: 76px;
+      padding: 6px 10px env(safe-area-inset-bottom);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      background: linear-gradient(135deg, #06141a, #091c24);
+      border: 1px solid rgba(255,255,0,.12);
+      border-bottom: 0;
+      border-radius: 24px 24px 0 0;
+      box-shadow: 0 -6px 24px rgba(0,0,0,.35);
+    }
+    .acesso-rapido a, .acesso-rapido button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      min-width: 0;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      text-decoration: none;
+      font: inherit;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .acesso-rapido .icone { font-size: 23px; line-height: 1; }
+    .acesso-rapido .ativo { color: var(--amarelo); font-weight: 900; }
+    .acesso-rapido a:focus-visible, .acesso-rapido button:focus-visible {
+      outline: 2px solid var(--amarelo); outline-offset: -4px; border-radius: 12px;
+    }
+    .mais-overlay {
+      position: fixed; inset: 0; z-index: 1200; display: none;
+      align-items: flex-end; justify-content: center; padding: 14px;
+      background: rgba(0,0,0,.72);
+    }
+    .mais-overlay.aberto { display: flex; }
+    .mais-painel {
+      width: min(560px,100%); max-height: min(78vh,720px); overflow: auto;
+      padding: 18px; border-radius: 24px; border: 1px solid #ffff0040;
+      background: #071a30; box-shadow: 0 20px 70px #0009;
+    }
+    .mais-topo { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
+    .mais-topo h2 { margin:0; color:#fff; font-size:22px; }
+    .mais-fechar {
+      width:40px; height:40px; border:0; border-radius:12px;
+      background:#102b4c; color:#fff; font-size:24px; cursor:pointer;
+    }
+    .mais-grade { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+    .mais-grade a {
+      display:flex; align-items:center; gap:10px; padding:13px; border-radius:13px;
+      background:#0b2039; border:1px solid #ffffff14; color:#fff;
+      text-decoration:none; font-weight:800; font-size:13px;
+    }
+    .mais-grade a span { font-size:21px; }
+    .painel-aviso { color:#ffff00; line-height:1.55; font-size:14px; padding:12px 2px; }
+    body.menu-aberto { overflow:hidden; }
+
   </style>
 </head>
 
 <body>
 <div class="app">
   <header class="topo" aria-label="Agenda e Eventos">
-    <a class="voltar" href="./index.html">← Início</a>
+    <a class="voltar" href="./index.html" aria-label="Voltar para o início">← Início</a>
   </header>
+
+  <section class="fundamento" aria-label="Fundamento bíblico da Agenda">
+    <strong>Há um tempo determinado <span>para cada propósito!</span></strong>
+    <p>“Tudo tem o seu tempo determinado, e há tempo para todo propósito debaixo do céu.”</p>
+    <small>Eclesiastes 3:1</small>
+  </section>
 
   <main>
     <section class="saudacao">
@@ -361,6 +476,36 @@
   </main>
 </div>
 
+<nav class="acesso-rapido" aria-label="Acesso rápido">
+  <a href="./index.html"><span class="icone">🏠</span>Início</a>
+  <button type="button" id="abrirAvisos"><span class="icone">🔔</span>Avisos</button>
+  <button type="button" id="abrirMais" aria-haspopup="dialog" aria-controls="menuMais"><span class="icone">☰</span>Mais</button>
+</nav>
+
+<div class="mais-overlay" id="menuMais" role="dialog" aria-modal="true" aria-labelledby="menuMaisTitulo">
+  <div class="mais-painel">
+    <div class="mais-topo"><h2 id="menuMaisTitulo">Acesso rápido aos módulos</h2><button class="mais-fechar" id="fecharMais" type="button" aria-label="Fechar menu">×</button></div>
+    <div class="mais-grade">
+      <a href="./agenda.html"><span>📅</span>Agenda</a>
+      <a href="./louvor.html"><span>🎵</span>Louvor</a>
+      <a href="./midia.html"><span>📱</span>Mídia</a>
+      <a href="./estudos.html"><span>📖</span>Estudos Bíblicos</a>
+      <a href="./ministerios.html"><span>▦</span>Ministérios</a>
+      <a href="./membros.html"><span>👥</span>Membros</a>
+      <a href="./secretaria.html"><span>🗂️</span>Secretaria</a>
+      <a href="#" id="abrirAvisosNoMenu"><span>🔔</span>Avisos</a>
+    </div>
+  </div>
+</div>
+
+<div class="mais-overlay" id="painelAvisos" role="dialog" aria-modal="true" aria-labelledby="avisosTitulo">
+  <div class="mais-painel">
+    <div class="mais-topo"><h2 id="avisosTitulo">Avisos da C.A.R.A.</h2><button class="mais-fechar" id="fecharAvisos" type="button" aria-label="Fechar avisos">×</button></div>
+    <div class="painel-aviso">Consulte a programação atualizada pela Agenda. A área de avisos centralizados será conectada à Base Central em uma próxima etapa.</div>
+    <a class="card-evento" href="./agenda.html" style="display:flex;justify-content:space-between;align-items:center;text-decoration:none">📅 Abrir Agenda <span class="seta">›</span></a>
+  </div>
+</div>
+
 <div id="modalEvento" class="modal" aria-hidden="true">
   <div class="modal-card">
     <div class="modal-cabecalho">
@@ -372,6 +517,41 @@
 </div>
 
 <script>
+(function configurarAcessoRapidoCARA(){
+  const menu = document.getElementById('menuMais');
+  const avisos = document.getElementById('painelAvisos');
+  const abrirMais = document.getElementById('abrirMais');
+  const fecharMais = document.getElementById('fecharMais');
+  const abrirAvisos = document.getElementById('abrirAvisos');
+  const abrirAvisosMenu = document.getElementById('abrirAvisosNoMenu');
+  const fecharAvisos = document.getElementById('fecharAvisos');
+  function abrirPainel(painel, foco) {
+    menu.classList.remove('aberto');
+    avisos.classList.remove('aberto');
+    painel.classList.add('aberto');
+    document.body.classList.add('menu-aberto');
+    foco.focus();
+  }
+  function fecharPainel(painel, retorno) {
+    painel.classList.remove('aberto');
+    document.body.classList.remove('menu-aberto');
+    retorno.focus();
+  }
+  abrirMais.addEventListener('click', () => abrirPainel(menu, fecharMais));
+  fecharMais.addEventListener('click', () => fecharPainel(menu, abrirMais));
+  menu.addEventListener('click', e => { if (e.target === menu) fecharPainel(menu, abrirMais); });
+  abrirAvisos.addEventListener('click', () => abrirPainel(avisos, fecharAvisos));
+  abrirAvisosMenu.addEventListener('click', e => { e.preventDefault(); abrirPainel(avisos, fecharAvisos); });
+  fecharAvisos.addEventListener('click', () => fecharPainel(avisos, abrirAvisos));
+  avisos.addEventListener('click', e => { if (e.target === avisos) fecharPainel(avisos, abrirAvisos); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (menu.classList.contains('aberto')) fecharPainel(menu, abrirMais);
+      if (avisos.classList.contains('aberto')) fecharPainel(avisos, abrirAvisos);
+    }
+  });
+})();
+
 const API_CARA =
   'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 
