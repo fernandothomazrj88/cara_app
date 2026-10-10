@@ -226,8 +226,8 @@
       padding:4px 7px;
       border-radius:8px;
       background:#ffff0010;
-      color:#dce7f2;
-      font-size:9px;
+      color:var(--y);
+      font-size:10px;
       font-weight:800;
     }
 
@@ -378,14 +378,14 @@
       padding:7px 10px;
       border-radius:10px;
       background:#ffff0010;
-      color:#fff;
-      font-size:12px;
+      color:var(--y);
+      font-size:13px;
       font-weight:800;
     }
 
     .observacao{
-      color:var(--muted);
-      font-size:13px;
+      color:var(--y);
+      font-size:14px;
       line-height:1.5;
     }
 
@@ -475,15 +475,15 @@
 
     .ficha-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .campo{padding:12px;border-radius:12px;background:#081a30;border:1px solid #ffffff10}
-    .campo-label{color:#8fa6bd;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
-    .campo-valor{color:#fff;font-size:13px;font-weight:700;line-height:1.35;word-break:break-word}
+    .campo-label{color:var(--y);font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+    .campo-valor{color:var(--y);font-size:14px;font-weight:700;line-height:1.35;word-break:break-word}
     .ficha-bloco{margin-top:14px;padding:16px;border-radius:17px;background:#0c223b;border:1px solid #ffffff10}
     .ficha-bloco-titulo{color:var(--y);font-size:10px;font-weight:900;letter-spacing:1.6px;margin-bottom:10px}
     .ministerio-ficha{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff0d}
     .ministerio-ficha:last-child{border-bottom:0}
     .ministerio-nome{font-weight:900;font-size:13px}
-    .ministerio-funcao{color:#aebdce;font-size:11px;margin-top:3px}
-    .privado-aviso{padding:13px;border-radius:13px;background:#ffff0010;border:1px solid #ffff0025;color:#dfe9f4;font-size:12px;line-height:1.45}
+    .ministerio-funcao{color:var(--y);font-size:12px;margin-top:3px}
+    .privado-aviso{padding:13px;border-radius:13px;background:#ffff0010;border:1px solid #ffff0025;color:var(--y);font-size:13px;line-height:1.45}
     .botao-login{display:inline-flex;align-items:center;gap:8px;margin-top:12px;min-height:42px;padding:0 14px;border:1px solid #ffffff25;border-radius:12px;background:#fff;color:#111;font-weight:900;cursor:pointer}
     .login-msg{margin-top:10px;color:#ffb5b5;font-size:12px}
     .acoes-ficha{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
@@ -498,10 +498,65 @@
     .foto-editor .avatar-grande{flex:0 0 110px;width:110px;height:110px}
     .foto-acoes{display:flex;flex-direction:column;gap:7px}
     .botao-foto{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 12px;border-radius:10px;background:#17385d;color:#fff;border:1px solid #ffffff20;font-weight:800;cursor:pointer}
-    .foto-ajuda{color:#8fa6bd;font-size:10px;line-height:1.4}
+    .foto-ajuda{color:var(--y);font-size:11px;line-height:1.4}
     .salvando{opacity:.65;pointer-events:none}
     .sucesso-msg{color:#b9ed69;font-size:12px;margin-top:8px}
     @media(max-width:600px){.ficha-grid{grid-template-columns:1fr}.foto-editor{align-items:flex-start;flex-direction:column}.foto-acoes{width:100%}}
+  
+    /* =========================================
+       CONTRASTE E LEGIBILIDADE — PERFIL DO MEMBRO
+       Títulos e nomes grandes: branco.
+       Informações menores: amarelo fluorescente.
+    ========================================= */
+    .sheet-top h2,
+    .perfil-nome,
+    .nome,
+    .ministerio-nome {
+      color: #ffffff;
+    }
+
+    .campo-label,
+    .campo-valor,
+    .ficha-bloco-titulo,
+    .secao-titulo,
+    .ministerio-funcao,
+    .observacao,
+    .foto-ajuda,
+    .tag,
+    .ministerio,
+    .privado-aviso {
+      color: #FFFF00;
+    }
+
+    .campo-label,
+    .ficha-bloco-titulo,
+    .secao-titulo {
+      font-size: 11px;
+    }
+
+    .campo-valor {
+      font-size: 14px;
+      line-height: 1.4;
+      font-weight: 800;
+    }
+
+    .ministerio,
+    .tag {
+      font-size: 12px;
+    }
+
+    .observacao,
+    .privado-aviso {
+      font-size: 13px;
+    }
+
+    /* Mantém botões com contraste forte e texto legível. */
+    .botao-editar,
+    .botao-login {
+      color: #071321;
+    }
+
+
   </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
