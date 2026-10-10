@@ -620,57 +620,31 @@ function iniciais(nome){
 }
 
 function normalizarFotoMembro(url){
-  const original = String(url || '').trim();
+  const original=String(url||'').trim();
   if(!original) return '';
-
   try{
-    const u = new URL(original);
-
-    // URLs do Google Drive/Drive UserContent:
-    // transforma em thumbnail, que é mais estável para <img> no navegador.
-    const id = u.searchParams.get('id');
-
-    if(id){
-      return 'https://drive.google.com/thumbnail?id=' +
-             encodeURIComponent(id) +
-             '&sz=w1000';
-    }
-
-    // Também aceita links no formato /file/d/ID/...
-    const match = u.pathname.match(/\/d\/([^/]+)/);
-    if(match && match[1]){
-      return 'https://drive.google.com/thumbnail?id=' +
-             encodeURIComponent(match[1]) +
-             '&sz=w1000';
-    }
-
+    const u=new URL(original);
+    const id=u.searchParams.get('id');
+    if(id) return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(id)+'&sz=w1000';
+    const parte=u.pathname.split('/d/')[1];
+    const idPath=parte?parte.split('/')[0]:'';
+    if(idPath) return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(idPath)+'&sz=w1000';
     return original;
-  }catch(e){
-    return original;
-  }
+  }catch(e){return original}
 }
 
 function renderAvatar(pessoa, grande=false){
-  const classe = grande ? 'avatar-grande' : 'avatar';
-  const foto = normalizarFotoMembro(pessoa.fotoUrl);
-
+  const classe=grande?'avatar-grande':'avatar';
+  const foto=normalizarFotoMembro(pessoa.fotoUrl);
   if(foto){
-    const inic = esc(iniciais(pessoa.nome));
-
+    const inic=esc(iniciais(pessoa.nome));
     return `
       <div class="${classe}">
-        <img
-          src="${esc(foto)}"
-          alt="Foto de ${esc(pessoa.nome)}"
-          loading="eager"
-          decoding="async"
-          referrerpolicy="no-referrer"
-          onerror="this.onerror=null;this.parentElement.innerHTML='${inic}';"
-        >
-      </div>
-    `;
+        <img src="${esc(foto)}" alt="Foto de ${esc(pessoa.nome)}"
+          loading="eager" decoding="async" referrerpolicy="no-referrer"
+          onerror="this.onerror=null;this.parentElement.innerHTML='${inic}';">
+      </div>`;
   }
-
   return `<div class="${classe}">${esc(iniciais(pessoa.nome))}</div>`;
 }
 
@@ -783,26 +757,15 @@ async function tentarCarregarFichaProtegida(id){
 
 async function entrarParaFicha(id){
   const token=localStorage.getItem('cara_sessao_token');
-  if(token){ await buscarFichaCompleta(id,token); return; }
 
-  const msg=document.getElementById('loginMsg');
-  if(msg) msg.textContent='Abrindo login do Google...';
+  // Reutiliza a sessão única da C.A.R.A.; não abre um login separado dentro do módulo.
+  if(token){
+    buscarFichaCompleta(id,token);
+    return;
+  }
 
-  iniciarLoginGoogle(async credential=>{
-    try{
-      const resposta=await postCentral({acao:'login',credential});
-      if(!resposta.sucesso || !resposta.token){
-        if(msg) msg.textContent=resposta.mensagem || 'Não foi possível iniciar sua sessão.';
-        return;
-      }
-      localStorage.setItem('cara_sessao_token',resposta.token);
-      localStorage.setItem('cara_usuario',JSON.stringify(resposta.usuario||{}));
-      await buscarFichaCompleta(id,resposta.token);
-    }catch(e){
-      console.error(e);
-      if(msg) msg.textContent='Não foi possível concluir o login.';
-    }
-  });
+  // Após autenticar, o usuário volta para Membros e pode abrir a ficha novamente.
+  location.href='./login.html?next='+encodeURIComponent('./membros.html');
 }
 
 async function buscarFichaCompleta(id,token){
