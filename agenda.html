@@ -340,63 +340,21 @@
       .modal {
         padding: 10px;
       }
-      .fundamento { width: calc(100% - 22px); padding: 17px 14px; border-radius: 16px; }
-      .acesso-rapido { min-height: 72px; border-radius: 19px 19px 0 0; }
-      .mais-grade { grid-template-columns: repeat(2,minmax(0,1fr)); }
-
-    }
-
-    .fundamento {
+    .fundamento-imagem {
       width: min(100% - 28px, 1220px);
       margin: 16px auto 0;
-      padding: 20px 24px;
       border: 1px solid rgba(255,255,0,.62);
       border-radius: 20px;
-      background:
-        radial-gradient(ellipse at 12% 50%, rgba(15,48,78,.72), transparent 48%),
-        linear-gradient(105deg, #04101e 0%, #0a1d32 54%, #061426 100%);
-      text-align: center;
-      box-shadow: 0 10px 28px rgba(0,0,0,.22);
-      position: relative;
       overflow: hidden;
+      background: #051326;
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
     }
-    .fundamento::after {
-      content: "";
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 3px;
-      background: var(--amarelo);
-      box-shadow: 0 0 12px rgba(255,255,0,.25);
-    }
-    .separador-conteudo {
+    .fundamento-imagem img {
+      display: block;
       width: 100%;
-      height: 3px;
-      margin-top: 16px;
-      background: var(--amarelo);
-      box-shadow: 0 0 10px rgba(255,255,0,.18);
+      height: auto;
     }
-    .fundamento strong {
-      display: block;
-      color: #fff;
-      font-size: clamp(17px, 2.2vw, 24px);
-      line-height: 1.35;
-    }
-    .fundamento strong span { color: var(--amarelo); font-style: italic; }
-    .fundamento p {
-      margin: 8px auto 0;
-      max-width: 850px;
-      color: #e5edf7;
-      font-size: clamp(12px, 1.35vw, 16px);
-      line-height: 1.5;
-      font-style: italic;
-    }
-    .fundamento small {
-      display: block;
-      margin-top: 8px;
-      color: var(--amarelo);
-      font-size: 14px;
-      font-weight: 700;
-    }
+
 
     /* Acesso rápido oficial C.A.R.A. */
     body { padding-bottom: 112px; }
@@ -473,10 +431,10 @@
     <a class="voltar" href="./index.html" aria-label="Voltar para o início">← Início</a>
   </header>
 
-  <section class="fundamento" aria-label="Fundamento bíblico da Agenda">
-    <strong>Há um tempo determinado <span>para cada propósito!</span></strong>
-    <p>“Tudo tem o seu tempo determinado, e há tempo para todo propósito debaixo do céu.”</p>
-    <small>Eclesiastes 3:1</small>
+  <section class="fundamento-imagem" aria-label="Fundamento bíblico da Agenda">
+    <img src="./banner-fundamento-agenda.png"
+         alt="Há um tempo determinado para cada propósito. Tudo tem o seu tempo determinado, e há tempo para todo propósito debaixo do céu. Eclesiastes 3:1."
+         loading="eager">
   </section>
   <div class="separador-conteudo" aria-hidden="true"></div>
 
