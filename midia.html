@@ -10,7 +10,7 @@
 :root{--n:#051326;--y:#ffff00;--c:#0b2039;--c2:#0e2948;--m:#aebdce}
 *{box-sizing:border-box} body{margin:0;background:var(--n);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;padding-bottom:120px}
 .hero{position:relative;width:100%;aspect-ratio:1900/800;min-height:150px;max-height:620px;background:var(--n) url("./banner-midia.png") center/contain no-repeat;border-bottom:3px solid var(--y)}
-.hero-back{position:absolute;top:12px;left:14px;z-index:5;display:inline-flex;align-items:center;gap:7px;padding:10px 15px;border:1px solid var(--y);border-radius:13px;background:#051326eF;color:var(--y);font-weight:900;text-decoration:none;box-shadow:0 6px 18px #0005}.hero-back:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.hero-back{position:absolute;top:12px;left:14px;z-index:5;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:118px;min-height:42px;padding:10px 15px;border:1px solid var(--y);border-radius:13px;background:#051326 !important;opacity:1;color:var(--y);font-weight:900;text-decoration:none;white-space:nowrap;box-shadow:0 6px 18px #0008}.hero-back:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .wrap{width:min(1120px,calc(100% - 28px));margin:auto} .intro{padding:28px 0 6px} .intro h1{margin:0 0 7px;font-size:clamp(25px,4vw,35px)} .intro p{margin:0;color:var(--m);line-height:1.5}
 .section{margin-top:28px} .ey{font-size:11px;font-weight:900;letter-spacing:1.8px;color:var(--y);margin-bottom:5px} .section h2{margin:0 0 14px;font-size:22px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
@@ -83,7 +83,7 @@
 body.mais-aberto{overflow:hidden}
 @media(max-width:720px){
  .hero{aspect-ratio:1900/800;min-height:0;max-height:none;background-position:center;background-size:contain}
- .hero-back{top:9px;left:9px;padding:8px 11px;font-size:12px}
+ .hero-back{top:9px;left:9px;min-width:112px;min-height:38px;padding:8px 11px;font-size:12px;background:#051326 !important}
  .bottom{min-height:72px;border-radius:19px 19px 0 0}
  .mais-grade{grid-template-columns:1fr 1fr}
 }
