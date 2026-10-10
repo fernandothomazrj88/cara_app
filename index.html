@@ -815,7 +815,105 @@
       .home-links-modulos { grid-template-columns: 1fr; }
     }
 
-  </style>
+  
+    /* IDENTIDADE INSTITUCIONAL C.A.R.A. */
+    .identidade-cara {
+      margin: 26px 0 30px;
+      padding: 22px;
+      border: 1px solid rgba(255,255,0,.24);
+      border-radius: 22px;
+      background: linear-gradient(145deg, #071a30, #0b2039);
+      box-shadow: 0 12px 30px rgba(0,0,0,.16);
+      color: #fff;
+    }
+    .identidade-cara-cabecalho {
+      margin: 0 0 18px;
+      padding-bottom: 13px;
+      border-bottom: 2px solid #FFFF00;
+    }
+    .identidade-cara-cabecalho h2 {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: clamp(21px, 2.5vw, 28px);
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .identidade-cara-cabecalho p {
+      margin: 7px 0 0;
+      color: #FFFF00;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+    .identidade-cara-blocos {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .identidade-cara-bloco {
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 15px;
+      background: #10243D;
+    }
+    .identidade-cara-bloco h3 {
+      margin: 0 0 8px;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: .8px;
+    }
+    .identidade-cara-bloco p {
+      margin: 0;
+      color: #FFFF00;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .identidade-cara-valores {
+      margin-top: 14px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 15px;
+      background: #10243D;
+    }
+    .identidade-cara-valores h3 {
+      margin: 0 0 13px;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: .8px;
+    }
+    .identidade-cara-lista {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 20px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .identidade-cara-lista li {
+      color: #FFFF00;
+      font-size: 13px;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+    .identidade-cara-lista .valor-emoji {
+      display: inline;
+      margin-right: 5px;
+      font-size: 16px;
+    }
+    @media (max-width: 600px) {
+      .identidade-cara { margin: 20px 0 24px; padding: 15px; border-radius: 18px; }
+      .identidade-cara-bloco, .identidade-cara-valores { padding: 13px; }
+      .identidade-cara-bloco p, .identidade-cara-lista li { font-size: 12px; }
+      .identidade-cara-lista { gap: 11px 12px; }
+    }
+    @media (max-width: 390px) {
+      .identidade-cara-lista { grid-template-columns: 1fr; }
+    }
+
+</style>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1146,6 +1244,39 @@
 
 
     </section>
+
+    <!-- IDENTIDADE INSTITUCIONAL C.A.R.A. -->
+    <section class="identidade-cara" aria-labelledby="identidadeCaraTitulo">
+      <header class="identidade-cara-cabecalho">
+        <h2 id="identidadeCaraTitulo">💛 Nossa Identidade</h2>
+        <p>O que nos move e quem somos</p>
+      </header>
+
+      <div class="identidade-cara-blocos">
+        <article class="identidade-cara-bloco">
+          <h3>🎯 MISSÃO</h3>
+          <p>Restaurar vidas por meio do amor e da verdade do Senhor Jesus Cristo, oferecendo um ambiente de cura, esperança e restauração à imagem e semelhança do Criador, fundamentados na Sua Palavra.</p>
+        </article>
+
+        <article class="identidade-cara-bloco">
+          <h3>👁️ VISÃO</h3>
+          <p>Ser uma comunidade acolhedora e comprometida com a verdade e o amor, sendo instrumentos nas mãos de Deus para a restauração espiritual e emocional das pessoas, por meio da pregação do Evangelho de Jesus Cristo.</p>
+        </article>
+      </div>
+
+      <section class="identidade-cara-valores" aria-labelledby="valoresCaraTitulo">
+        <h3 id="valoresCaraTitulo">💛 NOSSOS VALORES</h3>
+        <ul class="identidade-cara-lista">
+          <li><span class="valor-emoji">❤️</span>Amor incondicional de Jesus Cristo.</li>
+          <li><span class="valor-emoji">📖</span>Verdade Bíblica como fonte de libertação.</li>
+          <li><span class="valor-emoji">🤝</span>Unidade, comunhão e apoio mútuo.</li>
+          <li><span class="valor-emoji">✝️</span>Sagradas Escrituras como base da fé.</li>
+          <li><span class="valor-emoji">🕊️</span>Crença na Trindade: Pai, Filho e Espírito Santo.</li>
+          <li><span class="valor-emoji">🙏</span>Salvação pela fé em Jesus Cristo.</li>
+        </ul>
+      </section>
+    </section>
+
 
 
   </main>
