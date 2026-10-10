@@ -71,13 +71,6 @@
 
 .agendamento-overlay{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:18px;z-index:95}.agendamento-overlay.open{display:flex}.agendamento-sheet{width:min(620px,100%);max-height:90vh;overflow:auto;background:#081a30;border:1px solid #ffff0030;border-radius:24px;padding:22px;box-shadow:0 20px 60px #0008}.agendamento-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.agendamento-top h3{margin:0;font-size:22px}.agendamento-top p{margin:5px 0 0;color:#aebdce;font-size:13px}.agendamento-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.agendamento-sheet label{display:block;color:#cbd8e5;font-size:12px;font-weight:800}.agendamento-sheet input,.agendamento-sheet select,.agendamento-sheet textarea{display:block;width:100%;margin-top:6px;padding:12px;border-radius:12px;border:1px solid #ffffff18;background:#071a30;color:#fff;font:inherit;outline:none}.agendamento-sheet textarea{resize:vertical}.agendamento-acoes{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.btn-agendar{border:0;border-radius:13px;padding:12px 15px;background:#ffff00;color:#061326;font-weight:950;cursor:pointer}.agendamento-status{margin-top:10px;min-height:18px;color:#cbd8e5;font-size:12px}@media(max-width:600px){.agendamento-grid{grid-template-columns:1fr}.agendamento-overlay{padding:10px}.agendamento-sheet{max-height:94vh}}
 
-.fundamento-modulo{width:min(1120px,calc(100% - 28px));margin:16px auto 0;padding:0;border:1px solid #ffff0055;border-radius:20px;overflow:hidden;background:linear-gradient(110deg,#061321,#0b2039);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:118px}
-.fundamento-texto{padding:18px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.fundamento-texto strong{font-size:clamp(17px,2vw,24px);line-height:1.3;color:#fff}
-.fundamento-texto strong span{color:var(--y);font-style:italic}
-.fundamento-texto p{margin:7px 0 0;color:#e1eaf4;font-size:clamp(12px,1.3vw,16px);line-height:1.45;font-style:italic}
-.fundamento-texto small{display:block;margin-top:7px;color:var(--y);font-size:14px}
-.fundamento-imagem{min-height:118px;background:#061321 url("./banner-midia.png") right center/cover no-repeat;mask-image:linear-gradient(90deg,transparent 0%,#000 35%)}
 .mais-overlay{position:fixed;inset:0;z-index:110;background:#000b;display:none;align-items:flex-end;justify-content:center;padding:14px}
 .mais-overlay.open{display:flex}
 .mais-painel{width:min(560px,100%);max-height:min(78vh,720px);overflow:auto;background:#071a30;border:1px solid #ffff0040;border-radius:24px;padding:18px;box-shadow:0 20px 70px #0009}
@@ -91,9 +84,6 @@ body.mais-aberto{overflow:hidden}
 @media(max-width:720px){
  .hero{aspect-ratio:1900/800;min-height:0;max-height:none;background-position:center;background-size:contain}
  .hero-back{top:9px;left:9px;padding:8px 11px;font-size:12px}
- .fundamento-modulo{grid-template-columns:1fr;min-height:0}
- .fundamento-texto{padding:18px 16px}
- .fundamento-imagem{min-height:78px;background-position:right 58%;mask-image:linear-gradient(0deg,#000 0%,#000 100%)}
  .bottom{min-height:72px;border-radius:19px 19px 0 0}
  .mais-grade{grid-template-columns:1fr 1fr}
 }
@@ -101,14 +91,6 @@ body.mais-aberto{overflow:hidden}
 </style></head>
 <body>
 <header class="hero" aria-label="Mídia Social da C.A.R.A."><a class="hero-back" href="./index.html" aria-label="Voltar para a página inicial">← Início</a></header>
-<section class="fundamento-modulo" aria-label="Fundamento bíblico do Ministério de Mídia">
-  <div class="fundamento-texto">
-    <strong>Comunicando a verdade <span>que restaura!</span></strong>
-    <p>“E disse-lhes: Ide por todo o mundo e pregai o evangelho a toda criatura.”</p>
-    <small>Marcos 16:15</small>
-  </div>
-  <div class="fundamento-imagem" role="img" aria-label="Bíblia e recursos de comunicação"></div>
-</section>
 <main class="wrap">
 <section class="intro"><h1>Central da Mídia</h1><p>Conteúdos, artes, comunicação e recursos do Ministério de Mídia da C.A.R.A.</p></section>
 <section class="section"><div class="ey">PARA TODOS</div><h2>Área Pública</h2><div class="grid">
