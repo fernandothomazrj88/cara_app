@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#051326">
+<title>C.A.R.A. — Tesouraria</title>
+<style>
+
+:root{--navy:#051326;--card:#10243d;--yellow:#ffff00;--white:#fff;--muted:#d6e0ed}
+*{box-sizing:border-box}
+body{margin:0;background:var(--navy);color:var(--white);font-family:Arial,Helvetica,sans-serif;padding-bottom:100px}
+.hero{min-height:245px;padding:28px clamp(18px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:24px;background:radial-gradient(circle at 75% 35%,#173f5c 0,#0b2038 38%,#051326 78%);border-bottom:4px solid var(--yellow)}
+.hero .eyebrow{color:var(--yellow);font-size:12px;letter-spacing:3px;font-weight:800}
+.hero h1{font-size:clamp(34px,5vw,64px);line-height:1;margin:10px 0}
+.hero p{color:#d9e5f2;margin:0;font-size:16px}
+.hero .symbol{font-size:clamp(64px,10vw,112px);filter:drop-shadow(0 8px 20px #0008)}
+.back{position:absolute;top:18px;left:18px;color:var(--yellow);text-decoration:none;border:1px solid var(--yellow);border-radius:12px;padding:10px 14px;font-weight:700;background:#051326d9}
+.verse{max-width:1180px;margin:18px auto 0;width:calc(100% - 32px);min-height:125px;border:1px solid #6e7900;border-bottom:4px solid var(--yellow);border-radius:18px;overflow:hidden;background:linear-gradient(90deg,#07182b,#102b42);display:grid;grid-template-columns:1.15fr .85fr}
+.verse-text{padding:22px 26px;display:flex;flex-direction:column;justify-content:center}
+.verse h2{font-size:clamp(19px,2.2vw,28px);margin:0 0 9px}
+.verse p{color:#eef4fb;font-style:italic;margin:0 0 8px;line-height:1.5}
+.verse strong{color:var(--yellow)}
+.verse-art{background:radial-gradient(circle at 70% 45%,#bb8533 0,#4b351e 15%,#12283a 45%,#07182b 75%);display:flex;align-items:center;justify-content:center;font-size:64px}
+.content{max-width:1180px;width:calc(100% - 32px);margin:24px auto}
+.panel{background:var(--card);border:1px solid #203851;border-radius:18px;padding:22px;margin-bottom:16px}
+.panel h2{margin:0 0 10px;color:var(--white)}
+.panel p{color:var(--muted);line-height:1.6;margin:0}
+.status{display:inline-block;color:var(--yellow);font-weight:800;font-size:12px;letter-spacing:1.5px;margin-bottom:8px}
+.quicknav{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:min(900px,calc(100% - 24px));background:#04191d;border:1px solid #1e3c3b;border-radius:22px 22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);padding:12px 8px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px #0004}
+.quicknav a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:#fff;font-size:12px}
+.quicknav .ico{font-size:23px}
+.quicknav a.active{color:var(--yellow);font-weight:800}
+@media(max-width:600px){.hero{min-height:190px;padding-top:62px}.verse{grid-template-columns:1fr}.verse-art{display:none}.verse-text{padding:18px}.content{margin-top:18px}.panel{padding:17px}}
+
+.hero{background:radial-gradient(circle at 75% 35%,#52646d55 0,#0b2038 42%,#051326 80%)}
+</style>
+</head>
+<body>
+<a class="back" href="./index.html">← Início</a>
+<header class="hero">
+  <div>
+    <div class="eyebrow">C.A.R.A. · COMUNIDADE APOSTÓLICA RESTAURANDO ALMAS</div>
+    <h1>Tesouraria</h1>
+    <p>Transparência, responsabilidade e cuidado com os recursos.</p>
+  </div>
+  <div class="symbol" aria-hidden="true">💰</div>
+</header>
+<section class="verse" aria-label="Fundamento bíblico">
+  <div class="verse-text">
+    <h2>Tudo seja feito com decência e ordem</h2>
+    <p>“Cada um contribua segundo propôs no coração; não com tristeza ou por necessidade, porque Deus ama a quem dá com alegria.”</p>
+    <strong>2 Coríntios 9:7</strong>
+  </div>
+  <div class="verse-art" aria-hidden="true">💰</div>
+</section>
+<main class="content">
+  <section class="panel">
+    <span class="status">ACESSO RESTRITO · ESTRUTURA INICIAL</span>
+    <h2>Tesouraria</h2>
+    <p>A Tesouraria será destinada ao registro de entradas, saídas, comprovantes e relatórios financeiros. Nenhum dado financeiro é exibido nesta versão. Antes de registrar valores, vamos integrar o módulo à Base Central e validar as permissões de acesso.</p>
+  </section>
+  <section class="panel">
+    <h2>Próximas etapas</h2>
+    <p>Este módulo já está conectado à navegação da Home. A próxima etapa é integrar os dados e as permissões à Base Central da C.A.R.A., sem criar cadastros duplicados nem expor informações restritas.</p>
+  </section>
+</main>
+<nav class="quicknav" aria-label="Acesso rápido">
+  <a href="./index.html" class="active"><span class="ico">🏠</span>Início</a>
+  <a href="./index.html#avisos" onclick="location.href='./index.html';"><span class="ico">🔔</span>Avisos</a>
+  <a href="./index.html#mais" onclick="location.href='./index.html';"><span class="ico">☰</span>Mais</a>
+</nav>
+</body>
+</html>
