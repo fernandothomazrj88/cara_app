@@ -340,6 +340,8 @@
       .modal {
         padding: 10px;
       }
+    }
+
     .fundamento-imagem {
       width: min(100% - 28px, 1220px);
       aspect-ratio: 7 / 1;
@@ -350,6 +352,12 @@
       overflow: hidden;
       background: #051326;
       box-shadow: 0 10px 28px rgba(0,0,0,.22);
+    }
+    .separador-conteudo {
+      width: 100%;
+      height: 3px;
+      margin: 16px 0 0;
+      background: #FFFF00;
     }
     .fundamento-imagem img {
       display: block;
@@ -425,6 +433,16 @@
     .mais-grade a span { font-size:21px; }
     .painel-aviso { color:#ffff00; line-height:1.55; font-size:14px; padding:12px 2px; }
     body.menu-aberto { overflow:hidden; }
+
+  
+    @media (max-width: 600px) {
+      .fundamento-imagem {
+        width: calc(100% - 22px);
+        aspect-ratio: 7 / 1;
+        margin-top: 12px;
+        border-radius: 16px;
+      }
+    }
 
   </style>
 </head>
