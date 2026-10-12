@@ -875,7 +875,7 @@
       width: 100%;
       padding: 0;
       background: #051326;
-      border-bottom: 3px solid #FFFF00;
+      border-bottom: 0;
       box-shadow: none;
       overflow: hidden;
     }
@@ -1081,7 +1081,7 @@
     }
 
     /* v20 — padrão visual alinhado ao módulo Mídia */
-    .banner-fundamento-louvor { display:block; width:calc(100% - 64px); max-width:1450px; height:auto; margin:10px auto 0; border:1px solid #FFFF00; border-radius:16px; object-fit:cover; }
+    .banner-fundamento-louvor { display:block; width:calc(100% - 64px); max-width:1450px; height:auto; margin:10px auto 0; border:0; border-radius:0; object-fit:cover; }
     .divisoria-fluorescente { height:3px; width:100%; background:#FFFF00; margin:0; }
     .boas-vindas { margin:0 0 22px; }
     .boas-vindas h2 { display:none; }
@@ -1105,7 +1105,7 @@
    O módulo usa a mesma sessão Google da aplicação principal.
    ========================================================== */
 const API_CENTRAL = "https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec";
-const CHAVE_SESSAO_CARA = 'cara_auth_token';
+const CHAVE_SESSAO_CARA = 'cara_sessao_token';
 
 function mensagemFalhaServidor(erro) {
   const msg = (erro && erro.message) ? erro.message : String(erro || 'Falha de comunicação');
@@ -1876,7 +1876,7 @@ async function getCentral(rota) {
   <button type="button" class="ativo" onclick="voltarInicio()"><span>⌂</span><small>Início</small></button>
   <button type="button" onclick="abrirBiblioteca()"><span>♫</span><small>Louvores</small></button>
   <button type="button" onclick="document.getElementById('areaLogin').scrollIntoView({behavior:'smooth',block:'center'})"><span>♟</span><small>Acesso</small></button>
-  <button type="button" onclick="document.getElementById('areaMinisterio').scrollIntoView({behavior:'smooth',block:'center'})"><span>☰</span><small>Ministério</small></button>
+  <button type="button" onclick="irParaAreaMinisterio()"><span>☰</span><small>Ministério</small></button>
 </nav>
 
 <footer class="rodape">
@@ -2012,6 +2012,13 @@ function voltarInicio() {
   mostrarTela(
     'telaInicial'
   );
+}
+
+function irParaAreaMinisterio() {
+  const destino = (usuarioAtual && tokenMinisterio && PERMISSOES_LOUVOR.visualizar)
+    ? document.getElementById('areaMinisterio')
+    : document.getElementById('areaLogin');
+  if (destino) destino.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 
