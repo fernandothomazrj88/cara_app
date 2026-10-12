@@ -1241,15 +1241,16 @@
     }
 
 
-    /* v30 — dimensões do hero fixadas conforme midia.html; evita a imagem impor sua altura natural */
+    /* v31 — hero horizontal, na proporção visual do banner de midia.html.
+       O arquivo de arte é recortado verticalmente pelo centro, sem aumentar a página. */
     .topo.topo-hero {
       display:block !important;
       position:relative !important;
       width:100% !important;
-      height:min(620px, calc(100vw * 800 / 1900)) !important;
+      height:min(510px, calc(100vw * 510 / 1900)) !important;
       min-height:0 !important;
-      max-height:620px !important;
-      aspect-ratio:1900 / 800 !important;
+      max-height:510px !important;
+      aspect-ratio:1900 / 510 !important;
       padding:0 !important;
       margin:0 !important;
       overflow:hidden !important;
@@ -1287,9 +1288,10 @@
     }
     @media(max-width:720px) {
       .topo.topo-hero {
-        height:calc(100vw * 800 / 1900) !important;
+        height:calc(100vw * 510 / 1900) !important;
         min-height:0 !important;
         max-height:none !important;
+        aspect-ratio:1900 / 510 !important;
       }
       .voltar-app-principal {
         top:9px !important; left:9px !important;
