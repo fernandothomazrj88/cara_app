@@ -1336,6 +1336,56 @@ async function getCentral(rota) {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+
+<style id="louvor-proporcao-midias-v29">
+  :root { --cara-bg:#051326; --cara-accent:#CCFF00; }
+  html, body { margin:0; background:#051326; color:#fff; overflow-x:hidden; }
+  body { padding-bottom:96px; }
+  /* Mesmo enquadramento do .hero de midia.html: 1900/800, sem distorcer a arte. */
+  .topo.topo-hero {
+    position:relative !important; display:block !important; width:100% !important;
+    aspect-ratio:1900 / 800 !important; height:auto !important; min-height:0 !important;
+    max-height:none !important; margin:0 !important; padding:0 !important;
+    overflow:hidden !important; background:#051326 !important; border:0 !important;
+    box-shadow:none !important;
+  }
+  .topo.topo-hero .banner-louvor {
+    display:block !important; width:100% !important; height:100% !important;
+    min-height:0 !important; max-height:none !important; margin:0 auto !important;
+    padding:0 !important; object-fit:contain !important; object-position:center !important;
+    border:0 !important; border-radius:0 !important;
+  }
+  .voltar-app-principal { z-index:5 !important; top:12px !important; left:14px !important; }
+  .divisoria-fluorescente { display:block !important; width:100% !important; height:3px !important; margin:0 !important; padding:0 !important; background:#CCFF00 !important; }
+  /* A arte bíblica mantém sua proporção natural (1478x342), sem recorte nem borda CSS duplicada. */
+  .banner-fundamento-louvor {
+    display:block !important; width:min(1220px, calc(100% - 128px)) !important;
+    max-width:1220px !important; height:auto !important; aspect-ratio:auto !important;
+    margin:10px auto 0 !important; padding:0 !important; object-fit:contain !important;
+    border:0 !important; border-radius:0 !important; box-shadow:none !important;
+  }
+  .conteudo { display:block !important; width:min(1120px, calc(100% - 48px)) !important;
+    max-width:1120px !important; margin:0 auto !important; padding:22px 0 105px !important; }
+  .boas-vindas { margin:0 0 22px !important; }
+  .boas-vindas h2 { color:#fff !important; font-size:clamp(25px,3vw,32px) !important; line-height:1.2 !important; margin:0 0 8px !important; }
+  .boas-vindas p { margin:0 !important; }
+  .menu-rapido-louvor { position:fixed !important; left:50% !important; bottom:0 !important; transform:translateX(-50%) !important;
+    width:min(900px, 100%) !important; z-index:50 !important; grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    padding:5px 8px env(safe-area-inset-bottom) !important; border-radius:24px 24px 0 0 !important; }
+  .rodape { display:none !important; }
+  @media (max-width:700px) {
+    .topo.topo-hero { aspect-ratio:1900 / 800 !important; }
+    .voltar-app-principal { top:9px !important; left:9px !important; min-height:36px !important; padding:7px 10px !important; font-size:12px !important; }
+    .banner-fundamento-louvor { width:calc(100% - 24px) !important; max-width:none !important; margin-top:8px !important; }
+    .conteudo { width:calc(100% - 28px) !important; padding:18px 0 100px !important; }
+    #telaInicial .card-grid { grid-template-columns:1fr !important; gap:12px !important; }
+    .menu-rapido-louvor { min-height:72px !important; border-radius:19px 19px 0 0 !important; }
+  }
+  @media (min-width:701px) {
+    #telaInicial .card-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  }
+</style>
+
 </head>
 
 <body>
