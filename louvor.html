@@ -1079,6 +1079,24 @@
         min-height: 155px;
       }
     }
+
+    /* v20 — padrão visual alinhado ao módulo Mídia */
+    .banner-fundamento-louvor { display:block; width:calc(100% - 64px); max-width:1450px; height:auto; margin:10px auto 0; border:1px solid #FFFF00; border-radius:16px; object-fit:cover; }
+    .divisoria-fluorescente { height:3px; width:100%; background:#FFFF00; margin:0; }
+    .boas-vindas { margin:0 0 22px; }
+    .boas-vindas h2 { display:none; }
+    .boas-vindas p { margin-top:0; }
+    #telaInicial .titulo-area { margin-top:24px; }
+    #telaInicial .card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 18px; }
+    #telaInicial .card-grid .card { margin:0; min-width:0; }
+    #areaMinisterio .card-grid { margin-top:12px; }
+    .menu-rapido-louvor { max-width:1216px; width:calc(100% - 44px); margin:12px auto 22px; padding:10px 12px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; background:#03101f; border:1px solid #123657; border-radius:18px; }
+    .menu-rapido-louvor button { appearance:none; border:0; background:transparent; color:#fff; min-height:52px; border-radius:10px; cursor:pointer; font:inherit; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; }
+    .menu-rapido-louvor button span:first-child { font-size:22px; }
+    .menu-rapido-louvor button small { font-size:12px; }
+    .menu-rapido-louvor button.ativo { color:#FFFF00; }
+    @media(max-width:700px) { .banner-fundamento-louvor { width:calc(100% - 24px); margin-top:8px; border-radius:12px; } #telaInicial .card-grid { grid-template-columns:1fr; gap:12px; } .menu-rapido-louvor { width:calc(100% - 24px); margin-bottom:16px; } }
+
 </style>
 
 <script>
@@ -1188,7 +1206,9 @@ async function getCentral(rota) {
     alt="Ministério de Louvor C.A.R.A."
   >
 </header>
-
+<div class="divisoria-fluorescente" aria-hidden="true"></div>
+<img src="./banner-fundamento-louvor.png" class="banner-fundamento-louvor" alt="Fundamento bíblico do Ministério de Louvor: Tudo o que tem fôlego louve ao Senhor — Salmos 150:6">
+<div class="divisoria-fluorescente" aria-hidden="true"></div>
 
 <main class="conteudo">
 
@@ -1199,12 +1219,7 @@ async function getCentral(rota) {
 >
 
   <div class="boas-vindas">
-
-    <h2>
-      Shalom! 👋
-    </h2>
-
-    <p>
+<p>
       Acompanhe os louvores da Comunidade Apostólica
       Restaurando Almas.
     </p>
@@ -1217,6 +1232,7 @@ async function getCentral(rota) {
   </div>
 
 
+  <div class="card-grid" aria-label="Recursos públicos do Louvor">
   <div
     class="card"
     onclick="abrirRepertorios()"
@@ -1246,6 +1262,8 @@ async function getCentral(rota) {
     <div class="seta">›</div>
   </div>
 
+
+  </div>
 
   <div class="titulo-area">
     Área do Ministério
@@ -1285,6 +1303,7 @@ async function getCentral(rota) {
     ></div>
 
 
+    <div class="card-grid" aria-label="Ferramentas do Ministério de Louvor">
     <div
       id="cardCadastrarLouvor"
       class="card"
@@ -1328,6 +1347,7 @@ async function getCentral(rota) {
 
 
 
+    </div>
     <div class="status-ministerio" style="margin-top:14px;">🔐 Acesso controlado pela conta Google e pelas permissões da Central C.A.R.A.</div>
 
   </div>
@@ -1852,6 +1872,12 @@ async function getCentral(rota) {
 
 </main>
 
+<nav class="menu-rapido-louvor" aria-label="Menu rápido do Louvor">
+  <button type="button" class="ativo" onclick="voltarInicio()"><span>⌂</span><small>Início</small></button>
+  <button type="button" onclick="abrirBiblioteca()"><span>♫</span><small>Louvores</small></button>
+  <button type="button" onclick="document.getElementById('areaLogin').scrollIntoView({behavior:'smooth',block:'center'})"><span>♟</span><small>Acesso</small></button>
+  <button type="button" onclick="document.getElementById('areaMinisterio').scrollIntoView({behavior:'smooth',block:'center'})"><span>☰</span><small>Ministério</small></button>
+</nav>
 
 <footer class="rodape">
 
