@@ -1099,15 +1099,29 @@
 
 
 
-    /* v24 — proporções alinhadas ao módulo Mídia */
-    .topo.topo-hero { height:clamp(180px, 27vw, 365px) !important; min-height:0 !important; max-height:365px !important; overflow:hidden !important; }
-    .topo.topo-hero .banner-louvor { display:block !important; width:100% !important; height:100% !important; min-height:0 !important; max-height:none !important; object-fit:cover !important; object-position:center !important; }
-    .banner-fundamento-louvor { display:block !important; width:min(1220px, calc(100% - 128px)) !important; max-width:1220px !important; height:auto !important; margin:16px auto 0 !important; border-radius:15px !important; object-fit:contain !important; }
+    /* v25 — proporções e espaçamentos alinhados ao midia.html enviado como referência */
+    .topo.topo-hero {
+      position:relative !important; width:100% !important; aspect-ratio:1900 / 800 !important;
+      min-height:150px !important; height:auto !important; max-height:620px !important;
+      padding:0 !important; overflow:hidden !important; background:#051326 !important;
+      border:0 !important; box-shadow:none !important;
+    }
+    .topo.topo-hero .banner-louvor {
+      display:block !important; width:100% !important; height:100% !important;
+      min-height:0 !important; max-height:none !important; object-fit:cover !important;
+      object-position:center !important;
+    }
+    .voltar-app-principal { top:12px !important; left:14px !important; }
+    .banner-fundamento-louvor {
+      display:block !important; width:min(1220px, calc(100% - 128px)) !important;
+      max-width:1220px !important; height:auto !important; margin:16px auto 0 !important;
+      border:1px solid #CCFF00 !important; border-radius:15px !important; object-fit:contain !important;
+    }
     .divisoria-fluorescente { height:3px !important; width:100% !important; background:#CCFF00 !important; margin:0 !important; }
     .conteudo { width:min(1120px, calc(100% - 28px)) !important; max-width:1120px !important; padding:28px 0 110px !important; }
     #telaInicial .titulo-area { margin-top:28px !important; }
     #telaInicial .card-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:13px !important; }
-    .menu-rapido-louvor { position:fixed !important; z-index:1000 !important; left:50% !important; bottom:0 !important; transform:translateX(-50%) !important; width:min(900px,100%) !important; max-width:900px !important; margin:0 !important; padding:5px 8px max(5px, env(safe-area-inset-bottom)) !important; min-height:76px !important; grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:0 !important; background:linear-gradient(135deg,#06141a,#091c24) !important; border:1px solid #123657 !important; border-bottom:0 !important; border-radius:19px 19px 0 0 !important; box-shadow:0 -8px 25px #0004 !important; }
+    .menu-rapido-louvor { position:fixed !important; z-index:1000 !important; left:50% !important; bottom:0 !important; transform:translateX(-50%) !important; width:100% !important; max-width:900px !important; margin:0 !important; padding:5px 8px max(5px, env(safe-area-inset-bottom)) !important; min-height:76px !important; grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:0 !important; background:linear-gradient(135deg,#06141a,#091c24) !important; border:1px solid #ffff0014 !important; border-bottom:0 !important; border-radius:24px 24px 0 0 !important; box-shadow:0 -6px 24px #0005 !important; }
     .menu-rapido-louvor button { min-height:64px !important; font-size:12px !important; }
     .menu-rapido-louvor button span:first-child { font-size:22px !important; }
     .menu-rapido-louvor button.ativo { color:#CCFF00 !important; }
@@ -1120,7 +1134,8 @@
     .louvor-quick-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
     .louvor-quick-links a { display:flex; align-items:center; gap:10px; padding:13px; border-radius:13px; background:#0b2039; border:1px solid #ffffff14; color:#fff; text-decoration:none; font-weight:800; font-size:13px; }
     @media(max-width:720px) {
-      .topo.topo-hero { height:clamp(180px, 48vw, 260px) !important; max-height:260px !important; }
+      .topo.topo-hero { aspect-ratio:1900 / 800 !important; min-height:0 !important; max-height:none !important; }
+      .voltar-app-principal { top:9px !important; left:9px !important; padding:8px 11px !important; font-size:12px !important; }
       .banner-fundamento-louvor { width:calc(100% - 28px) !important; margin:12px auto 0 !important; border-radius:12px !important; }
       .conteudo { width:calc(100% - 28px) !important; padding:22px 0 100px !important; }
       #telaInicial .card-grid { grid-template-columns:1fr !important; gap:12px !important; }
