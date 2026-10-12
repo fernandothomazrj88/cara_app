@@ -1142,6 +1142,96 @@
       .menu-rapido-louvor { min-height:72px !important; border-radius:19px 19px 0 0 !important; }
     }
     @media(max-width:420px) { .louvor-quick-links { grid-template-columns:1fr; } }
+
+
+    /* v27 — alinhamento fiel ao mockup responsivo aprovado */
+    :root { --cara-bg:#051326; --cara-accent:#CCFF00; }
+    html, body { margin:0 !important; background:#051326 !important; color:#fff !important; }
+    body { min-height:100vh !important; padding-bottom:100px !important; font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif !important; }
+    .topo.topo-hero {
+      position:relative !important; display:block !important; width:100% !important;
+      aspect-ratio:3 / 1 !important; height:auto !important; min-height:0 !important;
+      max-height:460px !important; padding:0 !important; margin:0 !important;
+      overflow:hidden !important; background:#051326 !important;
+      border:0 !important; border-bottom:0 !important; box-shadow:none !important;
+    }
+    .topo.topo-hero .banner-louvor {
+      display:block !important; width:100% !important; height:100% !important;
+      max-height:none !important; min-height:0 !important; object-fit:cover !important;
+      object-position:center !important; margin:0 !important; border:0 !important; border-radius:0 !important;
+    }
+    .voltar-app-principal {
+      position:absolute !important; top:12px !important; left:14px !important; z-index:5 !important;
+      display:inline-flex !important; align-items:center !important; justify-content:center !important;
+      min-height:40px !important; padding:9px 14px !important; border:1px solid #CCFF00 !important;
+      border-radius:12px !important; background:#051326 !important; color:#CCFF00 !important;
+      font-weight:900 !important; text-decoration:none !important; box-shadow:0 6px 18px #0008 !important;
+    }
+    .divisoria-fluorescente { height:3px !important; width:100% !important; background:#CCFF00 !important; margin:0 !important; }
+    .banner-fundamento-louvor {
+      display:block !important; width:calc(100% - 52px) !important; max-width:1200px !important;
+      height:auto !important; aspect-ratio:739 / 171 !important; object-fit:cover !important;
+      margin:12px auto 0 !important; padding:0 !important; border:0 !important;
+      border-radius:0 !important; box-shadow:none !important;
+    }
+    .conteudo {
+      display:block !important; width:min(1120px,calc(100% - 28px)) !important; max-width:1120px !important;
+      margin:0 auto !important; padding:28px 0 112px !important; background:transparent !important;
+    }
+    #telaInicial .boas-vindas { margin:0 0 22px !important; }
+    #telaInicial .boas-vindas h2 { display:block !important; margin:0 0 7px !important; color:#fff !important; font-size:clamp(25px,3vw,35px) !important; line-height:1.2 !important; }
+    #telaInicial .boas-vindas p { margin:0 !important; color:#aebdce !important; line-height:1.5 !important; }
+    .titulo-area { color:#CCFF00 !important; font-size:11px !important; font-weight:900 !important; letter-spacing:1.8px !important; margin:26px 0 10px !important; }
+    #telaInicial .card-grid { display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:13px !important; }
+    #telaInicial .card-grid .card { min-width:0 !important; margin:0 !important; }
+    .card {
+      display:flex !important; align-items:center !important; gap:14px !important; min-height:92px !important;
+      padding:16px !important; border:1px solid rgba(255,255,255,.09) !important;
+      border-left:4px solid #CCFF00 !important; border-radius:17px !important;
+      background:linear-gradient(145deg,#0e2948,#0b2039) !important; color:#fff !important;
+      box-shadow:0 10px 24px #0003 !important; cursor:pointer !important;
+    }
+    .icone { width:52px !important; height:52px !important; min-width:52px !important; margin:0 !important; display:grid !important; place-items:center !important; border-radius:14px !important; background:#CCFF00 !important; color:#061326 !important; font-size:27px !important; }
+    .card-texto { flex:1 !important; min-width:0 !important; }
+    .card h3 { margin:0 0 5px !important; color:#fff !important; font-size:16px !important; line-height:1.25 !important; }
+    .card p { margin:0 !important; color:#d3dfeb !important; font-size:13px !important; line-height:1.4 !important; }
+    .seta { margin-left:4px !important; color:#CCFF00 !important; font-size:25px !important; }
+    .login-box, .formulario, .detalhe { background:#0b2039 !important; color:#fff !important; border:1px solid #ffffff18 !important; border-radius:17px !important; box-shadow:0 10px 24px #0003 !important; }
+    .menu-rapido-louvor {
+      position:fixed !important; z-index:1000 !important; left:50% !important; bottom:0 !important;
+      transform:translateX(-50%) !important; width:100% !important; max-width:900px !important;
+      margin:0 !important; padding:5px 8px max(5px,env(safe-area-inset-bottom)) !important;
+      min-height:76px !important; display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+      gap:0 !important; background:linear-gradient(135deg,#06141a,#091c24) !important;
+      border:1px solid #ffff0014 !important; border-bottom:0 !important; border-radius:24px 24px 0 0 !important;
+      box-shadow:0 -6px 24px #0005 !important;
+    }
+    .menu-rapido-louvor button { appearance:none !important; display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:center !important; gap:5px !important; min-width:0 !important; min-height:64px !important; padding:4px !important; border:0 !important; background:transparent !important; color:#eee !important; font:inherit !important; cursor:pointer !important; }
+    .menu-rapido-louvor button span:first-child { font-size:23px !important; line-height:1 !important; }
+    .menu-rapido-louvor button small { font-size:11px !important; }
+    .menu-rapido-louvor button.ativo { color:#CCFF00 !important; font-weight:900 !important; }
+    .rodape { display:none !important; }
+    .louvor-quick-overlay { z-index:1200 !important; }
+    @media(max-width:720px) {
+      body { padding-bottom:88px !important; }
+      .topo.topo-hero { aspect-ratio:3 / 1 !important; max-height:none !important; }
+      .voltar-app-principal { top:9px !important; left:9px !important; min-height:36px !important; padding:7px 10px !important; font-size:12px !important; }
+      .banner-fundamento-louvor { width:calc(100% - 28px) !important; margin:10px auto 0 !important; aspect-ratio:739 / 171 !important; }
+      .conteudo { width:calc(100% - 28px) !important; padding:22px 0 96px !important; }
+      #telaInicial .card-grid { grid-template-columns:1fr !important; gap:11px !important; }
+      .titulo-area { margin-top:23px !important; }
+      .card { min-height:82px !important; padding:13px !important; gap:11px !important; }
+      .icone { width:48px !important; height:48px !important; min-width:48px !important; font-size:24px !important; }
+      .menu-rapido-louvor { min-height:72px !important; border-radius:19px 19px 0 0 !important; }
+      .menu-rapido-louvor button { min-height:60px !important; }
+    }
+    @media(max-width:420px) {
+      .banner-fundamento-louvor { width:calc(100% - 20px) !important; }
+      .card h3 { font-size:15px !important; }
+      .card p { font-size:12px !important; }
+      .louvor-quick-links { grid-template-columns:1fr !important; }
+    }
+
 </style>
 
 <script>
@@ -1925,21 +2015,6 @@ async function getCentral(rota) {
 <div class="louvor-quick-overlay" id="louvorMaisOverlay" role="dialog" aria-modal="true" aria-labelledby="louvorMaisTitulo" onclick="fecharQuickLouvorFora(event,'louvorMaisOverlay')">
   <div class="louvor-quick-panel"><div class="louvor-quick-head"><h2 id="louvorMaisTitulo">Acesso rápido aos módulos</h2><button class="louvor-quick-close" type="button" onclick="fecharQuickLouvor('louvorMaisOverlay')" aria-label="Fechar menu">×</button></div><div class="louvor-quick-links"><a href="./agenda.html">📅 Agenda</a><a href="./louvor.html">🎵 Louvor</a><a href="./midia.html">📱 Mídia</a><a href="./estudos.html">📖 Ensino Bíblico</a><a href="./ministerios.html">🤝 Ministérios</a><a href="./index.html">🏠 Início</a></div></div>
 </div>
-
-<footer class="rodape">
-
-  <strong>CARA</strong>
-
-  <br>
-
-  Comunidade Apostólica Restaurando Almas
-
-  <br><br>
-
-  Ministério de Louvor
-
-</footer>
-
 
 <script>
 
