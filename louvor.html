@@ -1309,6 +1309,32 @@
       .banner-fundamento-louvor { width:calc(100% - 20px) !important; }
     }
 
+
+    /* v32 — banner de fundamento compacto, na mesma altura visual do midia.html. */
+    .banner-fundamento-louvor {
+      display:block !important;
+      width:min(1220px, calc(100% - 128px)) !important;
+      max-width:1220px !important;
+      height:auto !important;
+      aspect-ratio:739 / 97 !important;
+      object-fit:contain !important;
+      margin:10px auto 0 !important;
+      padding:0 !important;
+      border:0 !important;
+      border-radius:0 !important;
+      box-shadow:none !important;
+    }
+    @media(max-width:720px) {
+      .banner-fundamento-louvor {
+        width:calc(100% - 28px) !important;
+        max-width:none !important;
+        aspect-ratio:739 / 97 !important;
+        margin:8px auto 0 !important;
+      }
+    }
+    @media(max-width:420px) {
+      .banner-fundamento-louvor { width:calc(100% - 20px) !important; }
+    }
   </style>
 
 <script>
