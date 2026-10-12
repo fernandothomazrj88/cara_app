@@ -1335,7 +1335,33 @@
     @media(max-width:420px) {
       .banner-fundamento-louvor { width:calc(100% - 20px) !important; }
     }
-  </style>
+  
+/* v33 — banner de fundamento com a mesma largura visual do fundamento de Mídia */
+.banner-fundamento-louvor {
+  display:block !important;
+  width:calc(100% - 128px) !important;
+  max-width:1220px !important;
+  height:auto !important;
+  aspect-ratio:auto !important;
+  object-fit:contain !important;
+  margin:10px auto 0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+@media (max-width:720px) {
+  .banner-fundamento-louvor {
+    width:calc(100% - 28px) !important;
+    max-width:none !important;
+    height:auto !important;
+    aspect-ratio:auto !important;
+    margin:8px auto 0 !important;
+  }
+}
+@media (max-width:420px) {
+  .banner-fundamento-louvor { width:calc(100% - 20px) !important; }
+}
+</style>
 
 <script>
 /* ==========================================================
