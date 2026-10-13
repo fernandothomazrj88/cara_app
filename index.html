@@ -1376,14 +1376,14 @@
       <section class="perfil-secao">
         <h3><span class="perfil-icone">●</span> Dados pessoais</h3>
         <div class="perfil-secao-conteudo">
-          <div class="perfil-campo"><label for="perfilNomeEdit">Nome</label><input id="perfilNomeEdit" autocomplete="given-name" /></div>
-          <div class="perfil-campo"><label for="perfilSobrenomeEdit">Sobrenome</label><input id="perfilSobrenomeEdit" autocomplete="family-name" /></div>
-          <div class="perfil-campo"><label for="perfilNascimentoEdit">Data de nascimento</label><input id="perfilNascimentoEdit" type="date" /></div>
-          <div class="perfil-campo"><label for="perfilSexoEdit">Sexo</label><select id="perfilSexoEdit"><option value="">Selecione</option><option>Masculino</option><option>Feminino</option><option>Prefiro não informar</option></select></div>
-          <div class="perfil-campo"><label for="perfilEscolaridadeEdit">Escolaridade</label><select id="perfilEscolaridadeEdit"><option value="">Selecione</option><option>Fundamental incompleto</option><option>Fundamental completo</option><option>Ensino médio incompleto</option><option>Ensino médio completo</option><option>Superior incompleto</option><option>Superior completo</option><option>Pós-graduação</option></select></div>
-          <div class="perfil-campo"><label for="perfilEstadoCivilEdit">Estado civil</label><select id="perfilEstadoCivilEdit"><option value="">Selecione</option><option>Solteiro(a)</option><option>Casado(a)</option><option>União estável</option><option>Divorciado(a)</option><option>Viúvo(a)</option></select></div>
-          <div class="perfil-campo"><label for="perfilDocumento1Edit">Documento 1 (opcional)</label><input id="perfilDocumento1Edit" /></div>
-          <div class="perfil-campo"><label for="perfilDocumento2Edit">Documento 2 (opcional)</label><input id="perfilDocumento2Edit" /></div>
+          <div class="perfil-campo"><label for="perfilNomeEdit">Nome</label><input id="perfilNomeEdit" autocomplete="given-name" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilSobrenomeEdit">Sobrenome</label><input id="perfilSobrenomeEdit" autocomplete="family-name" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilNascimentoEdit">Data de nascimento</label><input id="perfilNascimentoEdit" type="date" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilSexoEdit">Sexo</label><select id="perfilSexoEdit" disabled><option value="">Selecione</option><option>Masculino</option><option>Feminino</option><option>Prefiro não informar</option></select></div>
+          <div class="perfil-campo"><label for="perfilEscolaridadeEdit">Escolaridade</label><select id="perfilEscolaridadeEdit" disabled><option value="">Selecione</option><option>Fundamental incompleto</option><option>Fundamental completo</option><option>Ensino médio incompleto</option><option>Ensino médio completo</option><option>Superior incompleto</option><option>Superior completo</option><option>Pós-graduação</option></select></div>
+          <div class="perfil-campo"><label for="perfilEstadoCivilEdit">Estado civil</label><select id="perfilEstadoCivilEdit" disabled><option value="">Selecione</option><option>Solteiro(a)</option><option>Casado(a)</option><option>União estável</option><option>Divorciado(a)</option><option>Viúvo(a)</option></select></div>
+          <div class="perfil-campo"><label for="perfilDocumento1Edit">Documento 1 (opcional)</label><input id="perfilDocumento1Edit" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilDocumento2Edit">Documento 2 (opcional)</label><input id="perfilDocumento2Edit" / readonly aria-readonly="true"></div>
         </div>
       </section>
       <div style="display:grid;gap:12px;align-content:start">
@@ -1391,19 +1391,19 @@
           <h3><span class="perfil-icone">☎</span> Contatos</h3>
           <div class="perfil-secao-conteudo">
             <div class="perfil-campo"><label for="perfilTelefone1Edit">Telefone principal</label><input id="perfilTelefone1Edit" type="tel" autocomplete="tel" /></div>
-            <div class="perfil-campo"><label for="perfilTelefone2Edit">Telefone secundário</label><input id="perfilTelefone2Edit" type="tel" /></div>
+            <div class="perfil-campo"><label for="perfilTelefone2Edit">Telefone secundário</label><input id="perfilTelefone2Edit" type="tel" / readonly aria-readonly="true"></div>
             <div class="perfil-campo"><label for="perfilEmailContatoEdit">E-mail de contato</label><input id="perfilEmailContatoEdit" type="email" autocomplete="email" /></div>
-            <p class="perfil-nota">O e-mail usado para entrar com Google é separado e não pode ser alterado aqui.</p>
+            <p class="perfil-nota">O e-mail de contato pode ser alterado. O e-mail usado para entrar com Google é separado e não pode ser alterado aqui.</p>
           </div>
         </section>
         <section class="perfil-secao">
           <h3><span class="perfil-icone">⌂</span> Morada / Endereço</h3>
           <div class="perfil-secao-conteudo">
             <div class="perfil-campo"><label for="perfilEnderecoEdit">Rua / endereço</label><input id="perfilEnderecoEdit" autocomplete="street-address" /></div>
-            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilNumeroEdit">Número</label><input id="perfilNumeroEdit" /></div><div class="perfil-campo"><label for="perfilComplementoEdit">Complemento</label><input id="perfilComplementoEdit" /></div></div>
-            <div class="perfil-campo"><label for="perfilBairroEdit">Bairro</label><input id="perfilBairroEdit" /></div>
-            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilCidadeEdit">Cidade</label><input id="perfilCidadeEdit" autocomplete="address-level2" /></div><div class="perfil-campo"><label for="perfilEstadoEdit">Estado</label><input id="perfilEstadoEdit" autocomplete="address-level1" /></div></div>
-            <div class="perfil-campo"><label for="perfilCepEdit">CEP</label><input id="perfilCepEdit" autocomplete="postal-code" /></div>
+            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilNumeroEdit">Número</label><input id="perfilNumeroEdit" / readonly aria-readonly="true"></div><div class="perfil-campo"><label for="perfilComplementoEdit">Complemento</label><input id="perfilComplementoEdit" / readonly aria-readonly="true"></div></div>
+            <div class="perfil-campo"><label for="perfilBairroEdit">Bairro</label><input id="perfilBairroEdit" / readonly aria-readonly="true"></div>
+            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilCidadeEdit">Cidade</label><input id="perfilCidadeEdit" autocomplete="address-level2" / readonly aria-readonly="true"></div><div class="perfil-campo"><label for="perfilEstadoEdit">Estado</label><input id="perfilEstadoEdit" autocomplete="address-level1" / readonly aria-readonly="true"></div></div>
+            <div class="perfil-campo"><label for="perfilCepEdit">CEP</label><input id="perfilCepEdit" autocomplete="postal-code" / readonly aria-readonly="true"></div>
           </div>
         </section>
       </div>
@@ -1416,18 +1416,18 @@
           <div class="perfil-campo"><label>ID do cadastro</label><input id="perfilIdPessoaHome" readonly aria-readonly="true" /></div>
           <div class="perfil-campo"><label>Situação do membro</label><input id="perfilStatusPessoaHome" readonly aria-readonly="true" /></div>
           <div class="perfil-campo"><label>Data do cadastro</label><input id="perfilDataCadastroHome" readonly aria-readonly="true" /></div>
-          <div class="perfil-campo"><label for="perfilDataConversaoEdit">Dia em que aceitou Jesus</label><input id="perfilDataConversaoEdit" type="date" /></div>
-          <div class="perfil-campo"><label for="perfilBatizadoEdit">Batizado</label><select id="perfilBatizadoEdit"><option value="">Selecione</option><option value="Sim">Sim</option><option value="Não">Não</option></select></div>
-          <p class="perfil-nota">Tipo de acesso, função oficial e permissões são gerenciados pela liderança. Para corrigir esses dados, solicite à secretaria.</p>
+          <div class="perfil-campo"><label for="perfilDataConversaoEdit">Dia em que aceitou Jesus</label><input id="perfilDataConversaoEdit" type="date" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilBatizadoEdit">Batizado</label><select id="perfilBatizadoEdit" disabled><option value="">Selecione</option><option value="Sim">Sim</option><option value="Não">Não</option></select></div>
+          <p class="perfil-nota">Os dados cadastrais e ministeriais são definidos pela liderança e aparecem aqui apenas para consulta. Você pode alterar somente foto, telefone principal, e-mail de contato, endereço, pedido de oração e informações complementares.</p>
         </div>
       </section>
       <section class="perfil-secao">
         <h3><span class="perfil-icone">✦</span> Mais informações pessoais</h3>
         <div class="perfil-secao-conteudo">
-          <div class="perfil-campo"><label for="perfilConjugeEdit">Cônjuge</label><input id="perfilConjugeEdit" /></div>
-          <div class="perfil-campo"><label for="perfilFilhosEdit">Filhos (nome e idade)</label><input id="perfilFilhosEdit" /></div>
-          <div class="perfil-campo"><label for="perfilProfissaoEdit">Profissão</label><input id="perfilProfissaoEdit" /></div>
-          <div class="perfil-campo"><label for="perfilIgrejaAnteriorEdit">Igreja anterior</label><input id="perfilIgrejaAnteriorEdit" /></div>
+          <div class="perfil-campo"><label for="perfilConjugeEdit">Cônjuge</label><input id="perfilConjugeEdit" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilFilhosEdit">Filhos (nome e idade)</label><input id="perfilFilhosEdit" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilProfissaoEdit">Profissão</label><input id="perfilProfissaoEdit" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilIgrejaAnteriorEdit">Igreja anterior</label><input id="perfilIgrejaAnteriorEdit" / readonly aria-readonly="true"></div>
           <div class="perfil-campo" style="grid-column:1/-1"><label for="perfilPedidoOracaoEdit">Pedido de oração</label><textarea id="perfilPedidoOracaoEdit"></textarea></div>
         </div>
       </section>
@@ -1540,19 +1540,24 @@
     };
     leitor.readAsDataURL(arquivo);
   });
-  salvar.addEventListener('click',()=>{
+  salvar.addEventListener('click',async()=>{
     if(!fotoPendente)return;
+    const status=document.getElementById('perfilStatusEdicao');
+    salvar.disabled=true;
+    if(status)status.textContent='Salvando foto na Base Central...';
     try{
-      localStorage.setItem('cara_foto_perfil',fotoPendente);
-      salvar.disabled=true;
-      const status=document.getElementById('perfilStatusEdicao');
-      if(status)status.textContent='Foto salva neste dispositivo.';
-    }catch(e){alert('Não foi possível salvar a foto neste dispositivo. Tente uma imagem menor.');}
+      const mime=(input.files&&input.files[0]&&input.files[0].type)||'image/jpeg';
+      const resposta=await chamarApiPerfilCARA('upload-foto-meu-perfil',{foto:{base64:fotoPendente,mime}});
+      if(resposta.fotoUrl){preview.src=resposta.fotoUrl;preview.style.display='block';avatar.style.display='none';}
+      fotoPendente='';input.value='';
+      if(status)status.textContent=resposta.mensagem||'Foto salva na Base Central.';
+      await carregarMeuPerfilCARA();
+    }catch(e){
+      console.error('Falha ao salvar foto do perfil:',e);
+      if(status)status.textContent=e.message||'Não foi possível salvar a foto.';
+      salvar.disabled=false;
+    }
   });
-  try{
-    const guardada=localStorage.getItem('cara_foto_perfil');
-    if(guardada){preview.src=guardada;preview.style.display='block';avatar.style.display='none';}
-  }catch(e){}
 })();
 
 const API_SESSAO_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
@@ -1701,38 +1706,31 @@ async function carregarMeuPerfilCARA() {
   }
 }
 (function prepararEdicaoVisualPerfil(){
-  const ids=['perfilNomeEdit','perfilSobrenomeEdit','perfilNascimentoEdit','perfilEstadoCivilEdit','perfilTelefone1Edit','perfilEmailContatoEdit','perfilEnderecoEdit','perfilDataConversaoEdit','perfilBatizadoEdit','perfilConjugeEdit','perfilFilhosEdit','perfilProfissaoEdit','perfilIgrejaAnteriorEdit','perfilPedidoOracaoEdit'];
-  ids.forEach(id=>{
+  // Somente estes campos podem ser alterados pelo próprio membro.
+  const idsEditaveis=['perfilTelefone1Edit','perfilEmailContatoEdit','perfilEnderecoEdit','perfilPedidoOracaoEdit','perfilAnotacoesEdit'];
+  idsEditaveis.forEach(id=>{
     const el=document.getElementById(id);
-    if(el) el.addEventListener('input',()=>el.dataset.editado='1');
-    if(el) el.addEventListener('change',()=>el.dataset.editado='1');
+    if(el){
+      el.addEventListener('input',()=>el.dataset.editado='1');
+      el.addEventListener('change',()=>el.dataset.editado='1');
+    }
   });
   document.getElementById('salvarPerfilHome')?.addEventListener('click', async ()=>{
     const botao=document.getElementById('salvarPerfilHome');
     const status=document.getElementById('perfilStatusEdicao');
     const valor=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
-    const nome=[valor('perfilNomeEdit'),valor('perfilSobrenomeEdit')].filter(Boolean).join(' ');
     const dados={
-      nomeCompleto:nome,
-      dataNascimento:valor('perfilNascimentoEdit'),
       telefone:valor('perfilTelefone1Edit'),
       emailContato:valor('perfilEmailContatoEdit'),
       endereco:valor('perfilEnderecoEdit'),
-      estadoCivil:valor('perfilEstadoCivilEdit'),
-      conjuge:valor('perfilConjugeEdit'),
-      filhos:valor('perfilFilhosEdit'),
-      dataConversao:valor('perfilDataConversaoEdit'),
-      batizado:valor('perfilBatizadoEdit'),
-      igrejaAnterior:valor('perfilIgrejaAnteriorEdit'),
-      profissao:valor('perfilProfissaoEdit'),
-      pedidoOracao:valor('perfilPedidoOracaoEdit')
+      pedidoOracao:valor('perfilPedidoOracaoEdit'),
+      observacoes:valor('perfilAnotacoesEdit')
     };
-    if (!nome) { if(status)status.textContent='Informe seu nome completo.'; return; }
     if(botao)botao.disabled=true;
-    if(status)status.textContent='Salvando na Base Central...';
+    if(status)status.textContent='Salvando suas informações na Base Central...';
     try {
       const resposta=await chamarApiPerfilCARA('salvar-meu-perfil',dados);
-      if(status)status.textContent=resposta.mensagem || 'Perfil salvo na Base Central.';
+      if(status)status.textContent=resposta.mensagem || 'Informações atualizadas na Base Central.';
       document.querySelectorAll('.perfil-conteudo-scroll [data-editado]').forEach(el=>delete el.dataset.editado);
       await carregarMeuPerfilCARA();
     } catch(erro) {
