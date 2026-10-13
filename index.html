@@ -1681,7 +1681,7 @@ function preencherMeuPerfilCARA(resposta) {
     cadastroSexo: pessoa.sexo || '',
     cadastroEscolaridade: pessoa.escolaridade || '',
     cadastroTelefoneSecundario: pessoa.telefoneSecundario || '',
-    cadastroLogradouro: pessoa.logradouro || pessoa.endereco || '',
+    cadastroLogradouro: pessoa.logradouro || '',
     cadastroNumero: pessoa.numero || '',
     cadastroComplemento: pessoa.complemento || '',
     cadastroBairro: pessoa.bairro || '',
@@ -1809,32 +1809,19 @@ async function carregarMeuPerfilCARA() {
     const botao=document.getElementById('salvarPerfilHome');
     const status=document.getElementById('perfilStatusEdicao');
     const valor=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
-    // Envia somente os campos que o membro realmente alterou.
-    // Isso evita que campos antigos carregados em outra seção sobrescrevam
-    // dados recém-gravados pelo cadastro complementar.
-    const dados={};
-    const incluir=(id,chave,transformar=v=>v)=>{
-      const el=document.getElementById(id);
-      if(el && el.dataset.editado==='1') dados[chave]=transformar(el.value.trim());
+    const dados={
+      telefone:valor('perfilTelefone1Edit'),
+      emailContato:valor('perfilEmailContatoEdit'),
+      logradouro:valor('perfilEnderecoEdit'),
+      numero:valor('perfilNumeroEdit'),
+      complemento:valor('perfilComplementoEdit'),
+      bairro:valor('perfilBairroEdit'),
+      cidade:valor('perfilCidadeEdit'),
+      estado:valor('perfilEstadoEdit').toUpperCase(),
+      cep:valor('perfilCepEdit'),
+      pedidoOracao:valor('perfilPedidoOracaoEdit'),
+      observacoes:valor('perfilAnotacoesEdit')
     };
-    incluir('perfilTelefone1Edit','telefone');
-    incluir('perfilEmailContatoEdit','emailContato');
-    incluir('perfilNumeroEdit','numero');
-    incluir('perfilComplementoEdit','complemento');
-    incluir('perfilBairroEdit','bairro');
-    incluir('perfilCidadeEdit','cidade');
-    incluir('perfilEstadoEdit','estado',v=>v.toUpperCase());
-    incluir('perfilCepEdit','cep');
-    incluir('perfilPedidoOracaoEdit','pedidoOracao');
-    incluir('perfilAnotacoesEdit','observacoes');
-
-    // O campo legado de endereço completo não deve substituir o logradouro
-    // estruturado do cadastro complementar.
-    // Se nenhum campo editável foi alterado, não envia gravação vazia.
-    if(Object.keys(dados).length===0){
-      if(status)status.textContent='Nenhuma alteração detectada. Os dados da Base Central foram mantidos.';
-      return;
-    }
     if(botao)botao.disabled=true;
     if(status)status.textContent='Salvando suas informações na Base Central...';
     try {
