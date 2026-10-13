@@ -711,7 +711,7 @@
       background: rgba(0,0,0,.72);
     }
     .home-overlay.aberto { display: flex; }
-    .home-overlay.aberto .home-painel-perfil{align-self:stretch;margin:auto 0;}
+    .home-overlay.aberto .home-painel-perfil{align-self:center;margin:auto 0;}
     .home-painel {
       width: min(560px, 100%);
       max-height: min(78vh, 720px);
@@ -767,7 +767,7 @@
     .perfil-foto-acoes{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
     .perfil-foto-btn{border:1px solid #3c5a75;background:#102943;color:#fff;border-radius:7px;padding:5px 7px;font-size:10px;font-weight:700;cursor:pointer}
     .perfil-foto-btn:disabled{opacity:.5}
-    .home-painel-perfil{display:flex;flex-direction:column;overflow:hidden;height:min(90dvh,900px);max-height:min(90dvh,900px);min-height:0}
+    .home-painel-perfil{display:flex;flex-direction:column;overflow:hidden;height:90vh;height:min(90dvh,900px);max-height:90vh;max-height:min(90dvh,900px);min-height:0}
     .home-painel-perfil .home-painel-topo{flex:0 0 auto}
     .perfil-conteudo-scroll{display:block;flex:1 1 0%;height:0;min-height:0;overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;touch-action:pan-y;padding:0 1px 8px}
     .perfil-rodape-fixo{position:static;flex:0 0 auto;z-index:20;background:#07182b;padding:10px 0 8px;margin-top:0;border-top:1px solid #203953;box-shadow:0 -8px 18px rgba(0,0,0,.16)}
@@ -1347,7 +1347,7 @@
 </nav>
 
 <div class="home-overlay" id="painelPerfilHome" role="dialog" aria-modal="true" aria-labelledby="tituloPerfilHome">
-  <section class="home-painel">
+  <section class="home-painel home-painel-perfil">
     <header class="home-painel-topo">
       <h2 id="tituloPerfilHome">Meu Perfil</h2>
       <button type="button" class="home-fechar" id="fecharPerfilHome" aria-label="Fechar perfil">×</button>
