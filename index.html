@@ -1477,7 +1477,9 @@ function preencherMeuPerfilCARA(usuario){
   set('perfilEmailHome',email);
   set('perfilAcessoHome',acesso);
   set('perfilFuncaoHome',perfil);
-  set('perfilSituacaoHome',situacao);\n  set('perfilAcessoResumo',acesso);\n  set('perfilSituacaoResumo',situacao);
+  set('perfilSituacaoHome',situacao);
+  set('perfilAcessoResumo',acesso);
+  set('perfilSituacaoResumo',situacao);
   const map={perfilNomeEdit:usuario.nome || usuario.primeiroNome || '',perfilSobrenomeEdit:usuario.sobrenome || usuario.apelido || '',perfilNascimentoEdit:usuario.dataNascimento || '',perfilSexoEdit:usuario.sexo || '',perfilEscolaridadeEdit:usuario.escolaridade || '',perfilEstadoCivilEdit:usuario.estadoCivil || '',perfilDocumento1Edit:usuario.documento1 || '',perfilDocumento2Edit:usuario.documento2 || '',perfilTelefone1Edit:usuario.telefone1 || usuario.telefone || '',perfilTelefone2Edit:usuario.telefone2 || '',perfilEmailContatoEdit:usuario.emailContato || usuario.email || usuario.emailGoogle || '',perfilEnderecoEdit:usuario.endereco || usuario.morada || '',perfilNumeroEdit:usuario.numero || '',perfilComplementoEdit:usuario.complemento || '',perfilBairroEdit:usuario.bairro || '',perfilCidadeEdit:usuario.cidade || usuario.localidade || '',perfilEstadoEdit:usuario.estado || usuario.distrito || '',perfilCepEdit:usuario.cep || usuario.codigoPostal || '',perfilDataConversaoEdit:usuario.dataConversao || '',perfilBatizadoEdit:usuario.batizado || '',perfilAnotacoesEdit:usuario.anotacoes || usuario.notas || ''};
   Object.entries(map).forEach(([id,value])=>{const el=document.getElementById(id);if(el && !el.dataset.editado)el.value=value;});
 }
