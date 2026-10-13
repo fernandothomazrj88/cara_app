@@ -240,7 +240,7 @@
 
       <a
         class="voltar"
-        href="./entrada.html"
+        href="./index.html"
         id="voltar"
       >
         Voltar
@@ -273,14 +273,29 @@ function setStatus(text, tipo='') {
 }
 
 async function postCentral(payload) {
-  const r = await fetch(API, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'text/plain;charset=utf-8'
-    },
-    body: JSON.stringify(payload),
-    credentials: 'omit'
-  });
+  // Evita que uma consulta de sessão fique presa e impeça o botão Google de aparecer.
+  const controller = new AbortController();
+  const limite = setTimeout(() => controller.abort(), 8000);
+
+  let r;
+  try {
+    r = await fetch(API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(payload),
+      credentials: 'omit',
+      signal: controller.signal
+    });
+  } catch (erro) {
+    if (erro && erro.name === 'AbortError') {
+      throw new Error('A verificação demorou demais. Entre com sua conta Google.');
+    }
+    throw erro;
+  } finally {
+    clearTimeout(limite);
+  }
 
   if (!r.ok) {
     throw new Error('Não foi possível comunicar com a Central de Acesso.');
@@ -349,6 +364,7 @@ async function validarSessaoExistente() {
       'Sessão anterior não pôde ser validada:',
       e
     );
+    setStatus('Entre com sua conta Google cadastrada na C.A.R.A.');
   }
 
   localStorage.removeItem(CHAVE_TOKEN);
