@@ -1413,6 +1413,9 @@
           <div class="perfil-campo"><label>Tipo de acesso</label><input id="perfilAcessoHome" readonly aria-readonly="true" /></div>
           <div class="perfil-campo"><label>Perfil / função oficial</label><input id="perfilFuncaoHome" readonly aria-readonly="true" /></div>
           <div class="perfil-campo"><label>Situação da conta</label><input id="perfilSituacaoHome" readonly aria-readonly="true" /></div>
+          <div class="perfil-campo"><label>ID do cadastro</label><input id="perfilIdPessoaHome" readonly aria-readonly="true" /></div>
+          <div class="perfil-campo"><label>Situação do membro</label><input id="perfilStatusPessoaHome" readonly aria-readonly="true" /></div>
+          <div class="perfil-campo"><label>Data do cadastro</label><input id="perfilDataCadastroHome" readonly aria-readonly="true" /></div>
           <div class="perfil-campo"><label for="perfilDataConversaoEdit">Dia em que aceitou Jesus</label><input id="perfilDataConversaoEdit" type="date" /></div>
           <div class="perfil-campo"><label for="perfilBatizadoEdit">Batizado</label><select id="perfilBatizadoEdit"><option value="">Selecione</option><option value="Sim">Sim</option><option value="Não">Não</option></select></div>
           <p class="perfil-nota">Tipo de acesso, função oficial e permissões são gerenciados pela liderança. Para corrigir esses dados, solicite à secretaria.</p>
@@ -1604,6 +1607,9 @@ function preencherMeuPerfilCARA(resposta) {
   setTextoPerfilCARA('perfilSituacaoHome', conta.status || 'ATIVO');
   setTextoPerfilCARA('perfilAcessoResumo', acesso);
   setTextoPerfilCARA('perfilSituacaoResumo', conta.status || 'ATIVO');
+  setTextoPerfilCARA('perfilIdPessoaHome', pessoa.idPessoa || '—');
+  setTextoPerfilCARA('perfilStatusPessoaHome', pessoa.statusPessoa || '—');
+  setTextoPerfilCARA('perfilDataCadastroHome', pessoa.dataCadastro || '—');
 
   const valores = {
     perfilNomeEdit: primeiroNome,
@@ -1637,10 +1643,22 @@ function preencherMeuPerfilCARA(resposta) {
 
   const foto = document.getElementById('perfilFotoPreview');
   const avatar = document.getElementById('perfilAvatarPadrao');
-  if (foto && pessoa.fotoUrl) {
-    foto.src = pessoa.fotoUrl;
-    foto.style.display = 'block';
-    if (avatar) avatar.style.display = 'none';
+  if (foto) {
+    foto.onerror = () => {
+      foto.onerror = null;
+      foto.removeAttribute('src');
+      foto.style.display = 'none';
+      if (avatar) avatar.style.display = 'grid';
+    };
+    if (pessoa.fotoUrl && /^https?:\/\//i.test(String(pessoa.fotoUrl))) {
+      foto.src = String(pessoa.fotoUrl);
+      foto.style.display = 'block';
+      if (avatar) avatar.style.display = 'none';
+    } else {
+      foto.removeAttribute('src');
+      foto.style.display = 'none';
+      if (avatar) avatar.style.display = 'grid';
+    }
   }
 
   const area = document.getElementById('perfilMinisteriosLista');
