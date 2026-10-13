@@ -741,6 +741,28 @@
       font-size: 25px;
       cursor: pointer;
     }
+    .perfil-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+    .perfil-secao{background:linear-gradient(145deg,#0b2037,#07182b);border:1px solid #21405c;border-radius:15px;overflow:hidden;min-width:0;box-shadow:0 5px 16px #00000012}
+    .perfil-secao h3{margin:0;padding:13px 15px;border-bottom:1px solid #25435d;color:#fff;font-size:15px;display:flex;gap:9px;align-items:center}
+    .perfil-secao h3 .perfil-icone{color:#CCFF00;font-size:19px}
+    .perfil-secao-conteudo{padding:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .perfil-campo{display:grid;gap:6px;min-width:0}
+    .perfil-campo label{font-size:12px;font-weight:750;color:#f4f8fc}
+    .perfil-campo input,.perfil-campo select,.perfil-campo textarea{box-sizing:border-box;width:100%;min-height:40px;border:1px solid #3c5a75;border-radius:8px;background:#061629;color:#fff;padding:10px 11px;font:inherit;font-size:13px}
+    .perfil-campo textarea{min-height:100px;resize:vertical}
+    .perfil-campo input:focus,.perfil-campo select:focus,.perfil-campo textarea:focus{outline:2px solid #CCFF00;outline-offset:1px;border-color:#CCFF00}
+    .perfil-campo input[readonly]{background:#102943;color:#CCFF00;font-weight:800}
+    .perfil-nota{font-size:11px;color:#b9c9d8;line-height:1.5;margin:0}
+    .perfil-resumo{background:linear-gradient(110deg,#0b2037,#102b45);border:1px solid #21405c;border-radius:15px;padding:15px!important;margin-top:12px}
+    .perfil-badges{display:grid;gap:7px;min-width:165px}
+    .perfil-badge{background:#102943;border-radius:10px;padding:9px 11px}
+    .perfil-badge strong{display:block;color:#CCFF00;font-size:10px;letter-spacing:1px;margin-bottom:4px}
+    .perfil-badge span{color:#fff;font-size:13px;font-weight:800}
+    .perfil-acoes{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:16px;position:sticky;bottom:0;background:#07182b;padding:12px 0 2px}
+    .perfil-salvar{background:#CCFF00;color:#051326;border:0;border-radius:10px;padding:12px 18px;font-weight:900;cursor:pointer;min-height:44px}
+    .perfil-salvar:disabled{opacity:.65;cursor:wait}
+    .perfil-status{font-size:12px;color:#CCFF00;min-height:18px}
+    @media(max-width:700px){.perfil-form-grid{grid-template-columns:1fr}.perfil-secao-conteudo{grid-template-columns:1fr}.perfil-resumo{align-items:flex-start!important;flex-wrap:wrap}.perfil-badges{width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}.home-painel{max-height:90vh;padding:14px}.perfil-acoes{align-items:stretch;flex-direction:column}.perfil-salvar{width:100%}}
     .home-links-modulos {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1287,18 +1309,71 @@
       <button type="button" class="home-fechar" id="fecharPerfilHome" aria-label="Fechar perfil">×</button>
     </header>
     <div class="perfil-resumo" style="display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #ffffff20;color:#fff">
-      <div aria-hidden="true" style="width:52px;height:52px;display:grid;place-items:center;border-radius:50%;background:#CCFF00;color:#051326;font-size:26px">👤</div>
+      <div aria-hidden="true" style="width:58px;height:58px;flex:0 0 58px;display:grid;place-items:center;border-radius:50%;background:#CCFF00;color:#051326;font-size:27px">👤</div>
       <div style="min-width:0">
         <h3 id="perfilNomeHome" style="margin:0 0 5px;color:#CCFF00;font-size:18px">Carregando perfil...</h3>
         <p id="perfilEmailHome" style="margin:0;color:#fff;overflow-wrap:anywhere;font-size:13px"></p>
+        <p class="perfil-nota" style="margin-top:5px">Mantenha seus dados pessoais e de contato atualizados.</p>
+      </div>
+      <div class="perfil-badges">
+        <div class="perfil-badge"><strong>TIPO DE ACESSO</strong><span id="perfilAcessoResumo">Verificando...</span></div>
+        <div class="perfil-badge"><strong>SITUAÇÃO DA CONTA</strong><span id="perfilSituacaoResumo">Verificando...</span></div>
       </div>
     </div>
-    <div style="display:grid;gap:10px;padding-top:14px;color:#fff">
-      <div style="padding:13px;border-radius:12px;background:#10243d"><div style="font-size:11px;color:#CCFF00;font-weight:800;letter-spacing:1px">TIPO DE ACESSO</div><div id="perfilAcessoHome" style="margin-top:5px;font-weight:700">Verificando...</div></div>
-      <div style="padding:13px;border-radius:12px;background:#10243d"><div style="font-size:11px;color:#CCFF00;font-weight:800;letter-spacing:1px">PERFIL / FUNÇÃO</div><div id="perfilFuncaoHome" style="margin-top:5px;font-weight:700">—</div></div>
-      <div style="padding:13px;border-radius:12px;background:#10243d"><div style="font-size:11px;color:#CCFF00;font-weight:800;letter-spacing:1px">SITUAÇÃO DA CONTA</div><div id="perfilSituacaoHome" style="margin-top:5px;font-weight:700">Conta autenticada</div></div>
-      <button class="botao-sair" type="button" style="min-height:42px;font-size:13px" onclick="sairCARA()">Sair da conta</button>
+    <div class="perfil-form-grid">
+      <section class="perfil-secao">
+        <h3><span class="perfil-icone">●</span> Dados pessoais</h3>
+        <div class="perfil-secao-conteudo">
+          <div class="perfil-campo"><label for="perfilNomeEdit">Nome</label><input id="perfilNomeEdit" autocomplete="given-name" /></div>
+          <div class="perfil-campo"><label for="perfilSobrenomeEdit">Sobrenome</label><input id="perfilSobrenomeEdit" autocomplete="family-name" /></div>
+          <div class="perfil-campo"><label for="perfilNascimentoEdit">Data de nascimento</label><input id="perfilNascimentoEdit" type="date" /></div>
+          <div class="perfil-campo"><label for="perfilSexoEdit">Sexo</label><select id="perfilSexoEdit"><option value="">Selecione</option><option>Masculino</option><option>Feminino</option><option>Prefiro não informar</option></select></div>
+          <div class="perfil-campo"><label for="perfilEscolaridadeEdit">Escolaridade</label><select id="perfilEscolaridadeEdit"><option value="">Selecione</option><option>Fundamental incompleto</option><option>Fundamental completo</option><option>Ensino médio incompleto</option><option>Ensino médio completo</option><option>Superior incompleto</option><option>Superior completo</option><option>Pós-graduação</option></select></div>
+          <div class="perfil-campo"><label for="perfilEstadoCivilEdit">Estado civil</label><select id="perfilEstadoCivilEdit"><option value="">Selecione</option><option>Solteiro(a)</option><option>Casado(a)</option><option>União estável</option><option>Divorciado(a)</option><option>Viúvo(a)</option></select></div>
+          <div class="perfil-campo"><label for="perfilDocumento1Edit">Documento 1 (opcional)</label><input id="perfilDocumento1Edit" /></div>
+          <div class="perfil-campo"><label for="perfilDocumento2Edit">Documento 2 (opcional)</label><input id="perfilDocumento2Edit" /></div>
+        </div>
+      </section>
+      <div style="display:grid;gap:12px;align-content:start">
+        <section class="perfil-secao">
+          <h3><span class="perfil-icone">☎</span> Contatos</h3>
+          <div class="perfil-secao-conteudo">
+            <div class="perfil-campo"><label for="perfilTelefone1Edit">Telefone principal</label><input id="perfilTelefone1Edit" type="tel" autocomplete="tel" /></div>
+            <div class="perfil-campo"><label for="perfilTelefone2Edit">Telefone secundário</label><input id="perfilTelefone2Edit" type="tel" /></div>
+            <div class="perfil-campo"><label for="perfilEmailContatoEdit">E-mail de contato</label><input id="perfilEmailContatoEdit" type="email" autocomplete="email" /></div>
+            <p class="perfil-nota">O e-mail usado para entrar com Google é separado e não pode ser alterado aqui.</p>
+          </div>
+        </section>
+        <section class="perfil-secao">
+          <h3><span class="perfil-icone">⌂</span> Morada / Endereço</h3>
+          <div class="perfil-secao-conteudo">
+            <div class="perfil-campo"><label for="perfilEnderecoEdit">Rua / endereço</label><input id="perfilEnderecoEdit" autocomplete="street-address" /></div>
+            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilNumeroEdit">Número</label><input id="perfilNumeroEdit" /></div><div class="perfil-campo"><label for="perfilComplementoEdit">Complemento</label><input id="perfilComplementoEdit" /></div></div>
+            <div class="perfil-campo"><label for="perfilBairroEdit">Bairro</label><input id="perfilBairroEdit" /></div>
+            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilCidadeEdit">Cidade</label><input id="perfilCidadeEdit" autocomplete="address-level2" /></div><div class="perfil-campo"><label for="perfilEstadoEdit">Estado</label><input id="perfilEstadoEdit" autocomplete="address-level1" /></div></div>
+            <div class="perfil-campo"><label for="perfilCepEdit">CEP</label><input id="perfilCepEdit" autocomplete="postal-code" /></div>
+          </div>
+        </section>
+      </div>
+      <section class="perfil-secao">
+        <h3><span class="perfil-icone">✦</span> Informações da C.A.R.A.</h3>
+        <div class="perfil-secao-conteudo">
+          <div class="perfil-campo"><label>Tipo de acesso</label><input id="perfilAcessoHome" readonly aria-readonly="true" /></div>
+          <div class="perfil-campo"><label>Perfil / função oficial</label><input id="perfilFuncaoHome" readonly aria-readonly="true" /></div>
+          <div class="perfil-campo"><label>Situação da conta</label><input id="perfilSituacaoHome" readonly aria-readonly="true" /></div>
+          <div class="perfil-campo"><label for="perfilDataConversaoEdit">Data de conversão (opcional)</label><input id="perfilDataConversaoEdit" type="date" /></div>
+          <div class="perfil-campo"><label for="perfilBatizadoEdit">Batizado</label><select id="perfilBatizadoEdit"><option value="">Selecione</option><option value="Sim">Sim</option><option value="Não">Não</option></select></div>
+          <p class="perfil-nota">Tipo de acesso, função oficial e permissões são gerenciados pela liderança. Para corrigir esses dados, solicite à secretaria.</p>
+        </div>
+      </section>
+      <section class="perfil-secao">
+        <h3><span class="perfil-icone">▤</span> Anotações</h3>
+        <div class="perfil-secao-conteudo"><div class="perfil-campo"><label for="perfilAnotacoesEdit">Informações complementares</label><textarea id="perfilAnotacoesEdit" placeholder="Escreva informações que deseja manter no cadastro..."></textarea></div></div>
+      </section>
     </div>
+    <div class="perfil-acoes"><span id="perfilStatusEdicao" class="perfil-status" role="status"></span><button type="button" class="perfil-salvar" id="salvarPerfilHome">✓ Salvar alterações</button></div>
+    <p class="perfil-nota" style="margin-top:8px">A edição visual está preparada. A gravação permanente desses campos depende da integração de atualização com a Base Central.</p>
+    <div style="display:grid;gap:10px;padding-top:14px;color:#fff"><button class="botao-sair" type="button" style="min-height:42px;font-size:13px" onclick="sairCARA()">Sair da conta</button></div>
   </section>
 </div>
 
@@ -1388,8 +1463,21 @@ function preencherMeuPerfilCARA(usuario){
   set('perfilEmailHome',email);
   set('perfilAcessoHome',acesso);
   set('perfilFuncaoHome',perfil);
-  set('perfilSituacaoHome',situacao);
+  set('perfilSituacaoHome',situacao);\n  set('perfilAcessoResumo',acesso);\n  set('perfilSituacaoResumo',situacao);
+  const map={perfilNomeEdit:usuario.nome || usuario.primeiroNome || '',perfilSobrenomeEdit:usuario.sobrenome || usuario.apelido || '',perfilNascimentoEdit:usuario.dataNascimento || '',perfilSexoEdit:usuario.sexo || '',perfilEscolaridadeEdit:usuario.escolaridade || '',perfilEstadoCivilEdit:usuario.estadoCivil || '',perfilDocumento1Edit:usuario.documento1 || '',perfilDocumento2Edit:usuario.documento2 || '',perfilTelefone1Edit:usuario.telefone1 || usuario.telefone || '',perfilTelefone2Edit:usuario.telefone2 || '',perfilEmailContatoEdit:usuario.emailContato || usuario.email || usuario.emailGoogle || '',perfilEnderecoEdit:usuario.endereco || usuario.morada || '',perfilNumeroEdit:usuario.numero || '',perfilComplementoEdit:usuario.complemento || '',perfilBairroEdit:usuario.bairro || '',perfilCidadeEdit:usuario.cidade || usuario.localidade || '',perfilEstadoEdit:usuario.estado || usuario.distrito || '',perfilCepEdit:usuario.cep || usuario.codigoPostal || '',perfilDataConversaoEdit:usuario.dataConversao || '',perfilBatizadoEdit:usuario.batizado || '',perfilAnotacoesEdit:usuario.anotacoes || usuario.notas || ''};
+  Object.entries(map).forEach(([id,value])=>{const el=document.getElementById(id);if(el && !el.dataset.editado)el.value=value;});
 }
+
+(function prepararEdicaoVisualPerfil(){
+  const ids=['perfilNomeEdit','perfilSobrenomeEdit','perfilNascimentoEdit','perfilSexoEdit','perfilEscolaridadeEdit','perfilEstadoCivilEdit','perfilDocumento1Edit','perfilDocumento2Edit','perfilTelefone1Edit','perfilTelefone2Edit','perfilEmailContatoEdit','perfilEnderecoEdit','perfilNumeroEdit','perfilComplementoEdit','perfilBairroEdit','perfilCidadeEdit','perfilEstadoEdit','perfilCepEdit','perfilDataConversaoEdit','perfilBatizadoEdit','perfilAnotacoesEdit'];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',()=>el.dataset.editado='1');});
+  document.getElementById('salvarPerfilHome')?.addEventListener('click',()=>{
+    const status=document.getElementById('perfilStatusEdicao');
+    const dados={};ids.forEach(id=>{const el=document.getElementById(id);if(el)dados[id.replace('perfil','').replace('Edit','')]=el.value.trim();});
+    try{const usuario=obterUsuarioLocalCARA();usuario.rascunhoPerfilLocal=dados;localStorage.setItem('cara_usuario',JSON.stringify(usuario));if(status)status.textContent='Rascunho guardado neste dispositivo. A gravação permanente na Base Central será conectada na próxima etapa.';}
+    catch(e){if(status)status.textContent='Não foi possível guardar o rascunho neste dispositivo.';}
+  });
+}());
 
 async function validarSessaoCARA(){
   const token=localStorage.getItem('cara_sessao_token');
