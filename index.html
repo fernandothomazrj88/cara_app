@@ -767,6 +767,7 @@
     .perfil-foto-acoes{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
     .perfil-foto-btn{border:1px solid #3c5a75;background:#102943;color:#fff;border-radius:7px;padding:5px 7px;font-size:10px;font-weight:700;cursor:pointer}
     .perfil-foto-btn:disabled{opacity:.5}
+    .perfil-ministerio-item{display:flex;flex-direction:column;gap:5px;padding:11px;border:1px solid #25435d;border-radius:10px;background:#061629}.perfil-ministerio-item strong{color:#CCFF00;font-size:13px}.perfil-ministerio-item span{color:#fff;font-size:12px}
     .home-painel-perfil{display:flex;flex-direction:column;overflow:hidden;height:90vh;height:min(90dvh,900px);max-height:90vh;max-height:min(90dvh,900px);min-height:0}
     .home-painel-perfil .home-painel-topo{flex:0 0 auto}
     .perfil-conteudo-scroll{display:block;flex:1 1 0%;height:0;min-height:0;overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;touch-action:pan-y;padding:0 1px 8px}
@@ -1418,6 +1419,20 @@
         </div>
       </section>
       <section class="perfil-secao">
+        <h3><span class="perfil-icone">✦</span> Mais informações pessoais</h3>
+        <div class="perfil-secao-conteudo">
+          <div class="perfil-campo"><label for="perfilConjugeEdit">Cônjuge</label><input id="perfilConjugeEdit" /></div>
+          <div class="perfil-campo"><label for="perfilFilhosEdit">Filhos (nome e idade)</label><input id="perfilFilhosEdit" /></div>
+          <div class="perfil-campo"><label for="perfilProfissaoEdit">Profissão</label><input id="perfilProfissaoEdit" /></div>
+          <div class="perfil-campo"><label for="perfilIgrejaAnteriorEdit">Igreja anterior</label><input id="perfilIgrejaAnteriorEdit" /></div>
+          <div class="perfil-campo" style="grid-column:1/-1"><label for="perfilPedidoOracaoEdit">Pedido de oração</label><textarea id="perfilPedidoOracaoEdit"></textarea></div>
+        </div>
+      </section>
+      <section class="perfil-secao">
+        <h3><span class="perfil-icone">♧</span> Ministérios vinculados</h3>
+        <div class="perfil-secao-conteudo" id="perfilMinisteriosLista"><p class="perfil-nota">Carregando ministérios...</p></div>
+      </section>
+      <section class="perfil-secao">
         <h3><span class="perfil-icone">▤</span> Anotações</h3>
         <div class="perfil-secao-conteudo"><div class="perfil-campo"><label for="perfilAnotacoesEdit">Informações complementares</label><textarea id="perfilAnotacoesEdit" placeholder="Escreva informações que deseja manter no cadastro..."></textarea></div></div>
       </section>
@@ -1556,32 +1571,156 @@ function escaparHtmlCARA(v){
     .replace(/'/g,'&#039;');
 }
 
-function preencherMeuPerfilCARA(usuario){
-  const nome=usuario.nome || usuario.nomePessoa || usuario.nomeCompleto || 'Usuário';
-  const email=usuario.email || usuario.emailGoogle || 'E-mail não informado';
-  const perfil=String(usuario.perfil || usuario.funcao || usuario.role || usuario.cargo || 'MEMBRO').toUpperCase();
-  const acesso=String(usuario.nivelAcesso || usuario.acesso || usuario.tipoAcesso || (perfil.includes('ADMIN') ? 'ADMINISTRADOR' : 'MEMBRO')).toUpperCase();
-  const situacao=String(usuario.status || usuario.situacao || 'ATIVA').toUpperCase();
-  const set=(id,valor)=>{const el=document.getElementById(id);if(el)el.textContent=valor;};
-  set('perfilNomeHome',nome);
-  set('perfilEmailHome',email);
-  set('perfilAcessoHome',acesso);
-  set('perfilFuncaoHome',perfil);
-  set('perfilSituacaoHome',situacao);
-  set('perfilAcessoResumo',acesso);
-  set('perfilSituacaoResumo',situacao);
-  const map={perfilNomeEdit:usuario.nome || usuario.primeiroNome || '',perfilSobrenomeEdit:usuario.sobrenome || usuario.apelido || '',perfilNascimentoEdit:usuario.dataNascimento || '',perfilSexoEdit:usuario.sexo || '',perfilEscolaridadeEdit:usuario.escolaridade || '',perfilEstadoCivilEdit:usuario.estadoCivil || '',perfilDocumento1Edit:usuario.documento1 || '',perfilDocumento2Edit:usuario.documento2 || '',perfilTelefone1Edit:usuario.telefone1 || usuario.telefone || '',perfilTelefone2Edit:usuario.telefone2 || '',perfilEmailContatoEdit:usuario.emailContato || usuario.email || usuario.emailGoogle || '',perfilEnderecoEdit:usuario.endereco || usuario.morada || '',perfilNumeroEdit:usuario.numero || '',perfilComplementoEdit:usuario.complemento || '',perfilBairroEdit:usuario.bairro || '',perfilCidadeEdit:usuario.cidade || usuario.localidade || '',perfilEstadoEdit:usuario.estado || usuario.distrito || '',perfilCepEdit:usuario.cep || usuario.codigoPostal || '',perfilDataConversaoEdit:usuario.dataConversao || '',perfilBatizadoEdit:usuario.batizado || '',perfilAnotacoesEdit:usuario.anotacoes || usuario.notas || ''};
-  Object.entries(map).forEach(([id,value])=>{const el=document.getElementById(id);if(el && !el.dataset.editado)el.value=value;});
+function obterUsuarioLocalCARA(){
+  try { return JSON.parse(localStorage.getItem('cara_usuario') || '{}') || {}; }
+  catch(e) { return {}; }
 }
+function setTextoPerfilCARA(id, valor) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = valor == null || valor === '' ? '—' : String(valor);
+}
+function dataPerfilParaInputCARA(valor) {
+  const s = String(valor || '').trim();
+  if (!s) return '';
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+  const br = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (br) return `${br[3]}-${br[2]}-${br[1]}`;
+  const d = new Date(s);
+  if (!isNaN(d.getTime())) return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  return '';
+}
+function preencherMeuPerfilCARA(resposta) {
+  const pessoa = resposta && resposta.pessoa ? resposta.pessoa : {};
+  const conta = resposta && resposta.conta ? resposta.conta : {};
+  const nomeCompleto = pessoa.nomeCompleto || conta.nome || obterUsuarioLocalCARA().nome || 'Usuário';
+  const partesNome = nomeCompleto.trim().split(/\s+/);
+  const primeiroNome = partesNome.shift() || '';
+  const sobrenome = partesNome.join(' ');
+  const perfil = String(conta.perfil || obterUsuarioLocalCARA().perfil || 'MEMBRO').toUpperCase();
+  const acesso = perfil.includes('ADMIN') ? 'ADMINISTRADOR' : perfil;
+  setTextoPerfilCARA('perfilNomeHome', nomeCompleto);
+  setTextoPerfilCARA('perfilAcessoHome', acesso);
+  setTextoPerfilCARA('perfilFuncaoHome', perfil);
+  setTextoPerfilCARA('perfilSituacaoHome', conta.status || 'ATIVO');
+  setTextoPerfilCARA('perfilAcessoResumo', acesso);
+  setTextoPerfilCARA('perfilSituacaoResumo', conta.status || 'ATIVO');
 
+  const valores = {
+    perfilNomeEdit: primeiroNome,
+    perfilSobrenomeEdit: sobrenome,
+    perfilNascimentoEdit: dataPerfilParaInputCARA(pessoa.dataNascimento),
+    perfilEstadoCivilEdit: pessoa.estadoCivil || '',
+    perfilTelefone1Edit: pessoa.telefone || '',
+    perfilEmailContatoEdit: pessoa.emailContato || '',
+    perfilEnderecoEdit: pessoa.endereco || '',
+    perfilDataConversaoEdit: dataPerfilParaInputCARA(pessoa.dataConversao),
+    perfilBatizadoEdit: pessoa.batizado || '',
+    perfilAnotacoesEdit: pessoa.observacoes || ''
+  };
+  Object.entries(valores).forEach(([id, valor]) => {
+    const el = document.getElementById(id);
+    if (el && !el.dataset.editado) el.value = valor;
+  });
+
+  // Campos que não existem na Base Central permanecem vazios e não serão gravados.
+  const extras = {
+    perfilConjugeEdit: pessoa.conjuge || '',
+    perfilFilhosEdit: pessoa.filhos || '',
+    perfilProfissaoEdit: pessoa.profissao || '',
+    perfilIgrejaAnteriorEdit: pessoa.igrejaAnterior || '',
+    perfilPedidoOracaoEdit: pessoa.pedidoOracao || ''
+  };
+  Object.entries(extras).forEach(([id, valor]) => {
+    const el = document.getElementById(id);
+    if (el && !el.dataset.editado) el.value = valor;
+  });
+
+  const foto = document.getElementById('perfilFotoPreview');
+  const avatar = document.getElementById('perfilAvatarPadrao');
+  if (foto && pessoa.fotoUrl) {
+    foto.src = pessoa.fotoUrl;
+    foto.style.display = 'block';
+    if (avatar) avatar.style.display = 'none';
+  }
+
+  const area = document.getElementById('perfilMinisteriosLista');
+  if (area) {
+    const ministerios = Array.isArray(resposta.ministerios) ? resposta.ministerios : [];
+    area.innerHTML = ministerios.length
+      ? ministerios.map(m => `<div class="perfil-ministerio-item"><strong>${escaparHtmlCARA(m.nome || 'Ministério')}</strong><span>${escaparHtmlCARA(m.funcao || m.tipoVinculo || 'Participante')}</span></div>`).join('')
+      : '<p class="perfil-nota">Nenhum ministério vinculado ao seu cadastro.</p>';
+  }
+}
+function escaparHtmlCARA(v) {
+  return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+async function chamarApiPerfilCARA(acao, dados = {}) {
+  const token = localStorage.getItem('cara_sessao_token');
+  if (!token) throw new Error('Sua sessão expirou. Entre novamente.');
+  const resposta = await fetch(API_SESSAO_CARA, {
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify({acao, token, dados}),
+    credentials:'omit',
+    redirect:'follow',
+    cache:'no-store'
+  });
+  if (!resposta.ok) throw new Error('Não foi possível comunicar com a Base Central.');
+  const json = await resposta.json();
+  if (!json || !json.sucesso) throw new Error(json && json.mensagem ? json.mensagem : 'Não foi possível carregar o perfil.');
+  return json;
+}
+async function carregarMeuPerfilCARA() {
+  const status = document.getElementById('perfilStatusEdicao');
+  try {
+    if (status) status.textContent = 'Carregando dados da Base Central...';
+    const resposta = await chamarApiPerfilCARA('meu-perfil');
+    preencherMeuPerfilCARA(resposta);
+    if (status) status.textContent = 'Dados carregados da Base Central.';
+  } catch (erro) {
+    console.error('Falha ao carregar Meu Perfil:', erro);
+    if (status) status.textContent = erro.message || 'Não foi possível carregar os dados.';
+  }
+}
 (function prepararEdicaoVisualPerfil(){
-  const ids=['perfilNomeEdit','perfilSobrenomeEdit','perfilNascimentoEdit','perfilSexoEdit','perfilEscolaridadeEdit','perfilEstadoCivilEdit','perfilDocumento1Edit','perfilDocumento2Edit','perfilTelefone1Edit','perfilTelefone2Edit','perfilEmailContatoEdit','perfilEnderecoEdit','perfilNumeroEdit','perfilComplementoEdit','perfilBairroEdit','perfilCidadeEdit','perfilEstadoEdit','perfilCepEdit','perfilDataConversaoEdit','perfilBatizadoEdit','perfilAnotacoesEdit'];
-  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',()=>el.dataset.editado='1');});
-  document.getElementById('salvarPerfilHome')?.addEventListener('click',()=>{
+  const ids=['perfilNomeEdit','perfilSobrenomeEdit','perfilNascimentoEdit','perfilEstadoCivilEdit','perfilTelefone1Edit','perfilEmailContatoEdit','perfilEnderecoEdit','perfilDataConversaoEdit','perfilBatizadoEdit','perfilConjugeEdit','perfilFilhosEdit','perfilProfissaoEdit','perfilIgrejaAnteriorEdit','perfilPedidoOracaoEdit'];
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener('input',()=>el.dataset.editado='1');
+    if(el) el.addEventListener('change',()=>el.dataset.editado='1');
+  });
+  document.getElementById('salvarPerfilHome')?.addEventListener('click', async ()=>{
+    const botao=document.getElementById('salvarPerfilHome');
     const status=document.getElementById('perfilStatusEdicao');
-    const dados={};ids.forEach(id=>{const el=document.getElementById(id);if(el)dados[id.replace('perfil','').replace('Edit','')]=el.value.trim();});
-    try{const usuario=obterUsuarioLocalCARA();usuario.rascunhoPerfilLocal=dados;localStorage.setItem('cara_usuario',JSON.stringify(usuario));if(status)status.textContent='Rascunho guardado neste dispositivo. A gravação permanente na Base Central será conectada na próxima etapa.';}
-    catch(e){if(status)status.textContent='Não foi possível guardar o rascunho neste dispositivo.';}
+    const valor=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
+    const nome=[valor('perfilNomeEdit'),valor('perfilSobrenomeEdit')].filter(Boolean).join(' ');
+    const dados={
+      nomeCompleto:nome,
+      dataNascimento:valor('perfilNascimentoEdit'),
+      telefone:valor('perfilTelefone1Edit'),
+      emailContato:valor('perfilEmailContatoEdit'),
+      endereco:valor('perfilEnderecoEdit'),
+      estadoCivil:valor('perfilEstadoCivilEdit'),
+      conjuge:valor('perfilConjugeEdit'),
+      filhos:valor('perfilFilhosEdit'),
+      dataConversao:valor('perfilDataConversaoEdit'),
+      batizado:valor('perfilBatizadoEdit'),
+      igrejaAnterior:valor('perfilIgrejaAnteriorEdit'),
+      profissao:valor('perfilProfissaoEdit'),
+      pedidoOracao:valor('perfilPedidoOracaoEdit')
+    };
+    if (!nome) { if(status)status.textContent='Informe seu nome completo.'; return; }
+    if(botao)botao.disabled=true;
+    if(status)status.textContent='Salvando na Base Central...';
+    try {
+      const resposta=await chamarApiPerfilCARA('salvar-meu-perfil',dados);
+      if(status)status.textContent=resposta.mensagem || 'Perfil salvo na Base Central.';
+      document.querySelectorAll('.perfil-conteudo-scroll [data-editado]').forEach(el=>delete el.dataset.editado);
+      await carregarMeuPerfilCARA();
+    } catch(erro) {
+      console.error('Falha ao salvar Meu Perfil:',erro);
+      if(status)status.textContent=erro.message || 'Não foi possível salvar. Tente novamente.';
+    } finally { if(botao)botao.disabled=false; }
   });
 }());
 
@@ -1616,7 +1755,8 @@ async function validarSessaoCARA(){
 
     const usuario=dados.usuario || obterUsuarioLocalCARA();
     localStorage.setItem('cara_usuario',JSON.stringify(usuario));
-    preencherMeuPerfilCARA(usuario);
+    preencherMeuPerfilCARA({pessoa:{nomeCompleto:usuario.nome || '',statusPessoa:'ATIVO'},conta:usuario,ministerios:[]});
+    carregarMeuPerfilCARA();
 
   }catch(erro){
     console.error('Falha ao validar sessão C.A.R.A.:',erro);
