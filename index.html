@@ -754,6 +754,14 @@
     .perfil-campo input[readonly]{background:#102943;color:#CCFF00;font-weight:800}
     .perfil-nota{font-size:11px;color:#b9c9d8;line-height:1.5;margin:0}
     .perfil-resumo{background:linear-gradient(110deg,#0b2037,#102b45);border:1px solid #21405c;border-radius:15px;padding:15px!important;margin-top:12px}
+    .perfil-avatar-wrap{width:76px;flex:0 0 76px;display:flex;flex-direction:column;align-items:center;gap:6px}
+    .perfil-avatar{width:58px;height:58px;flex:0 0 58px;border-radius:50%;object-fit:cover;background:#CCFF00;color:#051326;display:grid;place-items:center;font-size:27px;border:2px solid #CCFF00}
+    .perfil-foto-acoes{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+    .perfil-foto-btn{border:1px solid #3c5a75;background:#102943;color:#fff;border-radius:7px;padding:5px 7px;font-size:10px;font-weight:700;cursor:pointer}
+    .perfil-foto-btn:disabled{opacity:.5}
+    .perfil-rodape-fixo{position:sticky;bottom:-1px;z-index:5;background:#07182b;padding:12px 0 calc(8px + env(safe-area-inset-bottom));margin-top:12px;border-top:1px solid #203953}
+    .perfil-rodape-fixo .perfil-acoes{position:static;margin:0;padding:0;background:transparent;justify-content:flex-end}
+
     .perfil-badges{display:grid;gap:7px;min-width:165px}
     .perfil-badge{background:#102943;border-radius:10px;padding:9px 11px}
     .perfil-badge strong{display:block;color:#CCFF00;font-size:10px;letter-spacing:1px;margin-bottom:4px}
@@ -1330,7 +1338,15 @@
       <button type="button" class="home-fechar" id="fecharPerfilHome" aria-label="Fechar perfil">×</button>
     </header>
     <div class="perfil-resumo" style="display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #ffffff20;color:#fff">
-      <div aria-hidden="true" style="width:58px;height:58px;flex:0 0 58px;display:grid;place-items:center;border-radius:50%;background:#CCFF00;color:#051326;font-size:27px">👤</div>
+      <div class="perfil-avatar-wrap">
+        <img id="perfilFotoPreview" class="perfil-avatar" alt="Foto de perfil" src="" style="display:none">
+        <div id="perfilAvatarPadrao" class="perfil-avatar" aria-hidden="true">👤</div>
+        <input id="perfilFotoArquivo" type="file" accept="image/*" hidden>
+        <div class="perfil-foto-acoes">
+          <button type="button" class="perfil-foto-btn" id="editarFotoPerfil">Editar foto</button>
+          <button type="button" class="perfil-foto-btn" id="salvarFotoPerfil" disabled>Salvar foto</button>
+        </div>
+      </div>
       <div style="min-width:0">
         <h3 id="perfilNomeHome" style="margin:0 0 5px;color:#CCFF00;font-size:18px">Carregando perfil...</h3>
         <p id="perfilEmailHome" style="margin:0;color:#fff;overflow-wrap:anywhere;font-size:13px"></p>
@@ -1392,9 +1408,11 @@
         <div class="perfil-secao-conteudo"><div class="perfil-campo"><label for="perfilAnotacoesEdit">Informações complementares</label><textarea id="perfilAnotacoesEdit" placeholder="Escreva informações que deseja manter no cadastro..."></textarea></div></div>
       </section>
     </div>
-    <div class="perfil-acoes"><span id="perfilStatusEdicao" class="perfil-status" role="status"></span><button type="button" class="perfil-salvar" id="salvarPerfilHome">✓ Salvar alterações</button></div>
-    <p class="perfil-nota" style="margin-top:8px">A edição visual está preparada. A gravação permanente desses campos depende da integração de atualização com a Base Central.</p>
-    <div style="display:grid;gap:10px;padding-top:14px;color:#fff"><button class="botao-sair" type="button" style="min-height:42px;font-size:13px" onclick="sairCARA()">Sair da conta</button></div>
+    <div class="perfil-rodape-fixo">
+      <div class="perfil-acoes"><span id="perfilStatusEdicao" class="perfil-status" role="status"></span><button type="button" class="perfil-salvar" id="salvarPerfilHome">✓ Salvar alterações</button></div>
+      <p class="perfil-nota" style="margin-top:8px">A gravação permanente dos dados depende da integração com a Base Central.</p>
+    </div>
+    <div style="display:grid;gap:10px;padding-top:10px;color:#fff"><button class="botao-sair" type="button" style="min-height:42px;font-size:13px" onclick="sairCARA()">Sair da conta</button></div>
   </section>
 </div>
 
@@ -1466,6 +1484,43 @@
       if (avisos.classList.contains('aberto')) fechar(avisos, abrirAvisos);
     }
   });
+})();
+
+(function configurarFotoPerfilCARA(){
+  const input=document.getElementById('perfilFotoArquivo');
+  const editar=document.getElementById('editarFotoPerfil');
+  const salvar=document.getElementById('salvarFotoPerfil');
+  const preview=document.getElementById('perfilFotoPreview');
+  const avatar=document.getElementById('perfilAvatarPadrao');
+  if(!input||!editar||!salvar||!preview||!avatar)return;
+  let fotoPendente='';
+  editar.addEventListener('click',()=>input.click());
+  input.addEventListener('change',()=>{
+    const arquivo=input.files&&input.files[0];
+    if(!arquivo)return;
+    if(!arquivo.type.startsWith('image/')){alert('Selecione um arquivo de imagem.');input.value='';return;}
+    if(arquivo.size>5*1024*1024){alert('A foto deve ter no máximo 5 MB.');input.value='';return;}
+    const leitor=new FileReader();
+    leitor.onload=()=>{
+      fotoPendente=String(leitor.result||'');
+      preview.src=fotoPendente;preview.style.display='block';avatar.style.display='none';
+      salvar.disabled=!fotoPendente;
+    };
+    leitor.readAsDataURL(arquivo);
+  });
+  salvar.addEventListener('click',()=>{
+    if(!fotoPendente)return;
+    try{
+      localStorage.setItem('cara_foto_perfil',fotoPendente);
+      salvar.disabled=true;
+      const status=document.getElementById('perfilStatusEdicao');
+      if(status)status.textContent='Foto salva neste dispositivo.';
+    }catch(e){alert('Não foi possível salvar a foto neste dispositivo. Tente uma imagem menor.');}
+  });
+  try{
+    const guardada=localStorage.getItem('cara_foto_perfil');
+    if(guardada){preview.src=guardada;preview.style.display='block';avatar.style.display='none';}
+  }catch(e){}
 })();
 
 const API_SESSAO_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
