@@ -766,7 +766,10 @@
     .perfil-foto-acoes{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
     .perfil-foto-btn{border:1px solid #3c5a75;background:#102943;color:#fff;border-radius:7px;padding:5px 7px;font-size:10px;font-weight:700;cursor:pointer}
     .perfil-foto-btn:disabled{opacity:.5}
-    .perfil-rodape-fixo{position:sticky;bottom:0;z-index:20;background:#07182b;padding:10px 0 calc(10px + env(safe-area-inset-bottom));margin-top:12px;border-top:1px solid #203953;box-shadow:0 -8px 18px rgba(0,0,0,.16)}
+    .home-painel-perfil{display:flex;flex-direction:column;overflow:hidden;max-height:min(90vh,900px);min-height:0}
+    .home-painel-perfil .home-painel-topo{flex:0 0 auto}
+    .perfil-conteudo-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 1px 8px}
+    .perfil-rodape-fixo{position:static;flex:0 0 auto;z-index:20;background:#07182b;padding:10px 0 8px;margin-top:0;border-top:1px solid #203953;box-shadow:0 -8px 18px rgba(0,0,0,.16)}
     .perfil-rodape-fixo .perfil-acoes{position:static;margin:0;padding:0;background:transparent;justify-content:flex-end}
     .perfil-rodape-fixo .perfil-nota{display:none}
 
@@ -790,7 +793,7 @@
       .perfil-badge{min-width:0;padding:7px 8px}
       .perfil-badge strong{font-size:9px;letter-spacing:.5px}
       .perfil-badge span{font-size:12px}
-      .home-painel{max-height:90vh;padding:14px}
+      .home-painel{max-height:90vh;padding:14px}.home-painel-perfil{height:90vh;max-height:90vh}
       .perfil-campo label{line-height:1.25}
       .perfil-campo input,.perfil-campo select{min-width:0;padding:9px;font-size:12px}
       .perfil-acoes{align-items:stretch;flex-direction:column}
@@ -1348,7 +1351,7 @@
       <h2 id="tituloPerfilHome">Meu Perfil</h2>
       <button type="button" class="home-fechar" id="fecharPerfilHome" aria-label="Fechar perfil">×</button>
     </header>
-    <div class="perfil-resumo">
+    <div class="perfil-conteudo-scroll">\n    <div class="perfil-resumo">
       <div class="perfil-avatar-wrap">
         <img id="perfilFotoPreview" class="perfil-avatar" alt="Foto de perfil" src="" style="display:none">
         <div id="perfilAvatarPadrao" class="perfil-avatar" aria-hidden="true">👤</div>
@@ -1407,7 +1410,7 @@
           <div class="perfil-campo"><label>Tipo de acesso</label><input id="perfilAcessoHome" readonly aria-readonly="true" /></div>
           <div class="perfil-campo"><label>Perfil / função oficial</label><input id="perfilFuncaoHome" readonly aria-readonly="true" /></div>
           <div class="perfil-campo"><label>Situação da conta</label><input id="perfilSituacaoHome" readonly aria-readonly="true" /></div>
-          <div class="perfil-campo"><label for="perfilDataConversaoEdit">Data de conversão (opcional)</label><input id="perfilDataConversaoEdit" type="date" /></div>
+          <div class="perfil-campo"><label for="perfilDataConversaoEdit">Dia em que aceitou Jesus</label><input id="perfilDataConversaoEdit" type="date" /></div>
           <div class="perfil-campo"><label for="perfilBatizadoEdit">Batizado</label><select id="perfilBatizadoEdit"><option value="">Selecione</option><option value="Sim">Sim</option><option value="Não">Não</option></select></div>
           <p class="perfil-nota">Tipo de acesso, função oficial e permissões são gerenciados pela liderança. Para corrigir esses dados, solicite à secretaria.</p>
         </div>
@@ -1417,7 +1420,7 @@
         <div class="perfil-secao-conteudo"><div class="perfil-campo"><label for="perfilAnotacoesEdit">Informações complementares</label><textarea id="perfilAnotacoesEdit" placeholder="Escreva informações que deseja manter no cadastro..."></textarea></div></div>
       </section>
     </div>
-    <div class="perfil-rodape-fixo">
+    </div>\n    <div class="perfil-rodape-fixo">
       <div class="perfil-acoes"><span id="perfilStatusEdicao" class="perfil-status" role="status"></span><button type="button" class="perfil-salvar" id="salvarPerfilHome">✓ Salvar alterações</button></div>
     </div>
     <div style="display:grid;gap:10px;padding-top:8px;color:#fff"><button class="botao-sair" type="button" style="min-height:42px;font-size:13px" onclick="sairCARA()">Sair da conta</button></div>
