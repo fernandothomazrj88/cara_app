@@ -711,6 +711,7 @@
       background: rgba(0,0,0,.72);
     }
     .home-overlay.aberto { display: flex; }
+    .home-overlay.aberto .home-painel-perfil{align-self:stretch;margin:auto 0;}
     .home-painel {
       width: min(560px, 100%);
       max-height: min(78vh, 720px);
@@ -766,9 +767,9 @@
     .perfil-foto-acoes{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
     .perfil-foto-btn{border:1px solid #3c5a75;background:#102943;color:#fff;border-radius:7px;padding:5px 7px;font-size:10px;font-weight:700;cursor:pointer}
     .perfil-foto-btn:disabled{opacity:.5}
-    .home-painel-perfil{display:flex;flex-direction:column;overflow:hidden;max-height:min(90vh,900px);min-height:0}
+    .home-painel-perfil{display:flex;flex-direction:column;overflow:hidden;height:min(90dvh,900px);max-height:min(90dvh,900px);min-height:0}
     .home-painel-perfil .home-painel-topo{flex:0 0 auto}
-    .perfil-conteudo-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 1px 8px}
+    .perfil-conteudo-scroll{display:block;flex:1 1 0%;height:0;min-height:0;overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;touch-action:pan-y;padding:0 1px 8px}
     .perfil-rodape-fixo{position:static;flex:0 0 auto;z-index:20;background:#07182b;padding:10px 0 8px;margin-top:0;border-top:1px solid #203953;box-shadow:0 -8px 18px rgba(0,0,0,.16)}
     .perfil-rodape-fixo .perfil-acoes{position:static;margin:0;padding:0;background:transparent;justify-content:flex-end}
     .perfil-rodape-fixo .perfil-nota{display:none}
@@ -793,7 +794,7 @@
       .perfil-badge{min-width:0;padding:7px 8px}
       .perfil-badge strong{font-size:9px;letter-spacing:.5px}
       .perfil-badge span{font-size:12px}
-      .home-painel{max-height:90vh;padding:14px}.home-painel-perfil{height:90vh;max-height:90vh}
+      .home-painel{max-height:90vh;padding:14px}.home-painel-perfil{height:90dvh;max-height:90dvh}
       .perfil-campo label{line-height:1.25}
       .perfil-campo input,.perfil-campo select{min-width:0;padding:9px;font-size:12px}
       .perfil-acoes{align-items:stretch;flex-direction:column}
