@@ -945,6 +945,21 @@
       .identidade-cara-lista { grid-template-columns: 1fr; }
     }
 
+
+    /* CADASTRO COMPLEMENTAR INICIAL */
+    .cadastro-complementar{display:none;background:linear-gradient(145deg,#0b2037,#07182b);border:1px solid #CCFF0060;border-radius:16px;padding:16px;margin-bottom:14px}
+    .cadastro-complementar h3{color:#CCFF00;font-size:18px;margin-bottom:8px}
+    .cadastro-complementar p{color:#e4edf6;font-size:13px;line-height:1.5;margin-bottom:14px}
+    .cadastro-complementar .perfil-secao-conteudo{padding:0}
+    .cadastro-complementar .cadastro-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .cadastro-complementar .perfil-campo select{min-height:42px}
+    .cadastro-complementar .cadastro-acoes{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+    .cadastro-complementar .cadastro-acoes button{width:100%;min-height:46px;border:0;border-radius:10px;background:#CCFF00;color:#051326;font-weight:900;font-size:14px;cursor:pointer}
+    .cadastro-complementar .cadastro-acoes button:disabled{opacity:.6}
+    .cadastro-complementar .cadastro-status{color:#CCFF00;font-size:12px;min-height:18px}
+    .cadastro-complementar .campo-obrigatorio{color:#CCFF00}
+    @media(max-width:390px){.cadastro-complementar .cadastro-grid{grid-template-columns:1fr}}
+
 </style>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="mobile-web-app-capable" content="yes">
@@ -1354,6 +1369,24 @@
       <button type="button" class="home-fechar" id="fecharPerfilHome" aria-label="Fechar perfil">×</button>
     </header>
     <div class="perfil-conteudo-scroll">
+    <section id="cadastroComplementarPanel" class="cadastro-complementar" aria-labelledby="tituloCadastroComplementar">
+      <h3 id="tituloCadastroComplementar">Complete seu cadastro</h3>
+      <p>Para concluir seu acesso à C.A.R.A., preencha os campos abaixo. Os campos marcados com <span class="campo-obrigatorio">*</span> são obrigatórios. Depois de concluir, esses dados ficarão bloqueados para edição pelo membro. Documentos pessoais não são solicitados.</p>
+      <div class="cadastro-grid">
+        <div class="perfil-campo"><label for="cadastroSexo">Sexo <span class="campo-obrigatorio">*</span></label><select id="cadastroSexo" required><option value="">Selecione</option><option value="Masculino">Masculino</option><option value="Feminino">Feminino</option><option value="Prefiro não informar">Prefiro não informar</option></select></div>
+        <div class="perfil-campo"><label for="cadastroEscolaridade">Escolaridade <span class="campo-obrigatorio">*</span></label><select id="cadastroEscolaridade" required><option value="">Selecione</option><option>Fundamental incompleto</option><option>Fundamental completo</option><option>Ensino médio incompleto</option><option>Ensino médio completo</option><option>Superior incompleto</option><option>Superior completo</option><option>Pós-graduação</option></select></div>
+        <div class="perfil-campo"><label for="cadastroTelefoneSecundario">Telefone secundário com DDD <span class="campo-obrigatorio">*</span></label><input id="cadastroTelefoneSecundario" type="tel" autocomplete="tel" placeholder="(21) 99999-9999" required></div>
+        <div class="perfil-campo"><label for="cadastroLogradouro">Rua / endereço <span class="campo-obrigatorio">*</span></label><input id="cadastroLogradouro" autocomplete="street-address" required></div>
+        <div class="perfil-campo"><label for="cadastroNumero">Número <span class="campo-obrigatorio">*</span></label><input id="cadastroNumero" required></div>
+        <div class="perfil-campo"><label for="cadastroComplemento">Complemento (opcional)</label><input id="cadastroComplemento" placeholder="Apartamento, casa, bloco..."></div>
+        <div class="perfil-campo"><label for="cadastroBairro">Bairro <span class="campo-obrigatorio">*</span></label><input id="cadastroBairro" required></div>
+        <div class="perfil-campo"><label for="cadastroCidade">Cidade <span class="campo-obrigatorio">*</span></label><input id="cadastroCidade" autocomplete="address-level2" required></div>
+        <div class="perfil-campo"><label for="cadastroEstado">Estado (UF) <span class="campo-obrigatorio">*</span></label><input id="cadastroEstado" maxlength="2" autocomplete="address-level1" placeholder="RJ" required></div>
+        <div class="perfil-campo"><label for="cadastroCep">CEP <span class="campo-obrigatorio">*</span></label><input id="cadastroCep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" required></div>
+      </div>
+      <div class="cadastro-acoes"><button type="button" id="concluirCadastroComplementar">Concluir cadastro</button><div id="cadastroComplementarStatus" class="cadastro-status" role="status"></div></div>
+    </section>
+    <div id="perfilDadosExistentes">
     <div class="perfil-resumo">
       <div class="perfil-avatar-wrap">
         <img id="perfilFotoPreview" class="perfil-avatar" alt="Foto de perfil" src="" style="display:none">
@@ -1400,10 +1433,10 @@
           <h3><span class="perfil-icone">⌂</span> Morada / Endereço</h3>
           <div class="perfil-secao-conteudo">
             <div class="perfil-campo"><label for="perfilEnderecoEdit">Rua / endereço</label><input id="perfilEnderecoEdit" autocomplete="street-address" /></div>
-            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilNumeroEdit">Número</label><input id="perfilNumeroEdit" / readonly aria-readonly="true"></div><div class="perfil-campo"><label for="perfilComplementoEdit">Complemento</label><input id="perfilComplementoEdit" / readonly aria-readonly="true"></div></div>
-            <div class="perfil-campo"><label for="perfilBairroEdit">Bairro</label><input id="perfilBairroEdit" / readonly aria-readonly="true"></div>
-            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilCidadeEdit">Cidade</label><input id="perfilCidadeEdit" autocomplete="address-level2" / readonly aria-readonly="true"></div><div class="perfil-campo"><label for="perfilEstadoEdit">Estado</label><input id="perfilEstadoEdit" autocomplete="address-level1" / readonly aria-readonly="true"></div></div>
-            <div class="perfil-campo"><label for="perfilCepEdit">CEP</label><input id="perfilCepEdit" autocomplete="postal-code" / readonly aria-readonly="true"></div>
+            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilNumeroEdit">Número</label><input id="perfilNumeroEdit"></div><div class="perfil-campo"><label for="perfilComplementoEdit">Complemento</label><input id="perfilComplementoEdit"></div></div>
+            <div class="perfil-campo"><label for="perfilBairroEdit">Bairro</label><input id="perfilBairroEdit"></div>
+            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilCidadeEdit">Cidade</label><input id="perfilCidadeEdit" autocomplete="address-level2"></div><div class="perfil-campo"><label for="perfilEstadoEdit">Estado</label><input id="perfilEstadoEdit" autocomplete="address-level1"></div></div>
+            <div class="perfil-campo"><label for="perfilCepEdit">CEP</label><input id="perfilCepEdit" autocomplete="postal-code"></div>
           </div>
         </section>
       </div>
@@ -1440,7 +1473,8 @@
         <div class="perfil-secao-conteudo"><div class="perfil-campo"><label for="perfilAnotacoesEdit">Informações complementares</label><textarea id="perfilAnotacoesEdit" placeholder="Escreva informações que deseja manter no cadastro..."></textarea></div></div>
       </section>
     </div>
-    </div>
+    </div><!-- /perfilDadosExistentes -->
+    </div><!-- /perfil-conteudo-scroll -->
     <div class="perfil-rodape-fixo">
       <div class="perfil-acoes"><span id="perfilStatusEdicao" class="perfil-status" role="status"></span><button type="button" class="perfil-salvar" id="salvarPerfilHome">✓ Salvar alterações</button></div>
     </div>
@@ -1600,6 +1634,17 @@ function dataPerfilParaInputCARA(valor) {
 function preencherMeuPerfilCARA(resposta) {
   const pessoa = resposta && resposta.pessoa ? resposta.pessoa : {};
   const conta = resposta && resposta.conta ? resposta.conta : {};
+  const cadastroConcluido = !!pessoa.cadastroComplementarConcluido;
+  const cadastroPanel = document.getElementById('cadastroComplementarPanel');
+  const perfilDados = document.getElementById('perfilDadosExistentes');
+  const rodapePerfil = document.querySelector('.perfil-rodape-fixo');
+  const botaoFotoEditar = document.getElementById('editarFotoPerfil');
+  const botaoFotoSalvar = document.getElementById('salvarFotoPerfil');
+  if (cadastroPanel) cadastroPanel.style.display = cadastroConcluido ? 'none' : 'block';
+  if (perfilDados) perfilDados.style.display = cadastroConcluido ? '' : 'none';
+  if (rodapePerfil) rodapePerfil.style.display = cadastroConcluido ? '' : 'none';
+  if (botaoFotoEditar) botaoFotoEditar.disabled = !cadastroConcluido;
+  if (botaoFotoSalvar) botaoFotoSalvar.disabled = !cadastroConcluido || botaoFotoSalvar.disabled;
   const nomeCompleto = pessoa.nomeCompleto || conta.nome || obterUsuarioLocalCARA().nome || 'Usuário';
   const partesNome = nomeCompleto.trim().split(/\s+/);
   const primeiroNome = partesNome.shift() || '';
@@ -1629,6 +1674,22 @@ function preencherMeuPerfilCARA(resposta) {
     perfilAnotacoesEdit: pessoa.observacoes || ''
   };
   Object.entries(valores).forEach(([id, valor]) => {
+    const el = document.getElementById(id);
+    if (el && !el.dataset.editado) el.value = valor;
+  });
+  const cadastroValores = {
+    cadastroSexo: pessoa.sexo || '',
+    cadastroEscolaridade: pessoa.escolaridade || '',
+    cadastroTelefoneSecundario: pessoa.telefoneSecundario || '',
+    cadastroLogradouro: pessoa.logradouro || pessoa.endereco || '',
+    cadastroNumero: pessoa.numero || '',
+    cadastroComplemento: pessoa.complemento || '',
+    cadastroBairro: pessoa.bairro || '',
+    cadastroCidade: pessoa.cidade || '',
+    cadastroEstado: pessoa.estado || '',
+    cadastroCep: pessoa.cep || ''
+  };
+  Object.entries(cadastroValores).forEach(([id, valor]) => {
     const el = document.getElementById(id);
     if (el && !el.dataset.editado) el.value = valor;
   });
@@ -1736,7 +1797,7 @@ async function carregarMeuPerfilCARA() {
 }
 (function prepararEdicaoVisualPerfil(){
   // Somente estes campos podem ser alterados pelo próprio membro.
-  const idsEditaveis=['perfilTelefone1Edit','perfilEmailContatoEdit','perfilEnderecoEdit','perfilPedidoOracaoEdit','perfilAnotacoesEdit'];
+  const idsEditaveis=['perfilTelefone1Edit','perfilEmailContatoEdit','perfilEnderecoEdit','perfilNumeroEdit','perfilComplementoEdit','perfilBairroEdit','perfilCidadeEdit','perfilEstadoEdit','perfilCepEdit','perfilPedidoOracaoEdit','perfilAnotacoesEdit'];
   idsEditaveis.forEach(id=>{
     const el=document.getElementById(id);
     if(el){
@@ -1751,7 +1812,13 @@ async function carregarMeuPerfilCARA() {
     const dados={
       telefone:valor('perfilTelefone1Edit'),
       emailContato:valor('perfilEmailContatoEdit'),
-      endereco:valor('perfilEnderecoEdit'),
+      logradouro:valor('perfilEnderecoEdit'),
+      numero:valor('perfilNumeroEdit'),
+      complemento:valor('perfilComplementoEdit'),
+      bairro:valor('perfilBairroEdit'),
+      cidade:valor('perfilCidadeEdit'),
+      estado:valor('perfilEstadoEdit').toUpperCase(),
+      cep:valor('perfilCepEdit'),
       pedidoOracao:valor('perfilPedidoOracaoEdit'),
       observacoes:valor('perfilAnotacoesEdit')
     };
@@ -1766,6 +1833,69 @@ async function carregarMeuPerfilCARA() {
       console.error('Falha ao salvar Meu Perfil:',erro);
       if(status)status.textContent=erro.message || 'Não foi possível salvar. Tente novamente.';
     } finally { if(botao)botao.disabled=false; }
+  });
+}());
+
+(function configurarCadastroComplementarCARA(){
+  const botao = document.getElementById('concluirCadastroComplementar');
+  if (!botao) return;
+  const ids = ['cadastroSexo','cadastroEscolaridade','cadastroTelefoneSecundario','cadastroLogradouro','cadastroNumero','cadastroComplemento','cadastroBairro','cadastroCidade','cadastroEstado','cadastroCep'];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', () => { el.dataset.editado = '1'; });
+      el.addEventListener('change', () => { el.dataset.editado = '1'; });
+    }
+  });
+  const cep = document.getElementById('cadastroCep');
+  if (cep) cep.addEventListener('input', () => {
+    const digitos = cep.value.replace(/\D/g,'').slice(0,8);
+    cep.value = digitos.length > 5 ? digitos.slice(0,5) + '-' + digitos.slice(5) : digitos;
+  });
+  const uf = document.getElementById('cadastroEstado');
+  if (uf) uf.addEventListener('input', () => { uf.value = uf.value.replace(/[^a-z]/gi,'').slice(0,2).toUpperCase(); });
+  botao.addEventListener('click', async () => {
+    const status = document.getElementById('cadastroComplementarStatus');
+    const valor = id => String(document.getElementById(id)?.value || '').trim();
+    const dados = {
+      sexo:valor('cadastroSexo'),
+      escolaridade:valor('cadastroEscolaridade'),
+      telefoneSecundario:valor('cadastroTelefoneSecundario'),
+      logradouro:valor('cadastroLogradouro'),
+      numero:valor('cadastroNumero'),
+      complemento:valor('cadastroComplemento'),
+      bairro:valor('cadastroBairro'),
+      cidade:valor('cadastroCidade'),
+      estado:valor('cadastroEstado').toUpperCase(),
+      cep:valor('cadastroCep').replace(/\D/g,'')
+    };
+    const obrigatorios = ['sexo','escolaridade','telefoneSecundario','logradouro','numero','bairro','cidade','estado','cep'];
+    const faltantes = obrigatorios.filter(chave => !dados[chave]);
+    if (faltantes.length) {
+      if (status) status.textContent = 'Preencha todos os campos obrigatórios marcados com *.';
+      const primeiro = document.querySelector('#cadastroComplementarPanel [required]:invalid');
+      if (primeiro) primeiro.focus();
+      return;
+    }
+    if (dados.estado.length !== 2) { if(status)status.textContent='Informe a sigla do estado com 2 letras.'; uf?.focus(); return; }
+    if (dados.cep.length !== 8) { if(status)status.textContent='Informe um CEP válido com 8 dígitos.'; cep?.focus(); return; }
+    if (dados.telefoneSecundario.replace(/\D/g,'').length < 10) {
+      if(status)status.textContent='Informe um telefone secundário válido com DDD.';
+      document.getElementById('cadastroTelefoneSecundario')?.focus(); return;
+    }
+    botao.disabled = true;
+    if (status) status.textContent = 'Concluindo cadastro na Base Central...';
+    try {
+      const resposta = await chamarApiPerfilCARA('concluir-cadastro-complementar', dados);
+      if (status) status.textContent = resposta.mensagem || 'Cadastro concluído.';
+      ids.forEach(id => { const el=document.getElementById(id); if(el) delete el.dataset.editado; });
+      await carregarMeuPerfilCARA();
+    } catch (erro) {
+      console.error('Falha ao concluir cadastro complementar:', erro);
+      if (status) status.textContent = erro.message || 'Não foi possível concluir o cadastro. Tente novamente.';
+    } finally {
+      botao.disabled = false;
+    }
   });
 }());
 
