@@ -1649,17 +1649,46 @@ function preencherMeuPerfilCARA(resposta) {
   const foto = document.getElementById('perfilFotoPreview');
   const avatar = document.getElementById('perfilAvatarPadrao');
   if (foto) {
+    // A API pode devolver o nome camelCase ou o cabeçalho original da planilha.
+    const urlOriginal = String(
+      pessoa.fotoUrl || pessoa.FOTO_URL || pessoa.foto_url ||
+      pessoa.urlFoto || pessoa.URL_FOTO || ''
+    ).trim();
+
+    // Gera alternativas compatíveis com imagens hospedadas no Google Drive.
+    const urlsFoto = [];
+    if (urlOriginal && /^https?:\/\//i.test(urlOriginal)) {
+      urlsFoto.push(urlOriginal);
+      const idDrive = urlOriginal.match(/[?&]id=([^&]+)/i) ||
+                      urlOriginal.match(/\/file\/d\/([^/]+)/i);
+      if (idDrive && idDrive[1]) {
+        const id = decodeURIComponent(idDrive[1]);
+        urlsFoto.push('https://drive.google.com/thumbnail?id=' + encodeURIComponent(id) + '&sz=w600');
+        urlsFoto.push('https://drive.google.com/uc?export=view&id=' + encodeURIComponent(id));
+      }
+    }
+
+    // Evita recarregar a mesma URL e tenta o próximo formato caso o primeiro falhe.
+    const urlsUnicas = [...new Set(urlsFoto)];
+    let tentativaFoto = 0;
     foto.onerror = () => {
+      tentativaFoto++;
+      if (tentativaFoto < urlsUnicas.length) {
+        foto.src = urlsUnicas[tentativaFoto];
+        return;
+      }
       foto.onerror = null;
       foto.removeAttribute('src');
       foto.style.display = 'none';
       if (avatar) avatar.style.display = 'grid';
     };
-    if (pessoa.fotoUrl && /^https?:\/\//i.test(String(pessoa.fotoUrl))) {
-      foto.src = String(pessoa.fotoUrl);
+    if (urlsUnicas.length) {
+      tentativaFoto = 0;
+      foto.src = urlsUnicas[0];
       foto.style.display = 'block';
       if (avatar) avatar.style.display = 'none';
     } else {
+      foto.onerror = null;
       foto.removeAttribute('src');
       foto.style.display = 'none';
       if (avatar) avatar.style.display = 'grid';
