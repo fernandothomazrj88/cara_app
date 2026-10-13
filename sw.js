@@ -1,8 +1,11 @@
-const CACHE_VERSION = 'cara-app-v36';
+const CACHE_VERSION = 'cara-app-v37';
 
 const APP_SHELL = [
   './',
   './index.html',
+  './entrada.html',
+  './visitante.html',
+  './login.html',
   './agenda.html',
   './louvor.html',
   './ministerios.html',

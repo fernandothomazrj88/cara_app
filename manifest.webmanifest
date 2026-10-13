@@ -3,11 +3,11 @@
   "name": "CARA — Comunidade Apostólica Restaurando Almas",
   "short_name": "CARA",
   "description": "Aplicativo oficial da Comunidade Apostólica Restaurando Almas",
-  "start_url": "/cara_app/",
+  "start_url": "/cara_app/entrada.html",
   "scope": "/cara_app/",
   "display": "standalone",
-  "background_color": "#081820",
-  "theme_color": "#081820",
+  "background_color": "#051326",
+  "theme_color": "#051326",
   "icons": [
     {
       "src": "icon-192.png",
