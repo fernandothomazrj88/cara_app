@@ -1411,7 +1411,21 @@
     retorno.focus();
   }
 
-  abrirPerfil.addEventListener('click', () => abrir(perfil, fecharPerfil));
+  // Bind the profile button defensively; keep it working even if other home UI elements fail.
+  if (abrirPerfil && perfil && fecharPerfil) {
+    abrirPerfil.addEventListener('click', function(event) {
+      event.preventDefault();
+      perfil.classList.add('aberto');
+      document.body.classList.add('home-modal-aberto');
+      fecharPerfil.focus();
+    });
+    fecharPerfil.addEventListener('click', function(event) {
+      event.preventDefault();
+      perfil.classList.remove('aberto');
+      document.body.classList.remove('home-modal-aberto');
+      abrirPerfil.focus();
+    });
+  }
   fecharPerfil.addEventListener('click', () => fechar(perfil, abrirPerfil));
   abrirAvisos.addEventListener('click', () => abrir(avisos, fecharAvisos));
   fecharAvisos.addEventListener('click', () => fechar(avisos, abrirAvisos));
