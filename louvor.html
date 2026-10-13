@@ -1519,7 +1519,33 @@
   .fundamento-louvor__texto { width:70% !important; padding-left:5px !important; }
 }
 
-</style>
+
+
+    /* v36 — arte aprovada como imagem única: sem texto duplicado, zoom ou recorte. */
+    .fundamento-louvor {
+      display:block !important; position:relative !important; isolation:auto !important;
+      width:min(1478px,calc(100% - 128px)) !important; max-width:1478px !important;
+      height:auto !important; aspect-ratio:auto !important; min-height:0 !important;
+      margin:14px auto 20px !important; padding:0 !important; overflow:hidden !important;
+      border:0 !important; border-radius:0 !important; background:transparent !important;
+      box-shadow:none !important;
+    }
+    .fundamento-louvor::before { content:none !important; display:none !important; }
+    .fundamento-louvor__imagem, .fundamento-louvor__texto { display:none !important; }
+    .fundamento-louvor__arte {
+      display:block !important; width:100% !important; max-width:100% !important;
+      height:auto !important; aspect-ratio:auto !important; object-fit:contain !important;
+      object-position:center !important; margin:0 !important; padding:0 !important;
+      border:0 !important; border-radius:0 !important; box-shadow:none !important;
+    }
+    @media(max-width:720px) {
+      .fundamento-louvor { width:calc(100% - 28px) !important; margin:10px auto 16px !important; }
+    }
+    @media(max-width:420px) {
+      .fundamento-louvor { width:calc(100% - 20px) !important; }
+    }
+
+  </style>
 
 <script>
 /* ==========================================================
@@ -1629,13 +1655,8 @@ async function getCentral(rota) {
   >
 </header>
 <div class="divisoria-fluorescente" aria-hidden="true"></div>
-<section class="fundamento-louvor" role="img" aria-label="Adorando ao Senhor com Hinos e Louvores. Tudo o que tem fôlego louve ao Senhor. Salmos 150:6">
-  <div class="fundamento-louvor__texto">
-    <h2>Adorando ao Senhor<br><span>com Hinos e Louvores</span></h2>
-    <p>“Tudo o que tem fôlego louve ao Senhor.<br>Louvai ao Senhor.”</p>
-    <strong>Salmos 150:6</strong>
-  </div>
-  <div class="fundamento-louvor__imagem" aria-hidden="true"></div>
+<section class="fundamento-louvor" aria-label="Fundamento do Ministério de Louvor">
+  <img class="fundamento-louvor__arte" src="./banner-fundamento-louvor.png" alt="Adorando ao Senhor com Hinos de Louvor. Tudo o que tem fôlego louve ao Senhor. Louvai ao Senhor. Salmos 150:6">
 </section>
 <div class="divisoria-fluorescente" aria-hidden="true"></div>
 
