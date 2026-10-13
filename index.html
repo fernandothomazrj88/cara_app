@@ -762,7 +762,28 @@
     .perfil-salvar{background:#CCFF00;color:#051326;border:0;border-radius:10px;padding:12px 18px;font-weight:900;cursor:pointer;min-height:44px}
     .perfil-salvar:disabled{opacity:.65;cursor:wait}
     .perfil-status{font-size:12px;color:#CCFF00;min-height:18px}
-    @media(max-width:700px){.perfil-form-grid{grid-template-columns:1fr}.perfil-secao-conteudo{grid-template-columns:1fr}.perfil-resumo{align-items:flex-start!important;flex-wrap:wrap}.perfil-badges{width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}.home-painel{max-height:90vh;padding:14px}.perfil-acoes{align-items:stretch;flex-direction:column}.perfil-salvar{width:100%}}
+    @media(max-width:700px){
+      .perfil-form-grid{grid-template-columns:1fr;gap:12px}
+      .perfil-secao-conteudo{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:13px}
+      .perfil-resumo{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center!important;gap:12px!important;padding:14px!important}
+      .perfil-resumo > div:first-child{min-width:0}
+      .perfil-resumo #perfilNomeHome{font-size:16px;line-height:1.2;overflow-wrap:anywhere}
+      .perfil-resumo #perfilEmailHome{font-size:12px;overflow-wrap:anywhere}
+      .perfil-badges{width:auto;min-width:118px;grid-template-columns:1fr;gap:6px}
+      .perfil-badge{padding:8px 9px}
+      .perfil-badge strong{font-size:9px;letter-spacing:.7px}
+      .perfil-badge span{font-size:12px}
+      .home-painel{max-height:90vh;padding:14px}
+      .perfil-campo label{line-height:1.25}
+      .perfil-campo input,.perfil-campo select{min-width:0;padding:9px;font-size:12px}
+      .perfil-acoes{align-items:stretch;flex-direction:column}
+      .perfil-salvar{width:100%}
+    }
+    @media(max-width:390px){
+      .perfil-resumo{grid-template-columns:minmax(0,1fr);gap:10px!important}
+      .perfil-badges{grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+      .perfil-secao-conteudo{grid-template-columns:1fr}
+    }
     .home-links-modulos {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
