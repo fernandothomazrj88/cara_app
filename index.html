@@ -754,8 +754,15 @@
     .perfil-campo input[readonly]{background:#102943;color:#CCFF00;font-weight:800}
     .perfil-nota{font-size:11px;color:#b9c9d8;line-height:1.5;margin:0}
     .perfil-resumo{background:linear-gradient(110deg,#0b2037,#102b45);border:1px solid #21405c;border-radius:15px;padding:15px!important;margin-top:12px}
-    .perfil-avatar-wrap{width:76px;flex:0 0 76px;display:flex;flex-direction:column;align-items:center;gap:6px}
-    .perfil-avatar{width:58px;height:58px;flex:0 0 58px;border-radius:50%;object-fit:cover;background:#CCFF00;color:#051326;display:grid;place-items:center;font-size:27px;border:2px solid #CCFF00}
+    .perfil-resumo{display:flex;gap:18px;align-items:center;padding:16px!important}
+    .perfil-avatar-wrap{width:112px;flex:0 0 112px;display:flex;flex-direction:column;align-items:center;gap:7px}
+    .perfil-avatar{width:92px;height:92px;flex:0 0 92px;border-radius:50%;object-fit:cover;background:#CCFF00;color:#051326;display:grid;place-items:center;font-size:36px;border:2px solid #CCFF00}
+    .perfil-identidade{flex:1;min-width:0}
+    .perfil-identidade h3{margin:0 0 12px!important;font-size:20px!important;line-height:1.2}
+    .perfil-badges{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+    .perfil-badge{min-width:135px;flex:1;background:#102943;border-radius:9px;padding:9px 11px}
+    .perfil-badge strong{display:block;color:#CCFF00;font-size:10px;letter-spacing:.7px;margin-bottom:4px}
+    .perfil-badge span{color:#fff;font-size:13px;font-weight:800}
     .perfil-foto-acoes{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
     .perfil-foto-btn{border:1px solid #3c5a75;background:#102943;color:#fff;border-radius:7px;padding:5px 7px;font-size:10px;font-weight:700;cursor:pointer}
     .perfil-foto-btn:disabled{opacity:.5}
@@ -774,13 +781,14 @@
     @media(max-width:700px){
       .perfil-form-grid{grid-template-columns:1fr;gap:12px}
       .perfil-secao-conteudo{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:13px}
-      .perfil-resumo{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center!important;gap:12px!important;padding:14px!important}
-      .perfil-resumo > div:first-child{min-width:0}
-      .perfil-resumo #perfilNomeHome{font-size:16px;line-height:1.2;overflow-wrap:anywhere}
-      .perfil-resumo #perfilEmailHome{font-size:12px;overflow-wrap:anywhere}
-      .perfil-badges{width:auto;min-width:118px;grid-template-columns:1fr;gap:6px}
-      .perfil-badge{padding:8px 9px}
-      .perfil-badge strong{font-size:9px;letter-spacing:.7px}
+      .perfil-resumo{display:flex!important;align-items:center!important;gap:12px!important;padding:12px!important}
+      .perfil-avatar-wrap{width:88px;flex:0 0 88px}
+      .perfil-avatar{width:76px;height:76px;flex-basis:76px}
+      .perfil-identidade{min-width:0}
+      .perfil-identidade h3{font-size:16px!important;margin-bottom:9px!important;overflow-wrap:anywhere}
+      .perfil-badges{display:grid;grid-template-columns:1fr;gap:6px;width:100%}
+      .perfil-badge{min-width:0;padding:7px 8px}
+      .perfil-badge strong{font-size:9px;letter-spacing:.5px}
       .perfil-badge span{font-size:12px}
       .home-painel{max-height:90vh;padding:14px}
       .perfil-campo label{line-height:1.25}
@@ -789,8 +797,10 @@
       .perfil-salvar{width:100%}
     }
     @media(max-width:390px){
-      .perfil-resumo{grid-template-columns:minmax(0,1fr);gap:10px!important}
-      .perfil-badges{grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+       .perfil-resumo{gap:10px!important}
+      .perfil-avatar-wrap{width:78px;flex-basis:78px}
+      .perfil-avatar{width:68px;height:68px;flex-basis:68px}
+      .perfil-badges{grid-template-columns:1fr;width:100%}
       .perfil-secao-conteudo{grid-template-columns:1fr}
     }
     .home-links-modulos {
@@ -1338,7 +1348,7 @@
       <h2 id="tituloPerfilHome">Meu Perfil</h2>
       <button type="button" class="home-fechar" id="fecharPerfilHome" aria-label="Fechar perfil">×</button>
     </header>
-    <div class="perfil-resumo" style="display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #ffffff20;color:#fff">
+    <div class="perfil-resumo">
       <div class="perfil-avatar-wrap">
         <img id="perfilFotoPreview" class="perfil-avatar" alt="Foto de perfil" src="" style="display:none">
         <div id="perfilAvatarPadrao" class="perfil-avatar" aria-hidden="true">👤</div>
@@ -1348,14 +1358,12 @@
           <button type="button" class="perfil-foto-btn" id="salvarFotoPerfil" disabled>Salvar foto</button>
         </div>
       </div>
-      <div style="min-width:0">
-        <h3 id="perfilNomeHome" style="margin:0 0 5px;color:#CCFF00;font-size:18px">Carregando perfil...</h3>
-        <p id="perfilEmailHome" style="margin:0;color:#fff;overflow-wrap:anywhere;font-size:13px"></p>
-        <p class="perfil-nota" style="margin-top:5px">Mantenha seus dados pessoais e de contato atualizados.</p>
-      </div>
-      <div class="perfil-badges">
-        <div class="perfil-badge"><strong>TIPO DE ACESSO</strong><span id="perfilAcessoResumo">Verificando...</span></div>
-        <div class="perfil-badge"><strong>SITUAÇÃO DA CONTA</strong><span id="perfilSituacaoResumo">Verificando...</span></div>
+      <div class="perfil-identidade">
+        <h3 id="perfilNomeHome" style="color:#CCFF00">Carregando perfil...</h3>
+        <div class="perfil-badges">
+          <div class="perfil-badge"><strong>TIPO DE ACESSO</strong><span id="perfilAcessoResumo">Verificando...</span></div>
+          <div class="perfil-badge"><strong>SITUAÇÃO DA CONTA</strong><span id="perfilSituacaoResumo">Verificando...</span></div>
+        </div>
       </div>
     </div>
     <div class="perfil-form-grid">
