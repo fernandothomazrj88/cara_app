@@ -694,9 +694,9 @@
       -webkit-tap-highlight-color: transparent;
     }
     .menu-item span { font-size: 23px; line-height: 1; }
-    .menu-item.ativo { color: var(--dourado); font-weight: 800; }
+    .menu-item.ativo { color: #CCFF00; font-weight: 800; }
     .menu-item:focus-visible {
-      outline: 2px solid var(--dourado);
+      outline: 2px solid #CCFF00;
       outline-offset: -4px;
       border-radius: 12px;
     }
@@ -939,16 +939,7 @@
        CONTEÚDO
   =================================== -->
 
-  <section class="status-acesso" id="statusAcesso" aria-live="polite">
-    <div class="status-acesso-info">
-      <div class="status-acesso-icone">🔐</div>
-      <div class="status-acesso-texto">
-        <div class="status-acesso-principal" id="statusPrincipal">Verificando seu acesso...</div>
-        <div class="status-acesso-secundario" id="statusSecundario">Aguarde enquanto a C.A.R.A. confirma sua sessão.</div>
-      </div>
-    </div>
-    <button class="botao-sair" type="button" id="btnSair" onclick="sairCARA()">Sair</button>
-  </section>
+
 
 
   <main class="conteudo">
@@ -1283,29 +1274,30 @@
     <span>🔔</span>
     Avisos
   </button>
-  <button type="button" class="menu-item" id="abrirMaisHome" aria-haspopup="dialog" aria-controls="painelMaisHome">
-    <span>☰</span>
-    Mais
+  <button type="button" class="menu-item" id="abrirPerfilHome" aria-haspopup="dialog" aria-controls="painelPerfilHome">
+    <span>👤</span>
+    Meu Perfil
   </button>
 </nav>
 
-<div class="home-overlay" id="painelMaisHome" role="dialog" aria-modal="true" aria-labelledby="tituloMaisHome">
+<div class="home-overlay" id="painelPerfilHome" role="dialog" aria-modal="true" aria-labelledby="tituloPerfilHome">
   <section class="home-painel">
     <header class="home-painel-topo">
-      <h2 id="tituloMaisHome">Todos os módulos</h2>
-      <button type="button" class="home-fechar" id="fecharMaisHome" aria-label="Fechar menu">×</button>
+      <h2 id="tituloPerfilHome">Meu Perfil</h2>
+      <button type="button" class="home-fechar" id="fecharPerfilHome" aria-label="Fechar perfil">×</button>
     </header>
-    <div class="home-links-modulos">
-      <a href="./agenda.html"><span>📅</span>Agenda</a>
-      <a href="./louvor.html"><span>🎵</span>Louvor</a>
-      <a href="./midia.html"><span>📱</span>Mídia</a>
-      <a href="./estudos.html"><span>📖</span>Ensino Bíblico</a>
-      <a href="./ministerios.html"><span>🤝</span>Ministérios</a>
-      <a href="./membros.html"><span>👥</span>Membros</a>
-      <a href="./secretaria.html"><span>🗂️</span>Secretaria</a>
-      <a href="./galeria.html"><span>🖼️</span>Galeria</a>
-      <a href="./tesouraria.html"><span>💰</span>Tesouraria</a>
-      <a href="./index.html#modulos"><span>⚡</span>Acesso rápido</a>
+    <div class="perfil-resumo" style="display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #ffffff20;color:#fff">
+      <div aria-hidden="true" style="width:52px;height:52px;display:grid;place-items:center;border-radius:50%;background:#CCFF00;color:#051326;font-size:26px">👤</div>
+      <div style="min-width:0">
+        <h3 id="perfilNomeHome" style="margin:0 0 5px;color:#CCFF00;font-size:18px">Carregando perfil...</h3>
+        <p id="perfilEmailHome" style="margin:0;color:#fff;overflow-wrap:anywhere;font-size:13px"></p>
+      </div>
+    </div>
+    <div style="display:grid;gap:10px;padding-top:14px;color:#fff">
+      <div style="padding:13px;border-radius:12px;background:#10243d"><div style="font-size:11px;color:#CCFF00;font-weight:800;letter-spacing:1px">TIPO DE ACESSO</div><div id="perfilAcessoHome" style="margin-top:5px;font-weight:700">Verificando...</div></div>
+      <div style="padding:13px;border-radius:12px;background:#10243d"><div style="font-size:11px;color:#CCFF00;font-weight:800;letter-spacing:1px">PERFIL / FUNÇÃO</div><div id="perfilFuncaoHome" style="margin-top:5px;font-weight:700">—</div></div>
+      <div style="padding:13px;border-radius:12px;background:#10243d"><div style="font-size:11px;color:#CCFF00;font-weight:800;letter-spacing:1px">SITUAÇÃO DA CONTA</div><div id="perfilSituacaoHome" style="margin-top:5px;font-weight:700">Conta autenticada</div></div>
+      <button class="botao-sair" type="button" style="min-height:42px;font-size:13px" onclick="sairCARA()">Sair da conta</button>
     </div>
   </section>
 </div>
@@ -1324,15 +1316,15 @@
 
 <script>
 (function configurarAcessoRapidoHomeCARA(){
-  const mais = document.getElementById('painelMaisHome');
+  const perfil = document.getElementById('painelPerfilHome');
   const avisos = document.getElementById('painelAvisosHome');
-  const abrirMais = document.getElementById('abrirMaisHome');
-  const fecharMais = document.getElementById('fecharMaisHome');
+  const abrirPerfil = document.getElementById('abrirPerfilHome');
+  const fecharPerfil = document.getElementById('fecharPerfilHome');
   const abrirAvisos = document.getElementById('abrirAvisosHome');
   const fecharAvisos = document.getElementById('fecharAvisosHome');
 
   function abrir(painel, foco) {
-    mais.classList.remove('aberto');
+    perfil.classList.remove('aberto');
     avisos.classList.remove('aberto');
     painel.classList.add('aberto');
     document.body.classList.add('home-modal-aberto');
@@ -1344,15 +1336,15 @@
     retorno.focus();
   }
 
-  abrirMais.addEventListener('click', () => abrir(mais, fecharMais));
-  fecharMais.addEventListener('click', () => fechar(mais, abrirMais));
+  abrirPerfil.addEventListener('click', () => abrir(perfil, fecharPerfil));
+  fecharPerfil.addEventListener('click', () => fechar(perfil, abrirPerfil));
   abrirAvisos.addEventListener('click', () => abrir(avisos, fecharAvisos));
   fecharAvisos.addEventListener('click', () => fechar(avisos, abrirAvisos));
 
-  [mais, avisos].forEach(painel => {
+  [perfil, avisos].forEach(painel => {
     painel.addEventListener('click', event => {
       if (event.target === painel) {
-        const retorno = painel === mais ? abrirMais : abrirAvisos;
+        const retorno = painel === perfil ? abrirPerfil : abrirAvisos;
         fechar(painel, retorno);
       }
     });
@@ -1360,7 +1352,7 @@
 
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
-      if (mais.classList.contains('aberto')) fechar(mais, abrirMais);
+      if (perfil.classList.contains('aberto')) fechar(perfil, abrirPerfil);
       if (avisos.classList.contains('aberto')) fechar(avisos, abrirAvisos);
     }
   });
@@ -1385,16 +1377,18 @@ function escaparHtmlCARA(v){
     .replace(/'/g,'&#039;');
 }
 
-function mostrarStatusAcessoCARA(usuario){
-  const principal=document.getElementById('statusPrincipal');
-  const secundario=document.getElementById('statusSecundario');
-  if(!principal || !secundario) return;
-
-  const nome=usuario.nome || usuario.nomePessoa || usuario.email || 'Usuário';
-  const perfil=String(usuario.perfil || usuario.funcao || usuario.role || 'USUÁRIO').toUpperCase();
-
-  principal.innerHTML='Você está logado · acesso: <span class="status-acesso-perfil">'+escaparHtmlCARA(perfil)+'</span>';
-  secundario.textContent=nome + (usuario.email && usuario.email !== nome ? ' · '+usuario.email : '');
+function preencherMeuPerfilCARA(usuario){
+  const nome=usuario.nome || usuario.nomePessoa || usuario.nomeCompleto || 'Usuário';
+  const email=usuario.email || usuario.emailGoogle || 'E-mail não informado';
+  const perfil=String(usuario.perfil || usuario.funcao || usuario.role || usuario.cargo || 'MEMBRO').toUpperCase();
+  const acesso=String(usuario.nivelAcesso || usuario.acesso || usuario.tipoAcesso || (perfil.includes('ADMIN') ? 'ADMINISTRADOR' : 'MEMBRO')).toUpperCase();
+  const situacao=String(usuario.status || usuario.situacao || 'ATIVA').toUpperCase();
+  const set=(id,valor)=>{const el=document.getElementById(id);if(el)el.textContent=valor;};
+  set('perfilNomeHome',nome);
+  set('perfilEmailHome',email);
+  set('perfilAcessoHome',acesso);
+  set('perfilFuncaoHome',perfil);
+  set('perfilSituacaoHome',situacao);
 }
 
 async function validarSessaoCARA(){
@@ -1428,7 +1422,7 @@ async function validarSessaoCARA(){
 
     const usuario=dados.usuario || obterUsuarioLocalCARA();
     localStorage.setItem('cara_usuario',JSON.stringify(usuario));
-    mostrarStatusAcessoCARA(usuario);
+    preencherMeuPerfilCARA(usuario);
 
   }catch(erro){
     console.error('Falha ao validar sessão C.A.R.A.:',erro);
