@@ -1455,6 +1455,70 @@
   .fundamento-louvor__texto strong { font-size:clamp(9px,2.6vw,11px) !important; }
 }
 
+
+
+/* v35 — correção do banner de fundamento: fotografia sem zoom exagerado,
+   sem deformação e mantendo a composição horizontal da referência. */
+.fundamento-louvor {
+  width:min(1220px,calc(100% - 128px)) !important;
+  aspect-ratio:1365 / 187 !important;
+  height:auto !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+}
+.fundamento-louvor__imagem {
+  inset:0 0 0 43% !important;
+  background-position:center,right center !important;
+  /* Antes estava em 200% 100%, ampliando e cortando demais a foto. */
+  background-size:100% 100%,auto 100% !important;
+  background-repeat:no-repeat !important;
+}
+.fundamento-louvor::before {
+  background:linear-gradient(90deg,
+    #051326 0%,
+    #051326 31%,
+    rgba(5,19,38,.90) 43%,
+    rgba(5,19,38,.24) 66%,
+    rgba(5,19,38,0) 100%) !important;
+}
+.fundamento-louvor__texto {
+  width:58% !important;
+  padding:8px 20px 8px 4.5% !important;
+}
+@media(max-width:720px) {
+  .fundamento-louvor {
+    width:calc(100% - 28px) !important;
+    aspect-ratio:739 / 171 !important;
+    margin:10px auto 16px !important;
+    border-radius:13px !important;
+  }
+  .fundamento-louvor__imagem {
+    inset:0 0 0 38% !important;
+    background-size:100% 100%,auto 100% !important;
+    background-position:center,right center !important;
+  }
+  .fundamento-louvor::before {
+    background:linear-gradient(90deg,
+      #051326 0%,
+      #051326 29%,
+      rgba(5,19,38,.91) 43%,
+      rgba(5,19,38,.32) 72%,
+      rgba(5,19,38,.08) 100%) !important;
+  }
+  .fundamento-louvor__texto {
+    width:68% !important;
+    padding:6px 6px 6px 8px !important;
+  }
+  .fundamento-louvor__texto h2 { font-size:clamp(12px,3.3vw,20px) !important; }
+  .fundamento-louvor__texto p { font-size:clamp(8px,2vw,12px) !important; }
+  .fundamento-louvor__texto strong { font-size:clamp(9px,2.3vw,14px) !important; }
+}
+@media(max-width:420px) {
+  .fundamento-louvor { width:calc(100% - 20px) !important; }
+  .fundamento-louvor__imagem { inset:0 0 0 36% !important; }
+  .fundamento-louvor__texto { width:70% !important; padding-left:5px !important; }
+}
+
 </style>
 
 <script>
