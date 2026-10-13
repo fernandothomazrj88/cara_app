@@ -51,7 +51,7 @@
         linear-gradient(145deg,rgba(12,38,50,.97),rgba(5,19,38,.97));
       box-shadow:
         0 25px 70px rgba(0,0,0,.48),
-        0 0 0 1px rgba(255,255,0,.025);
+        0 0 0 1px rgba(204,255,0,.025);
       position:relative;
       overflow:hidden;
     }
@@ -63,7 +63,7 @@
       right:0;
       top:0;
       height:4px;
-      background:#FFFF00;
+      background:#CCFF00;
     }
 
     .logo{
@@ -74,27 +74,20 @@
       display:block;
     }
 
-    .eyebrow{
-      color:#FFFF00;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:3px;
-      margin-bottom:8px;
-    }
-
-    h1{
-      margin:0;
-      font-size:30px;
-      line-height:1.1;
-      font-weight:850;
-    }
-
     .sub{
-      margin:12px auto 25px;
-      max-width:360px;
-      color:#c2d0dc;
+      margin:12px auto 22px;
+      max-width:330px;
+      color:#d3dee8;
       font-size:14px;
       line-height:1.55;
+    }
+
+    .login-label{
+      margin:0 auto 10px;
+      color:#CCFF00;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.8px;
     }
 
     .google-area{
@@ -129,9 +122,9 @@
       margin-top:20px;
       padding:8px 13px;
       border-radius:999px;
-      background:rgba(255,255,0,.07);
-      border:1px solid rgba(255,255,0,.10);
-      color:#f4f4c0;
+      background:rgba(204,255,0,.07);
+      border:1px solid rgba(204,255,0,.10);
+      color:#eaffad;
       font-size:10px;
       font-weight:750;
     }
@@ -155,7 +148,7 @@
     }
 
     .voltar:hover{
-      color:#FFFF00;
+      color:#CCFF00;
     }
 
     @media(max-width:520px){
@@ -174,13 +167,9 @@
         margin-bottom:17px;
       }
 
-      h1{
-        font-size:28px;
-      }
-
       .sub{
         font-size:13px;
-        margin-bottom:22px;
+        margin-bottom:20px;
       }
     }
 
@@ -191,10 +180,6 @@
 
       .login{
         padding:27px 16px 23px;
-      }
-
-      h1{
-        font-size:26px;
       }
 
       .logo{
@@ -214,13 +199,10 @@
         alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas"
       >
 
-      <div class="eyebrow">CENTRAL DE ACESSO</div>
-
-      <h1>Shalom, Shalom!</h1>
+      <p class="login-label">ENTRAR COM GOOGLE</p>
 
       <p class="sub">
-        Entre com a sua conta Google cadastrada na C.A.R.A.
-        para acessar as áreas autorizadas do aplicativo.
+        Use sua conta Google cadastrada para acessar o aplicativo.
       </p>
 
       <div id="googleButton" class="google-area"></div>
@@ -473,10 +455,10 @@ function iniciarGoogle() {
       type: 'standard',
       theme: 'filled_blue',
       size: 'large',
-      text: 'continue_with',
+      text: 'signin_with',
       shape: 'pill',
       logo_alignment: 'left',
-      width: 320,
+      width: 280,
       locale: 'pt-BR'
     }
   );
