@@ -1,484 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#051326">
-  <title>Acesso — C.A.R.A.</title>
-
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
-
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-  <style>
-    *{box-sizing:border-box}
-
-    html,body{
-      margin:0;
-      min-height:100%;
-      font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-    }
-
-    body{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      color:#fff;
-      background:
-        radial-gradient(circle at 50% 10%,#173b4c 0%,#0c2733 28%,#051326 68%,#020812 100%);
-    }
-
-    .pagina{
-      width:100%;
-      max-width:900px;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .login{
-      width:min(470px,100%);
-      text-align:center;
-      padding:34px 28px 30px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:30px;
-      background:
-        linear-gradient(145deg,rgba(12,38,50,.97),rgba(5,19,38,.97));
-      box-shadow:
-        0 25px 70px rgba(0,0,0,.48),
-        0 0 0 1px rgba(204,255,0,.025);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .login::before{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      top:0;
-      height:4px;
-      background:#CCFF00;
-    }
-
-    .logo{
-      width:min(330px,88%);
-      max-height:190px;
-      object-fit:contain;
-      margin:4px auto 18px;
-      display:block;
-    }
-
-    .sub{
-      margin:12px auto 22px;
-      max-width:330px;
-      color:#d3dee8;
-      font-size:14px;
-      line-height:1.55;
-    }
-
-    .login-label{
-      margin:0 auto 10px;
-      color:#CCFF00;
-      font-size:13px;
-      font-weight:800;
-      letter-spacing:.8px;
-    }
-
-    .google-area{
-      min-height:48px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin:14px 0 10px;
-    }
-
-    .status{
-      min-height:22px;
-      margin-top:14px;
-      color:#b9c8d8;
-      font-size:12px;
-      line-height:1.5;
-    }
-
-    .status.erro{
-      color:#ffb8b8;
-    }
-
-    .status.sucesso{
-      color:#dfffdf;
-    }
-
-    .protecao{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:7px;
-      margin-top:20px;
-      padding:8px 13px;
-      border-radius:999px;
-      background:rgba(204,255,0,.07);
-      border:1px solid rgba(204,255,0,.10);
-      color:#eaffad;
-      font-size:10px;
-      font-weight:750;
-    }
-
-    .rodape{
-      margin:20px auto 0;
-      max-width:360px;
-      padding-top:17px;
-      border-top:1px solid rgba(255,255,255,.08);
-      color:#71859a;
-      font-size:10px;
-      line-height:1.5;
-    }
-
-    .voltar{
-      display:inline-block;
-      margin-top:15px;
-      color:#9eafc1;
-      text-decoration:none;
-      font-size:11px;
-    }
-
-    .voltar:hover{
-      color:#CCFF00;
-    }
-
-    @media(max-width:520px){
-      body{
-        padding:14px;
-      }
-
-      .login{
-        padding:29px 19px 25px;
-        border-radius:25px;
-      }
-
-      .logo{
-        width:min(310px,92%);
-        max-height:170px;
-        margin-bottom:17px;
-      }
-
-      .sub{
-        font-size:13px;
-        margin-bottom:20px;
-      }
-    }
-
-    @media(max-width:390px){
-      body{
-        padding:10px;
-      }
-
-      .login{
-        padding:27px 16px 23px;
-      }
-
-      .logo{
-        max-height:150px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#051326">
+<title>Acesso — C.A.R.A.</title>
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;color:#fff;background:radial-gradient(circle at 50% 10%,#173b4c 0%,#0c2733 28%,#051326 68%,#020812 100%)}
+.pagina{width:100%;max-width:900px;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.login{width:min(470px,100%);text-align:center;padding:34px 28px 30px;border:1px solid rgba(255,255,255,.10);border-radius:30px;background:linear-gradient(145deg,rgba(12,38,50,.97),rgba(5,19,38,.97));box-shadow:0 25px 70px rgba(0,0,0,.48);position:relative;overflow:hidden}
+.login:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:#CCFF00}
+.logo{width:min(300px,85%);max-height:180px;object-fit:contain;margin:4px auto 14px;display:block}
+.sub{margin:8px auto 24px;max-width:340px;color:#d3dee8;font-size:14px;line-height:1.55}
+.login-label{margin:0 auto 8px;color:#CCFF00;font-size:13px;font-weight:800;letter-spacing:.8px}
+form{text-align:left}label{display:block;color:#dce6ef;font-size:12px;font-weight:700;margin:15px 0 7px}
+input{width:100%;padding:14px 15px;border-radius:12px;border:1px solid #314657;background:#071827;color:#fff;font:inherit;outline:none}
+input:focus{border-color:#CCFF00;box-shadow:0 0 0 3px rgba(204,255,0,.1)}
+button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:#CCFF00;color:#10200b;font-size:14px;font-weight:850;cursor:pointer}
+button:disabled{opacity:.65;cursor:wait}
+.status{min-height:22px;margin-top:14px;color:#b9c8d8;font-size:12px;line-height:1.5;text-align:center}.status.erro{color:#ffb8b8}.status.sucesso{color:#dfffdf}
+.protecao{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:20px;padding:8px 13px;border-radius:999px;background:rgba(204,255,0,.07);border:1px solid rgba(204,255,0,.10);color:#eaffad;font-size:10px;font-weight:750}
+.rodape{margin:20px auto 0;max-width:360px;padding-top:17px;border-top:1px solid rgba(255,255,255,.08);color:#71859a;font-size:10px;line-height:1.5}
+.voltar{display:inline-block;margin-top:15px;color:#9eafc1;text-decoration:none;font-size:11px}.voltar:hover{color:#CCFF00}
+@media(max-width:520px){body{padding:12px}.login{padding:29px 19px 25px;border-radius:25px}.sub{font-size:13px}}
+</style>
 </head>
-
 <body>
-  <main class="pagina">
-    <section class="login">
-
-      <img
-        class="logo"
-        src="./logo-cara.png?v=2"
-        alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas"
-      >
-
-      <p class="login-label">ENTRAR COM GOOGLE</p>
-
-      <p class="sub">
-        Use sua conta Google cadastrada para acessar o aplicativo.
-      </p>
-
-      <div id="googleButton" class="google-area"></div>
-
-      <div id="status" class="status">
-        Preparando o acesso...
-      </div>
-
-      <div class="protecao">
-        🔐 Acesso protegido pela Base Central
-      </div>
-
-      <div class="rodape">
-        Somente usuários ativos e cadastrados na C.A.R.A.
-        poderão iniciar uma sessão.
-      </div>
-
-      <a
-        class="voltar"
-        href="./entrada.html"
-        id="voltar"
-      >
-        Voltar
-      </a>
-
-    </section>
-  </main>
-
+<main class="pagina"><section class="login">
+<img class="logo" src="./logo-cara.png?v=3" alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas">
+<p class="login-label">ACESSO DE MEMBROS</p>
+<p class="sub">Entre com seu nome de usuário ou e-mail e sua senha cadastrada na C.A.R.A.</p>
+<form id="formLogin" autocomplete="on">
+<label for="identificador">Usuário ou e-mail</label>
+<input id="identificador" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="254" required>
+<label for="senha">Senha</label>
+<input id="senha" name="password" type="password" autocomplete="current-password" maxlength="200" required>
+<button id="btnEntrar" type="submit">Entrar</button>
+</form>
+<div id="status" class="status" role="status" aria-live="polite">Informe suas credenciais para continuar.</div>
+<div class="protecao">🔐 Acesso protegido pela Base Central</div>
+<div class="rodape">Somente usuários autorizados e ativos podem entrar. Se ainda não possui senha, solicite a configuração de acesso à liderança.</div>
+<a class="voltar" href="./entrada.html">Voltar</a>
+</section></main>
 <script>
-const API = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
-
-const CLIENT_ID =
-  '678445465166-bt0tirg4jgiv6op258e4eav89m3b34uq.apps.googleusercontent.com';
-
-const CHAVE_TOKEN = 'cara_sessao_token';
-const CHAVE_USUARIO = 'cara_usuario';
-
-function setStatus(text, tipo='') {
-  const el = document.getElementById('status');
-
-  if (!el) return;
-
-  el.textContent = text || '';
-
-  el.classList.remove('erro', 'sucesso');
-
-  if (tipo) {
-    el.classList.add(tipo);
-  }
+const API='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+const CHAVE_TOKEN='cara_sessao_token', CHAVE_USUARIO='cara_usuario';
+const form=document.getElementById('formLogin'), btn=document.getElementById('btnEntrar');
+function setStatus(t,tipo=''){const e=document.getElementById('status');e.textContent=t||'';e.className='status'+(tipo?' '+tipo:'');}
+function destinoSeguro(){const p=new URLSearchParams(location.search),d=p.get('next')||'./index.html';return d.startsWith('./')&&!d.includes('://')&&!d.startsWith('//')?d:'./index.html';}
+async function postCentral(payload){
+ const controller=new AbortController(),limite=setTimeout(()=>controller.abort(),15000);let r;
+ try{r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),credentials:'omit',signal:controller.signal});}
+ catch(e){if(e.name==='AbortError')throw new Error('A Central demorou a responder. Tente novamente.');throw new Error('Não foi possível comunicar com a Central de Acesso.');}
+ finally{clearTimeout(limite);}
+ if(!r.ok)throw new Error('Não foi possível comunicar com a Central de Acesso.');
+ return await r.json();
 }
-
-async function postCentral(payload) {
-  // Evita que uma consulta de sessão fique presa e impeça o botão Google de aparecer.
-  const controller = new AbortController();
-  const limite = setTimeout(() => controller.abort(), 8000);
-
-  let r;
-  try {
-    r = await fetch(API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: JSON.stringify(payload),
-      credentials: 'omit',
-      signal: controller.signal
-    });
-  } catch (erro) {
-    if (erro && erro.name === 'AbortError') {
-      throw new Error('A verificação demorou demais. Entre com sua conta Google.');
-    }
-    throw erro;
-  } finally {
-    clearTimeout(limite);
-  }
-
-  if (!r.ok) {
-    throw new Error('Não foi possível comunicar com a Central de Acesso.');
-  }
-
-  return await r.json();
+async function validarSessaoExistente(){
+ const token=localStorage.getItem(CHAVE_TOKEN);if(!token)return false;
+ try{const r=await postCentral({acao:'sessao',token});if(r&&r.sucesso&&r.autenticado){if(r.usuario)localStorage.setItem(CHAVE_USUARIO,JSON.stringify(r.usuario));location.replace(destinoSeguro());return true;}}
+ catch(e){console.warn('Não foi possível validar sessão anterior.',e);}
+ localStorage.removeItem(CHAVE_TOKEN);localStorage.removeItem(CHAVE_USUARIO);return false;
 }
-
-function destinoSeguro() {
-  const params = new URLSearchParams(location.search);
-  const destino = params.get('next') || './index.html';
-
-  /*
-   * Aceita somente destinos internos do próprio PWA.
-   * Isso evita redirecionamentos externos indevidos.
-   */
-  if (
-    destino.startsWith('./') &&
-    !destino.includes('://') &&
-    !destino.startsWith('//')
-  ) {
-    return destino;
-  }
-
-  return './index.html';
-}
-
-async function validarSessaoExistente() {
-  const token = localStorage.getItem(CHAVE_TOKEN);
-
-  if (!token) {
-    return false;
-  }
-
-  try {
-    setStatus('Verificando sua sessão...');
-
-    const resposta = await postCentral({
-      acao: 'sessao',
-      token: token
-    });
-
-    if (
-      resposta &&
-      resposta.sucesso &&
-      resposta.autenticado
-    ) {
-      if (resposta.usuario) {
-        localStorage.setItem(
-          CHAVE_USUARIO,
-          JSON.stringify(resposta.usuario)
-        );
-      }
-
-      setStatus('Sessão encontrada. Entrando...', 'sucesso');
-
-      setTimeout(() => {
-        location.replace(destinoSeguro());
-      }, 250);
-
-      return true;
-    }
-
-  } catch (e) {
-    console.warn(
-      'Sessão anterior não pôde ser validada:',
-      e
-    );
-    setStatus('Entre com sua conta Google cadastrada na C.A.R.A.');
-  }
-
-  localStorage.removeItem(CHAVE_TOKEN);
-  localStorage.removeItem(CHAVE_USUARIO);
-
-  return false;
-}
-
-function iniciarGoogle() {
-
-  if (
-    !window.google ||
-    !google.accounts ||
-    !google.accounts.id
-  ) {
-    setStatus('Carregando o acesso do Google...');
-
-    setTimeout(iniciarGoogle, 500);
-
-    return;
-  }
-
-  google.accounts.id.initialize({
-    client_id: CLIENT_ID,
-
-    callback: async function(response) {
-
-      try {
-
-        if (
-          !response ||
-          !response.credential
-        ) {
-          throw new Error(
-            'O Google não retornou a credencial de acesso.'
-          );
-        }
-
-        setStatus(
-          'Validando sua conta Google...'
-        );
-
-        const resposta = await postCentral({
-          acao: 'login',
-          credential: response.credential
-        });
-
-        if (
-          !resposta ||
-          !resposta.sucesso ||
-          !resposta.token
-        ) {
-          throw new Error(
-            resposta && resposta.mensagem
-              ? resposta.mensagem
-              : 'Não foi possível concluir o acesso.'
-          );
-        }
-
-        /*
-         * IMPORTANTE:
-         * A Home index.html usa exatamente esta chave.
-         */
-        localStorage.setItem(
-          CHAVE_TOKEN,
-          resposta.token
-        );
-
-        localStorage.setItem(
-          CHAVE_USUARIO,
-          JSON.stringify(resposta.usuario || {})
-        );
-
-        setStatus(
-          'Acesso autorizado. Entrando...',
-          'sucesso'
-        );
-
-        setTimeout(() => {
-          location.replace(destinoSeguro());
-        }, 350);
-
-      } catch (e) {
-
-        console.error(
-          'Erro de login C.A.R.A.:',
-          e
-        );
-
-        setStatus(
-          e.message ||
-          'Não foi possível validar seu acesso.',
-          'erro'
-        );
-      }
-    },
-
-    ux_mode: 'popup',
-    auto_select: false,
-    cancel_on_tap_outside: true
-  });
-
-  google.accounts.id.renderButton(
-    document.getElementById('googleButton'),
-    {
-      type: 'standard',
-      theme: 'filled_blue',
-      size: 'large',
-      text: 'signin_with',
-      shape: 'pill',
-      logo_alignment: 'left',
-      width: 280,
-      locale: 'pt-BR'
-    }
-  );
-
-  setStatus(
-    'Escolha a conta Google para entrar.'
-  );
-}
-
-(async function() {
-
-  const entrou =
-    await validarSessaoExistente();
-
-  if (!entrou) {
-    iniciarGoogle();
-  }
-
-})();
+form.addEventListener('submit',async ev=>{
+ ev.preventDefault();if(btn.disabled)return;
+ const identificador=document.getElementById('identificador').value.trim();
+ const senha=document.getElementById('senha').value;
+ btn.disabled=true;btn.textContent='Validando...';setStatus('Validando suas credenciais...');
+ try{
+  const r=await postCentral({acao:'login-senha',identificador,senha});
+  if(!r||!r.sucesso||!r.token)throw new Error(r&&r.mensagem?r.mensagem:'Não foi possível entrar.');
+  localStorage.setItem(CHAVE_TOKEN,r.token);localStorage.setItem(CHAVE_USUARIO,JSON.stringify(r.usuario||{}));
+  setStatus('Acesso autorizado. Entrando...','sucesso');location.replace(destinoSeguro());
+ }catch(e){setStatus(e.message||'Não foi possível validar seu acesso.','erro');}
+ finally{btn.disabled=false;btn.textContent='Entrar';}
+});
+(async()=>{await validarSessaoExistente();})();
 </script>
-
 </body>
 </html>
