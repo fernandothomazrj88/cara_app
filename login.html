@@ -23,7 +23,7 @@ button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;backg
 button:disabled{opacity:.65;cursor:wait}
 .status{min-height:22px;margin-top:14px;color:#b9c8d8;font-size:12px;line-height:1.5;text-align:center}.status.erro{color:#ffb8b8}.status.sucesso{color:#dfffdf}
 .protecao{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:20px;padding:8px 13px;border-radius:999px;background:rgba(204,255,0,.07);border:1px solid rgba(204,255,0,.10);color:#eaffad;font-size:10px;font-weight:750}
-.links-acesso{display:flex;flex-direction:column;gap:12px;margin:18px 0 2px}.links-acesso a{color:#CCFF00;text-decoration:none;font-size:12px;font-weight:700}.painel-extra{display:none;text-align:left;margin-top:18px;padding:16px;border:1px solid #314657;border-radius:14px;background:#071827}.painel-extra h3{margin:0 0 6px;color:#CCFF00;font-size:14px}.painel-extra p{margin:0 0 10px;color:#b9c8d8;font-size:12px;line-height:1.5}.painel-extra button{margin-top:12px}.rodape{margin:20px auto 0;max-width:360px;padding-top:17px;border-top:1px solid rgba(255,255,255,.08);color:#71859a;font-size:10px;line-height:1.5}
+.rodape{margin:20px auto 0;max-width:360px;padding-top:17px;border-top:1px solid rgba(255,255,255,.08);color:#71859a;font-size:10px;line-height:1.5}
 .voltar{display:inline-block;margin-top:15px;color:#9eafc1;text-decoration:none;font-size:11px}.voltar:hover{color:#CCFF00}
 @media(max-width:520px){body{padding:12px}.login{padding:29px 19px 25px;border-radius:25px}.sub{font-size:13px}}
 </style>
@@ -41,28 +41,28 @@ button:disabled{opacity:.65;cursor:wait}
 <button id="btnEntrar" type="submit">Entrar</button>
 </form>
 <div id="status" class="status" role="status" aria-live="polite">Informe suas credenciais para continuar.</div>
-<div class="links-acesso">
-<a href="#" id="linkPrimeiro">Primeiro acesso? Ativar minha conta</a>
-<a href="#" id="linkRecuperar">Esqueceu sua senha? Recuperar acesso</a>
-</div>
-<section class="painel-extra" id="painelPrimeiro">
-<h3>Ativar minha conta</h3><p>Digite o código individual que recebeu da liderança e crie seu usuário e senha.</p>
-<form id="formPrimeiro"><label for="codigoAtivacao">Código de ativação</label><input id="codigoAtivacao" autocomplete="one-time-code" maxlength="80" required>
-<label for="novoUsuario">Crie seu nome de usuário</label><input id="novoUsuario" autocomplete="username" autocapitalize="none" pattern="[a-zA-Z0-9._-]{3,30}" minlength="3" maxlength="30" required>
-<label for="novaSenha">Crie sua senha (mínimo 12 caracteres)</label><input id="novaSenha" type="password" autocomplete="new-password" minlength="12" maxlength="200" required>
-<label for="confirmaSenha">Confirme sua senha</label><input id="confirmaSenha" type="password" autocomplete="new-password" minlength="12" maxlength="200" required>
-<button type="submit" id="btnAtivar">Ativar conta</button></form>
-</section>
-<section class="painel-extra" id="painelRecuperar">
-<h3>Recuperar acesso</h3><p>Peça à liderança para validar sua identidade e fornecer um código de recuperação de uso único.</p>
-<form id="formRecuperar"><label for="identificadorRec">Usuário ou e-mail cadastrado</label><input id="identificadorRec" maxlength="254" required>
-<label for="codigoRec">Código de recuperação</label><input id="codigoRec" autocomplete="one-time-code" maxlength="80" required>
-<label for="senhaRec">Nova senha (mínimo 12 caracteres)</label><input id="senhaRec" type="password" autocomplete="new-password" minlength="12" maxlength="200" required>
-<label for="confirmaRec">Confirme a nova senha</label><input id="confirmaRec" type="password" autocomplete="new-password" minlength="12" maxlength="200" required>
-<button type="submit" id="btnRecuperar">Redefinir senha</button></form>
-</section>
 <div class="protecao">🔐 Acesso protegido pela Base Central</div>
-<div class="rodape">Somente usuários autorizados e ativos podem entrar. Se ainda não possui senha, solicite a configuração de acesso à liderança.</div>
+<div style="display:grid;gap:10px;margin-top:16px">
+ <button type="button" id="abrirAtivacao" style="margin-top:0;background:transparent;color:#CCFF00;border:1px solid #526b37">Primeiro acesso? Ativar minha conta</button>
+ <button type="button" id="abrirRecuperacao" style="margin-top:0;background:transparent;color:#dce6ef;border:1px solid #314657">Esqueceu sua senha? Recuperar acesso</button>
+</div>
+<section id="painelAtivacao" hidden style="text-align:left;margin-top:18px;padding-top:16px;border-top:1px solid #314657">
+ <p style="color:#CCFF00;font-weight:800;font-size:13px">ATIVAR CONTA</p>
+ <label for="codigoAtivacao">Código fornecido pela liderança</label><input id="codigoAtivacao" maxlength="8" autocomplete="one-time-code" autocapitalize="characters">
+ <label for="novoUsuario">Crie seu nome de usuário</label><input id="novoUsuario" maxlength="30" autocomplete="username" autocapitalize="none">
+ <label for="novaSenhaAtivacao">Crie uma senha (mínimo 12 caracteres)</label><input id="novaSenhaAtivacao" type="password" maxlength="200" autocomplete="new-password">
+ <label for="confirmaSenhaAtivacao">Confirme a senha</label><input id="confirmaSenhaAtivacao" type="password" maxlength="200" autocomplete="new-password">
+ <button type="button" id="btnAtivar">Ativar minha conta</button>
+</section>
+<section id="painelRecuperacao" hidden style="text-align:left;margin-top:18px;padding-top:16px;border-top:1px solid #314657">
+ <p style="color:#CCFF00;font-weight:800;font-size:13px">RECUPERAR SENHA</p>
+ <label for="identificadorRecuperacao">Seu nome de usuário ou e-mail cadastrado</label><input id="identificadorRecuperacao" maxlength="254" autocomplete="username">
+ <label for="codigoRecuperacao">Código fornecido pela liderança</label><input id="codigoRecuperacao" maxlength="8" autocomplete="one-time-code" autocapitalize="characters">
+ <label for="novaSenhaRecuperacao">Nova senha (mínimo 12 caracteres)</label><input id="novaSenhaRecuperacao" type="password" maxlength="200" autocomplete="new-password">
+ <label for="confirmaSenhaRecuperacao">Confirme a nova senha</label><input id="confirmaSenhaRecuperacao" type="password" maxlength="200" autocomplete="new-password">
+ <button type="button" id="btnRecuperar">Redefinir senha</button>
+</section>
+<div class="rodape">Somente usuários autorizados e ativos podem entrar. Para ativar sua conta ou recuperar a senha, use um código fornecido diretamente pela liderança.</div>
 <a class="voltar" href="./entrada.html">Voltar</a>
 </section></main>
 <script>
@@ -98,11 +98,26 @@ form.addEventListener('submit',async ev=>{
  }catch(e){setStatus(e.message||'Não foi possível validar seu acesso.','erro');}
  finally{btn.disabled=false;btn.textContent='Entrar';}
 });
-function alternarPainel(id){document.getElementById('painelPrimeiro').style.display=id==='primeiro'?'block':'none';document.getElementById('painelRecuperar').style.display=id==='recuperar'?'block':'none';setStatus(id==='primeiro'?'Informe o código fornecido pela liderança.':'Use o código de recuperação fornecido pela liderança.');}
-document.getElementById('linkPrimeiro').addEventListener('click',e=>{e.preventDefault();alternarPainel('primeiro')});
-document.getElementById('linkRecuperar').addEventListener('click',e=>{e.preventDefault();alternarPainel('recuperar')});
-document.getElementById('formPrimeiro').addEventListener('submit',async e=>{e.preventDefault();const b=document.getElementById('btnAtivar'),pass=document.getElementById('novaSenha').value;if(pass!==document.getElementById('confirmaSenha').value){setStatus('As senhas não coincidem.','erro');return}b.disabled=true;setStatus('Validando código...');try{const r=await postCentral({acao:'ativar-com-codigo',codigo:document.getElementById('codigoAtivacao').value.trim(),nomeUsuario:document.getElementById('novoUsuario').value.trim(),senha:pass});if(!r||!r.sucesso)throw Error(r&&r.mensagem||'Não foi possível ativar a conta.');setStatus(r.mensagem||'Conta ativada. Você já pode entrar.','sucesso');document.getElementById('formPrimeiro').reset();}catch(err){setStatus(err.message||'Falha ao ativar a conta.','erro')}finally{b.disabled=false}});
-document.getElementById('formRecuperar').addEventListener('submit',async e=>{e.preventDefault();const b=document.getElementById('btnRecuperar'),pass=document.getElementById('senhaRec').value;if(pass!==document.getElementById('confirmaRec').value){setStatus('As senhas não coincidem.','erro');return}b.disabled=true;setStatus('Validando código de recuperação...');try{const r=await postCentral({acao:'recuperar-com-codigo',identificador:document.getElementById('identificadorRec').value.trim(),codigo:document.getElementById('codigoRec').value.trim(),senha:pass});if(!r||!r.sucesso)throw Error(r&&r.mensagem||'Não foi possível redefinir a senha.');setStatus(r.mensagem||'Senha redefinida. Você já pode entrar.','sucesso');document.getElementById('formRecuperar').reset();}catch(err){setStatus(err.message||'Falha ao redefinir a senha.','erro')}finally{b.disabled=false}});
+function alternarPainel(id){const ids=['painelAtivacao','painelRecuperacao'];ids.forEach(x=>document.getElementById(x).hidden=x!==id);setStatus('');}
+document.getElementById('abrirAtivacao').addEventListener('click',()=>alternarPainel('painelAtivacao'));
+document.getElementById('abrirRecuperacao').addEventListener('click',()=>alternarPainel('painelRecuperacao'));
+document.getElementById('btnAtivar').addEventListener('click',async()=>{
+ const codigo=document.getElementById('codigoAtivacao').value.trim().toUpperCase();
+ const nomeUsuario=document.getElementById('novoUsuario').value.trim();
+ const senha=document.getElementById('novaSenhaAtivacao').value,confirm=document.getElementById('confirmaSenhaAtivacao').value;
+ if(senha!==confirm){setStatus('As senhas não coincidem.','erro');return}if(senha.length<12){setStatus('A senha deve ter pelo menos 12 caracteres.','erro');return}
+ const b=document.getElementById('btnAtivar');b.disabled=true;setStatus('Ativando conta...');
+ try{const r=await postCentral({acao:'ativar-com-codigo',codigo,nomeUsuario,senha});if(!r||!r.sucesso)throw Error(r&&r.mensagem||'Não foi possível ativar a conta.');document.getElementById('formLogin').reset();document.getElementById('identificador').value=nomeUsuario;alternarPainel('painelAtivacao');setStatus((r.mensagem||'Conta ativada. Agora entre.')+' Você já pode entrar abaixo.','sucesso');}
+ catch(e){setStatus(e.message||'Falha ao ativar conta.','erro')}finally{b.disabled=false}
+});
+document.getElementById('btnRecuperar').addEventListener('click',async()=>{
+ const identificador=document.getElementById('identificadorRecuperacao').value.trim(),codigo=document.getElementById('codigoRecuperacao').value.trim().toUpperCase();
+ const senha=document.getElementById('novaSenhaRecuperacao').value,confirm=document.getElementById('confirmaSenhaRecuperacao').value;
+ if(!identificador||!codigo){setStatus('Informe usuário/e-mail e o código de recuperação.','erro');return}if(senha!==confirm){setStatus('As senhas não coincidem.','erro');return}if(senha.length<12){setStatus('A senha deve ter pelo menos 12 caracteres.','erro');return}
+ const b=document.getElementById('btnRecuperar');b.disabled=true;setStatus('Redefinindo senha...');
+ try{const r=await postCentral({acao:'recuperar-com-codigo',identificador,codigo,senha});if(!r||!r.sucesso)throw Error(r&&r.mensagem||'Não foi possível redefinir a senha.');document.getElementById('identificador').value=identificador;document.getElementById('senha').value='';alternarPainel('painelRecuperacao');setStatus((r.mensagem||'Senha redefinida. Entre com a nova senha.')+' Use o formulário de login acima.','sucesso');}
+ catch(e){setStatus(e.message||'Falha ao redefinir senha.','erro')}finally{b.disabled=false}
+});
 (async()=>{await validarSessaoExistente();})();
 </script>
 </body>
