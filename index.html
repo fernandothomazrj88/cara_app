@@ -749,10 +749,15 @@
     .perfil-secao-conteudo{padding:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .perfil-campo{display:grid;gap:6px;min-width:0}
     .perfil-campo label{font-size:12px;font-weight:750;color:#f4f8fc}
-    .perfil-campo input,.perfil-campo select,.perfil-campo textarea{box-sizing:border-box;width:100%;min-height:40px;border:1px solid #3c5a75;border-radius:8px;background:#061629;color:#fff;padding:10px 11px;font:inherit;font-size:13px}
+    .perfil-campo input::placeholder,.perfil-campo textarea::placeholder{color:#71869a!important;-webkit-text-fill-color:#71869a;font-weight:400}
+    .perfil-campo select:disabled{appearance:none;-webkit-appearance:none;background-image:none!important}
+    .perfil-campo select option{background:#061629;color:#CCFF00}
+    .perfil-campo input,.perfil-campo select,.perfil-campo textarea{box-sizing:border-box;width:100%;min-height:40px;border:1px solid #3c5a75;border-radius:8px;background:#061629;color:#CCFF00;padding:10px 11px;font:inherit;font-size:13px;font-weight:750;opacity:1;-webkit-text-fill-color:#CCFF00}
     .perfil-campo textarea{min-height:100px;resize:vertical}
+    .perfil-campo-endereco{grid-column:1/-1;min-width:0}
+    .perfil-campo-endereco textarea{min-height:64px;resize:vertical;overflow-wrap:anywhere;white-space:pre-wrap}
     .perfil-campo input:focus,.perfil-campo select:focus,.perfil-campo textarea:focus{outline:2px solid #CCFF00;outline-offset:1px;border-color:#CCFF00}
-    .perfil-campo input[readonly]{background:#102943;color:#CCFF00;font-weight:800}
+    .perfil-campo input[readonly],.perfil-campo input:disabled,.perfil-campo select:disabled,.perfil-campo textarea[readonly]{background:#061629!important;color:#CCFF00!important;font-weight:800;opacity:1;-webkit-text-fill-color:#CCFF00}
     .perfil-nota{font-size:11px;color:#b9c9d8;line-height:1.5;margin:0}
     .perfil-resumo{background:linear-gradient(110deg,#0b2037,#102b45);border:1px solid #21405c;border-radius:15px;padding:15px!important;margin-top:12px}
     .perfil-resumo{display:flex;gap:18px;align-items:center;padding:16px!important}
@@ -1409,14 +1414,14 @@
       <section class="perfil-secao">
         <h3><span class="perfil-icone">●</span> Dados pessoais</h3>
         <div class="perfil-secao-conteudo">
-          <div class="perfil-campo"><label for="perfilNomeEdit">Nome</label><input id="perfilNomeEdit" autocomplete="given-name" / readonly aria-readonly="true"></div>
-          <div class="perfil-campo"><label for="perfilSobrenomeEdit">Sobrenome</label><input id="perfilSobrenomeEdit" autocomplete="family-name" / readonly aria-readonly="true"></div>
-          <div class="perfil-campo"><label for="perfilNascimentoEdit">Data de nascimento</label><input id="perfilNascimentoEdit" type="date" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilNomeEdit">Nome</label><input id="perfilNomeEdit" autocomplete="given-name" readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilSobrenomeEdit">Sobrenome</label><input id="perfilSobrenomeEdit" autocomplete="family-name" readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilNascimentoEdit">Data de nascimento</label><input id="perfilNascimentoEdit" type="date" readonly aria-readonly="true"></div>
           <div class="perfil-campo"><label for="perfilSexoEdit">Sexo</label><select id="perfilSexoEdit" disabled><option value="">Selecione</option><option>Masculino</option><option>Feminino</option><option>Prefiro não informar</option></select></div>
           <div class="perfil-campo"><label for="perfilEscolaridadeEdit">Escolaridade</label><select id="perfilEscolaridadeEdit" disabled><option value="">Selecione</option><option>Fundamental incompleto</option><option>Fundamental completo</option><option>Ensino médio incompleto</option><option>Ensino médio completo</option><option>Superior incompleto</option><option>Superior completo</option><option>Pós-graduação</option></select></div>
           <div class="perfil-campo"><label for="perfilEstadoCivilEdit">Estado civil</label><select id="perfilEstadoCivilEdit" disabled><option value="">Selecione</option><option>Solteiro(a)</option><option>Casado(a)</option><option>União estável</option><option>Divorciado(a)</option><option>Viúvo(a)</option></select></div>
-          <div class="perfil-campo"><label for="perfilDocumento1Edit">Documento 1 (opcional)</label><input id="perfilDocumento1Edit" / readonly aria-readonly="true"></div>
-          <div class="perfil-campo"><label for="perfilDocumento2Edit">Documento 2 (opcional)</label><input id="perfilDocumento2Edit" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilDocumento1Edit">Documento 1 (opcional)</label><input id="perfilDocumento1Edit" readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilDocumento2Edit">Documento 2 (opcional)</label><input id="perfilDocumento2Edit" readonly aria-readonly="true"></div>
         </div>
       </section>
       <div style="display:grid;gap:12px;align-content:start">
@@ -1424,15 +1429,15 @@
           <h3><span class="perfil-icone">☎</span> Contatos</h3>
           <div class="perfil-secao-conteudo">
             <div class="perfil-campo"><label for="perfilTelefone1Edit">Telefone principal</label><input id="perfilTelefone1Edit" type="tel" autocomplete="tel" /></div>
-            <div class="perfil-campo"><label for="perfilTelefone2Edit">Telefone secundário</label><input id="perfilTelefone2Edit" type="tel" / readonly aria-readonly="true"></div>
+            <div class="perfil-campo"><label for="perfilTelefone2Edit">Telefone secundário</label><input id="perfilTelefone2Edit" type="tel" readonly aria-readonly="true"></div>
             <div class="perfil-campo"><label for="perfilEmailContatoEdit">E-mail de contato</label><input id="perfilEmailContatoEdit" type="email" autocomplete="email" /></div>
             <p class="perfil-nota">O e-mail de contato pode ser alterado. O e-mail usado para entrar com Google é separado e não pode ser alterado aqui.</p>
           </div>
         </section>
         <section class="perfil-secao">
-          <h3><span class="perfil-icone">⌂</span> Morada / Endereço</h3>
+          <h3><span class="perfil-icone">⌂</span> Endereço</h3>
           <div class="perfil-secao-conteudo">
-            <div class="perfil-campo"><label for="perfilEnderecoEdit">Rua / endereço</label><input id="perfilEnderecoEdit" autocomplete="street-address" /></div>
+            <div class="perfil-campo perfil-campo-endereco"><label for="perfilEnderecoEdit">Endereço</label><textarea id="perfilEnderecoEdit" rows="2" autocomplete="street-address"></textarea></div>
             <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilNumeroEdit">Número</label><input id="perfilNumeroEdit"></div><div class="perfil-campo"><label for="perfilComplementoEdit">Complemento</label><input id="perfilComplementoEdit"></div></div>
             <div class="perfil-campo"><label for="perfilBairroEdit">Bairro</label><input id="perfilBairroEdit"></div>
             <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilCidadeEdit">Cidade</label><input id="perfilCidadeEdit" autocomplete="address-level2"></div><div class="perfil-campo"><label for="perfilEstadoEdit">Estado</label><input id="perfilEstadoEdit" autocomplete="address-level1"></div></div>
@@ -1449,7 +1454,7 @@
           <div class="perfil-campo"><label>ID do cadastro</label><input id="perfilIdPessoaHome" readonly aria-readonly="true" /></div>
           <div class="perfil-campo"><label>Situação do membro</label><input id="perfilStatusPessoaHome" readonly aria-readonly="true" /></div>
           <div class="perfil-campo"><label>Data do cadastro</label><input id="perfilDataCadastroHome" readonly aria-readonly="true" /></div>
-          <div class="perfil-campo"><label for="perfilDataConversaoEdit">Dia em que aceitou Jesus</label><input id="perfilDataConversaoEdit" type="date" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilDataConversaoEdit">Dia em que aceitou Jesus</label><input id="perfilDataConversaoEdit" type="date" readonly aria-readonly="true"></div>
           <div class="perfil-campo"><label for="perfilBatizadoEdit">Batizado</label><select id="perfilBatizadoEdit" disabled><option value="">Selecione</option><option value="Sim">Sim</option><option value="Não">Não</option></select></div>
           <p class="perfil-nota">Os dados cadastrais e ministeriais são definidos pela liderança e aparecem aqui apenas para consulta. Você pode alterar somente foto, telefone principal, e-mail de contato, endereço, pedido de oração e informações complementares.</p>
         </div>
@@ -1457,10 +1462,10 @@
       <section class="perfil-secao">
         <h3><span class="perfil-icone">✦</span> Mais informações pessoais</h3>
         <div class="perfil-secao-conteudo">
-          <div class="perfil-campo"><label for="perfilConjugeEdit">Cônjuge</label><input id="perfilConjugeEdit" / readonly aria-readonly="true"></div>
-          <div class="perfil-campo"><label for="perfilFilhosEdit">Filhos (nome e idade)</label><input id="perfilFilhosEdit" / readonly aria-readonly="true"></div>
-          <div class="perfil-campo"><label for="perfilProfissaoEdit">Profissão</label><input id="perfilProfissaoEdit" / readonly aria-readonly="true"></div>
-          <div class="perfil-campo"><label for="perfilIgrejaAnteriorEdit">Igreja anterior</label><input id="perfilIgrejaAnteriorEdit" / readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilConjugeEdit">Cônjuge</label><input id="perfilConjugeEdit" readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilFilhosEdit">Filhos (nome e idade)</label><input id="perfilFilhosEdit" readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilProfissaoEdit">Profissão</label><input id="perfilProfissaoEdit" readonly aria-readonly="true"></div>
+          <div class="perfil-campo"><label for="perfilIgrejaAnteriorEdit">Igreja anterior</label><input id="perfilIgrejaAnteriorEdit" readonly aria-readonly="true"></div>
           <div class="perfil-campo" style="grid-column:1/-1"><label for="perfilPedidoOracaoEdit">Pedido de oração</label><textarea id="perfilPedidoOracaoEdit"></textarea></div>
         </div>
       </section>
