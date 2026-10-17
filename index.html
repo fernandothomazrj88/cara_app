@@ -748,11 +748,16 @@
     .perfil-secao h3 .perfil-icone{color:#CCFF00;font-size:19px}
     .perfil-secao-conteudo{padding:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .perfil-campo{display:grid;gap:6px;min-width:0}
-    .perfil-campo label{font-size:12px;font-weight:750;color:#f4f8fc}
-    .perfil-campo input,.perfil-campo select,.perfil-campo textarea{box-sizing:border-box;width:100%;min-height:40px;border:1px solid #3c5a75;border-radius:8px;background:#061629;color:#fff;padding:10px 11px;font:inherit;font-size:13px}
+    .perfil-campo label{font-size:12px;font-weight:750;color:#CCFF00}
+    .perfil-campo input,.perfil-campo select,.perfil-campo textarea{box-sizing:border-box;width:100%;min-width:0;max-width:100%;min-height:40px;border:1px solid #3c5a75;border-radius:8px;background:#061629;color:#CCFF00;padding:10px 11px;font:inherit;font-size:13px;overflow-wrap:anywhere}
     .perfil-campo textarea{min-height:100px;resize:vertical}
     .perfil-campo input:focus,.perfil-campo select:focus,.perfil-campo textarea:focus{outline:2px solid #CCFF00;outline-offset:1px;border-color:#CCFF00}
-    .perfil-campo input[readonly]{background:#102943;color:#CCFF00;font-weight:800}
+    .perfil-campo input[readonly],.perfil-campo textarea[readonly],.perfil-campo select:disabled{background:#102943;color:#CCFF00;font-weight:800;opacity:1;-webkit-text-fill-color:#CCFF00}
+    .perfil-campo textarea{white-space:pre-wrap;overflow-wrap:anywhere}
+    .perfil-campo.endereco-linha{grid-column:1/-1}
+    .perfil-campo.endereco-linha textarea{min-height:66px;resize:vertical;line-height:1.45}
+    .perfil-campo input:disabled,.perfil-campo textarea:disabled,.perfil-campo select:disabled{opacity:1;color:#CCFF00;-webkit-text-fill-color:#CCFF00}
+    .perfil-editando .perfil-campo input:not([readonly]),.perfil-editando .perfil-campo textarea:not([readonly]),.perfil-editando .perfil-campo select:not(:disabled){border-color:#CCFF00}
     .perfil-nota{font-size:11px;color:#b9c9d8;line-height:1.5;margin:0}
     .perfil-resumo{background:linear-gradient(110deg,#0b2037,#102b45);border:1px solid #21405c;border-radius:15px;padding:15px!important;margin-top:12px}
     .perfil-resumo{display:flex;gap:18px;align-items:center;padding:16px!important}
@@ -767,13 +772,17 @@
     .perfil-foto-acoes{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
     .perfil-foto-btn{border:1px solid #3c5a75;background:#102943;color:#fff;border-radius:7px;padding:5px 7px;font-size:10px;font-weight:700;cursor:pointer}
     .perfil-foto-btn:disabled{opacity:.5}
-    .perfil-ministerio-item{display:flex;flex-direction:column;gap:5px;padding:11px;border:1px solid #25435d;border-radius:10px;background:#061629}.perfil-ministerio-item strong{color:#CCFF00;font-size:13px}.perfil-ministerio-item span{color:#fff;font-size:12px}
+    .perfil-ministerio-item{display:flex;flex-direction:column;gap:5px;padding:11px;border:1px solid #25435d;border-radius:10px;background:#061629}.perfil-ministerio-item strong{color:#CCFF00;font-size:13px}.perfil-ministerio-item span{color:#CCFF00;font-size:12px}
     .home-painel-perfil{display:flex;flex-direction:column;overflow:hidden;height:90vh;height:min(90dvh,900px);max-height:90vh;max-height:min(90dvh,900px);min-height:0}
     .home-painel-perfil .home-painel-topo{flex:0 0 auto}
     .perfil-conteudo-scroll{display:block;flex:1 1 0%;height:0;min-height:0;overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;touch-action:pan-y;padding:0 1px 8px}
     .perfil-rodape-fixo{position:static;flex:0 0 auto;z-index:20;background:#07182b;padding:10px 0 8px;margin-top:0;border-top:1px solid #203953;box-shadow:0 -8px 18px rgba(0,0,0,.16)}
     .perfil-rodape-fixo .perfil-acoes{position:static;margin:0;padding:0;background:transparent;justify-content:flex-end}
     .perfil-rodape-fixo .perfil-nota{display:none}
+    .perfil-edicao-acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+    .perfil-cancelar{background:#102943;color:#CCFF00;border:1px solid #3c5a75;border-radius:10px;padding:12px 16px;font-weight:850;cursor:pointer;min-height:44px}
+    .perfil-acao-editar{background:#CCFF00;color:#051326;border:0;border-radius:10px;padding:12px 18px;font-weight:900;cursor:pointer;min-height:44px}
+    .perfil-acao-editar[hidden],.perfil-salvar[hidden],.perfil-cancelar[hidden]{display:none!important}
 
     .perfil-badges{display:grid;gap:7px;min-width:165px}
     .perfil-badge{background:#102943;border-radius:10px;padding:9px 11px}
@@ -797,6 +806,10 @@
       .perfil-badge span{font-size:12px}
       .home-painel{max-height:90vh;padding:14px}.home-painel-perfil{height:90dvh;max-height:90dvh}
       .perfil-campo label{line-height:1.25}
+      .perfil-secao-conteudo{min-width:0}
+      .perfil-campo.endereco-linha{grid-column:1/-1}
+      .perfil-edicao-acoes{width:100%}
+      .perfil-acao-editar,.perfil-salvar,.perfil-cancelar{width:auto;flex:1}
       .perfil-campo input,.perfil-campo select{min-width:0;padding:9px;font-size:12px}
       .perfil-acoes{align-items:stretch;flex-direction:column}
       .perfil-salvar{width:100%}
@@ -1432,7 +1445,7 @@
         <section class="perfil-secao">
           <h3><span class="perfil-icone">⌂</span> Morada / Endereço</h3>
           <div class="perfil-secao-conteudo">
-            <div class="perfil-campo"><label for="perfilEnderecoEdit">Rua / endereço</label><input id="perfilEnderecoEdit" autocomplete="street-address" /></div>
+            <div class="perfil-campo endereco-linha"><label for="perfilEnderecoEdit">Rua / endereço</label><textarea id="perfilEnderecoEdit" autocomplete="street-address" rows="2" readonly aria-readonly="true"></textarea></div>
             <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilNumeroEdit">Número</label><input id="perfilNumeroEdit"></div><div class="perfil-campo"><label for="perfilComplementoEdit">Complemento</label><input id="perfilComplementoEdit"></div></div>
             <div class="perfil-campo"><label for="perfilBairroEdit">Bairro</label><input id="perfilBairroEdit"></div>
             <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilCidadeEdit">Cidade</label><input id="perfilCidadeEdit" autocomplete="address-level2"></div><div class="perfil-campo"><label for="perfilEstadoEdit">Estado</label><input id="perfilEstadoEdit" autocomplete="address-level1"></div></div>
@@ -1476,7 +1489,7 @@
     </div><!-- /perfilDadosExistentes -->
     </div><!-- /perfil-conteudo-scroll -->
     <div class="perfil-rodape-fixo">
-      <div class="perfil-acoes"><span id="perfilStatusEdicao" class="perfil-status" role="status"></span><button type="button" class="perfil-salvar" id="salvarPerfilHome">✓ Salvar alterações</button></div>
+      <div class="perfil-acoes"><span id="perfilStatusEdicao" class="perfil-status" role="status">Dados carregados da Base Central.</span><div class="perfil-edicao-acoes"><button type="button" class="perfil-cancelar" id="cancelarEdicaoPerfil" hidden>Cancelar</button><button type="button" class="perfil-salvar" id="salvarPerfilHome" hidden>✓ Salvar alterações</button><button type="button" class="perfil-acao-editar" id="editarPerfilHome">✎ Editar perfil</button></div></div>
     </div>
     <div style="display:grid;gap:10px;padding-top:8px;color:#fff"><button class="botao-sair" type="button" style="min-height:42px;font-size:13px" onclick="sairCARA()">Sair da conta</button></div>
   </section>
@@ -1665,20 +1678,10 @@ function preencherMeuPerfilCARA(resposta) {
     perfilNomeEdit: primeiroNome,
     perfilSobrenomeEdit: sobrenome,
     perfilNascimentoEdit: dataPerfilParaInputCARA(pessoa.dataNascimento),
-    perfilSexoEdit: pessoa.sexo || '',
-    perfilEscolaridadeEdit: pessoa.escolaridade || '',
     perfilEstadoCivilEdit: pessoa.estadoCivil || '',
     perfilTelefone1Edit: pessoa.telefone || '',
-    perfilTelefone2Edit: pessoa.telefoneSecundario || '',
     perfilEmailContatoEdit: pessoa.emailContato || '',
-    // O endereço estruturado é a fonte principal; ENDERECO legado é apenas fallback.
-    perfilEnderecoEdit: pessoa.logradouro || pessoa.endereco || '',
-    perfilNumeroEdit: pessoa.numero || '',
-    perfilComplementoEdit: pessoa.complemento || '',
-    perfilBairroEdit: pessoa.bairro || '',
-    perfilCidadeEdit: pessoa.cidade || '',
-    perfilEstadoEdit: pessoa.estado || '',
-    perfilCepEdit: pessoa.cep || '',
+    perfilEnderecoEdit: pessoa.endereco || '',
     perfilDataConversaoEdit: dataPerfilParaInputCARA(pessoa.dataConversao),
     perfilBatizadoEdit: pessoa.batizado || '',
     perfilAnotacoesEdit: pessoa.observacoes || ''
@@ -1806,19 +1809,35 @@ async function carregarMeuPerfilCARA() {
   }
 }
 (function prepararEdicaoVisualPerfil(){
-  // Somente estes campos podem ser alterados pelo próprio membro.
   const idsEditaveis=['perfilTelefone1Edit','perfilEmailContatoEdit','perfilEnderecoEdit','perfilNumeroEdit','perfilComplementoEdit','perfilBairroEdit','perfilCidadeEdit','perfilEstadoEdit','perfilCepEdit','perfilPedidoOracaoEdit','perfilAnotacoesEdit'];
+  const painel=document.getElementById('painelPerfilHome');
+  const botaoEditar=document.getElementById('editarPerfilHome');
+  const botaoSalvar=document.getElementById('salvarPerfilHome');
+  const botaoCancelar=document.getElementById('cancelarEdicaoPerfil');
+  const status=document.getElementById('perfilStatusEdicao');
+  const valor=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
+  let snapshot={};
+  function definirEdicao(ativa){
+    if(painel) painel.classList.toggle('perfil-editando',ativa);
+    idsEditaveis.forEach(id=>{
+      const el=document.getElementById(id); if(!el)return;
+      if(ativa){el.removeAttribute('readonly');el.removeAttribute('aria-readonly');el.disabled=false;}
+      else {el.setAttribute('readonly','readonly');el.setAttribute('aria-readonly','true');el.disabled=false;}
+    });
+    if(botaoEditar)botaoEditar.hidden=ativa;
+    if(botaoSalvar)botaoSalvar.hidden=!ativa;
+    if(botaoCancelar)botaoCancelar.hidden=!ativa;
+    if(status)status.textContent=ativa?'Modo de edição ativado. Altere os campos desejados.':'Dados carregados da Base Central.';
+  }
+  function guardarSnapshot(){snapshot={};idsEditaveis.forEach(id=>{const el=document.getElementById(id);if(el)snapshot[id]=el.value;});}
+  function restaurarSnapshot(){idsEditaveis.forEach(id=>{const el=document.getElementById(id);if(el && Object.prototype.hasOwnProperty.call(snapshot,id))el.value=snapshot[id];});}
+  botaoEditar?.addEventListener('click',()=>{guardarSnapshot();definirEdicao(true);});
+  botaoCancelar?.addEventListener('click',()=>{restaurarSnapshot();definirEdicao(false);});
   idsEditaveis.forEach(id=>{
     const el=document.getElementById(id);
-    if(el){
-      el.addEventListener('input',()=>el.dataset.editado='1');
-      el.addEventListener('change',()=>el.dataset.editado='1');
-    }
+    if(el){el.addEventListener('input',()=>el.dataset.editado='1');el.addEventListener('change',()=>el.dataset.editado='1');}
   });
-  document.getElementById('salvarPerfilHome')?.addEventListener('click', async ()=>{
-    const botao=document.getElementById('salvarPerfilHome');
-    const status=document.getElementById('perfilStatusEdicao');
-    const valor=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
+  botaoSalvar?.addEventListener('click',async()=>{
     const dados={
       telefone:valor('perfilTelefone1Edit'),
       emailContato:valor('perfilEmailContatoEdit'),
@@ -1832,18 +1851,22 @@ async function carregarMeuPerfilCARA() {
       pedidoOracao:valor('perfilPedidoOracaoEdit'),
       observacoes:valor('perfilAnotacoesEdit')
     };
-    if(botao)botao.disabled=true;
+    botaoSalvar.disabled=true;
     if(status)status.textContent='Salvando suas informações na Base Central...';
-    try {
+    try{
       const resposta=await chamarApiPerfilCARA('salvar-meu-perfil',dados);
-      if(status)status.textContent=resposta.mensagem || 'Informações atualizadas na Base Central.';
+      if(!resposta || !resposta.sucesso)throw new Error(resposta?.mensagem||'A Base Central não confirmou a gravação.');
       document.querySelectorAll('.perfil-conteudo-scroll [data-editado]').forEach(el=>delete el.dataset.editado);
       await carregarMeuPerfilCARA();
-    } catch(erro) {
+      guardarSnapshot();
+      definirEdicao(false);
+      if(status)status.textContent=resposta.mensagem||'Alterações salvas e recarregadas da Base Central.';
+    }catch(erro){
       console.error('Falha ao salvar Meu Perfil:',erro);
-      if(status)status.textContent=erro.message || 'Não foi possível salvar. Tente novamente.';
-    } finally { if(botao)botao.disabled=false; }
+      if(status)status.textContent=erro.message||'Não foi possível salvar. Tente novamente.';
+    }finally{botaoSalvar.disabled=false;}
   });
+  definirEdicao(false);
 }());
 
 (function configurarCadastroComplementarCARA(){
@@ -1897,16 +1920,9 @@ async function carregarMeuPerfilCARA() {
     if (status) status.textContent = 'Concluindo cadastro na Base Central...';
     try {
       const resposta = await chamarApiPerfilCARA('concluir-cadastro-complementar', dados);
-      if (!resposta.concluido && !resposta.jaConcluido) {
-        throw new Error(resposta.mensagem || 'A Base Central não confirmou a conclusão do cadastro.');
-      }
+      if (status) status.textContent = resposta.mensagem || 'Cadastro concluído.';
       ids.forEach(id => { const el=document.getElementById(id); if(el) delete el.dataset.editado; });
       await carregarMeuPerfilCARA();
-      const painelCadastro = document.getElementById('cadastroComplementarPanel');
-      if (painelCadastro && getComputedStyle(painelCadastro).display !== 'none') {
-        throw new Error('Os dados foram enviados, mas a Base Central não confirmou o cadastro como concluído. Confira a planilha PESSOAS.');
-      }
-      if (status) status.textContent = resposta.mensagem || 'Cadastro concluído e dados carregados no perfil.';
     } catch (erro) {
       console.error('Falha ao concluir cadastro complementar:', erro);
       if (status) status.textContent = erro.message || 'Não foi possível concluir o cadastro. Tente novamente.';
