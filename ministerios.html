@@ -48,6 +48,15 @@ gap:5px;color:#eee;text-decoration:none;font-size:10px;min-width:0}
 .bottom .active{color:var(--yellow);font-weight:800}
 @media(max-width:600px){.hero{height:auto;aspect-ratio:8/3;background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#051326}main{width:min(100% - 20px,1050px);padding-top:16px}.grid{grid-template-columns:1fr}.card{min-height:116px}}
 </style>
+
+<style id="padrao-agenda-v42">
+/* Banner com a mesma proporcao da Agenda (2048 x 768). */
+.hero { height:auto !important; aspect-ratio:2048 / 768 !important; min-height:0 !important; max-height:none !important; background-size:cover !important; background-position:center !important; }
+.bottom { grid-template-columns:repeat(3,minmax(0,1fr)) !important; width:100% !important; max-width:none !important; min-height:72px !important; border-radius:24px 24px 0 0 !important; }
+.bottom a { display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:center !important; gap:3px !important; }
+.bottom a b { font-size:22px !important; line-height:1.1 !important; }
+.bottom a.active { color:#fff !important; }
+</style>
 </head>
 <body>
 <header class="hero" aria-label="Ministérios">
@@ -72,10 +81,8 @@ gap:5px;color:#eee;text-decoration:none;font-size:10px;min-width:0}
 
 <nav class="bottom">
   <a href="./index.html"><b>🏠</b>Início</a>
-  <a href="./agenda.html"><b>📅</b>Agenda</a>
-  <a class="active" href="./ministerios.html"><b>▦</b>Ministérios</a>
-  <a href="#"><b>🔔</b>Avisos</a>
-  <a href="#"><b>☰</b>Mais</a>
+  <a href="#avisos" onclick="if(typeof abrirAvisos==='function'){abrirAvisos();return false;} return false;"><b>🔔</b>Avisos</a>
+  <a href="#mais" onclick="if(typeof abrirMais==='function'){abrirMais();return false;} return false;"><b>☰</b>Mais</a>
 </nav>
 
 <script>
