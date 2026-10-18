@@ -1101,14 +1101,14 @@
 
     /* v25 — proporções e espaçamentos alinhados ao midia.html enviado como referência */
     .topo.topo-hero {
-      position:relative !important; width:100% !important; aspect-ratio:1900 / 800 !important;
-      min-height:150px !important; height:auto !important; max-height:620px !important;
+      position:relative !important; width:100% !important; aspect-ratio:2048 / 768 !important;
+      min-height:150px !important; height:auto !important; max-height:none !important;
       padding:0 !important; overflow:hidden !important; background:#051326 !important;
       border:0 !important; box-shadow:none !important;
     }
     .topo.topo-hero .banner-louvor {
       display:block !important; width:100% !important; height:100% !important;
-      min-height:0 !important; max-height:none !important; object-fit:cover !important;
+      min-height:0 !important; max-height:none !important; object-fit:contain !important;
       object-position:center !important;
     }
     .voltar-app-principal { top:12px !important; left:14px !important; }
@@ -1134,7 +1134,7 @@
     .louvor-quick-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
     .louvor-quick-links a { display:flex; align-items:center; gap:10px; padding:13px; border-radius:13px; background:#0b2039; border:1px solid #ffffff14; color:#fff; text-decoration:none; font-weight:800; font-size:13px; }
     @media(max-width:720px) {
-      .topo.topo-hero { aspect-ratio:1900 / 800 !important; min-height:0 !important; max-height:none !important; }
+      .topo.topo-hero { aspect-ratio:2048 / 768 !important; min-height:0 !important; max-height:none !important; }
       .voltar-app-principal { top:9px !important; left:9px !important; padding:8px 11px !important; font-size:12px !important; }
       .banner-fundamento-louvor { width:calc(100% - 28px) !important; margin:12px auto 0 !important; border-radius:12px !important; }
       .conteudo { width:calc(100% - 28px) !important; padding:22px 0 100px !important; }
@@ -1152,14 +1152,14 @@
     /* Banner principal: mesma proporção e tratamento do hero de midia.html */
     .topo.topo-hero {
       position:relative !important; display:block !important; width:100% !important;
-      aspect-ratio:1900 / 800 !important; height:auto !important; min-height:150px !important;
-      max-height:620px !important; padding:0 !important; margin:0 !important;
+      aspect-ratio:2048 / 768 !important; height:auto !important; min-height:150px !important;
+      max-height:none !important; padding:0 !important; margin:0 !important;
       overflow:hidden !important; background:#051326 !important;
       border:0 !important; box-shadow:none !important;
     }
     .topo.topo-hero .banner-louvor {
       display:block !important; width:100% !important; height:100% !important;
-      max-height:none !important; min-height:0 !important; object-fit:cover !important;
+      max-height:none !important; min-height:0 !important; object-fit:contain !important;
       object-position:center !important; margin:0 !important; border:0 !important; border-radius:0 !important;
     }
     .voltar-app-principal {
@@ -1222,7 +1222,7 @@
 
     @media(max-width:720px) {
       body { padding-bottom:86px !important; }
-      .topo.topo-hero { aspect-ratio:1900 / 800 !important; min-height:0 !important; max-height:none !important; }
+      .topo.topo-hero { aspect-ratio:2048 / 768 !important; min-height:0 !important; max-height:none !important; }
       .voltar-app-principal { top:9px !important; left:9px !important; min-height:36px !important; padding:7px 10px !important; font-size:12px !important; }
       .banner-fundamento-louvor { width:calc(100% - 28px) !important; max-width:none !important; margin:10px auto 0 !important; aspect-ratio:739 / 171 !important; }
       .conteudo { width:calc(100% - 28px) !important; padding:22px 0 96px !important; }
@@ -1266,7 +1266,7 @@
       height:100% !important;
       min-height:0 !important;
       max-height:none !important;
-      object-fit:cover !important;
+      object-fit:contain !important;
       object-position:center !important;
       margin:0 !important;
       padding:0 !important;
