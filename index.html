@@ -1624,7 +1624,11 @@ function obterUsuarioLocalCARA(){
 }
 function setTextoPerfilCARA(id, valor) {
   const el = document.getElementById(id);
-  if (el) el.textContent = valor == null || valor === '' ? '—' : String(valor);
+  if (!el) return;
+  const texto = valor == null || valor === '' ? '' : String(valor);
+  // Campos de formulário precisam receber value; textContent não preenche input/select/textarea.
+  if (el.matches('input, textarea, select')) el.value = texto;
+  else el.textContent = texto || '—';
 }
 function dataPerfilParaInputCARA(valor) {
   const s = String(valor || '').trim();
@@ -1659,14 +1663,25 @@ function preencherMeuPerfilCARA(resposta) {
   const perfil = String(conta.perfil || obterUsuarioLocalCARA().perfil || 'MEMBRO').toUpperCase();
   const acesso = perfil.includes('ADMIN') ? 'ADMINISTRADOR' : perfil;
   setTextoPerfilCARA('perfilNomeHome', nomeCompleto);
-  setTextoPerfilCARA('perfilAcessoHome', acesso);
-  setTextoPerfilCARA('perfilFuncaoHome', perfil);
-  setTextoPerfilCARA('perfilSituacaoHome', conta.status || 'ATIVO');
+  setTextoPerfilCARA('perfilAcessoHome', acesso || conta.tipoAcesso || conta.tipo || 'MEMBRO');
+  setTextoPerfilCARA('perfilFuncaoHome', pessoa.funcaoOficial || pessoa.perfilFuncao || conta.funcaoOficial || perfil);
+  setTextoPerfilCARA('perfilSituacaoHome', conta.status || conta.situacao || 'ATIVO');
   setTextoPerfilCARA('perfilAcessoResumo', acesso);
   setTextoPerfilCARA('perfilSituacaoResumo', conta.status || 'ATIVO');
-  setTextoPerfilCARA('perfilIdPessoaHome', pessoa.idPessoa || '—');
-  setTextoPerfilCARA('perfilStatusPessoaHome', pessoa.statusPessoa || '—');
-  setTextoPerfilCARA('perfilDataCadastroHome', pessoa.dataCadastro || '—');
+  setTextoPerfilCARA('perfilIdPessoaHome', pessoa.idPessoa || pessoa.ID_PESSOA || '');
+  setTextoPerfilCARA('perfilStatusPessoaHome', pessoa.statusPessoa || pessoa.STATUS || '');
+  setTextoPerfilCARA('perfilDataCadastroHome', pessoa.dataCadastro || pessoa.DATA_CADASTRO || '');
+
+  // Em bases antigas, ENDERECO pode conter rua + número + complemento no mesmo campo.
+  // Como o perfil exibe esses dados em campos separados, remove duplicações conhecidas do fim do texto.
+  let logradouroPerfil = String(pessoa.logradouro || pessoa.endereco || '').trim();
+  const numeroPerfil = String(pessoa.numero || '').trim();
+  const complementoPerfil = String(pessoa.complemento || '').trim();
+  [complementoPerfil, numeroPerfil].filter(Boolean).forEach(parte => {
+    const escaped = parte.replace(/[.*+?^${}()|[\]\\]/g, '\$&');
+    logradouroPerfil = logradouroPerfil.replace(new RegExp('(?:[,;\s]+)' + escaped + '\s*$', 'i'), '').trim();
+  });
+  logradouroPerfil = logradouroPerfil.replace(/[,;\s]+$/, '').trim();
 
   const valores = {
     perfilNomeEdit: primeiroNome,
@@ -1679,7 +1694,7 @@ function preencherMeuPerfilCARA(resposta) {
     perfilTelefone2Edit: pessoa.telefoneSecundario || '',
     perfilEmailContatoEdit: pessoa.emailContato || '',
     // O endereço estruturado é a fonte principal; ENDERECO legado é apenas fallback.
-    perfilEnderecoEdit: pessoa.logradouro || pessoa.endereco || '',
+    perfilEnderecoEdit: logradouroPerfil,
     perfilNumeroEdit: pessoa.numero || '',
     perfilComplementoEdit: pessoa.complemento || '',
     perfilBairroEdit: pessoa.bairro || '',
