@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v42';
+const CACHE_VERSION = 'cara-app-v43';
 
 const APP_SHELL = [
   './',

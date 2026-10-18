@@ -4620,6 +4620,15 @@ function fecharQuickLouvor(id){document.getElementById(id)?.classList.remove('ab
 function fecharQuickLouvorFora(event,id){if(event.target && event.target.id===id)fecharQuickLouvor(id);}
 document.addEventListener('keydown',function(event){if(event.key==='Escape'){fecharQuickLouvor('louvorAvisosOverlay');fecharQuickLouvor('louvorMaisOverlay');}});
 </script>
+
+<style id="cara-banner-louvor-largura-total-v43">
+/* Correção definitiva: o banner do Louvor ocupa a largura completa, igual à Agenda. */
+html, body { width:100% !important; max-width:none !important; margin:0 !important; padding-left:0 !important; padding-right:0 !important; overflow-x:hidden !important; }
+html body .topo.topo-hero { display:block !important; position:relative !important; box-sizing:border-box !important; width:100% !important; max-width:none !important; height:auto !important; min-height:0 !important; max-height:none !important; aspect-ratio:2048 / 768 !important; margin:0 !important; padding:0 !important; overflow:hidden !important; }
+html body .topo.topo-hero > img.banner-louvor { display:block !important; position:absolute !important; inset:0 !important; box-sizing:border-box !important; width:100% !important; max-width:none !important; height:100% !important; min-height:0 !important; max-height:none !important; margin:0 !important; padding:0 !important; object-fit:cover !important; object-position:center !important; }
+@media (max-width:720px) { html body .topo.topo-hero { width:100% !important; aspect-ratio:2048 / 768 !important; min-height:0 !important; } }
+</style>
+
 </body>
 
 </html>
