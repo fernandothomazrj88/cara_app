@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v39';
+const CACHE_VERSION = 'cara-app-v40';
 
 const APP_SHELL = [
   './',
@@ -13,11 +13,8 @@ const APP_SHELL = [
   './manifest.webmanifest',
   './logo-cara.png',
   './banner-louvor.png',
-  './banner-fundamento-louvor.png',
   './banner-agenda.png',
-  './banner-fundamento-agenda.png',
   './banner-ministerios.png',
-  './banner-fundamento-ministerios.png',
   './banner-midia.png',
   './banner-estudos.png',
   './icon-192.png',
