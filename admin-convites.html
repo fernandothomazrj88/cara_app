@@ -7,10 +7,22 @@
 <script>
 const API='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 const tokenInput=document.getElementById('token'),select=document.getElementById('usuario'),status=document.getElementById('status'),btnLoad=document.getElementById('carregar'),btnGenerate=document.getElementById('gerar');
-tokenInput.value=sessionStorage.getItem('cara_sessao_token_admin')||'';function msg(t,c=''){status.textContent=t;status.className='status '+c}
+// Reaproveita a sessão autenticada no mesmo navegador/origem do aplicativo.
+function obterTokenSalvo(){
+  try {
+    return localStorage.getItem('cara_sessao_token') ||
+      sessionStorage.getItem('cara_sessao_token') ||
+      sessionStorage.getItem('cara_sessao_token_admin') || '';
+  } catch(e) { return sessionStorage.getItem('cara_sessao_token_admin') || ''; }
+}
+tokenInput.value=obterTokenSalvo();
+function msg(t,c=''){status.textContent=t;status.className='status '+c}
 async function api(payload){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),credentials:'omit',cache:'no-store'});if(!r.ok)throw Error('Falha de comunicação com a Central.');return r.json()}
 btnLoad.addEventListener('click',async()=>{const token=tokenInput.value.trim();if(!token){msg('Informe o token de sessão.','error');return}btnLoad.disabled=true;msg('Carregando usuários...');try{const r=await api({acao:'listar-usuarios-codigo',token});if(!r.sucesso)throw Error(r.mensagem||'Acesso negado.');select.innerHTML='';r.usuarios.forEach(u=>select.add(new Option((u.nome||u.idUsuario)+' — '+u.idUsuario+' ('+u.perfil+')',u.idUsuario)));if(!r.usuarios.length){select.add(new Option('Nenhum usuário ativo',''));select.disabled=true;btnGenerate.disabled=true}else{select.disabled=false;btnGenerate.disabled=false;msg('Usuários carregados.','ok')}sessionStorage.setItem('cara_sessao_token_admin',token)}catch(e){msg(e.message,'error')}finally{btnLoad.disabled=false}});
 select.addEventListener('change',()=>btnGenerate.disabled=!select.value);
 btnGenerate.addEventListener('click',async()=>{const token=tokenInput.value.trim(),idUsuario=select.value,tipoCodigo=document.getElementById('tipo').value;if(!idUsuario)return;btnGenerate.disabled=true;document.getElementById('resultado').hidden=true;msg('Gerando código...');try{const r=await api({acao:'gerar-codigo-acesso',token,idUsuario,tipoCodigo});if(!r.sucesso)throw Error(r.mensagem||'Não foi possível gerar o código.');document.getElementById('codigo').textContent=r.codigo;document.getElementById('validade').textContent='Validade: '+(r.expiraEmMinutos>=60?(r.expiraEmMinutos/60)+' horas':r.expiraEmMinutos+' minutos')+'. Uso único.';document.getElementById('resultado').hidden=false;msg(r.mensagem||'Código gerado.','ok')}catch(e){msg(e.message,'error')}finally{btnGenerate.disabled=!select.value}});
+// Se encontrou uma sessão salva, tenta carregar a lista automaticamente.
+if(tokenInput.value.trim()){btnLoad.click()}
+
 document.getElementById('copiar').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('codigo').textContent);msg('Código copiado. Entregue-o com segurança ao membro.','ok')}catch(e){msg('Não foi possível copiar automaticamente. Selecione e copie o código manualmente.','error')}});
 </script></body></html>
