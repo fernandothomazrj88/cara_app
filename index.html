@@ -756,6 +756,12 @@
     .perfil-campo textarea{min-height:100px;resize:vertical}
     .perfil-campo-endereco{grid-column:1/-1;min-width:0}
     .perfil-campo-endereco textarea{min-height:64px;resize:vertical;overflow-wrap:anywhere;white-space:pre-wrap}
+    /* Endereço: grade própria para não herdar a grade geral de uma coluna. */
+    .perfil-endereco-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:start;gap:12px!important}
+    .perfil-endereco-grid .perfil-campo{min-width:0;align-self:start}
+    .perfil-endereco-grid .perfil-campo-endereco{grid-column:1/-1}
+    .perfil-endereco-grid textarea,.perfil-endereco-grid input{min-width:0;max-width:100%}
+    @media(max-width:390px){.perfil-endereco-grid{grid-template-columns:1fr!important}.perfil-endereco-grid .perfil-campo-endereco{grid-column:1}}
     .perfil-campo input:focus,.perfil-campo select:focus,.perfil-campo textarea:focus{outline:2px solid #CCFF00;outline-offset:1px;border-color:#CCFF00}
     .perfil-campo input[readonly],.perfil-campo input:disabled,.perfil-campo select:disabled,.perfil-campo textarea[readonly]{background:#061629!important;color:#CCFF00!important;font-weight:800;opacity:1;-webkit-text-fill-color:#CCFF00}
     .perfil-nota{font-size:11px;color:#b9c9d8;line-height:1.5;margin:0}
@@ -1436,11 +1442,13 @@
         </section>
         <section class="perfil-secao">
           <h3><span class="perfil-icone">⌂</span> Endereço</h3>
-          <div class="perfil-secao-conteudo">
+          <div class="perfil-secao-conteudo perfil-endereco-grid">
             <div class="perfil-campo perfil-campo-endereco"><label for="perfilEnderecoEdit">Endereço</label><textarea id="perfilEnderecoEdit" rows="2" autocomplete="street-address"></textarea></div>
-            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilNumeroEdit">Número</label><input id="perfilNumeroEdit"></div><div class="perfil-campo"><label for="perfilComplementoEdit">Complemento</label><input id="perfilComplementoEdit"></div></div>
+            <div class="perfil-campo"><label for="perfilNumeroEdit">Número</label><input id="perfilNumeroEdit"></div>
+            <div class="perfil-campo"><label for="perfilComplementoEdit">Complemento</label><input id="perfilComplementoEdit"></div>
             <div class="perfil-campo"><label for="perfilBairroEdit">Bairro</label><input id="perfilBairroEdit"></div>
-            <div class="perfil-form-grid" style="margin:0"><div class="perfil-campo"><label for="perfilCidadeEdit">Cidade</label><input id="perfilCidadeEdit" autocomplete="address-level2"></div><div class="perfil-campo"><label for="perfilEstadoEdit">Estado</label><input id="perfilEstadoEdit" autocomplete="address-level1"></div></div>
+            <div class="perfil-campo"><label for="perfilCidadeEdit">Cidade</label><input id="perfilCidadeEdit" autocomplete="address-level2"></div>
+            <div class="perfil-campo"><label for="perfilEstadoEdit">Estado</label><input id="perfilEstadoEdit" autocomplete="address-level1"></div>
             <div class="perfil-campo"><label for="perfilCepEdit">CEP</label><input id="perfilCepEdit" autocomplete="postal-code"></div>
           </div>
         </section>
@@ -1677,11 +1685,28 @@ function preencherMeuPerfilCARA(resposta) {
   let logradouroPerfil = String(pessoa.logradouro || pessoa.endereco || '').trim();
   const numeroPerfil = String(pessoa.numero || '').trim();
   const complementoPerfil = String(pessoa.complemento || '').trim();
-  [complementoPerfil, numeroPerfil].filter(Boolean).forEach(parte => {
-    const escaped = parte.replace(/[.*+?^${}()|[\]\\]/g, '\$&');
-    logradouroPerfil = logradouroPerfil.replace(new RegExp('(?:[,;\s]+)' + escaped + '\s*$', 'i'), '').trim();
-  });
-  logradouroPerfil = logradouroPerfil.replace(/[,;\s]+$/, '').trim();
+  // Remove do final do endereço legado os campos estruturados que já aparecem separados.
+  const normalizarEndereco = s => String(s || '').toLocaleLowerCase('pt-BR').replace(/[.,;\s]+/g, ' ').trim();
+  const removerSufixoEndereco = parte => {
+    if (!parte || !logradouroPerfil) return;
+    const textoNormalizado = normalizarEndereco(logradouroPerfil);
+    const parteNormalizada = normalizarEndereco(parte);
+    if (!parteNormalizada || !textoNormalizado.endsWith(parteNormalizada)) return;
+    const inicio = textoNormalizado.length - parteNormalizada.length;
+    // Usa o tamanho original do sufixo; os dados são preservados, removendo só separadores e o sufixo final.
+    const trechoFinal = logradouroPerfil.slice(Math.max(0, logradouroPerfil.length - parte.length - 4));
+    if (normalizarEndereco(trechoFinal).endsWith(parteNormalizada)) {
+      const idx = logradouroPerfil.toLocaleLowerCase('pt-BR').lastIndexOf(parte.toLocaleLowerCase('pt-BR'));
+      if (idx >= 0 && normalizarEndereco(logradouroPerfil.slice(idx)) === parteNormalizada) {
+        logradouroPerfil = logradouroPerfil.slice(0, idx).replace(/[,;\s]+$/, '').trim();
+      } else {
+        const regex = new RegExp('[,;\\s]*' + parte.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+') + '\s*$', 'i');
+        logradouroPerfil = logradouroPerfil.replace(regex, '').replace(/[,;\s]+$/, '').trim();
+      }
+    }
+  };
+  removerSufixoEndereco(complementoPerfil);
+  removerSufixoEndereco(numeroPerfil);
 
   const valores = {
     perfilNomeEdit: primeiroNome,
