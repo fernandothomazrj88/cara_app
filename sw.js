@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v36';
+const CACHE_VERSION = 'cara-app-v37';
 
 const APP_SHELL = [
   './',
@@ -76,4 +76,17 @@ self.addEventListener('fetch', event => {
         )
       )
   );
+});
+
+
+// Push: o provedor de envio precisa ser configurado separadamente no servidor.
+self.addEventListener('push', event => {
+  let data = {}; try { data = event.data ? event.data.json() : {}; } catch(e) { data = {title:'C.A.R.A.', body:event.data ? event.data.text() : 'Você tem um novo aviso.'}; }
+  const title = data.title || 'C.A.R.A. — Novo aviso';
+  const options = { body:data.body || 'Você tem uma notificação da comunidade.', icon:'./icon-192.png', badge:'./icon-192.png', data:{url:data.url || './index.html'}, tag:data.tag || 'cara-aviso', renotify:false };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+self.addEventListener('notificationclick', event => {
+  event.notification.close(); const target = new URL((event.notification.data && event.notification.data.url) || './index.html', self.location.origin).href;
+  event.waitUntil(self.clients.matchAll({type:'window',includeUncontrolled:true}).then(list=>{for(const c of list){if(c.url.startsWith(self.location.origin) && 'focus' in c){c.navigate(target);return c.focus();}}return self.clients.openWindow(target);}));
 });

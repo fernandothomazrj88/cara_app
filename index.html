@@ -1364,7 +1364,7 @@
     Início
   </a>
   <button type="button" class="menu-item" id="abrirAvisosHome" aria-haspopup="dialog" aria-controls="painelAvisosHome">
-    <span>🔔</span>
+    <span>🔔<b id="contadorAvisosAcesso" style="display:none;background:#CCFF00;color:#051326;border-radius:99px;padding:2px 5px;font-size:10px;margin-left:3px">0</b></span>
     Avisos
   </button>
   <button type="button" class="menu-item" id="abrirPerfilHome" aria-haspopup="dialog" aria-controls="painelPerfilHome">
@@ -1501,8 +1501,11 @@
       <h2 id="tituloAvisosHome">Avisos da C.A.R.A.</h2>
       <button type="button" class="home-fechar" id="fecharAvisosHome" aria-label="Fechar avisos">×</button>
     </header>
-    <p>Consulte a Agenda para acompanhar os cultos, estudos, reuniões e eventos da comunidade.</p>
+    <p style="color:#dce6ef;line-height:1.5;margin-bottom:14px">Acompanhe os avisos da comunidade e as solicitações de acesso que precisam da atenção da liderança.</p>
+    <div id="avisosSolicitacoesAcesso" style="display:none;margin:12px 0;padding:12px;border:1px solid #CCFF00;border-radius:14px;background:#0b2037;color:#fff"><strong style="color:#CCFF00">Solicitações de acesso</strong><div id="listaSolicitacoesAcesso" style="display:grid;gap:9px;margin-top:10px"></div><button id="atualizarSolicitacoesAcesso" type="button" style="margin-top:10px;background:#CCFF00;color:#051326;border:0;border-radius:9px;padding:10px;font-weight:800;width:100%">Atualizar solicitações</button></div>
+    <p id="avisoSemSessaoAcesso" style="color:#dce6ef;font-size:13px;margin:12px 0">Entre na sua conta para consultar avisos administrativos.</p>
     <a class="home-link-agenda" href="./agenda.html">📅 Abrir Agenda <span>›</span></a>
+    <a class="home-link-agenda" href="./acesso.html" style="margin-top:8px">🔐 Primeiro acesso / recuperar senha <span>›</span></a>
   </section>
 </div>
 
@@ -2118,6 +2121,22 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch(console.error);
   });
 }
+// Central de solicitações de acesso no sino Avisos (somente liderança vê os pedidos).
+(function avisosAcessoCARA(){
+ const API='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+ const btn=document.getElementById('abrirAvisosHome'), refresh=document.getElementById('atualizarSolicitacoesAcesso');
+ const box=document.getElementById('avisosSolicitacoesAcesso'), list=document.getElementById('listaSolicitacoesAcesso'), count=document.getElementById('contadorAvisosAcesso'), noSession=document.getElementById('avisoSemSessaoAcesso');
+ async function api(body){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body),credentials:'omit',cache:'no-store'});return r.json();}
+ async function load(){const token=localStorage.getItem('cara_sessao_token');if(!token){box.style.display='none';noSession.style.display='block';return;}
+  try{const d=await api({acao:'listar-solicitacoes-acesso',token});if(!d.sucesso){box.style.display='none';noSession.style.display='block';return;}
+   noSession.style.display='none';box.style.display='block';const pend=d.solicitacoes.filter(s=>s.status==='PENDENTE'||s.status==='EM_ANALISE');count.textContent=pend.length;count.style.display=pend.length?'inline-block':'none';
+   list.innerHTML=d.solicitacoes.length?d.solicitacoes.map(s=>`<article style="border:1px solid #28435c;border-radius:10px;padding:10px"><strong style="color:#CCFF00">${escA(s.tipo==='ativacao'?'Primeiro acesso':'Recuperação de conta')}</strong><div style="margin-top:4px;font-size:13px">${escA(s.nome)} · ${escA(s.identificador)}</div><small style="color:#c1ceda">${escA(s.status)} · ${escA(new Date(s.criadoEm).toLocaleString('pt-BR'))}</small><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><button data-status="EM_ANALISE" data-id="${escA(s.id)}" style="padding:7px;border-radius:7px;border:0;background:#203b57;color:#fff">Em análise</button><button data-status="CONCLUIDA" data-id="${escA(s.id)}" style="padding:7px;border-radius:7px;border:0;background:#CCFF00;color:#051326;font-weight:800">Concluída</button><button data-gerar="${escA(s.tipo)}" style="padding:7px;border-radius:7px;border:1px solid #CCFF00;background:transparent;color:#CCFF00">Gerar código</button></div></article>`).join(''):'<p style="font-size:13px;color:#dce6ef">Nenhuma solicitação registrada.</p>';
+  }catch(e){noSession.style.display='block';noSession.textContent='Não foi possível carregar os avisos. Verifique a conexão e tente novamente.';}}
+ function escA(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+ if(btn)btn.addEventListener('click',load);if(refresh)refresh.addEventListener('click',load);
+ if(list)list.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;const token=localStorage.getItem('cara_sessao_token');try{if(b.dataset.status){const r=await api({acao:'atualizar-solicitacao-acesso',token,id:b.dataset.id,status:b.dataset.status});alert(r.mensagem||'Atualizado');await load();}else if(b.dataset.gerar){location.href='./admin-convites.html?tipo='+encodeURIComponent(b.dataset.gerar);}}catch(err){alert('Não foi possível concluir a ação.');}});
+})();
+</script>
 </script>
 
 </body>
