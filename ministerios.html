@@ -15,7 +15,6 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--navy);color:#fff;mi
 .hero{height:clamp(220px,31vw,390px);background:url("./banner-ministerios.png") center/cover no-repeat;border-bottom:3px solid var(--yellow);position:relative}
 .back{position:absolute;top:calc(12px + env(safe-area-inset-top));left:14px;padding:10px 13px;border:1px solid rgba(255,255,0,.5);border-radius:11px;background:rgba(5,19,38,.85);color:var(--yellow);font-weight:800;text-decoration:none;backdrop-filter:blur(5px)}
 main{width:min(100% - 28px,1050px);margin:auto;padding:24px 0}
-
 .busca{display:flex;align-items:center;gap:12px;background:#10233b;border:1px solid var(--line);border-radius:18px;padding:0 17px;height:56px;margin-bottom:20px}
 .busca span{font-size:22px}.busca input{width:100%;background:none;border:0;outline:0;color:#fff;font-size:16px}.busca input::placeholder{color:#9fb0c4}
 .status{padding:24px;text-align:center;color:var(--muted);background:var(--card);border-radius:16px;border:1px solid var(--line)}
@@ -56,7 +55,7 @@ gap:5px;color:#eee;text-decoration:none;font-size:10px;min-width:0}
 </header>
 
 <main>
-<label class="busca">
+  <label class="busca">
     <span>⌕</span>
     <input id="busca" type="search" placeholder="Buscar ministério..." autocomplete="off">
   </label>
