@@ -971,6 +971,9 @@
     .cadastro-complementar .campo-obrigatorio{color:#CCFF00}
     @media(max-width:390px){.cadastro-complementar .cadastro-grid{grid-template-columns:1fr}}
 
+/* Destino dos atalhos do menu inferior */
+#modulos { scroll-margin-top: 14px; }
+
 </style>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="mobile-web-app-capable" content="yes">
@@ -1566,6 +1569,33 @@
       if (avisos.classList.contains('aberto')) fechar(avisos, abrirAvisos);
     }
   });
+})();
+
+// Compatibilidade da navegação inferior usada pelos módulos:
+// index.html#avisos abre o painel real de avisos; index.html#mais leva à grade de módulos.
+(function compatibilidadeLinksMenuInferiorCARA(){
+  function tratarDestino(){
+    const destino = (window.location.hash || '').toLowerCase();
+    if (destino === '#avisos') {
+      const painel = document.getElementById('painelAvisosHome');
+      const fechar = document.getElementById('fecharAvisosHome');
+      const perfil = document.getElementById('painelPerfilHome');
+      if (painel) {
+        if (perfil) perfil.classList.remove('aberto');
+        painel.classList.add('aberto');
+        document.body.classList.add('home-modal-aberto');
+        if (fechar) fechar.focus();
+      }
+    } else if (destino === '#mais') {
+      const modulos = document.getElementById('modulos');
+      if (modulos) {
+        window.setTimeout(() => modulos.scrollIntoView({behavior:'smooth', block:'start'}), 80);
+      }
+    }
+  }
+  window.addEventListener('DOMContentLoaded', tratarDestino);
+  window.addEventListener('hashchange', tratarDestino);
+  if (document.readyState !== 'loading') tratarDestino();
 })();
 
 (function configurarFotoPerfilCARA(){
