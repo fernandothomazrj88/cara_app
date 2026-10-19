@@ -23,7 +23,13 @@ h1{font-size:34px;margin:0 0 8px}.lead{color:var(--m);font-size:17px;margin:0 0 
 .card h3{margin:0 0 8px}.card p{color:var(--m);line-height:1.5;flex:1}.card button{align-self:flex-start;margin-top:16px;background:var(--y);border:0;border-radius:10px;padding:10px 14px;font-weight:900}
 .mats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.mat{padding:18px}.mat b{display:block;margin-bottom:6px}.mat span{color:var(--m);font-size:13px}
 .note{margin-top:26px;padding:15px 17px;background:#071A30;border:1px solid #ffffff12;border-radius:12px;color:var(--m);font-size:13px}
-@media(max-width:700px){.hero{height:230px}.wrap{width:calc(100% - 24px)}.meta,.grid,.mats{grid-template-columns:1fr}h1{font-size:28px}}
+/* Barra inferior padrão da Agenda C.A.R.A. */
+.bottom-nav{position:fixed;z-index:50;left:0;right:0;bottom:0;min-height:72px;padding:8px max(12px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));display:grid;grid-template-columns:repeat(3,1fr);align-items:center;background:rgba(5,24,29,.97);border:1px solid #203b32;border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -5px 18px #0003}
+.bottom-nav a{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;text-decoration:none;font-size:11px;line-height:1.1;padding:3px}
+.bottom-nav .nav-icon{font-size:23px;line-height:1.05}
+.bottom-nav a:focus-visible{outline:2px solid var(--y);outline-offset:2px;border-radius:8px}
+body{padding-bottom:82px}
+@media(max-width:700px){.hero{height:230px}.wrap{width:calc(100% - 24px)}.meta,.grid,.mats{grid-template-columns:1fr}h1{font-size:28px}.bottom-nav{min-height:72px}}
 </style>
 </head>
 <body>
@@ -61,5 +67,10 @@ h1{font-size:34px;margin:0 0 8px}.lead{color:var(--m);font-size:17px;margin:0 0 
 </section>
 <div class="note">💡 <b>Integração C.A.R.A.:</b> a programação do estudo permanece na Base Central e na Agenda. Esta página será a área de conteúdo e materiais do Ensino.</div>
 </main>
+<nav class="bottom-nav" aria-label="Navegação principal">
+  <a href="./index.html" aria-label="Início"><span class="nav-icon" aria-hidden="true">🏠</span><span>Início</span></a>
+  <a href="./index.html#avisos" aria-label="Avisos"><span class="nav-icon" aria-hidden="true">🔔</span><span>Avisos</span></a>
+  <a href="./index.html#mais" aria-label="Mais"><span class="nav-icon" aria-hidden="true">☰</span><span>Mais</span></a>
+</nav>
 </body>
 </html>
