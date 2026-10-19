@@ -10,7 +10,7 @@
 :root{--bg:#051326;--card:#102D4D;--card2:#0B2340;--y:#FFFF00;--w:#fff;--m:#B9C8D6}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--w);font-family:Arial,Helvetica,sans-serif}
 .hero{position:relative;height:clamp(240px,31.25vw,600px);background:#020b17 url("./banner-estudos.png") center/cover no-repeat;border-bottom:0}
-.back{display:none}
+.back{position:absolute;z-index:5;top:8px;left:4px;display:block;width:104px;height:52px;padding:0;margin:0;border:0;border-radius:10px;background:transparent;color:transparent;font-size:0;line-height:0;text-indent:-9999px;overflow:hidden;cursor:pointer}
 .wrap{width:min(calc(100% - 36px),1000px);margin:auto;padding:34px 0 60px}
 h1{font-size:34px;margin:0 0 8px}.lead{color:var(--m);font-size:17px;margin:0 0 28px}
 .st{color:var(--y);font-size:14px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin:26px 0 12px}
@@ -33,7 +33,7 @@ body{padding-bottom:82px}
 </style>
 </head>
 <body>
-<header class="hero"><a class="back" href="./index.html">← Início</a></header>
+<header class="hero"><a class="back" href="./index.html" aria-label="Voltar para a tela inicial" title="Voltar para a tela inicial">Voltar para a tela inicial</a></header>
 <main class="wrap">
 <h1>Estudos Bíblicos 📖</h1>
 <p class="lead">A Palavra que ensina, transforma e restaura.</p>
