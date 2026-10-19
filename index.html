@@ -1175,7 +1175,7 @@
         <div>
 
           <h3>
-            Ensino Bíblico
+            Estudo Bíblico
           </h3>
 
           <p>
@@ -2167,6 +2167,26 @@ if ('serviceWorker' in navigator) {
  if(list)list.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;const token=localStorage.getItem('cara_sessao_token');try{if(b.dataset.status){const r=await api({acao:'atualizar-solicitacao-acesso',token,id:b.dataset.id,status:b.dataset.status});alert(r.mensagem||'Atualizado');await load();}else if(b.dataset.gerar){location.href='./admin-convites.html?tipo='+encodeURIComponent(b.dataset.gerar);}}catch(err){alert('Não foi possível concluir a ação.');}});
 })();
 </script>
+</script>
+
+
+<script>
+(function menuInferiorCompatibilidadeCARA(){
+ function executarDestino(){
+  const acao=(new URLSearchParams(window.location.search).get('abrir')||'').toLowerCase();
+  if(acao==='avisos'){
+   const painel=document.getElementById('painelAvisosHome');
+   const perfil=document.getElementById('painelPerfilHome');
+   if(perfil) perfil.classList.remove('aberto');
+   if(painel){painel.classList.add('aberto');document.body.classList.add('home-modal-aberto');}
+  } else if(acao==='mais'){
+   const modulos=document.getElementById('modulos');
+   if(modulos) modulos.scrollIntoView({behavior:'auto',block:'start'});
+  }
+ }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',executarDestino,{once:true});
+ else executarDestino();
+})();
 </script>
 
 </body>
