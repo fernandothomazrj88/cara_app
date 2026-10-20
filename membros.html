@@ -18,11 +18,11 @@
       --n:#051326;
       --n2:#0b2039;
       --n3:#102b50;
-      --y:#FFFF00;
+      --y:#F4D95B;
       --w:#ffffff;
       --muted:#aebdce;
       --page:#071321;
-      --green:#4e8f00;
+      --green:#285b4a;
     }
 
     html{
@@ -68,8 +68,8 @@
 
     .back{
       position:absolute;
-      left:clamp(16px,5vw,70px);
-      top:18px;
+      left:10px;
+      top:12px;
       display:inline-flex;
       align-items:center;
       min-height:42px;
@@ -77,13 +77,43 @@
       border:1px solid var(--y);
       border-radius:12px;
       color:var(--y);
-      background:rgba(5,19,38,.28);
+      background:rgba(5,19,38,.88);
       text-decoration:none;
       font-weight:900;
       backdrop-filter:blur(3px);
     }
 
     .eyebrow,h1,.hero p{display:none;}
+
+    .versiculo-membros{
+      position:absolute;
+      right:clamp(12px,5vw,70px);
+      bottom:13px;
+      width:min(54%,560px);
+      padding:7px 12px 6px;
+      border:1px solid #ffffff16;
+      border-radius:12px;
+      background:rgba(5,19,38,.76);
+      text-align:center;
+      box-shadow:0 5px 18px #0003;
+      backdrop-filter:blur(3px);
+    }
+    .versiculo-membros .texto{
+      display:block;
+      color:#f1f4f8;
+      font-size:clamp(10px,1.35vw,15px);
+      font-weight:650;
+      line-height:1.35;
+      text-shadow:0 1px 3px #0008;
+    }
+    .versiculo-membros .referencia{
+      display:block;
+      margin-top:3px;
+      color:#e7cf66;
+      font-size:clamp(9px,1.05vw,12px);
+      font-weight:900;
+      letter-spacing:1px;
+    }
 
     main{
       width:min(1000px,calc(100% - 28px));
@@ -204,8 +234,8 @@
       margin-top:7px;
       padding:4px 8px;
       border-radius:999px;
-      background:#4e8f0022;
-      color:#b9ed69;
+      background:#15372f;
+      color:#b8e4c7;
       font-size:9px;
       font-weight:900;
       letter-spacing:.7px;
@@ -225,9 +255,10 @@
       white-space:nowrap;
       padding:4px 7px;
       border-radius:8px;
-      background:#ffff0010;
-      color:var(--y);
-      font-size:10px;
+      background:#102b48;
+      border:1px solid #294666;
+      color:#e4d58e;
+      font-size:9px;
       font-weight:800;
     }
 
@@ -346,7 +377,7 @@
 
     .perfil-status{
       margin-top:7px;
-      color:#b9ed69;
+      color:#b8e4c7;
       font-size:11px;
       font-weight:900;
       letter-spacing:1px;
@@ -361,7 +392,7 @@
     }
 
     .secao-titulo{
-      color:var(--y);
+      color:#e7cf66;
       font-size:10px;
       font-weight:900;
       letter-spacing:1.6px;
@@ -377,55 +408,36 @@
     .tag{
       padding:7px 10px;
       border-radius:10px;
-      background:#ffff0010;
-      color:var(--y);
-      font-size:13px;
+      background:#102b48;
+      border:1px solid #294666;
+      color:#e4d58e;
+      font-size:12px;
       font-weight:800;
     }
 
     .observacao{
-      color:var(--y);
-      font-size:14px;
+      color:var(--muted);
+      font-size:13px;
       line-height:1.5;
     }
 
-    .bottom{
-      position:fixed;
-      left:50%;
-      bottom:0;
-      transform:translateX(-50%);
-      width:100%;
-      max-width:900px;
-      min-height:82px;
-      padding-bottom:env(safe-area-inset-bottom);
-      background:linear-gradient(135deg,#06141a,#091c24);
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      border-radius:24px 24px 0 0;
-      box-shadow:0 -6px 24px #0003;
-      z-index:50;
-    }
-
-    .bottom a{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:5px;
-      color:#eee;
-      text-decoration:none;
-      font-size:10px;
-    }
-
-    .bottom a b{
-      font-size:23px;
-      line-height:1;
-    }
-
-    .bottom .ativo{
-      color:var(--y);
-      font-weight:900;
-    }
+    /* Navegação inferior padrão C.A.R.A. 3.0: Início, Avisos e Mais */
+    .acesso-rapido{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#06141a;border:1px solid rgba(244,217,91,.12);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35);opacity:1}
+    .acesso-rapido a,.acesso-rapido button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}
+    .acesso-rapido .icone{font-size:23px;line-height:1}
+    .acesso-rapido a:focus-visible,.acesso-rapido button:focus-visible{outline:2px solid var(--y);outline-offset:-4px;border-radius:12px}
+    .mais-overlay{position:fixed;inset:0;z-index:1200;display:none;align-items:flex-end;justify-content:center;padding:14px;background:rgba(0,0,0,.72)}
+    .mais-overlay.aberto{display:flex}
+    .mais-painel{width:min(560px,100%);max-height:min(78vh,720px);overflow:auto;padding:18px;border-radius:24px;border:1px solid #f4d95b40;background:#071a30;box-shadow:0 20px 70px #0009}
+    .mais-topo{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .mais-topo h2{margin:0;color:#fff;font-size:22px}
+    .mais-fechar{width:40px;height:40px;border:0;border-radius:12px;background:#102b4c;color:#fff;font-size:24px;cursor:pointer}
+    .mais-grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .mais-grade a{display:flex;align-items:center;gap:10px;padding:13px;border-radius:13px;background:#0b2039;border:1px solid #ffffff14;color:#fff;text-decoration:none;font-weight:800;font-size:13px}
+    .mais-grade a span{font-size:21px}
+    .painel-aviso{color:#d9dfe9;line-height:1.55;font-size:14px;padding:12px 2px}
+    .abrir-agenda-aviso{display:flex;justify-content:space-between;align-items:center;text-decoration:none;background:#0b2039;color:#e7cf66;border-radius:13px;padding:14px;font-weight:800}
+    body.menu-aberto{overflow:hidden}
 
     @media(max-width:800px){
       .grid{
@@ -441,9 +453,18 @@
       }
 
       .back{
-        left:12px;
-        top:12px;
+        left:8px;
+        top:8px;
       }
+
+      .versiculo-membros{
+        right:8px;
+        bottom:8px;
+        width:58%;
+        padding:5px 7px;
+      }
+      .versiculo-membros .texto{font-size:10px;line-height:1.25}
+      .versiculo-membros .referencia{font-size:9px;letter-spacing:.7px}
 
       main{
         width:min(100% - 20px,1000px);
@@ -475,15 +496,15 @@
 
     .ficha-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .campo{padding:12px;border-radius:12px;background:#081a30;border:1px solid #ffffff10}
-    .campo-label{color:var(--y);font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
-    .campo-valor{color:var(--y);font-size:14px;font-weight:700;line-height:1.35;word-break:break-word}
+    .campo-label{color:#8fa6bd;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+    .campo-valor{color:#fff;font-size:13px;font-weight:700;line-height:1.35;word-break:break-word}
     .ficha-bloco{margin-top:14px;padding:16px;border-radius:17px;background:#0c223b;border:1px solid #ffffff10}
-    .ficha-bloco-titulo{color:var(--y);font-size:10px;font-weight:900;letter-spacing:1.6px;margin-bottom:10px}
+    .ficha-bloco-titulo{color:#e7cf66;font-size:10px;font-weight:900;letter-spacing:1.6px;margin-bottom:10px}
     .ministerio-ficha{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff0d}
     .ministerio-ficha:last-child{border-bottom:0}
     .ministerio-nome{font-weight:900;font-size:13px}
-    .ministerio-funcao{color:var(--y);font-size:12px;margin-top:3px}
-    .privado-aviso{padding:13px;border-radius:13px;background:#ffff0010;border:1px solid #ffff0025;color:var(--y);font-size:13px;line-height:1.45}
+    .ministerio-funcao{color:#aebdce;font-size:11px;margin-top:3px}
+    .privado-aviso{padding:13px;border-radius:13px;background:#102b48;border:1px solid #294666;color:#dfe9f4;font-size:12px;line-height:1.45}
     .botao-login{display:inline-flex;align-items:center;gap:8px;margin-top:12px;min-height:42px;padding:0 14px;border:1px solid #ffffff25;border-radius:12px;background:#fff;color:#111;font-weight:900;cursor:pointer}
     .login-msg{margin-top:10px;color:#ffb5b5;font-size:12px}
     .acoes-ficha{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
@@ -498,96 +519,11 @@
     .foto-editor .avatar-grande{flex:0 0 110px;width:110px;height:110px}
     .foto-acoes{display:flex;flex-direction:column;gap:7px}
     .botao-foto{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 12px;border-radius:10px;background:#17385d;color:#fff;border:1px solid #ffffff20;font-weight:800;cursor:pointer}
-    .foto-ajuda{color:var(--y);font-size:11px;line-height:1.4}
+    .foto-ajuda{color:#8fa6bd;font-size:10px;line-height:1.4}
     .salvando{opacity:.65;pointer-events:none}
     .sucesso-msg{color:#b9ed69;font-size:12px;margin-top:8px}
     @media(max-width:600px){.ficha-grid{grid-template-columns:1fr}.foto-editor{align-items:flex-start;flex-direction:column}.foto-acoes{width:100%}}
-  
-    /* =========================================
-       CONTRASTE E LEGIBILIDADE — PERFIL DO MEMBRO
-       Títulos e nomes grandes: branco.
-       Informações menores: amarelo fluorescente.
-    ========================================= */
-    .sheet-top h2,
-    .perfil-nome,
-    .nome,
-    .ministerio-nome {
-      color: #ffffff;
-    }
-
-    .campo-label,
-    .campo-valor,
-    .ficha-bloco-titulo,
-    .secao-titulo,
-    .ministerio-funcao,
-    .observacao,
-    .foto-ajuda,
-    .tag,
-    .ministerio,
-    .privado-aviso {
-      color: #FFFF00;
-    }
-
-    .campo-label,
-    .ficha-bloco-titulo,
-    .secao-titulo {
-      font-size: 11px;
-    }
-
-    .campo-valor {
-      font-size: 14px;
-      line-height: 1.4;
-      font-weight: 800;
-    }
-
-    .ministerio,
-    .tag {
-      font-size: 12px;
-    }
-
-    .observacao,
-    .privado-aviso {
-      font-size: 13px;
-    }
-
-    /* Mantém botões com contraste forte e texto legível. */
-    .botao-editar,
-    .botao-login {
-      color: #071321;
-    }
-
-
-  
-    /* CONTRASTE FINAL: rótulo branco, informação em amarelo fluorescente */
-    .campo-label,
-    .ficha-bloco-titulo,
-    .secao-titulo {
-      color: #FFFFFF !important;
-    }
-
-    .campo-valor {
-      color: #FFFF00 !important;
-      font-size: 14px;
-      line-height: 1.4;
-      font-weight: 800;
-    }
-
-    .ministerio-funcao,
-    .observacao,
-    .foto-ajuda,
-    .tag,
-    .privado-aviso {
-      color: #FFFF00 !important;
-    }
-
-    .perfil-nome,
-    .sheet-top h2,
-    .nome,
-    .ministerio-nome {
-      color: #FFFFFF !important;
-    }
-
-</style>
+  </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
@@ -600,6 +536,10 @@
       <a class="back" href="./index.html">← Início</a>
 
       <span aria-label="Membros"></span>
+      <div class="versiculo-membros" aria-label="Salmos 133 versículo 1">
+        <span class="texto">“Como é bom e agradável quando os irmãos convivem em união!”</span>
+        <span class="referencia">SALMOS 133:1</span>
+      </div>
     </div>
   </header>
 
@@ -627,32 +567,32 @@
 
 </div>
 
-<nav class="bottom">
-  <a href="./index.html">
-    <b>🏠</b>
-    Início
-  </a>
-
-  <a href="./agenda.html">
-    <b>📅</b>
-    Agenda
-  </a>
-
-  <a href="./ministerios.html">
-    <b>▦</b>
-    Ministérios
-  </a>
-
-  <a href="./index.html" onclick="return false;" aria-disabled="true">
-    <b>🔔</b>
-    Avisos
-  </a>
-
-  <a class="ativo" href="./membros.html">
-    <b>👥</b>
-    Membros
-  </a>
+<nav class="acesso-rapido" aria-label="Acesso rápido">
+  <a href="./index.html"><span class="icone">🏠</span>Início</a>
+  <button type="button" id="abrirAvisos"><span class="icone">🔔</span>Avisos</button>
+  <button type="button" id="abrirMais" aria-haspopup="dialog" aria-controls="menuMais"><span class="icone">☰</span>Mais</button>
 </nav>
+
+<div class="mais-overlay" id="menuMais" role="dialog" aria-modal="true" aria-labelledby="menuMaisTitulo">
+  <div class="mais-painel">
+    <div class="mais-topo"><h2 id="menuMaisTitulo">Acesso rápido aos módulos</h2><button class="mais-fechar" id="fecharMais" type="button" aria-label="Fechar menu">×</button></div>
+    <div class="mais-grade">
+      <a href="./agenda.html"><span>📅</span>Agenda</a><a href="./louvor.html"><span>🎵</span>Louvor</a>
+      <a href="./midia.html"><span>📱</span>Mídia</a><a href="./estudos.html"><span>📖</span>Estudos Bíblicos</a>
+      <a href="./pregacoes.html"><span>🎙️</span>Pregações</a><a href="./ministerios.html"><span>▦</span>Ministérios</a>
+      <a href="./membros.html"><span>👥</span>Membros</a><a href="./secretaria.html"><span>🗂️</span>Secretaria</a>
+      <a href="./galeria.html"><span>📸</span>Galeria</a><a href="./tesouraria.html"><span>💰</span>Tesouraria</a>
+      <a href="#" id="abrirAvisosNoMenu"><span>🔔</span>Avisos</a>
+    </div>
+  </div>
+</div>
+<div class="mais-overlay" id="painelAvisos" role="dialog" aria-modal="true" aria-labelledby="avisosTitulo">
+  <div class="mais-painel">
+    <div class="mais-topo"><h2 id="avisosTitulo">Avisos da C.A.R.A.</h2><button class="mais-fechar" id="fecharAvisos" type="button" aria-label="Fechar avisos">×</button></div>
+    <div class="painel-aviso">Consulte a programação atualizada pela Agenda. A área de avisos centralizados será conectada à Base Central em uma próxima etapa.</div>
+    <a href="./agenda.html" class="abrir-agenda-aviso">📅 Abrir Agenda <span>›</span></a>
+  </div>
+</div>
 
 
 <div id="loginGoogle" style="display:none"></div>
@@ -669,6 +609,36 @@
 
   </section>
 </div>
+
+<script>
+(function configurarAcessoRapidoMembrosCARA(){
+  const menu=document.getElementById('menuMais');
+  const avisos=document.getElementById('painelAvisos');
+  const abrirMais=document.getElementById('abrirMais');
+  const fecharMais=document.getElementById('fecharMais');
+  const abrirAvisos=document.getElementById('abrirAvisos');
+  const abrirAvisosMenu=document.getElementById('abrirAvisosNoMenu');
+  const fecharAvisos=document.getElementById('fecharAvisos');
+  function abrirPainel(painel,foco){
+    menu.classList.remove('aberto'); avisos.classList.remove('aberto');
+    painel.classList.add('aberto'); document.body.classList.add('menu-aberto');
+    if(foco) foco.focus();
+  }
+  function fecharPainel(painel,retorno){
+    painel.classList.remove('aberto');
+    if(!menu.classList.contains('aberto') && !avisos.classList.contains('aberto')) document.body.classList.remove('menu-aberto');
+    if(retorno) retorno.focus();
+  }
+  abrirMais.addEventListener('click',()=>abrirPainel(menu,fecharMais));
+  fecharMais.addEventListener('click',()=>fecharPainel(menu,abrirMais));
+  menu.addEventListener('click',e=>{if(e.target===menu)fecharPainel(menu,abrirMais)});
+  abrirAvisos.addEventListener('click',()=>abrirPainel(avisos,fecharAvisos));
+  abrirAvisosMenu.addEventListener('click',e=>{e.preventDefault();abrirPainel(avisos,fecharAvisos)});
+  fecharAvisos.addEventListener('click',()=>fecharPainel(avisos,abrirAvisos));
+  avisos.addEventListener('click',e=>{if(e.target===avisos)fecharPainel(avisos,abrirAvisos)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(menu.classList.contains('aberto'))fecharPainel(menu,abrirMais);if(avisos.classList.contains('aberto'))fecharPainel(avisos,abrirAvisos)}});
+})();
+</script>
 
 <script>
 const API =
@@ -705,31 +675,57 @@ function iniciais(nome){
 }
 
 function normalizarFotoMembro(url){
-  const original=String(url||'').trim();
+  const original = String(url || '').trim();
   if(!original) return '';
+
   try{
-    const u=new URL(original);
-    const id=u.searchParams.get('id');
-    if(id) return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(id)+'&sz=w1000';
-    const parte=u.pathname.split('/d/')[1];
-    const idPath=parte?parte.split('/')[0]:'';
-    if(idPath) return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(idPath)+'&sz=w1000';
+    const u = new URL(original);
+
+    // URLs do Google Drive/Drive UserContent:
+    // transforma em thumbnail, que é mais estável para <img> no navegador.
+    const id = u.searchParams.get('id');
+
+    if(id){
+      return 'https://drive.google.com/thumbnail?id=' +
+             encodeURIComponent(id) +
+             '&sz=w1000';
+    }
+
+    // Também aceita links no formato /file/d/ID/...
+    const match = u.pathname.match(/\/d\/([^/]+)/);
+    if(match && match[1]){
+      return 'https://drive.google.com/thumbnail?id=' +
+             encodeURIComponent(match[1]) +
+             '&sz=w1000';
+    }
+
     return original;
-  }catch(e){return original}
+  }catch(e){
+    return original;
+  }
 }
 
 function renderAvatar(pessoa, grande=false){
-  const classe=grande?'avatar-grande':'avatar';
-  const foto=normalizarFotoMembro(pessoa.fotoUrl);
+  const classe = grande ? 'avatar-grande' : 'avatar';
+  const foto = normalizarFotoMembro(pessoa.fotoUrl);
+
   if(foto){
-    const inic=esc(iniciais(pessoa.nome));
+    const inic = esc(iniciais(pessoa.nome));
+
     return `
       <div class="${classe}">
-        <img src="${esc(foto)}" alt="Foto de ${esc(pessoa.nome)}"
-          loading="eager" decoding="async" referrerpolicy="no-referrer"
-          onerror="this.onerror=null;this.parentElement.innerHTML='${inic}';">
-      </div>`;
+        <img
+          src="${esc(foto)}"
+          alt="Foto de ${esc(pessoa.nome)}"
+          loading="eager"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          onerror="this.onerror=null;this.parentElement.innerHTML='${inic}';"
+        >
+      </div>
+    `;
   }
+
   return `<div class="${classe}">${esc(iniciais(pessoa.nome))}</div>`;
 }
 
@@ -842,15 +838,26 @@ async function tentarCarregarFichaProtegida(id){
 
 async function entrarParaFicha(id){
   const token=localStorage.getItem('cara_sessao_token');
+  if(token){ await buscarFichaCompleta(id,token); return; }
 
-  // Reutiliza a sessão única da C.A.R.A.; não abre um login separado dentro do módulo.
-  if(token){
-    buscarFichaCompleta(id,token);
-    return;
-  }
+  const msg=document.getElementById('loginMsg');
+  if(msg) msg.textContent='Abrindo login do Google...';
 
-  // Após autenticar, o usuário volta para Membros e pode abrir a ficha novamente.
-  location.href='./login.html?next='+encodeURIComponent('./membros.html');
+  iniciarLoginGoogle(async credential=>{
+    try{
+      const resposta=await postCentral({acao:'login',credential});
+      if(!resposta.sucesso || !resposta.token){
+        if(msg) msg.textContent=resposta.mensagem || 'Não foi possível iniciar sua sessão.';
+        return;
+      }
+      localStorage.setItem('cara_sessao_token',resposta.token);
+      localStorage.setItem('cara_usuario',JSON.stringify(resposta.usuario||{}));
+      await buscarFichaCompleta(id,resposta.token);
+    }catch(e){
+      console.error(e);
+      if(msg) msg.textContent='Não foi possível concluir o login.';
+    }
+  });
 }
 
 async function buscarFichaCompleta(id,token){
