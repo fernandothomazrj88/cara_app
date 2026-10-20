@@ -305,6 +305,16 @@ function urlSegura(v){
   const s=String(v||'').trim();
   return /^https:\/\/[^\s]+$/i.test(s) || /^\.\/[A-Za-z0-9._/-]+$/.test(s) ? s : '';
 }
+function urlCapaExibicao(v){
+  const original=String(v||'').trim();
+  if(!original) return './pregacao-biblia.jpg';
+  // URLs do Drive precisam usar a rota de miniatura para funcionar de forma estável em <img>.
+  if(/^https:\/\/(?:drive\.google\.com|drive\.usercontent\.google\.com)\//i.test(original)){
+    const m=original.match(/\/file\/d\/([A-Za-z0-9_-]+)/i)||original.match(/[?&]id=([A-Za-z0-9_-]+)/i);
+    if(m) return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(m[1])+'&sz=w1000';
+  }
+  return urlSegura(original)||'./pregacao-biblia.jpg';
+}
 function urlDownload(v){
   const u=urlSegura(v);
   if(!u) return '';
@@ -370,7 +380,7 @@ function renderizarDestaque(){
     sec.innerHTML=titulo+estado;
     return;
   }
-  const capa=urlSegura(s.capaUrl)||'./pregacao-biblia.jpg';
+  const capa=urlCapaExibicao(s.capaUrl);
   const meta=[
     s.data?`<span>▣ ${escaparHTML(s.data)}</span>`:'',
     s.preletor?`<span>♟ ${escaparHTML(s.preletor)}</span>`:'',
@@ -396,7 +406,7 @@ function renderizarDestaque(){
     </article>`;
 }
 function renderizarLinha(s){
-  const capa=urlSegura(s.capaUrl)||'./pregacao-biblia.jpg';
+  const capa=urlCapaExibicao(s.capaUrl);
   const meta=[
     s.data?`<span>▣ ${escaparHTML(s.data)}</span>`:'',
     s.preletor?`<span>♟ ${escaparHTML(s.preletor)}</span>`:'',
