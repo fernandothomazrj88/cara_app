@@ -45,10 +45,10 @@
     .hero{
       position:relative;
       width:100%;
-      aspect-ratio:16/5.35;
-      min-height:240px;
+      aspect-ratio:16/5;
+      min-height:0;
       overflow:hidden;
-      background:#051326 url("./banner-membros.png") center center / cover no-repeat;
+      background:#051326 url("./banner-membros.png") center center / 100% 100% no-repeat;
       border-bottom:3px solid var(--y);
     }
 
@@ -66,58 +66,31 @@
       z-index:2;
     }
 
+    /* A arte aprovada já contém o botão visual “Início”.
+       Este link transparente mantém a área clicável sem duplicar o desenho. */
     .back{
       position:absolute;
-      left:10px;
-      top:12px;
-      display:inline-flex;
-      align-items:center;
-      min-height:42px;
-      padding:0 14px;
-      border:1px solid var(--y);
-      border-radius:12px;
-      color:var(--y);
-      background:rgba(5,19,38,.88);
+      left:1.1%;
+      top:4.5%;
+      width:12%;
+      height:15%;
+      display:block;
+      padding:0;
+      border:1px solid transparent;
+      border-radius:14px;
+      color:transparent;
+      background:transparent;
       text-decoration:none;
-      font-weight:900;
-      backdrop-filter:blur(3px);
+      font-size:0;
+      line-height:0;
+      z-index:3;
+    }
+    .back:focus-visible{
+      outline:2px solid var(--y);
+      outline-offset:2px;
     }
 
     .eyebrow,h1,.hero p{display:none;}
-
-    /* Versículo integrado ao banner, seguindo a tipografia do banner-agenda.
-       A área da citação fica sobre o azul-marinho do próprio banner, sem cartão. */
-    .versiculo-membros{
-      position:absolute;
-      right:clamp(24px,6vw,88px);
-      bottom:13px;
-      width:min(50%,590px);
-      padding:0;
-      border:0;
-      border-radius:0;
-      background:transparent;
-      text-align:center;
-      box-shadow:none;
-      backdrop-filter:none;
-    }
-    .versiculo-membros .texto{
-      display:block;
-      color:#f1f4f8;
-      font-size:clamp(11px,1.45vw,17px);
-      font-style:italic;
-      font-weight:500;
-      line-height:1.45;
-      text-shadow:0 2px 5px #000b;
-    }
-    .versiculo-membros .referencia{
-      display:block;
-      margin-top:4px;
-      color:#FFFF00;
-      font-size:clamp(9px,1.05vw,12px);
-      font-weight:900;
-      letter-spacing:1px;
-      text-shadow:0 1px 3px #000b;
-    }
 
     main{
       width:min(1000px,calc(100% - 28px));
@@ -451,24 +424,10 @@
 
     @media(max-width:600px){
       .hero{
-        aspect-ratio:16/7.2;
-        min-height:190px;
+        aspect-ratio:16/5;
+        min-height:0;
         background-position:center center;
       }
-
-      .back{
-        left:8px;
-        top:8px;
-      }
-
-      .versiculo-membros{
-        right:8px;
-        bottom:8px;
-        width:56%;
-        padding:0;
-      }
-      .versiculo-membros .texto{font-size:10px;line-height:1.25}
-      .versiculo-membros .referencia{font-size:9px;letter-spacing:.7px}
 
       main{
         width:min(100% - 20px,1000px);
@@ -540,10 +499,6 @@
       <a class="back" href="./index.html">← Início</a>
 
       <span aria-label="Membros"></span>
-      <div class="versiculo-membros" aria-label="Salmos 133 versículo 1">
-        <span class="texto">“Como é bom e agradável quando os irmãos convivem em união!”</span>
-        <span class="referencia">SALMOS 133:1</span>
-      </div>
     </div>
   </header>
 
