@@ -66,8 +66,8 @@
     .acao{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid #52708d;border-radius:10px;background:#071b30;color:#fff;text-decoration:none;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
     .acao.baixar{background:var(--amarelo);border-color:var(--amarelo);color:#050505}
     .acao.indisponivel{opacity:.9}
-    .lista-pregacoes{display:grid;gap:0;border-top:1px solid #1e3650}
-    .linha-pregacao{display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:16px;align-items:center;padding:12px 4px;border-bottom:1px solid #20374f;min-width:0}
+    .lista-pregacoes{display:grid;gap:0;border-top:0}
+    .linha-pregacao{display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:16px;align-items:center;padding:12px 4px;border-bottom:0;min-width:0}
     .linha-imagem{width:100%;height:92px;object-fit:cover;border-radius:9px;background:#102943}
     .linha-corpo{min-width:0;display:grid;gap:5px}
     .linha-corpo h3{font-size:16px;line-height:1.3;overflow-wrap:anywhere}
@@ -114,15 +114,14 @@
   <main>
     <div class="cabecalho-conteudo">
       <section class="saudacao">
-        <h1>🎙️ Pregações <span class="onda">〽</span></h1>
+        <h1>🎙️ Pregações</h1>
         <p>Mensagens que edificam, ensinam e transformam.</p>
-        <div class="preview-aviso">Prévia estrutural do acervo: as mensagens abaixo são exemplos de organização, ainda sem arquivos reais anexados. Os espaços de áudio e vídeo ficam preparados para uso futuro.</div>
       </section>
       <label class="busca-topo"><span>⌕</span><input id="buscaTopo" type="search" placeholder="Buscar pregações..." aria-label="Buscar pregações"></label>
     </div>
 
     <section class="abas" aria-label="Categorias de pregações">
-      <button class="aba ativo" type="button" data-view="todas"><span class="icone">▶</span>Todas <span class="contagem">4</span></button>
+      <button class="aba ativo" type="button" data-view="todas"><span class="icone">▶</span>Todas</button>
       <button class="aba" type="button" data-view="data"><span class="icone">▦</span>Por Data</button>
       <button class="aba" type="button" data-view="pregador"><span class="icone">♟</span>Por Pregador</button>
       <button class="aba" type="button" data-view="serie"><span class="icone">▤</span>Séries</button>
@@ -132,59 +131,25 @@
 
     <section class="filtros-linha" aria-label="Buscar e filtrar">
       <label class="campo-busca"><span class="lupa">⌕</span><input id="busca" type="search" placeholder="Buscar pregações, temas ou pregadores..." aria-label="Buscar pregações"></label>
-      <select class="campo-select" id="filtroPregador" aria-label="Filtrar por pregador"><option value="">Todos os Pregadores</option><option value="A cadastrar">Preletor a cadastrar</option></select>
-      <select class="campo-select" id="filtroSerie" aria-label="Filtrar por série"><option value="">Todas as Séries</option><option value="Romanos — Vivendo como Cidadãos do Reino">Romanos — Vivendo como Cidadãos do Reino</option></select>
+      <select class="campo-select" id="filtroPregador" aria-label="Filtrar por pregador"><option value="">Todos os Pregadores</option></select>
+      <select class="campo-select" id="filtroSerie" aria-label="Filtrar por série"><option value="">Todas as Séries</option></select>
       <select class="campo-select" id="ordenacao" aria-label="Ordenar pregações"><option value="recentes">Mais recentes</option><option value="titulo">Título A–Z</option></select>
       <button class="botao-filtros" type="button" id="abrirFiltros">☷ Filtros</button>
     </section>
     <section class="filtros-extra" id="filtrosExtra" aria-label="Filtros adicionais">
       <label>Formato<select class="campo-select" id="filtroFormato"><option value="todos">Todos os formatos</option><option value="arquivo">Arquivo Word/PDF</option><option value="audio">Áudio (futuro)</option><option value="video">Vídeo (futuro)</option></select></label>
-      <label>Livro bíblico<select class="campo-select" id="filtroLivro"><option value="">Todos os livros</option><option value="Romanos">Romanos</option></select></label>
-      <label>Categoria<select class="campo-select" id="filtroTema"><option value="">Todas as categorias</option><option value="Vida Cristã">Vida Cristã</option><option value="Fé e Graça">Fé e Graça</option><option value="Justificação">Justificação</option></select></label>
+      <label>Livro bíblico<select class="campo-select" id="filtroLivro"><option value="">Todos os livros</option></select></label>
+      <label>Categoria<select class="campo-select" id="filtroTema"><option value="">Todas as categorias</option></select></label>
     </section>
 
     <section id="secaoDestaque">
       <div class="secao-titulo"><h2><span class="marcador-titulo"></span>Destaque da Semana</h2></div>
-      <article class="destaque" id="cardDestaque">
-        <div class="destaque-imagem">
-          <img src="./pregacao-destaque.jpg" alt="Imagem ilustrativa para destaque de pregação">
-          <button class="reproducao" type="button" data-media="video" aria-label="Abrir espaço de vídeo">▶</button>
-          <span class="duracao">Vídeo futuro</span>
-        </div>
-        <div class="destaque-corpo">
-          <button type="button" class="favorito" data-fav="modelo-1" aria-label="Marcar destaque como favorito">♡</button>
-          <span class="selo-destaque">Prévia do destaque</span>
-          <h3>Mortos para o Pecado, porém Vivos para Deus</h3>
-          <div class="serie">Série: Romanos — Vivendo como Cidadãos do Reino</div>
-          <div class="metadados"><span>▣ Data a cadastrar</span><span>♟ Preletor a cadastrar</span><span>◆ Romanos 6</span></div>
-          <p class="descricao-destaque">Neste espaço ficará o resumo da mensagem, seus principais ensinamentos e a aplicação prática para a vida cristã.</p>
-          <div class="acoes-destaque"><button class="acao indisponivel" type="button" data-arquivo="modelo-1">▤ Arquivo</button><button class="acao baixar" type="button" data-baixar="modelo-1">⇩ Baixar arquivo</button></div>
-        </div>
-      </article>
     </section>
 
     <section id="secaoUltimas">
       <div class="secao-titulo"><h2><span class="marcador-titulo"></span>Últimas Pregações</h2><button type="button" class="ver-todas" id="verTodas">Ver todas →</button></div>
-      <div class="lista-pregacoes" id="listaPregacoes">
-        <article class="linha-pregacao" data-id="modelo-2" data-search="os frutos da justificação paz acesso a deus graça esperança romanos 5">
-          <img class="linha-imagem" src="./pregacao-biblia.jpg" alt="Imagem ilustrativa de Bíblia aberta">
-          <div class="linha-corpo"><h3>Os Frutos da Justificação: Paz, Acesso a Deus, a Graça e a Esperança</h3><div class="serie">Série: Romanos — Vivendo como Cidadãos do Reino</div><div class="metadados"><span>▣ Data a cadastrar</span><span>♟ Preletor a cadastrar</span><span>◆ Romanos 5</span></div></div>
-          <div class="linha-acoes"><button class="icone-acao" type="button" data-media="video" aria-label="Vídeo futuro">▶</button><button class="icone-acao" type="button" data-fav="modelo-2" aria-label="Favoritar pregação">♡</button><button class="acao-lista" type="button" data-arquivo="modelo-2">▤ Arquivo</button><button class="acao-lista baixar" type="button" data-baixar="modelo-2">⇩ Baixar</button></div>
-        </article>
-        <article class="linha-pregacao" data-id="modelo-3" data-search="a fé que justifica não por obras mas por crer romanos 4">
-          <img class="linha-imagem" src="./pregacao-roma6.jpg" alt="Imagem ilustrativa de uma paisagem ao nascer do sol">
-          <div class="linha-corpo"><h3>A Fé que Justifica — Não por Obras, mas por Crer</h3><div class="serie">Série: Romanos — Vivendo como Cidadãos do Reino</div><div class="metadados"><span>▣ Data a cadastrar</span><span>♟ Preletor a cadastrar</span><span>◆ Romanos 4</span></div></div>
-          <div class="linha-acoes"><button class="icone-acao" type="button" data-media="video" aria-label="Vídeo futuro">▶</button><button class="icone-acao" type="button" data-fav="modelo-3" aria-label="Favoritar pregação">♡</button><button class="acao-lista" type="button" data-arquivo="modelo-3">▤ Arquivo</button><button class="acao-lista baixar" type="button" data-baixar="modelo-3">⇩ Baixar</button></div>
-        </article>
-        <article class="linha-pregacao" data-id="modelo-4" data-search="todos pecaram mas a graça alcança romanos 3">
-          <img class="linha-imagem" src="./pregacao-biblia.jpg" alt="Imagem ilustrativa de Bíblia aberta">
-          <div class="linha-corpo"><h3>Todos Pecaram, mas a Graça Alcança</h3><div class="serie">Série: Romanos — Vivendo como Cidadãos do Reino</div><div class="metadados"><span>▣ Data a cadastrar</span><span>♟ Preletor a cadastrar</span><span>◆ Romanos 3</span></div></div>
-          <div class="linha-acoes"><button class="icone-acao" type="button" data-media="video" aria-label="Vídeo futuro">▶</button><button class="icone-acao" type="button" data-fav="modelo-4" aria-label="Favoritar pregação">♡</button><button class="acao-lista" type="button" data-arquivo="modelo-4">▤ Arquivo</button><button class="acao-lista baixar" type="button" data-baixar="modelo-4">⇩ Baixar</button></div>
-        </article>
-      </div>
-      <div class="estado-vazio" id="estadoVazio" hidden><strong>Nenhuma pregação encontrada</strong>Altere a busca ou os filtros para ver outros resultados.</div>
+      <div class="lista-pregacoes" id="listaPregacoes"></div>
     </section>
-    <div class="nota-integracao">💡 <strong>Estrutura preparada:</strong> cada pregação poderá receber um arquivo Word ou PDF para abrir e baixar. Os espaços de áudio e vídeo ficam reservados para quando houver gravações. Os itens exibidos nesta primeira versão são exemplos visuais; nenhum arquivo real está anexado.</div>
   </main>
 </div>
 
@@ -233,13 +198,8 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(menu.classList.contains('aberto'))fecharPainel(menu,abrirMais);if(avisos.classList.contains('aberto'))fecharPainel(avisos,abrirAvisos);fecharModalMensagem()}});
 })();
 
-const pregoes = [
- {id:'modelo-1',preletor:'A cadastrar',titulo:'Mortos para o Pecado, porém Vivos para Deus',referencia:'Romanos 6',serie:'Romanos — Vivendo como Cidadãos do Reino',tema:'Vida Cristã',imagem:'./pregacao-destaque.jpg',destaque:true},
- {id:'modelo-2',preletor:'A cadastrar',titulo:'Os Frutos da Justificação: Paz, Acesso a Deus, a Graça e a Esperança',referencia:'Romanos 5',serie:'Romanos — Vivendo como Cidadãos do Reino',tema:'Fé e Graça',imagem:'./pregacao-biblia.jpg'},
- {id:'modelo-3',preletor:'A cadastrar',titulo:'A Fé que Justifica — Não por Obras, mas por Crer',referencia:'Romanos 4',serie:'Romanos — Vivendo como Cidadãos do Reino',tema:'Justificação',imagem:'./pregacao-roma6.jpg'},
- {id:'modelo-4',preletor:'A cadastrar',titulo:'Todos Pecaram, mas a Graça Alcança',referencia:'Romanos 3',serie:'Romanos — Vivendo como Cidadãos do Reino',tema:'Fé e Graça',imagem:'./pregacao-biblia.jpg'}
-];
-const favKey='cara-pregacoes-favoritos-v1';
+const pregoes = [];
+const favKey='cara-pregacoes-favoritos-v2';
 function favoritos(){try{return JSON.parse(localStorage.getItem(favKey)||'[]')}catch(e){return []}}
 function atualizarFavoritos(){const fs=favoritos();document.getElementById('favoritosCount').textContent=fs.length;document.querySelectorAll('[data-fav]').forEach(b=>{const ativo=fs.includes(b.dataset.fav);b.classList.toggle('ativo',ativo);b.textContent=ativo?'♥':'♡';b.setAttribute('aria-pressed',String(ativo))})}
 function abrirModalMensagem(titulo,html){document.getElementById('modalMensagemTitulo').textContent=titulo;document.getElementById('modalMensagemTexto').innerHTML=html;document.getElementById('modalMensagem').classList.add('aberto');document.body.classList.add('menu-aberto');document.getElementById('fecharMensagem').focus()}
@@ -260,21 +220,29 @@ busca.addEventListener('input',()=>{buscaTopo.value=busca.value;filtrar()});busc
 document.getElementById('abrirFiltros').addEventListener('click',()=>document.getElementById('filtrosExtra').classList.toggle('aberto'));
 document.getElementById('verTodas').addEventListener('click',()=>{view='todas';abas.forEach(x=>x.classList.toggle('ativo',x.dataset.view==='todas'));filtrar();document.getElementById('secaoUltimas').scrollIntoView({behavior:'smooth',block:'start'})});
 function filtrar(){
- const termo=busca.value.trim().toLocaleLowerCase('pt-BR'),pre=document.getElementById('filtroPregador').value,serie=document.getElementById('filtroSerie').value,tema=document.getElementById('filtroTema').value,livro=document.getElementById('filtroLivro').value,formato=document.getElementById('filtroFormato').value;
+ const termo=busca.value.trim().toLocaleLowerCase('pt-BR');
+ const pre=document.getElementById('filtroPregador').value;
+ const serie=document.getElementById('filtroSerie').value;
+ const tema=document.getElementById('filtroTema').value;
+ const livro=document.getElementById('filtroLivro').value;
+ const formato=document.getElementById('filtroFormato').value;
  let arr=[...pregoes];
  if(termo)arr=arr.filter(s=>(s.titulo+' '+s.referencia+' '+s.serie+' '+s.tema).toLocaleLowerCase('pt-BR').includes(termo));
  if(pre)arr=arr.filter(s=>s.preletor===pre);
- if(serie)arr=arr.filter(s=>s.serie===serie);if(tema)arr=arr.filter(s=>s.tema===tema);if(livro)arr=arr.filter(s=>s.referencia.includes(livro));
+ if(serie)arr=arr.filter(s=>s.serie===serie);
+ if(tema)arr=arr.filter(s=>s.tema===tema);
+ if(livro)arr=arr.filter(s=>s.referencia.includes(livro));
  if(formato==='audio'||formato==='video')arr=[];
  if(view==='favoritos')arr=arr.filter(s=>favoritos().includes(s.id));
- if(view==='serie')arr=arr.filter(s=>Boolean(s.serie));if(view==='temas')arr=arr.filter(s=>Boolean(s.tema));if(view==='pregador')arr=[];
+ if(view==='serie')arr=arr.filter(s=>Boolean(s.serie));
+ if(view==='temas')arr=arr.filter(s=>Boolean(s.tema));
+ if(view==='pregador')arr=[];
  if(document.getElementById('ordenacao').value==='titulo')arr.sort((a,b)=>a.titulo.localeCompare(b.titulo,'pt-BR'));
  document.querySelectorAll('.linha-pregacao').forEach(el=>el.hidden=!arr.some(s=>s.id===el.dataset.id));
- const destaque=document.getElementById('cardDestaque');destaque.hidden=(view==='favoritos'&&!favoritos().includes('modelo-1'))||(termo&&!('Mortos para o Pecado, porém Vivos para Deus Romanos 6 '+pregoes[0].serie).toLocaleLowerCase('pt-BR').includes(termo))||(view==='pregador')||(pre!=='');
  const nLinhas=[...document.querySelectorAll('.linha-pregacao')].filter(el=>!el.hidden).length;
- document.getElementById('estadoVazio').hidden=Boolean(nLinhas||!destaque.hidden);
+ const estado=document.getElementById('estadoVazio');
+ if(estado)estado.hidden=true;
 }
-const abrirMaisDummy=null;
 atualizarFavoritos();
 
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error))}
