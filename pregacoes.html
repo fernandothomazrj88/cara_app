@@ -198,52 +198,223 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(menu.classList.contains('aberto'))fecharPainel(menu,abrirMais);if(avisos.classList.contains('aberto'))fecharPainel(avisos,abrirAvisos);fecharModalMensagem()}});
 })();
 
-const pregoes = [];
-const favKey='cara-pregacoes-favoritos-v2';
-function favoritos(){try{return JSON.parse(localStorage.getItem(favKey)||'[]')}catch(e){return []}}
-function atualizarFavoritos(){const fs=favoritos();document.getElementById('favoritosCount').textContent=fs.length;document.querySelectorAll('[data-fav]').forEach(b=>{const ativo=fs.includes(b.dataset.fav);b.classList.toggle('ativo',ativo);b.textContent=ativo?'♥':'♡';b.setAttribute('aria-pressed',String(ativo))})}
-function abrirModalMensagem(titulo,html){document.getElementById('modalMensagemTitulo').textContent=titulo;document.getElementById('modalMensagemTexto').innerHTML=html;document.getElementById('modalMensagem').classList.add('aberto');document.body.classList.add('menu-aberto');document.getElementById('fecharMensagem').focus()}
-function fecharModalMensagem(){const m=document.getElementById('modalMensagem');if(m){m.classList.remove('aberto');document.body.classList.remove('menu-aberto')}}
+const API_PREGACOES_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+let pregoes = [];
+let destaqueAtual = null;
+const favKey='cara-pregacoes-favoritos-v3';
+let view='todas';
+
+function favoritos(){
+  try { return JSON.parse(localStorage.getItem(favKey)||'[]'); }
+  catch(e){ return []; }
+}
+function escaparHTML(v){
+  return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+function urlSegura(v){
+  const s=String(v||'').trim();
+  return /^https:\/\/[^\s]+$/i.test(s) || /^\.\/[A-Za-z0-9._/-]+$/.test(s) ? s : '';
+}
+function urlDownload(v){
+  const u=urlSegura(v);
+  if(!u) return '';
+  if(/drive\.google\.com/i.test(u)){
+    let m=u.match(/\/file\/d\/([A-Za-z0-9_-]+)/);
+    if(!m) m=u.match(/[?&]id=([A-Za-z0-9_-]+)/);
+    if(m) return 'https://drive.google.com/uc?export=download&id='+encodeURIComponent(m[1]);
+  }
+  return u;
+}
+function dataOrdenacao(s){
+  if(s.dataISO) return s.dataISO;
+  const m=String(s.data||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  return m ? `${m[3]}-${m[2]}-${m[1]}` : '';
+}
+function atualizarFavoritos(){
+  const fs=favoritos();
+  const cont=document.getElementById('favoritosCount');
+  if(cont) cont.textContent=fs.length;
+  document.querySelectorAll('[data-fav]').forEach(b=>{
+    const ativo=fs.includes(b.dataset.fav);
+    b.classList.toggle('ativo',ativo);
+    b.textContent=ativo?'♥':'♡';
+    b.setAttribute('aria-pressed',String(ativo));
+  });
+}
+function abrirModalMensagem(titulo,html){
+  document.getElementById('modalMensagemTitulo').textContent=titulo;
+  document.getElementById('modalMensagemTexto').innerHTML=html;
+  document.getElementById('modalMensagem').classList.add('aberto');
+  document.body.classList.add('menu-aberto');
+  document.getElementById('fecharMensagem').focus();
+}
+function fecharModalMensagem(){
+  const m=document.getElementById('modalMensagem');
+  if(m){m.classList.remove('aberto');document.body.classList.remove('menu-aberto');}
+}
 document.getElementById('fecharMensagem').addEventListener('click',fecharModalMensagem);
-document.getElementById('modalMensagem').addEventListener('click',e=>{if(e.target.id==='modalMensagem')fecharModalMensagem()});
-function avisoArquivo(titulo,baixar=false){abrirModalMensagem(baixar?'Baixar arquivo da pregação':'Arquivo da pregação',`<p><strong>${titulo}</strong></p><p>Este item é uma prévia visual. Nenhum arquivo Word ou PDF foi anexado ainda, então não há download disponível nesta versão.</p><p>Quando a liderança cadastrar o documento real e a integração com a Base Central for configurada, este botão poderá abrir ou baixar o arquivo.</p><p style="color:#ffff00">Vídeo e áudio também ficarão disponíveis aqui quando começarem as gravações.</p>`)}
-function avisoMidia(tipo){abrirModalMensagem(tipo==='video'?'Vídeo da pregação':'Áudio da pregação',`<p>Este espaço está preparado para <strong>${tipo==='video'?'vídeos':'áudios'}</strong> das pregações.</p><p>Como as mensagens ainda não são gravadas, a reprodução será habilitada quando houver conteúdo disponível.</p><p style="color:#ffff00">Por enquanto, a opção principal será abrir ou baixar o arquivo da pregação (Word/PDF).</p>`)}
-document.querySelectorAll('[data-fav]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.fav;let fs=favoritos();fs=fs.includes(id)?fs.filter(x=>x!==id):[...fs,id];localStorage.setItem(favKey,JSON.stringify(fs));atualizarFavoritos();filtrar()}));
-document.querySelectorAll('[data-arquivo]').forEach(b=>b.addEventListener('click',()=>{const s=pregoes.find(x=>x.id===b.dataset.arquivo);avisoArquivo(s?s.titulo:'Pregação')}));
-document.querySelectorAll('[data-baixar]').forEach(b=>b.addEventListener('click',()=>{const s=pregoes.find(x=>x.id===b.dataset.baixar);avisoArquivo(s?s.titulo:'Pregação',true)}));
-document.querySelectorAll('[data-media]').forEach(b=>b.addEventListener('click',()=>avisoMidia(b.dataset.media)));
-const abas=[...document.querySelectorAll('[data-view]')];let view='todas';
-abas.forEach(b=>b.addEventListener('click',()=>{view=b.dataset.view;abas.forEach(x=>x.classList.toggle('ativo',x===b));if(view==='data')document.getElementById('ordenacao').value='recentes';filtrar()}));
+document.getElementById('modalMensagem').addEventListener('click',e=>{
+  if(e.target.id==='modalMensagem') fecharModalMensagem();
+});
+
+function linksAcoes(s,destaque){
+  const leitura=urlSegura(s.linkPdf)||urlSegura(s.linkWord);
+  const download=urlDownload(s.linkPdf)||urlDownload(s.linkWord);
+  const cls=destaque?'acao':'acao-lista';
+  const clsBaixar=destaque?'acao baixar':'acao-lista baixar';
+  if(!leitura){
+    return `<span class="${cls} indisponivel" aria-disabled="true">▤ Arquivo indisponível</span>`;
+  }
+  return `<a class="${cls}" href="${escaparHTML(leitura)}" target="_blank" rel="noopener noreferrer">▤ Ler pregação</a>
+    ${download?`<a class="${clsBaixar}" href="${escaparHTML(download)}" target="_blank" rel="noopener noreferrer">⇩ Baixar arquivo</a>`:''}`;
+}
+
+function renderizarDestaque(){
+  const sec=document.getElementById('secaoDestaque');
+  const titulo='<div class="secao-titulo"><h2><span class="marcador-titulo"></span>Destaque da Semana</h2></div>';
+  const s=destaqueAtual;
+  if(!s){sec.innerHTML=titulo;return;}
+  const capa=urlSegura(s.capaUrl)||'./pregacao-biblia.jpg';
+  const meta=[
+    s.data?`<span>▣ ${escaparHTML(s.data)}</span>`:'',
+    s.preletor?`<span>♟ ${escaparHTML(s.preletor)}</span>`:'',
+    s.referencia?`<span>◆ ${escaparHTML(s.referencia)}</span>`:''
+  ].filter(Boolean).join('');
+  sec.innerHTML=titulo+`
+    <article class="destaque">
+      <div class="destaque-imagem">
+        <img src="${escaparHTML(capa)}" alt="Capa da pregação ${escaparHTML(s.titulo)}" loading="lazy">
+      </div>
+      <div class="destaque-corpo">
+        <div class="selo-destaque">Pregação em destaque</div>
+        <button class="favorito" type="button" data-fav="${escaparHTML(s.id)}" aria-label="Favoritar pregação">♡</button>
+        <h3>${escaparHTML(s.titulo)}</h3>
+        ${s.serie?`<div class="serie">Série: ${escaparHTML(s.serie)}</div>`:''}
+        ${meta?`<div class="metadados">${meta}</div>`:''}
+        ${s.resumo?`<p class="descricao-destaque">${escaparHTML(s.resumo)}</p>`:''}
+        <div class="acoes-destaque">${linksAcoes(s,true)}
+          ${urlSegura(s.linkAudio)?`<a class="acao" href="${escaparHTML(urlSegura(s.linkAudio))}" target="_blank" rel="noopener noreferrer">♫ Ouvir áudio</a>`:''}
+          ${urlSegura(s.linkVideo)?`<a class="acao" href="${escaparHTML(urlSegura(s.linkVideo))}" target="_blank" rel="noopener noreferrer">▶ Assistir vídeo</a>`:''}
+        </div>
+      </div>
+    </article>`;
+}
+function renderizarLinha(s){
+  const capa=urlSegura(s.capaUrl)||'./pregacao-biblia.jpg';
+  const meta=[
+    s.data?`<span>▣ ${escaparHTML(s.data)}</span>`:'',
+    s.preletor?`<span>♟ ${escaparHTML(s.preletor)}</span>`:'',
+    s.referencia?`<span>◆ ${escaparHTML(s.referencia)}</span>`:''
+  ].filter(Boolean).join('');
+  return `<article class="linha-pregacao" data-id="${escaparHTML(s.id)}">
+    <img class="linha-imagem" src="${escaparHTML(capa)}" alt="" loading="lazy">
+    <div class="linha-corpo">
+      <h3>${escaparHTML(s.titulo)}</h3>
+      ${s.serie?`<div class="serie">Série: ${escaparHTML(s.serie)}</div>`:''}
+      ${meta?`<div class="metadados">${meta}</div>`:''}
+      ${s.tema?`<div class="metadados"><span>◆ ${escaparHTML(s.tema)}</span></div>`:''}
+    </div>
+    <div class="linha-acoes">
+      <button class="icone-acao" type="button" data-fav="${escaparHTML(s.id)}" aria-label="Favoritar pregação">♡</button>
+      ${linksAcoes(s,false)}
+      ${urlSegura(s.linkAudio)?`<a class="icone-acao" href="${escaparHTML(urlSegura(s.linkAudio))}" target="_blank" rel="noopener noreferrer" aria-label="Ouvir áudio">♫</a>`:''}
+      ${urlSegura(s.linkVideo)?`<a class="icone-acao" href="${escaparHTML(urlSegura(s.linkVideo))}" target="_blank" rel="noopener noreferrer" aria-label="Assistir vídeo">▶</a>`:''}
+    </div>
+  </article>`;
+}
+function preencherSelect(id,placeholder,vals){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const atual=el.value;
+  el.innerHTML=`<option value="">${escaparHTML(placeholder)}</option>`+
+    [...new Set(vals.map(v=>String(v||'').trim()).filter(Boolean))]
+      .sort((a,b)=>a.localeCompare(b,'pt-BR'))
+      .map(v=>`<option value="${escaparHTML(v)}">${escaparHTML(v)}</option>`).join('');
+  if([...el.options].some(o=>o.value===atual)) el.value=atual;
+}
+function preencherFiltros(){
+  preencherSelect('filtroPregador','Todos os Pregadores',pregoes.map(s=>s.preletor));
+  preencherSelect('filtroSerie','Todas as Séries',pregoes.map(s=>s.serie));
+  preencherSelect('filtroTema','Todas as categorias',pregoes.map(s=>s.tema));
+  preencherSelect('filtroLivro','Todos os livros',pregoes.map(s=>{
+    const r=String(s.referencia||'').trim();
+    return r ? r.split(/\s+\d/)[0] : '';
+  }));
+}
+function filtrar(){
+  const termo=document.getElementById('busca').value.trim().toLocaleLowerCase('pt-BR');
+  const pre=document.getElementById('filtroPregador').value;
+  const serie=document.getElementById('filtroSerie').value;
+  const tema=document.getElementById('filtroTema').value;
+  const livro=document.getElementById('filtroLivro').value;
+  const formato=document.getElementById('filtroFormato').value;
+  let arr=[...pregoes];
+  if(termo) arr=arr.filter(s=>
+    [s.titulo,s.referencia,s.serie,s.preletor,s.tema,s.resumo].join(' ').toLocaleLowerCase('pt-BR').includes(termo));
+  if(pre) arr=arr.filter(s=>s.preletor===pre);
+  if(serie) arr=arr.filter(s=>s.serie===serie);
+  if(tema) arr=arr.filter(s=>s.tema===tema);
+  if(livro) arr=arr.filter(s=>String(s.referencia||'').toLocaleLowerCase('pt-BR').startsWith(livro.toLocaleLowerCase('pt-BR')));
+  if(formato==='arquivo') arr=arr.filter(s=>Boolean(s.linkPdf||s.linkWord));
+  if(formato==='audio') arr=arr.filter(s=>Boolean(s.linkAudio));
+  if(formato==='video') arr=arr.filter(s=>Boolean(s.linkVideo));
+  if(view==='favoritos') arr=arr.filter(s=>favoritos().includes(s.id));
+  if(view==='serie') arr=arr.filter(s=>Boolean(s.serie));
+  if(view==='temas') arr=arr.filter(s=>Boolean(s.tema));
+  if(view==='data') arr.sort((a,b)=>dataOrdenacao(b).localeCompare(dataOrdenacao(a)));
+  else if(view==='pregador') arr.sort((a,b)=>String(a.preletor||'').localeCompare(String(b.preletor||''),'pt-BR'));
+  else if(document.getElementById('ordenacao').value==='titulo') arr.sort((a,b)=>a.titulo.localeCompare(b.titulo,'pt-BR'));
+  else arr.sort((a,b)=>dataOrdenacao(b).localeCompare(dataOrdenacao(a)));
+  document.getElementById('listaPregacoes').innerHTML=arr.map(renderizarLinha).join('');
+  atualizarFavoritos();
+}
+function alternarFavorito(id){
+  let fs=favoritos();
+  fs=fs.includes(id)?fs.filter(x=>x!==id):[...fs,id];
+  localStorage.setItem(favKey,JSON.stringify(fs));
+  filtrar();
+}
+document.addEventListener('click',e=>{
+  const fav=e.target.closest('[data-fav]');
+  if(fav){e.preventDefault();alternarFavorito(fav.dataset.fav);}
+});
+const abas=[...document.querySelectorAll('[data-view]')];
+abas.forEach(b=>b.addEventListener('click',()=>{
+  view=b.dataset.view;
+  abas.forEach(x=>x.classList.toggle('ativo',x===b));
+  if(view==='data')document.getElementById('ordenacao').value='recentes';
+  filtrar();
+}));
 const busca=document.getElementById('busca'),buscaTopo=document.getElementById('buscaTopo');
-busca.addEventListener('input',()=>{buscaTopo.value=busca.value;filtrar()});buscaTopo.addEventListener('input',()=>{busca.value=buscaTopo.value;filtrar()});
+busca.addEventListener('input',()=>{buscaTopo.value=busca.value;filtrar()});
+buscaTopo.addEventListener('input',()=>{busca.value=buscaTopo.value;filtrar()});
 ['filtroPregador','filtroSerie','ordenacao','filtroFormato','filtroLivro','filtroTema'].forEach(id=>document.getElementById(id).addEventListener('change',filtrar));
 document.getElementById('abrirFiltros').addEventListener('click',()=>document.getElementById('filtrosExtra').classList.toggle('aberto'));
-document.getElementById('verTodas').addEventListener('click',()=>{view='todas';abas.forEach(x=>x.classList.toggle('ativo',x.dataset.view==='todas'));filtrar();document.getElementById('secaoUltimas').scrollIntoView({behavior:'smooth',block:'start'})});
-function filtrar(){
- const termo=busca.value.trim().toLocaleLowerCase('pt-BR');
- const pre=document.getElementById('filtroPregador').value;
- const serie=document.getElementById('filtroSerie').value;
- const tema=document.getElementById('filtroTema').value;
- const livro=document.getElementById('filtroLivro').value;
- const formato=document.getElementById('filtroFormato').value;
- let arr=[...pregoes];
- if(termo)arr=arr.filter(s=>(s.titulo+' '+s.referencia+' '+s.serie+' '+s.tema).toLocaleLowerCase('pt-BR').includes(termo));
- if(pre)arr=arr.filter(s=>s.preletor===pre);
- if(serie)arr=arr.filter(s=>s.serie===serie);
- if(tema)arr=arr.filter(s=>s.tema===tema);
- if(livro)arr=arr.filter(s=>s.referencia.includes(livro));
- if(formato==='audio'||formato==='video')arr=[];
- if(view==='favoritos')arr=arr.filter(s=>favoritos().includes(s.id));
- if(view==='serie')arr=arr.filter(s=>Boolean(s.serie));
- if(view==='temas')arr=arr.filter(s=>Boolean(s.tema));
- if(view==='pregador')arr=[];
- if(document.getElementById('ordenacao').value==='titulo')arr.sort((a,b)=>a.titulo.localeCompare(b.titulo,'pt-BR'));
- document.querySelectorAll('.linha-pregacao').forEach(el=>el.hidden=!arr.some(s=>s.id===el.dataset.id));
- const nLinhas=[...document.querySelectorAll('.linha-pregacao')].filter(el=>!el.hidden).length;
- const estado=document.getElementById('estadoVazio');
- if(estado)estado.hidden=true;
+document.getElementById('verTodas').addEventListener('click',()=>{
+  view='todas';abas.forEach(x=>x.classList.toggle('ativo',x.dataset.view==='todas'));
+  filtrar();document.getElementById('secaoUltimas').scrollIntoView({behavior:'smooth',block:'start'});
+});
+async function carregarPregacoesPublicadas(){
+  try{
+    const resposta=await fetch(API_PREGACOES_CARA+'?rota=pregacoes&v='+Date.now(),{method:'GET',credentials:'omit',cache:'no-store'});
+    if(!resposta.ok) throw new Error('Falha HTTP '+resposta.status);
+    const dados=await resposta.json();
+    if(!dados.sucesso) throw new Error(dados.mensagem||'Não foi possível carregar as pregações.');
+    pregoes=Array.isArray(dados.pregacoes)?dados.pregacoes:[];
+    destaqueAtual=dados.destaque||null;
+    preencherFiltros();
+    renderizarDestaque();
+    filtrar();
+  }catch(erro){
+    console.error('Erro ao carregar pregações publicadas da Base Central:',erro);
+    // Mantém as áreas vazias: não inventa pregações nem substitui dados reais.
+  }
 }
-atualizarFavoritos();
+renderizarDestaque();
+filtrar();
+carregarPregacoesPublicadas();
 
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error))}
 </script>
