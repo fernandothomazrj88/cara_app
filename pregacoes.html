@@ -201,6 +201,7 @@
 const API_PREGACOES_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 let pregoes = [];
 let destaqueAtual = null;
+let erroCarregamentoPregacoes = false;
 const favKey='cara-pregacoes-favoritos-v3';
 let view='todas';
 
@@ -275,7 +276,13 @@ function renderizarDestaque(){
   const sec=document.getElementById('secaoDestaque');
   const titulo='<div class="secao-titulo"><h2><span class="marcador-titulo"></span>Destaque da Semana</h2></div>';
   const s=destaqueAtual;
-  if(!s){sec.innerHTML=titulo;return;}
+  if(!s){
+    const estado = erroCarregamentoPregacoes
+      ? '<div class="estado-vazio" role="status"><strong>Não foi possível carregar o destaque</strong>Verifique sua conexão e atualize a página. O acervo não foi alterado.</div>'
+      : '<div class="estado-vazio" role="status"><strong>Nenhuma pregação em destaque ainda</strong>Quando uma mensagem real for publicada e marcada como destaque na Base Central, ela aparecerá aqui.</div>';
+    sec.innerHTML=titulo+estado;
+    return;
+  }
   const capa=urlSegura(s.capaUrl)||'./pregacao-biblia.jpg';
   const meta=[
     s.data?`<span>▣ ${escaparHTML(s.data)}</span>`:'',
@@ -367,7 +374,16 @@ function filtrar(){
   else if(view==='pregador') arr.sort((a,b)=>String(a.preletor||'').localeCompare(String(b.preletor||''),'pt-BR'));
   else if(document.getElementById('ordenacao').value==='titulo') arr.sort((a,b)=>a.titulo.localeCompare(b.titulo,'pt-BR'));
   else arr.sort((a,b)=>dataOrdenacao(b).localeCompare(dataOrdenacao(a)));
-  document.getElementById('listaPregacoes').innerHTML=arr.map(renderizarLinha).join('');
+  const lista = document.getElementById('listaPregacoes');
+  if (arr.length) {
+    lista.innerHTML=arr.map(renderizarLinha).join('');
+  } else if (erroCarregamentoPregacoes) {
+    lista.innerHTML='<div class="estado-vazio" role="status"><strong>Não foi possível carregar as pregações</strong>Confira sua conexão e tente atualizar a página. Se o problema continuar, a API poderá precisar de uma nova verificação.</div>';
+  } else if (!pregoes.length) {
+    lista.innerHTML='<div class="estado-vazio" role="status"><strong>Nenhuma pregação publicada ainda</strong>O acervo está pronto. Assim que uma mensagem receber o status PUBLICADO na aba PREGACOES, ela aparecerá aqui.</div>';
+  } else {
+    lista.innerHTML='<div class="estado-vazio" role="status"><strong>Nenhuma pregação encontrada</strong>Não encontramos mensagens com essa busca ou esses filtros. Experimente alterar os termos ou selecionar “Todas”.</div>';
+  }
   atualizarFavoritos();
 }
 function alternarFavorito(id){
@@ -402,6 +418,7 @@ async function carregarPregacoesPublicadas(){
     if(!resposta.ok) throw new Error('Falha HTTP '+resposta.status);
     const dados=await resposta.json();
     if(!dados.sucesso) throw new Error(dados.mensagem||'Não foi possível carregar as pregações.');
+    erroCarregamentoPregacoes = false;
     pregoes=Array.isArray(dados.pregacoes)?dados.pregacoes:[];
     destaqueAtual=dados.destaque||null;
     preencherFiltros();
@@ -409,7 +426,9 @@ async function carregarPregacoesPublicadas(){
     filtrar();
   }catch(erro){
     console.error('Erro ao carregar pregações publicadas da Base Central:',erro);
-    // Mantém as áreas vazias: não inventa pregações nem substitui dados reais.
+    erroCarregamentoPregacoes = true;
+    renderizarDestaque();
+    filtrar();
   }
 }
 renderizarDestaque();
