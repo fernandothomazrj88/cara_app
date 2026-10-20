@@ -101,6 +101,41 @@
     .mensagem-painel{width:min(520px,100%);max-height:85vh;overflow:auto;border:1px solid #ffff0040;border-radius:22px;padding:20px;background:#071a30;box-shadow:0 20px 70px #0009}
     .mensagem-painel p{color:#dbe6f3;font-size:14px;line-height:1.65;margin:10px 0}
     .mensagem-painel .mais-topo{margin-bottom:6px}
+    .acoes-admin-topo{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin:-8px 0 22px}
+    .acoes-admin-topo[hidden],.admin-gestao[hidden]{display:none!important}
+    .botao-postar{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 17px;border:1px solid var(--amarelo);border-radius:12px;background:var(--amarelo);color:#060606;font:inherit;font-size:13px;font-weight:900;cursor:pointer;white-space:nowrap}
+    .botao-postar:disabled,.acao:disabled{opacity:.55;cursor:wait}
+    .nota-admin-curta{font-size:12px;color:#aebfd2}
+    .admin-overlay{position:fixed;inset:0;z-index:1600;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.78)}
+    .admin-overlay.aberto{display:flex}
+    .admin-painel{width:min(900px,100%);max-height:90vh;overflow:auto;border:1px solid rgba(255,255,0,.30);border-radius:22px;padding:20px;background:#071a30;box-shadow:0 20px 70px #000b}
+    .admin-painel .mais-topo{align-items:flex-start;margin-bottom:16px}
+    .admin-painel .mais-topo h2{font-size:22px}
+    .admin-subtitulo{margin-top:6px;color:#b9c9db;font-size:13px;line-height:1.45}
+    .admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .admin-span-2{grid-column:1/-1}
+    .admin-campo{display:grid;gap:7px;min-width:0;color:#d9e4f2;font-size:12px;font-weight:800}
+    .admin-campo input:not([type=file]),.admin-campo select,.admin-campo textarea{width:100%;min-width:0;border:1px solid #2b4a6b;border-radius:10px;background:#061326;color:#fff;padding:11px 12px;font:inherit;font-weight:400;font-size:14px;outline:none}
+    .admin-campo input[type=date]{color-scheme:dark}
+    .admin-campo input[type=file]{width:100%;min-width:0;color:#c9d7e7;font-size:12px;padding:9px;border:1px dashed #355474;border-radius:10px;background:#061326}
+    .admin-campo textarea{resize:vertical;min-height:88px;line-height:1.45}
+    .admin-campo input:focus,.admin-campo textarea:focus{border-color:var(--amarelo);box-shadow:0 0 0 2px #ffff0020}
+    .admin-arquivos-titulo{margin:20px 0 8px;color:var(--amarelo);font-size:14px;font-weight:900}
+    .admin-ajuda{margin:0 0 12px;color:#b9c9db;font-size:12px;line-height:1.55}
+    .admin-grid-arquivos{gap:10px}
+    .admin-check{display:flex;gap:10px;align-items:flex-start;margin-top:17px;color:#dbe6f3;font-size:13px;line-height:1.45}
+    .admin-check input{margin-top:3px;accent-color:var(--amarelo);width:17px;height:17px;flex:0 0 17px}
+    .admin-status{margin-top:14px;color:#c8d8e9;font-size:13px;line-height:1.55;white-space:pre-wrap}
+    .admin-status.erro{color:#ffaaa7}.admin-status.ok{color:#a7efc3}
+    .admin-botoes{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap;margin-top:15px;padding-top:14px;border-top:1px solid #24415f}
+    .admin-gestao{margin-top:22px;padding-top:5px;border-top:1px solid #24415f}
+    .lista-gestao-pregacoes{display:grid;gap:8px;margin-top:12px}
+    .gestao-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid #274663;border-radius:12px;background:#061326}
+    .gestao-item strong{display:block;font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+    .gestao-item small{display:block;margin-top:4px;color:#aebfd2;font-size:11px}
+    .gestao-acoes{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}
+    .gestao-acoes select{max-width:135px;border:1px solid #2b4a6b;border-radius:8px;background:#081b32;color:#fff;padding:8px;font-size:11px}
+    @media(max-width:600px){.acoes-admin-topo{justify-content:stretch;align-items:stretch;flex-direction:column;margin:-3px 0 18px;gap:8px}.botao-postar{width:100%;min-height:45px}.nota-admin-curta{text-align:center}.admin-overlay{align-items:flex-end;padding:7px}.admin-painel{width:100%;max-height:94vh;padding:14px;border-radius:20px 20px 14px 14px}.admin-painel .mais-topo h2{font-size:19px}.admin-grid{grid-template-columns:1fr}.admin-span-2{grid-column:auto}.admin-botoes{display:grid;grid-template-columns:1fr}.admin-botoes button{width:100%}.gestao-item{align-items:flex-start;flex-direction:column}.gestao-acoes{width:100%;justify-content:stretch}.gestao-acoes button,.gestao-acoes select{flex:1;max-width:none}}
     @media(max-width:850px){.abas{grid-template-columns:repeat(3,minmax(0,1fr))}.filtros-linha{grid-template-columns:1fr 1fr 1fr}.campo-busca{grid-column:1/-1}.busca-topo{display:none}.destaque{grid-template-columns:minmax(210px,34%) minmax(0,1fr)}.linha-pregacao{grid-template-columns:140px minmax(0,1fr) auto}.linha-imagem{height:84px}}
     @media(max-width:600px){body{padding-bottom:100px}.topo{aspect-ratio:8/3;max-height:none}.voltar{top:calc(8px + env(safe-area-inset-top));left:8px;min-height:36px;padding:0 11px}main{width:calc(100% - 22px);padding:21px 0 20px}.cabecalho-conteudo{display:block;margin-bottom:16px}.saudacao h1{font-size:27px}.saudacao p{font-size:14px}.busca-topo{display:flex;margin-top:14px}.abas{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.aba{min-height:52px;font-size:12px;padding:8px}.filtros-linha{grid-template-columns:1fr 1fr;gap:8px}.campo-busca{grid-column:1/-1}.campo-select{font-size:12px;padding:0 9px}.botao-filtros{height:45px}.filtros-extra,.filtros-extra.aberto{grid-template-columns:1fr}.secao-titulo{align-items:flex-start}.secao-titulo h2{font-size:20px}.ver-todas{font-size:12px;padding:8px 10px}.destaque{grid-template-columns:1fr;gap:12px;padding:10px}.destaque-imagem{min-height:175px;aspect-ratio:16/8}.destaque-imagem img{min-height:175px}.destaque-corpo{padding:8px 42px 5px 3px}.destaque-corpo h3{font-size:22px}.descricao-destaque{font-size:13px}.linha-pregacao{grid-template-columns:88px minmax(0,1fr);gap:10px;padding:12px 0}.linha-imagem{height:78px}.linha-corpo h3{font-size:13px}.linha-corpo .serie{font-size:11px}.metadados{font-size:11px;gap:4px 10px}.linha-acoes{grid-column:2;justify-content:flex-end;gap:5px}.icone-acao{width:30px;height:32px;font-size:19px}.icone-acao.arquivo{font-size:15px}.acao-lista{font-size:10px;min-height:32px;padding:0 7px}.mais-overlay{align-items:flex-end;padding:10px}.mais-painel{padding:15px;border-radius:20px}.mais-topo h2{font-size:19px}.mais-grade{gap:7px}.mais-grade a{padding:11px;font-size:12px}.mais-grade a span{font-size:19px}.mensagem-painel{padding:16px}}
     @media(max-width:370px){.linha-pregacao{grid-template-columns:68px minmax(0,1fr)}.linha-imagem{height:67px}.linha-acoes{grid-column:2;justify-content:flex-end}.metadados{display:none}}
@@ -142,6 +177,11 @@
       <label>Categoria<select class="campo-select" id="filtroTema"><option value="">Todas as categorias</option></select></label>
     </section>
 
+    <section class="acoes-admin-topo" id="acoesAdminPregacoes" hidden aria-label="Administração de pregações">
+      <button class="botao-postar" type="button" id="btnPostarPregacao">＋ Postar pregação</button>
+      <span class="nota-admin-curta">Área de publicação da equipe autorizada</span>
+    </section>
+
     <section id="secaoDestaque">
       <div class="secao-titulo"><h2><span class="marcador-titulo"></span>Destaque da Semana</h2></div>
     </section>
@@ -178,6 +218,53 @@
     <a href="./agenda.html" style="display:flex;justify-content:space-between;align-items:center;text-decoration:none;background:#0b2039;color:#ffff00;border-radius:13px;padding:14px;font-weight:800">📅 Abrir Agenda <span>›</span></a>
   </div>
 </div>
+<div class="admin-overlay" id="modalAdminPregacao" role="dialog" aria-modal="true" aria-labelledby="modalAdminPregacaoTitulo" aria-hidden="true">
+  <section class="admin-painel">
+    <div class="mais-topo">
+      <div><h2 id="modalAdminPregacaoTitulo">＋ Postar pregação</h2><p class="admin-subtitulo">Cadastre a mensagem e envie os arquivos para o Drive da C.A.R.A.</p></div>
+      <button class="mais-fechar" type="button" id="fecharAdminPregacao" aria-label="Fechar formulário">×</button>
+    </div>
+
+    <form id="formAdminPregacao">
+      <div class="admin-grid">
+        <label class="admin-campo admin-span-2">Título da pregação *<input id="admTitulo" name="titulo" maxlength="180" required placeholder="Ex.: A fé que permanece"></label>
+        <label class="admin-campo">Data da mensagem *<input id="admData" name="data" type="date" required></label>
+        <label class="admin-campo">Preletor *<input id="admPreletor" name="preletor" maxlength="120" required placeholder="Nome do preletor"></label>
+        <label class="admin-campo">Referência bíblica<input id="admReferencia" name="referencia" maxlength="120" placeholder="Ex.: Romanos 10:17"></label>
+        <label class="admin-campo">Série<input id="admSerie" name="serie" maxlength="120" placeholder="Nome da série (opcional)"></label>
+        <label class="admin-campo">Tema / categoria<input id="admTema" name="tema" maxlength="100" placeholder="Ex.: Fé, oração, família"></label>
+        <label class="admin-campo admin-span-2">Resumo da mensagem<textarea id="admResumo" name="resumo" rows="3" maxlength="1200" placeholder="Uma breve descrição para quem vai consultar a pregação."></textarea></label>
+      </div>
+
+      <div class="admin-arquivos-titulo">Arquivos (opcionais)</div>
+      <p class="admin-ajuda">Os arquivos selecionados serão enviados para as subpastas correspondentes do Google Drive. Limite de 12 MB por arquivo nesta versão. Para mídias maiores, cole um link do Drive abaixo.</p>
+      <div class="admin-grid admin-grid-arquivos">
+        <label class="admin-campo">Mensagem Word (.doc/.docx)<input id="admWord" type="file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></label>
+        <label class="admin-campo">Mensagem em PDF<input id="admPdf" type="file" accept=".pdf,application/pdf"></label>
+        <label class="admin-campo">Capa / imagem<input id="admCapa" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"></label>
+        <label class="admin-campo">Áudio<input id="admAudio" type="file" accept=".mp3,.m4a,.wav,.ogg,.aac,audio/*"></label>
+        <label class="admin-campo">Vídeo<input id="admVideo" type="file" accept=".mp4,.mov,.webm,video/*"></label>
+        <label class="admin-campo">Link de áudio (opcional)<input id="admAudioUrl" type="url" placeholder="https://..."></label>
+        <label class="admin-campo">Link de vídeo (opcional)<input id="admVideoUrl" type="url" placeholder="https://..."></label>
+      </div>
+
+      <label class="admin-check"><input id="admDestaque" type="checkbox"><span>Marcar como Destaque da Semana (só funciona ao publicar)</span></label>
+      <div class="admin-status" id="statusAdminPregacao" role="status" aria-live="polite"></div>
+      <div class="admin-botoes">
+        <button class="acao" type="button" id="cancelarAdminPregacao">Cancelar</button>
+        <button class="acao" type="submit" id="salvarRascunhoPregacao">Salvar rascunho</button>
+        <button class="botao-postar" type="button" id="publicarPregacao">Publicar pregação</button>
+      </div>
+    </form>
+
+    <section class="admin-gestao" id="gestaoAdminPregacoes" hidden>
+      <div class="admin-arquivos-titulo">Mensagens cadastradas</div>
+      <button type="button" class="acao" id="atualizarGestaoPregacoes">↻ Atualizar lista</button>
+      <div id="listaGestaoPregacoes" class="lista-gestao-pregacoes"><p class="admin-ajuda">Carregando mensagens...</p></div>
+    </section>
+  </section>
+</div>
+
 <div class="mensagem-overlay" id="modalMensagem" role="dialog" aria-modal="true" aria-labelledby="modalMensagemTitulo">
   <section class="mensagem-painel"><div class="mais-topo"><h2 id="modalMensagemTitulo">Pregação</h2><button class="mais-fechar" id="fecharMensagem" type="button" aria-label="Fechar">×</button></div><div id="modalMensagemTexto"></div></section>
 </div>
@@ -431,6 +518,130 @@ async function carregarPregacoesPublicadas(){
     filtrar();
   }
 }
+// Área administrativa de Pregações — protegida por sessão e permissões da Base Central.
+const CHAVE_SESSAO_CARA_PREGACOES='cara_sessao_token';
+const adminPregacoes={ver:false,criar:false,editar:false,token:'',arquivos:{}};
+const modalAdminPregacao=document.getElementById('modalAdminPregacao');
+const statusAdminPregacao=document.getElementById('statusAdminPregacao');
+async function postCentralPregacoes(payload){
+  const r=await fetch(API_PREGACOES_CARA,{method:'POST',credentials:'omit',redirect:'follow',cache:'no-store',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+  if(!r.ok)throw new Error('Falha na comunicação com a Base Central (HTTP '+r.status+').');
+  const data=await r.json();
+  if(!data||typeof data!=='object')throw new Error('Resposta inesperada da Base Central.');
+  return data;
+}
+async function verificarPermissoesAdminPregacoes(){
+  const token=localStorage.getItem(CHAVE_SESSAO_CARA_PREGACOES)||'';
+  adminPregacoes.token=token;
+  if(!token)return;
+  try{
+    const [v,c,e]=await Promise.all([
+      postCentralPregacoes({acao:'autorizar',token,modulo:'PREGACOES',acaoPermissao:'VISUALIZAR'}),
+      postCentralPregacoes({acao:'autorizar',token,modulo:'PREGACOES',acaoPermissao:'CRIAR'}),
+      postCentralPregacoes({acao:'autorizar',token,modulo:'PREGACOES',acaoPermissao:'EDITAR'})
+    ]);
+    adminPregacoes.ver=!!(v.sucesso&&v.autorizado);
+    adminPregacoes.criar=!!(c.sucesso&&c.autorizado);
+    adminPregacoes.editar=!!(e.sucesso&&e.autorizado);
+    document.getElementById('acoesAdminPregacoes').hidden=!adminPregacoes.criar;
+    document.getElementById('publicarPregacao').hidden=!adminPregacoes.editar;
+    document.getElementById('admDestaque').disabled=!adminPregacoes.editar;
+    document.getElementById('gestaoAdminPregacoes').hidden=!(adminPregacoes.ver&&adminPregacoes.editar);
+  }catch(err){console.warn('Permissões do módulo Pregações não verificadas:',err);}
+}
+function abrirAdminPregacoes(){
+  if(!adminPregacoes.criar){alert('Sua conta não tem permissão para cadastrar pregações. Peça à Secretaria para habilitar PREGACOES / CRIAR.');return;}
+  modalAdminPregacao.classList.add('aberto');modalAdminPregacao.setAttribute('aria-hidden','false');document.body.classList.add('menu-aberto');
+  document.getElementById('admTitulo').focus();
+  if(adminPregacoes.ver&&adminPregacoes.editar)carregarGestaoPregacoes();
+}
+function fecharAdminPregacoes(){modalAdminPregacao.classList.remove('aberto');modalAdminPregacao.setAttribute('aria-hidden','true');document.body.classList.remove('menu-aberto');}
+document.getElementById('btnPostarPregacao').addEventListener('click',abrirAdminPregacoes);
+document.getElementById('fecharAdminPregacao').addEventListener('click',fecharAdminPregacoes);
+document.getElementById('cancelarAdminPregacao').addEventListener('click',fecharAdminPregacoes);
+modalAdminPregacao.addEventListener('click',e=>{if(e.target===modalAdminPregacao)fecharAdminPregacoes()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalAdminPregacao.classList.contains('aberto'))fecharAdminPregacoes()});
+function setStatusAdminPregacao(texto,tipo){statusAdminPregacao.textContent=texto||'';statusAdminPregacao.className='admin-status'+(tipo?' '+tipo:'');}
+function nomeArquivoEl(id){const input=document.getElementById(id);return input&&input.files&&input.files[0]?input.files[0]:null;}
+function lerArquivoBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const dataUrl=String(reader.result||'');const pos=dataUrl.indexOf(',');if(pos<0)return reject(new Error('Não foi possível ler o arquivo '+file.name));resolve(dataUrl.slice(pos+1));};reader.onerror=()=>reject(new Error('Falha ao ler o arquivo '+file.name));reader.readAsDataURL(file);});}
+async function enviarArquivoPregacao(tipo,inputId){
+  const file=nomeArquivoEl(inputId);if(!file)return null;
+  const max=12*1024*1024;
+  if(file.size>max)throw new Error('O arquivo “'+file.name+'” ultrapassa 12 MB. Para áudios ou vídeos maiores, coloque-o no Drive e use o campo de link.');
+  setStatusAdminPregacao('Enviando '+file.name+' para o Google Drive...');
+  const base64=await lerArquivoBase64(file);
+  const resposta=await postCentralPregacoes({acao:'pregacoes-upload-arquivo',token:adminPregacoes.token,tipo:tipo,nomeOriginal:file.name,mimeType:file.type||'',base64:base64});
+  if(!resposta.sucesso)throw new Error(resposta.mensagem||resposta.erro||'Não foi possível enviar '+file.name+'.');
+  return resposta.arquivo;
+}
+function obterLinkOpcional(id){const v=String(document.getElementById(id).value||'').trim();if(!v)return '';if(!/^https:\/\/[^\s]+$/i.test(v))throw new Error('Os links de áudio e vídeo precisam começar com https://.');return v;}
+async function salvarPregacao(statusDesejado){
+  if(!adminPregacoes.token){throw new Error('Sua sessão não foi encontrada. Entre novamente no aplicativo C.A.R.A.');}
+  const publicar=statusDesejado==='PUBLICADO';
+  if(publicar&&!adminPregacoes.editar)throw new Error('Sua conta pode criar rascunhos, mas não possui permissão PREGACOES / EDITAR para publicar.');
+  const titulo=document.getElementById('admTitulo').value.trim();
+  const data=document.getElementById('admData').value;
+  const preletor=document.getElementById('admPreletor').value.trim();
+  if(!titulo||!data||!preletor)throw new Error('Preencha título, data da mensagem e preletor.');
+  const resumo=document.getElementById('admResumo').value.trim();
+  const arquivos={};
+  const tarefas=[['WORD','admWord'],['PDF','admPdf'],['CAPA','admCapa'],['AUDIO','admAudio'],['VIDEO','admVideo']];
+  for(const [tipo,id] of tarefas){const item=await enviarArquivoPregacao(tipo,id);if(item)arquivos[tipo]=item;}
+  const linkAudio=obterLinkOpcional('admAudioUrl');
+  const linkVideo=obterLinkOpcional('admVideoUrl');
+  const dados={
+    titulo,data,preletor,serie:document.getElementById('admSerie').value.trim(),
+    referencia:document.getElementById('admReferencia').value.trim(),tema:document.getElementById('admTema').value.trim(),resumo,
+    destaque:publicar&&adminPregacoes.editar&&document.getElementById('admDestaque').checked,
+    status:statusDesejado,arquivos,linkAudio:linkAudio,linkVideo:linkVideo
+  };
+  setStatusAdminPregacao(publicar?'Salvando e publicando a pregação...':'Salvando rascunho...');
+  const resultado=await postCentralPregacoes({acao:'pregacoes-salvar',token:adminPregacoes.token,dados});
+  if(!resultado.sucesso)throw new Error(resultado.mensagem||resultado.erro||'Não foi possível salvar a pregação.');
+  document.getElementById('formAdminPregacao').reset();
+  setStatusAdminPregacao(publicar?'✓ Pregação publicada. Os arquivos foram organizados no Drive.':'✓ Rascunho salvo. Você pode publicá-lo na área de gestão quando estiver pronto.','ok');
+  await carregarPregacoesPublicadas();
+  if(adminPregacoes.ver&&adminPregacoes.editar)await carregarGestaoPregacoes();
+  setTimeout(()=>{if(modalAdminPregacao.classList.contains('aberto'))setStatusAdminPregacao('');},5000);
+}
+document.getElementById('formAdminPregacao').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const botao=document.getElementById('salvarRascunhoPregacao');
+  const publicar=document.getElementById('publicarPregacao');botao.disabled=true;if(publicar)publicar.disabled=true;
+  try{await salvarPregacao('RASCUNHO');}catch(err){console.error(err);setStatusAdminPregacao('⚠ '+(err.message||'Erro ao salvar. Os arquivos que já foram enviados podem ter permanecido no Drive.'),'erro');}
+  finally{botao.disabled=false;if(publicar)publicar.disabled=false;}
+});
+document.getElementById('publicarPregacao').addEventListener('click',async()=>{
+  const form=document.getElementById('formAdminPregacao');
+  if(!form.reportValidity())return;
+  const botao=document.getElementById('publicarPregacao'),rascunho=document.getElementById('salvarRascunhoPregacao');botao.disabled=true;rascunho.disabled=true;
+  try{await salvarPregacao('PUBLICADO');}catch(err){console.error(err);setStatusAdminPregacao('⚠ '+(err.message||'Erro ao publicar. Os arquivos que já foram enviados podem ter permanecido no Drive.'),'erro');}
+  finally{botao.disabled=false;rascunho.disabled=false;}
+});
+async function carregarGestaoPregacoes(){
+  const area=document.getElementById('listaGestaoPregacoes');if(!adminPregacoes.editar||!adminPregacoes.token)return;
+  area.innerHTML='<p class="admin-ajuda">Carregando mensagens cadastradas...</p>';
+  try{
+    const r=await postCentralPregacoes({acao:'pregacoes-listar-admin',token:adminPregacoes.token});
+    if(!r.sucesso)throw new Error(r.mensagem||r.erro||'Não foi possível carregar a lista.');
+    const itens=Array.isArray(r.pregacoes)?r.pregacoes:[];
+    if(!itens.length){area.innerHTML='<div class="estado-vazio"><strong>Nenhuma mensagem cadastrada</strong>Os rascunhos e as publicações aparecerão aqui.</div>';return;}
+    area.innerHTML=itens.map(item=>{
+      const status=escaparHTML(item.status||'RASCUNHO');
+      const opts=['RASCUNHO','EM_REVISAO','PUBLICADO','ARQUIVADO'].map(x=>`<option value="${x}" ${x===item.status?'selected':''}>${x.replace('_',' ')}</option>`).join('');
+      return `<div class="gestao-item"><div><strong>${escaparHTML(item.titulo)}</strong><small>${escaparHTML(item.data||'Sem data')} · ${escaparHTML(item.preletor||'Sem preletor')} · ${status}</small></div><div class="gestao-acoes"><select aria-label="Status de ${escaparHTML(item.titulo)}" data-status-id="${escaparHTML(item.id)}">${opts}</select><button class="acao" type="button" data-salvar-status="${escaparHTML(item.id)}">Salvar status</button></div></div>`;
+    }).join('');
+    area.querySelectorAll('[data-salvar-status]').forEach(btn=>btn.addEventListener('click',async()=>{
+      const id=btn.dataset.salvarStatus,select=area.querySelector(`[data-status-id="${CSS.escape(id)}"]`);btn.disabled=true;btn.textContent='Salvando...';
+      try{const r=await postCentralPregacoes({acao:'pregacoes-mudar-status',token:adminPregacoes.token,id:id,status:select.value});if(!r.sucesso)throw new Error(r.mensagem||r.erro||'Não foi possível alterar o status.');setStatusAdminPregacao('✓ Status da mensagem atualizado.','ok');await carregarGestaoPregacoes();await carregarPregacoesPublicadas();}
+      catch(err){setStatusAdminPregacao('⚠ '+(err.message||'Falha ao alterar status.'),'erro');}
+      finally{btn.disabled=false;btn.textContent='Salvar status';}
+    }));
+  }catch(err){area.innerHTML=`<div class="estado-vazio"><strong>Não foi possível carregar a gestão</strong>${escaparHTML(err.message||'Erro de conexão.')}</div>`;}
+}
+document.getElementById('atualizarGestaoPregacoes').addEventListener('click',carregarGestaoPregacoes);
+verificarPermissoesAdminPregacoes();
+
 renderizarDestaque();
 filtrar();
 carregarPregacoesPublicadas();
