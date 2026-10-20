@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pregações — C.A.R.A.</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+  <meta name="theme-color" content="#051326">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--azul:#051326;--azul-2:#081b32;--azul-3:#102c52;--amarelo:#FFFF00;--branco:#fff;--texto:#dbe6f3;--linha:rgba(255,255,255,.10)}
+    html{scroll-behavior:smooth}
+    body{min-height:100vh;font-family:Arial,Helvetica,sans-serif;background:var(--azul);color:var(--branco);padding-bottom:112px}
+    .app{width:100%;min-height:100vh}
+    .topo{position:relative;width:100%;aspect-ratio:8/3;min-height:0;max-height:620px;background:url("./banner-pregacoes.png") center center/contain no-repeat;background-color:var(--azul);border-bottom:3px solid var(--amarelo)}
+    .voltar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:14px;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 13px;border:1px solid rgba(255,255,0,.55);border-radius:11px;background:#051326;opacity:1;color:var(--amarelo);text-decoration:none;font-weight:800;font-size:13px;backdrop-filter:blur(5px)}
+    main{width:min(100% - 28px,1280px);margin:0 auto;padding:25px 0 24px}
+    .cabecalho-conteudo{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:0 0 20px}
+    .saudacao h1{font-size:clamp(25px,3vw,35px);line-height:1.1;margin-bottom:7px;display:flex;align-items:center;gap:10px}
+    .saudacao h1 .onda{color:var(--amarelo);font-size:.9em}
+    .saudacao p{color:#b9c9db;line-height:1.5;font-size:clamp(14px,1.6vw,18px)}
+    .preview-aviso{margin-top:12px;padding:8px 11px;border:1px solid rgba(255,255,0,.18);border-radius:10px;color:#bdcadd;background:#071a2d;font-size:11px;line-height:1.45;max-width:850px}
+    .busca-topo{display:flex;align-items:center;gap:9px;min-width:min(370px,100%);padding:0 15px;height:52px;border:1px solid #24415f;background:linear-gradient(145deg,#0b2340,#07182b);border-radius:17px;color:#c9d7e7}
+    .busca-topo span{font-size:22px}
+    .busca-topo input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:#fff;font:inherit;font-size:14px}
+    .busca-topo input::placeholder{color:#9cacc0}
+    .abas{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:13px}
+    .aba{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:10px 12px;border:1px solid #24415f;border-radius:15px;background:linear-gradient(145deg,#0b2340,#07182b);color:#fff;font-weight:800;font-size:13px;cursor:pointer;transition:filter .15s,transform .15s}
+    .aba .icone{font-size:22px;line-height:1}
+    .aba .contagem{margin-left:auto;color:#b8c7d9;font-weight:500}
+    .aba.ativo{background:var(--amarelo);border-color:var(--amarelo);color:#050505}
+    .aba.ativo .contagem{color:#050505}
+    .aba:active{transform:scale(.985)}
+    .filtros-linha{display:grid;grid-template-columns:minmax(220px,1.8fr) minmax(155px,.9fr) minmax(155px,.9fr) minmax(150px,.85fr) auto;gap:10px;margin-bottom:24px}
+    .campo-busca,.campo-select,.botao-filtros{height:49px;border:1px solid #2b4a6b;border-radius:13px;background:#061b31;color:#fff;min-width:0}
+    .campo-busca{display:flex;align-items:center;gap:10px;padding:0 14px}
+    .campo-busca .lupa{font-size:23px}
+    .campo-busca input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:#fff;font:inherit;font-size:14px}
+    .campo-busca input::placeholder{color:#9eafc4}
+    .campo-select{padding:0 12px;font:inherit;font-size:13px;outline:0}
+    .botao-filtros{padding:0 16px;background:var(--amarelo);color:#080808;border-color:var(--amarelo);font-weight:900;white-space:nowrap;cursor:pointer}
+    .filtros-extra{display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:-12px 0 22px;padding:14px;border:1px solid #203c5a;border-radius:14px;background:#071a2e}
+    .filtros-extra.aberto{display:grid}
+    .filtros-extra label{display:grid;gap:6px;color:#b9c9db;font-size:12px;font-weight:700}
+    .secao-titulo{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 13px}
+    .secao-titulo h2{display:flex;align-items:center;gap:10px;font-size:clamp(20px,2.3vw,26px);line-height:1.2}
+    .marcador-titulo{width:6px;height:34px;background:var(--amarelo);border-radius:8px;flex:0 0 6px}
+    .ver-todas{padding:9px 13px;border:1px solid var(--amarelo);border-radius:12px;color:var(--amarelo);background:transparent;font-weight:800;text-decoration:none;white-space:nowrap;cursor:pointer}
+    .destaque{display:grid;grid-template-columns:minmax(260px,360px) minmax(0,1fr);gap:22px;align-items:stretch;padding:13px;border:1px solid #203b58;border-radius:18px;background:linear-gradient(120deg,#07182a,#061426);box-shadow:0 10px 28px rgba(0,0,0,.18);margin-bottom:26px}
+    .destaque-imagem{position:relative;min-height:190px;border-radius:12px;overflow:hidden;background:#102943;align-self:stretch}
+    .destaque-imagem img{display:block;width:100%;height:100%;min-height:190px;object-fit:cover}
+    .reproducao{position:absolute;left:16px;bottom:16px;width:48px;height:48px;border:2px solid #fff;border-radius:50%;background:#04111ce8;color:#fff;font-size:24px;cursor:pointer}
+    .duracao{position:absolute;right:10px;bottom:10px;background:#020812e8;color:#fff;padding:5px 8px;border-radius:7px;font-size:12px;font-weight:800}
+    .destaque-corpo{position:relative;min-width:0;padding:4px 48px 4px 0;display:flex;flex-direction:column;justify-content:center;gap:8px}
+    .selo-destaque{color:var(--amarelo);font-size:12px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+    .destaque-corpo h3{font-size:clamp(21px,2.3vw,28px);line-height:1.2}
+    .serie{color:var(--amarelo);font-size:14px;line-height:1.45}
+    .metadados{display:flex;flex-wrap:wrap;gap:9px 18px;color:#c3d0df;font-size:13px;line-height:1.45}
+    .metadados span{display:inline-flex;align-items:center;gap:7px}
+    .descricao-destaque{color:#d2dceb;font-size:14px;line-height:1.55;margin-top:3px}
+    .favorito{position:absolute;right:2px;top:0;width:38px;height:38px;display:grid;place-items:center;border:0;background:transparent;color:#fff;font-size:27px;cursor:pointer}
+    .favorito.ativo{color:var(--amarelo)}
+    .acoes-destaque{display:flex;flex-wrap:wrap;gap:9px;margin-top:7px}
+    .acao{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid #52708d;border-radius:10px;background:#071b30;color:#fff;text-decoration:none;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+    .acao.baixar{background:var(--amarelo);border-color:var(--amarelo);color:#050505}
+    .acao.indisponivel{opacity:.9}
+    .lista-pregacoes{display:grid;gap:0;border-top:1px solid #1e3650}
+    .linha-pregacao{display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:16px;align-items:center;padding:12px 4px;border-bottom:1px solid #20374f;min-width:0}
+    .linha-imagem{width:100%;height:92px;object-fit:cover;border-radius:9px;background:#102943}
+    .linha-corpo{min-width:0;display:grid;gap:5px}
+    .linha-corpo h3{font-size:16px;line-height:1.3;overflow-wrap:anywhere}
+    .linha-corpo .serie{font-size:13px}
+    .linha-acoes{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:7px}.acao-lista{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:34px;padding:0 8px;border:1px solid #456481;border-radius:9px;background:#071b30;color:#fff;font:inherit;font-size:11px;font-weight:800;white-space:nowrap;cursor:pointer}.acao-lista.baixar{background:var(--amarelo);border-color:var(--amarelo);color:#050505}
+    .icone-acao{width:38px;height:38px;border:0;border-radius:9px;background:transparent;color:#fff;font-size:23px;cursor:pointer;display:grid;place-items:center}
+    .icone-acao.ativo{color:var(--amarelo)}
+    .icone-acao.arquivo{border:1px solid #456481;background:#071b30;font-size:18px}
+    .estado-vazio{padding:27px 18px;border:1px dashed #2b4969;border-radius:15px;text-align:center;color:#b9c9db;background:#07192c;line-height:1.55}
+    .estado-vazio strong{display:block;color:#fff;font-size:17px;margin-bottom:6px}
+    .nota-integracao{margin-top:22px;padding:14px 16px;border:1px solid rgba(255,255,0,.13);border-radius:13px;background:#06182b;color:#aebfd2;font-size:12px;line-height:1.6}
+    /* Padrão oficial do menu inferior da Agenda C.A.R.A. */
+    .acesso-rapido{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#06141a;border:1px solid rgba(255,255,0,.12);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35);opacity:1}
+    .acesso-rapido a,.acesso-rapido button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}
+    .acesso-rapido .icone{font-size:23px;line-height:1}
+    .acesso-rapido .ativo{color:var(--amarelo);font-weight:900}
+    .acesso-rapido a:focus-visible,.acesso-rapido button:focus-visible{outline:2px solid var(--amarelo);outline-offset:-4px;border-radius:12px}
+    .mais-overlay{position:fixed;inset:0;z-index:1200;display:none;align-items:flex-end;justify-content:center;padding:14px;background:rgba(0,0,0,.72)}
+    .mais-overlay.aberto{display:flex}
+    .mais-painel{width:min(560px,100%);max-height:min(78vh,720px);overflow:auto;padding:18px;border-radius:24px;border:1px solid #ffff0040;background:#071a30;box-shadow:0 20px 70px #0009}
+    .mais-topo{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .mais-topo h2{margin:0;color:#fff;font-size:22px}
+    .mais-fechar{width:40px;height:40px;border:0;border-radius:12px;background:#102b4c;color:#fff;font-size:24px;cursor:pointer}
+    .mais-grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .mais-grade a{display:flex;align-items:center;gap:10px;padding:13px;border-radius:13px;background:#0b2039;border:1px solid #ffffff14;color:#fff;text-decoration:none;font-weight:800;font-size:13px}
+    .mais-grade a span{font-size:21px}
+    .painel-aviso{color:#ffff00;line-height:1.55;font-size:14px;padding:12px 2px}
+    body.menu-aberto{overflow:hidden}
+    .mensagem-overlay{position:fixed;inset:0;z-index:1500;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.76)}
+    .mensagem-overlay.aberto{display:flex}
+    .mensagem-painel{width:min(520px,100%);max-height:85vh;overflow:auto;border:1px solid #ffff0040;border-radius:22px;padding:20px;background:#071a30;box-shadow:0 20px 70px #0009}
+    .mensagem-painel p{color:#dbe6f3;font-size:14px;line-height:1.65;margin:10px 0}
+    .mensagem-painel .mais-topo{margin-bottom:6px}
+    @media(max-width:850px){.abas{grid-template-columns:repeat(3,minmax(0,1fr))}.filtros-linha{grid-template-columns:1fr 1fr 1fr}.campo-busca{grid-column:1/-1}.busca-topo{display:none}.destaque{grid-template-columns:minmax(210px,34%) minmax(0,1fr)}.linha-pregacao{grid-template-columns:140px minmax(0,1fr) auto}.linha-imagem{height:84px}}
+    @media(max-width:600px){body{padding-bottom:100px}.topo{aspect-ratio:8/3;max-height:none}.voltar{top:calc(8px + env(safe-area-inset-top));left:8px;min-height:36px;padding:0 11px}main{width:calc(100% - 22px);padding:21px 0 20px}.cabecalho-conteudo{display:block;margin-bottom:16px}.saudacao h1{font-size:27px}.saudacao p{font-size:14px}.busca-topo{display:flex;margin-top:14px}.abas{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.aba{min-height:52px;font-size:12px;padding:8px}.filtros-linha{grid-template-columns:1fr 1fr;gap:8px}.campo-busca{grid-column:1/-1}.campo-select{font-size:12px;padding:0 9px}.botao-filtros{height:45px}.filtros-extra,.filtros-extra.aberto{grid-template-columns:1fr}.secao-titulo{align-items:flex-start}.secao-titulo h2{font-size:20px}.ver-todas{font-size:12px;padding:8px 10px}.destaque{grid-template-columns:1fr;gap:12px;padding:10px}.destaque-imagem{min-height:175px;aspect-ratio:16/8}.destaque-imagem img{min-height:175px}.destaque-corpo{padding:8px 42px 5px 3px}.destaque-corpo h3{font-size:22px}.descricao-destaque{font-size:13px}.linha-pregacao{grid-template-columns:88px minmax(0,1fr);gap:10px;padding:12px 0}.linha-imagem{height:78px}.linha-corpo h3{font-size:13px}.linha-corpo .serie{font-size:11px}.metadados{font-size:11px;gap:4px 10px}.linha-acoes{grid-column:2;justify-content:flex-end;gap:5px}.icone-acao{width:30px;height:32px;font-size:19px}.icone-acao.arquivo{font-size:15px}.acao-lista{font-size:10px;min-height:32px;padding:0 7px}.mais-overlay{align-items:flex-end;padding:10px}.mais-painel{padding:15px;border-radius:20px}.mais-topo h2{font-size:19px}.mais-grade{gap:7px}.mais-grade a{padding:11px;font-size:12px}.mais-grade a span{font-size:19px}.mensagem-painel{padding:16px}}
+    @media(max-width:370px){.linha-pregacao{grid-template-columns:68px minmax(0,1fr)}.linha-imagem{height:67px}.linha-acoes{grid-column:2;justify-content:flex-end}.metadados{display:none}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topo" aria-label="Pregações C.A.R.A.">
+    <a class="voltar" href="./index.html" aria-label="Voltar para o início">← Início</a>
+  </header>
+  <main>
+    <div class="cabecalho-conteudo">
+      <section class="saudacao">
+        <h1>🎙️ Pregações <span class="onda">〽</span></h1>
+        <p>Mensagens que edificam, ensinam e transformam.</p>
+        <div class="preview-aviso">Prévia estrutural do acervo: as mensagens abaixo são exemplos de organização, ainda sem arquivos reais anexados. Os espaços de áudio e vídeo ficam preparados para uso futuro.</div>
+      </section>
+      <label class="busca-topo"><span>⌕</span><input id="buscaTopo" type="search" placeholder="Buscar pregações..." aria-label="Buscar pregações"></label>
+    </div>
+
+    <section class="abas" aria-label="Categorias de pregações">
+      <button class="aba ativo" type="button" data-view="todas"><span class="icone">▶</span>Todas <span class="contagem">4</span></button>
+      <button class="aba" type="button" data-view="data"><span class="icone">▦</span>Por Data</button>
+      <button class="aba" type="button" data-view="pregador"><span class="icone">♟</span>Por Pregador</button>
+      <button class="aba" type="button" data-view="serie"><span class="icone">▤</span>Séries</button>
+      <button class="aba" type="button" data-view="temas"><span class="icone">▰</span>Categorias</button>
+      <button class="aba" type="button" data-view="favoritos"><span class="icone">♥</span>Favoritos <span id="favoritosCount" class="contagem">0</span></button>
+    </section>
+
+    <section class="filtros-linha" aria-label="Buscar e filtrar">
+      <label class="campo-busca"><span class="lupa">⌕</span><input id="busca" type="search" placeholder="Buscar pregações, temas ou pregadores..." aria-label="Buscar pregações"></label>
+      <select class="campo-select" id="filtroPregador" aria-label="Filtrar por pregador"><option value="">Todos os Pregadores</option><option value="A cadastrar">Preletor a cadastrar</option></select>
+      <select class="campo-select" id="filtroSerie" aria-label="Filtrar por série"><option value="">Todas as Séries</option><option value="Romanos — Vivendo como Cidadãos do Reino">Romanos — Vivendo como Cidadãos do Reino</option></select>
+      <select class="campo-select" id="ordenacao" aria-label="Ordenar pregações"><option value="recentes">Mais recentes</option><option value="titulo">Título A–Z</option></select>
+      <button class="botao-filtros" type="button" id="abrirFiltros">☷ Filtros</button>
+    </section>
+    <section class="filtros-extra" id="filtrosExtra" aria-label="Filtros adicionais">
+      <label>Formato<select class="campo-select" id="filtroFormato"><option value="todos">Todos os formatos</option><option value="arquivo">Arquivo Word/PDF</option><option value="audio">Áudio (futuro)</option><option value="video">Vídeo (futuro)</option></select></label>
+      <label>Livro bíblico<select class="campo-select" id="filtroLivro"><option value="">Todos os livros</option><option value="Romanos">Romanos</option></select></label>
+      <label>Categoria<select class="campo-select" id="filtroTema"><option value="">Todas as categorias</option><option value="Vida Cristã">Vida Cristã</option><option value="Fé e Graça">Fé e Graça</option><option value="Justificação">Justificação</option></select></label>
+    </section>
+
+    <section id="secaoDestaque">
+      <div class="secao-titulo"><h2><span class="marcador-titulo"></span>Destaque da Semana</h2></div>
+      <article class="destaque" id="cardDestaque">
+        <div class="destaque-imagem">
+          <img src="./pregacao-destaque.jpg" alt="Imagem ilustrativa para destaque de pregação">
+          <button class="reproducao" type="button" data-media="video" aria-label="Abrir espaço de vídeo">▶</button>
+          <span class="duracao">Vídeo futuro</span>
+        </div>
+        <div class="destaque-corpo">
+          <button type="button" class="favorito" data-fav="modelo-1" aria-label="Marcar destaque como favorito">♡</button>
+          <span class="selo-destaque">Prévia do destaque</span>
+          <h3>Mortos para o Pecado, porém Vivos para Deus</h3>
+          <div class="serie">Série: Romanos — Vivendo como Cidadãos do Reino</div>
+          <div class="metadados"><span>▣ Data a cadastrar</span><span>♟ Preletor a cadastrar</span><span>◆ Romanos 6</span></div>
+          <p class="descricao-destaque">Neste espaço ficará o resumo da mensagem, seus principais ensinamentos e a aplicação prática para a vida cristã.</p>
+          <div class="acoes-destaque"><button class="acao indisponivel" type="button" data-arquivo="modelo-1">▤ Arquivo</button><button class="acao baixar" type="button" data-baixar="modelo-1">⇩ Baixar arquivo</button></div>
+        </div>
+      </article>
+    </section>
+
+    <section id="secaoUltimas">
+      <div class="secao-titulo"><h2><span class="marcador-titulo"></span>Últimas Pregações</h2><button type="button" class="ver-todas" id="verTodas">Ver todas →</button></div>
+      <div class="lista-pregacoes" id="listaPregacoes">
+        <article class="linha-pregacao" data-id="modelo-2" data-search="os frutos da justificação paz acesso a deus graça esperança romanos 5">
+          <img class="linha-imagem" src="./pregacao-biblia.jpg" alt="Imagem ilustrativa de Bíblia aberta">
+          <div class="linha-corpo"><h3>Os Frutos da Justificação: Paz, Acesso a Deus, a Graça e a Esperança</h3><div class="serie">Série: Romanos — Vivendo como Cidadãos do Reino</div><div class="metadados"><span>▣ Data a cadastrar</span><span>♟ Preletor a cadastrar</span><span>◆ Romanos 5</span></div></div>
+          <div class="linha-acoes"><button class="icone-acao" type="button" data-media="video" aria-label="Vídeo futuro">▶</button><button class="icone-acao" type="button" data-fav="modelo-2" aria-label="Favoritar pregação">♡</button><button class="acao-lista" type="button" data-arquivo="modelo-2">▤ Arquivo</button><button class="acao-lista baixar" type="button" data-baixar="modelo-2">⇩ Baixar</button></div>
+        </article>
+        <article class="linha-pregacao" data-id="modelo-3" data-search="a fé que justifica não por obras mas por crer romanos 4">
+          <img class="linha-imagem" src="./pregacao-roma6.jpg" alt="Imagem ilustrativa de uma paisagem ao nascer do sol">
+          <div class="linha-corpo"><h3>A Fé que Justifica — Não por Obras, mas por Crer</h3><div class="serie">Série: Romanos — Vivendo como Cidadãos do Reino</div><div class="metadados"><span>▣ Data a cadastrar</span><span>♟ Preletor a cadastrar</span><span>◆ Romanos 4</span></div></div>
+          <div class="linha-acoes"><button class="icone-acao" type="button" data-media="video" aria-label="Vídeo futuro">▶</button><button class="icone-acao" type="button" data-fav="modelo-3" aria-label="Favoritar pregação">♡</button><button class="acao-lista" type="button" data-arquivo="modelo-3">▤ Arquivo</button><button class="acao-lista baixar" type="button" data-baixar="modelo-3">⇩ Baixar</button></div>
+        </article>
+        <article class="linha-pregacao" data-id="modelo-4" data-search="todos pecaram mas a graça alcança romanos 3">
+          <img class="linha-imagem" src="./pregacao-biblia.jpg" alt="Imagem ilustrativa de Bíblia aberta">
+          <div class="linha-corpo"><h3>Todos Pecaram, mas a Graça Alcança</h3><div class="serie">Série: Romanos — Vivendo como Cidadãos do Reino</div><div class="metadados"><span>▣ Data a cadastrar</span><span>♟ Preletor a cadastrar</span><span>◆ Romanos 3</span></div></div>
+          <div class="linha-acoes"><button class="icone-acao" type="button" data-media="video" aria-label="Vídeo futuro">▶</button><button class="icone-acao" type="button" data-fav="modelo-4" aria-label="Favoritar pregação">♡</button><button class="acao-lista" type="button" data-arquivo="modelo-4">▤ Arquivo</button><button class="acao-lista baixar" type="button" data-baixar="modelo-4">⇩ Baixar</button></div>
+        </article>
+      </div>
+      <div class="estado-vazio" id="estadoVazio" hidden><strong>Nenhuma pregação encontrada</strong>Altere a busca ou os filtros para ver outros resultados.</div>
+    </section>
+    <div class="nota-integracao">💡 <strong>Estrutura preparada:</strong> cada pregação poderá receber um arquivo Word ou PDF para abrir e baixar. Os espaços de áudio e vídeo ficam reservados para quando houver gravações. Os itens exibidos nesta primeira versão são exemplos visuais; nenhum arquivo real está anexado.</div>
+  </main>
+</div>
+
+<nav class="acesso-rapido" aria-label="Acesso rápido">
+  <a href="./index.html"><span class="icone">🏠</span>Início</a>
+  <button type="button" id="abrirAvisos"><span class="icone">🔔</span>Avisos</button>
+  <button type="button" id="abrirMais" aria-haspopup="dialog" aria-controls="menuMais"><span class="icone">☰</span>Mais</button>
+</nav>
+
+<div class="mais-overlay" id="menuMais" role="dialog" aria-modal="true" aria-labelledby="menuMaisTitulo">
+  <div class="mais-painel">
+    <div class="mais-topo"><h2 id="menuMaisTitulo">Acesso rápido aos módulos</h2><button class="mais-fechar" id="fecharMais" type="button" aria-label="Fechar menu">×</button></div>
+    <div class="mais-grade">
+      <a href="./agenda.html"><span>📅</span>Agenda</a><a href="./louvor.html"><span>🎵</span>Louvor</a>
+      <a href="./midia.html"><span>📱</span>Mídia</a><a href="./estudos.html"><span>📖</span>Estudos Bíblicos</a>
+      <a href="./pregacoes.html"><span>🎙️</span>Pregações</a><a href="./ministerios.html"><span>▦</span>Ministérios</a>
+      <a href="./membros.html"><span>👥</span>Membros</a><a href="./secretaria.html"><span>🗂️</span>Secretaria</a>
+      <a href="./galeria.html"><span>📸</span>Galeria</a><a href="./tesouraria.html"><span>💰</span>Tesouraria</a>
+      <a href="#" id="abrirAvisosNoMenu"><span>🔔</span>Avisos</a>
+    </div>
+  </div>
+</div>
+<div class="mais-overlay" id="painelAvisos" role="dialog" aria-modal="true" aria-labelledby="avisosTitulo">
+  <div class="mais-painel"><div class="mais-topo"><h2 id="avisosTitulo">Avisos da C.A.R.A.</h2><button class="mais-fechar" id="fecharAvisos" type="button" aria-label="Fechar avisos">×</button></div>
+    <div class="painel-aviso">Consulte a programação atualizada pela Agenda. A área de avisos centralizados será conectada à Base Central em uma próxima etapa.</div>
+    <a href="./agenda.html" style="display:flex;justify-content:space-between;align-items:center;text-decoration:none;background:#0b2039;color:#ffff00;border-radius:13px;padding:14px;font-weight:800">📅 Abrir Agenda <span>›</span></a>
+  </div>
+</div>
+<div class="mensagem-overlay" id="modalMensagem" role="dialog" aria-modal="true" aria-labelledby="modalMensagemTitulo">
+  <section class="mensagem-painel"><div class="mais-topo"><h2 id="modalMensagemTitulo">Pregação</h2><button class="mais-fechar" id="fecharMensagem" type="button" aria-label="Fechar">×</button></div><div id="modalMensagemTexto"></div></section>
+</div>
+<script>
+(function configurarAcessoRapidoCARA(){
+  const menu=document.getElementById('menuMais'), avisos=document.getElementById('painelAvisos');
+  const abrirMais=document.getElementById('abrirMais'), fecharMais=document.getElementById('fecharMais');
+  const abrirAvisos=document.getElementById('abrirAvisos'), abrirAvisosMenu=document.getElementById('abrirAvisosNoMenu'), fecharAvisos=document.getElementById('fecharAvisos');
+  function abrirPainel(painel,foco){menu.classList.remove('aberto');avisos.classList.remove('aberto');painel.classList.add('aberto');document.body.classList.add('menu-aberto');if(foco)foco.focus();}
+  function fecharPainel(painel,retorno){painel.classList.remove('aberto');document.body.classList.remove('menu-aberto');if(retorno)retorno.focus();}
+  abrirMais.addEventListener('click',()=>abrirPainel(menu,fecharMais));
+  fecharMais.addEventListener('click',()=>fecharPainel(menu,abrirMais));
+  menu.addEventListener('click',e=>{if(e.target===menu)fecharPainel(menu,abrirMais)});
+  abrirAvisos.addEventListener('click',()=>abrirPainel(avisos,fecharAvisos));
+  abrirAvisosMenu.addEventListener('click',e=>{e.preventDefault();abrirPainel(avisos,fecharAvisos)});
+  fecharAvisos.addEventListener('click',()=>fecharPainel(avisos,abrirAvisos));
+  avisos.addEventListener('click',e=>{if(e.target===avisos)fecharPainel(avisos,abrirAvisos)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(menu.classList.contains('aberto'))fecharPainel(menu,abrirMais);if(avisos.classList.contains('aberto'))fecharPainel(avisos,abrirAvisos);fecharModalMensagem()}});
+})();
+
+const pregoes = [
+ {id:'modelo-1',preletor:'A cadastrar',titulo:'Mortos para o Pecado, porém Vivos para Deus',referencia:'Romanos 6',serie:'Romanos — Vivendo como Cidadãos do Reino',tema:'Vida Cristã',imagem:'./pregacao-destaque.jpg',destaque:true},
+ {id:'modelo-2',preletor:'A cadastrar',titulo:'Os Frutos da Justificação: Paz, Acesso a Deus, a Graça e a Esperança',referencia:'Romanos 5',serie:'Romanos — Vivendo como Cidadãos do Reino',tema:'Fé e Graça',imagem:'./pregacao-biblia.jpg'},
+ {id:'modelo-3',preletor:'A cadastrar',titulo:'A Fé que Justifica — Não por Obras, mas por Crer',referencia:'Romanos 4',serie:'Romanos — Vivendo como Cidadãos do Reino',tema:'Justificação',imagem:'./pregacao-roma6.jpg'},
+ {id:'modelo-4',preletor:'A cadastrar',titulo:'Todos Pecaram, mas a Graça Alcança',referencia:'Romanos 3',serie:'Romanos — Vivendo como Cidadãos do Reino',tema:'Fé e Graça',imagem:'./pregacao-biblia.jpg'}
+];
+const favKey='cara-pregacoes-favoritos-v1';
+function favoritos(){try{return JSON.parse(localStorage.getItem(favKey)||'[]')}catch(e){return []}}
+function atualizarFavoritos(){const fs=favoritos();document.getElementById('favoritosCount').textContent=fs.length;document.querySelectorAll('[data-fav]').forEach(b=>{const ativo=fs.includes(b.dataset.fav);b.classList.toggle('ativo',ativo);b.textContent=ativo?'♥':'♡';b.setAttribute('aria-pressed',String(ativo))})}
+function abrirModalMensagem(titulo,html){document.getElementById('modalMensagemTitulo').textContent=titulo;document.getElementById('modalMensagemTexto').innerHTML=html;document.getElementById('modalMensagem').classList.add('aberto');document.body.classList.add('menu-aberto');document.getElementById('fecharMensagem').focus()}
+function fecharModalMensagem(){const m=document.getElementById('modalMensagem');if(m){m.classList.remove('aberto');document.body.classList.remove('menu-aberto')}}
+document.getElementById('fecharMensagem').addEventListener('click',fecharModalMensagem);
+document.getElementById('modalMensagem').addEventListener('click',e=>{if(e.target.id==='modalMensagem')fecharModalMensagem()});
+function avisoArquivo(titulo,baixar=false){abrirModalMensagem(baixar?'Baixar arquivo da pregação':'Arquivo da pregação',`<p><strong>${titulo}</strong></p><p>Este item é uma prévia visual. Nenhum arquivo Word ou PDF foi anexado ainda, então não há download disponível nesta versão.</p><p>Quando a liderança cadastrar o documento real e a integração com a Base Central for configurada, este botão poderá abrir ou baixar o arquivo.</p><p style="color:#ffff00">Vídeo e áudio também ficarão disponíveis aqui quando começarem as gravações.</p>`)}
+function avisoMidia(tipo){abrirModalMensagem(tipo==='video'?'Vídeo da pregação':'Áudio da pregação',`<p>Este espaço está preparado para <strong>${tipo==='video'?'vídeos':'áudios'}</strong> das pregações.</p><p>Como as mensagens ainda não são gravadas, a reprodução será habilitada quando houver conteúdo disponível.</p><p style="color:#ffff00">Por enquanto, a opção principal será abrir ou baixar o arquivo da pregação (Word/PDF).</p>`)}
+document.querySelectorAll('[data-fav]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.fav;let fs=favoritos();fs=fs.includes(id)?fs.filter(x=>x!==id):[...fs,id];localStorage.setItem(favKey,JSON.stringify(fs));atualizarFavoritos();filtrar()}));
+document.querySelectorAll('[data-arquivo]').forEach(b=>b.addEventListener('click',()=>{const s=pregoes.find(x=>x.id===b.dataset.arquivo);avisoArquivo(s?s.titulo:'Pregação')}));
+document.querySelectorAll('[data-baixar]').forEach(b=>b.addEventListener('click',()=>{const s=pregoes.find(x=>x.id===b.dataset.baixar);avisoArquivo(s?s.titulo:'Pregação',true)}));
+document.querySelectorAll('[data-media]').forEach(b=>b.addEventListener('click',()=>avisoMidia(b.dataset.media)));
+const abas=[...document.querySelectorAll('[data-view]')];let view='todas';
+abas.forEach(b=>b.addEventListener('click',()=>{view=b.dataset.view;abas.forEach(x=>x.classList.toggle('ativo',x===b));if(view==='data')document.getElementById('ordenacao').value='recentes';filtrar()}));
+const busca=document.getElementById('busca'),buscaTopo=document.getElementById('buscaTopo');
+busca.addEventListener('input',()=>{buscaTopo.value=busca.value;filtrar()});buscaTopo.addEventListener('input',()=>{busca.value=buscaTopo.value;filtrar()});
+['filtroPregador','filtroSerie','ordenacao','filtroFormato','filtroLivro','filtroTema'].forEach(id=>document.getElementById(id).addEventListener('change',filtrar));
+document.getElementById('abrirFiltros').addEventListener('click',()=>document.getElementById('filtrosExtra').classList.toggle('aberto'));
+document.getElementById('verTodas').addEventListener('click',()=>{view='todas';abas.forEach(x=>x.classList.toggle('ativo',x.dataset.view==='todas'));filtrar();document.getElementById('secaoUltimas').scrollIntoView({behavior:'smooth',block:'start'})});
+function filtrar(){
+ const termo=busca.value.trim().toLocaleLowerCase('pt-BR'),pre=document.getElementById('filtroPregador').value,serie=document.getElementById('filtroSerie').value,tema=document.getElementById('filtroTema').value,livro=document.getElementById('filtroLivro').value,formato=document.getElementById('filtroFormato').value;
+ let arr=[...pregoes];
+ if(termo)arr=arr.filter(s=>(s.titulo+' '+s.referencia+' '+s.serie+' '+s.tema).toLocaleLowerCase('pt-BR').includes(termo));
+ if(pre)arr=arr.filter(s=>s.preletor===pre);
+ if(serie)arr=arr.filter(s=>s.serie===serie);if(tema)arr=arr.filter(s=>s.tema===tema);if(livro)arr=arr.filter(s=>s.referencia.includes(livro));
+ if(formato==='audio'||formato==='video')arr=[];
+ if(view==='favoritos')arr=arr.filter(s=>favoritos().includes(s.id));
+ if(view==='serie')arr=arr.filter(s=>Boolean(s.serie));if(view==='temas')arr=arr.filter(s=>Boolean(s.tema));if(view==='pregador')arr=[];
+ if(document.getElementById('ordenacao').value==='titulo')arr.sort((a,b)=>a.titulo.localeCompare(b.titulo,'pt-BR'));
+ document.querySelectorAll('.linha-pregacao').forEach(el=>el.hidden=!arr.some(s=>s.id===el.dataset.id));
+ const destaque=document.getElementById('cardDestaque');destaque.hidden=(view==='favoritos'&&!favoritos().includes('modelo-1'))||(termo&&!('Mortos para o Pecado, porém Vivos para Deus Romanos 6 '+pregoes[0].serie).toLocaleLowerCase('pt-BR').includes(termo))||(view==='pregador')||(pre!=='');
+ const nLinhas=[...document.querySelectorAll('.linha-pregacao')].filter(el=>!el.hidden).length;
+ document.getElementById('estadoVazio').hidden=Boolean(nLinhas||!destaque.hidden);
+}
+const abrirMaisDummy=null;
+atualizarFavoritos();
+
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error))}
+</script>
+</body>
+</html>
