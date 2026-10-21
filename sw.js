@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v66';
+const CACHE_VERSION = 'cara-app-v68';
 
 const APP_SHELL = [
   './',
@@ -15,6 +15,7 @@ const APP_SHELL = [
   './banner-pregacoes.png',
   './pregacao-biblia.jpg',
   './galeria.html',
+  './banner-galeria.png',
   './tesouraria.html',
   './manifest.webmanifest',
   './logo-cara.png',
