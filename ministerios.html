@@ -15,6 +15,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--navy);color:#fff;mi
 .hero{height:clamp(220px,31vw,390px);background:url("./banner-ministerios.png") center/cover no-repeat;border-bottom:3px solid var(--yellow);position:relative}
 .back{position:absolute;top:calc(12px + env(safe-area-inset-top));left:14px;padding:10px 13px;border:1px solid rgba(255,255,0,.5);border-radius:11px;background:rgba(5,19,38,.85);color:var(--yellow);font-weight:800;text-decoration:none;backdrop-filter:blur(5px)}
 main{width:min(100% - 28px,1050px);margin:auto;padding:24px 0}
+.fundamento{width:100%;display:block;border-radius:18px;border:1px solid rgba(255,255,0,.16);margin-bottom:22px}
 .busca{display:flex;align-items:center;gap:12px;background:#10233b;border:1px solid var(--line);border-radius:18px;padding:0 17px;height:56px;margin-bottom:20px}
 .busca span{font-size:22px}.busca input{width:100%;background:none;border:0;outline:0;color:#fff;font-size:16px}.busca input::placeholder{color:#9fb0c4}
 .status{padding:24px;text-align:center;color:var(--muted);background:var(--card);border-radius:16px;border:1px solid var(--line)}
@@ -46,16 +47,7 @@ display:flex;flex-direction:column;align-items:center;justify-content:center;
 gap:5px;color:#eee;text-decoration:none;font-size:10px;min-width:0}
 .bottom b{font-size:23px;line-height:1;margin:0;font-weight:normal}
 .bottom .active{color:var(--yellow);font-weight:800}
-@media(max-width:600px){.hero{height:auto;aspect-ratio:8/3;background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#051326}main{width:min(100% - 20px,1050px);padding-top:16px}.grid{grid-template-columns:1fr}.card{min-height:116px}}
-</style>
-
-<style id="padrao-agenda-v42">
-/* Banner com a mesma proporcao da Agenda (2048 x 768). */
-.hero { height:auto !important; aspect-ratio:2048 / 768 !important; min-height:0 !important; max-height:none !important; background-size:cover !important; background-position:center !important; }
-.bottom { grid-template-columns:repeat(3,minmax(0,1fr)) !important; width:100% !important; max-width:none !important; min-height:72px !important; border-radius:24px 24px 0 0 !important; }
-.bottom a { display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:center !important; gap:3px !important; }
-.bottom a b { font-size:22px !important; line-height:1.1 !important; }
-.bottom a.active { color:#fff !important; }
+@media(max-width:600px){.hero{height:auto;aspect-ratio:8/3;background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#051326}main{width:min(100% - 20px,1050px);padding-top:16px}.fundamento{border-radius:12px}.grid{grid-template-columns:1fr}.card{min-height:116px}}
 </style>
 </head>
 <body>
@@ -64,6 +56,8 @@ gap:5px;color:#eee;text-decoration:none;font-size:10px;min-width:0}
 </header>
 
 <main>
+  <img class="fundamento" src="./banner-fundamento-ministerios-corrigido.png" alt="Servir não é obrigação, é um privilégio. Colossenses 3:23-24">
+
   <label class="busca">
     <span>⌕</span>
     <input id="busca" type="search" placeholder="Buscar ministério..." autocomplete="off">
@@ -81,8 +75,10 @@ gap:5px;color:#eee;text-decoration:none;font-size:10px;min-width:0}
 
 <nav class="bottom">
   <a href="./index.html"><b>🏠</b>Início</a>
-  <a href="#avisos" onclick="if(typeof abrirAvisos==='function'){abrirAvisos();return false;} return false;"><b>🔔</b>Avisos</a>
-  <a href="#mais" onclick="if(typeof abrirMais==='function'){abrirMais();return false;} return false;"><b>☰</b>Mais</a>
+  <a href="./agenda.html"><b>📅</b>Agenda</a>
+  <a class="active" href="./ministerios.html"><b>▦</b>Ministérios</a>
+  <a href="#"><b>🔔</b>Avisos</a>
+  <a href="#"><b>☰</b>Mais</a>
 </nav>
 
 <script>
@@ -171,9 +167,9 @@ function dadosArea(m){
 
   if(n.includes('HOMENS')) return {
     proposito:'Fortalecer homens na comunhão, no caráter cristão e no propósito de servir a Cristo.',
-    area:'Aqui ficará o acesso ao discipulado de homens #Forjados.',
-    href:'',
-    botao:'Área #Forjados em construção'
+    area:'Biblioteca do discipulado #Forjados, estudos bíblicos para download e recursos para a caminhada dos irmãos.',
+    href:'./forjados.html',
+    botao:'Entrar no #Forjados'
   };
 
   return {

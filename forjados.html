@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#051326">
+<title>#Forjados — Discipulado de Homens | C.A.R.A.</title>
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#051326;--navy2:#081b32;--card:#0c2440;--card2:#102b4c;--yellow:#ffff00;--white:#fff;--muted:#bbcadb;--line:#233e5b;--green:#54e5a4}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--navy);color:var(--white);min-height:100vh;padding-bottom:100px}
+.app{width:min(100%,1000px);margin:0 auto;min-height:100vh;background:var(--navy)}
+.hero{position:relative;overflow:hidden;padding:clamp(24px,5vw,44px) clamp(16px,4vw,34px) 28px;background:radial-gradient(ellipse at 82% 10%,rgba(255,255,0,.13),transparent 30%),linear-gradient(135deg,#0e2c4c,#06162a 63%,#030c18);border-bottom:3px solid var(--yellow)}
+.hero:after{content:"";position:absolute;width:260px;height:260px;right:-80px;bottom:-180px;border:1px solid rgba(255,255,0,.18);border-radius:50%;box-shadow:0 0 0 22px rgba(255,255,0,.025),0 0 0 48px rgba(255,255,0,.02);pointer-events:none}
+.back{display:inline-flex;align-items:center;min-height:40px;padding:0 13px;border:1px solid rgba(255,255,0,.5);border-radius:11px;background:rgba(5,19,38,.7);color:var(--yellow);text-decoration:none;font-weight:800;font-size:13px}
+.brand{display:flex;gap:16px;align-items:center;margin-top:22px;position:relative;z-index:1}
+.brand-icon{display:grid;place-items:center;flex:0 0 62px;height:62px;border:1px solid rgba(255,255,0,.3);border-radius:18px;background:rgba(255,255,0,.08);font-size:32px}
+.eyebrow{color:var(--yellow);font-size:11px;letter-spacing:2px;font-weight:900;text-transform:uppercase}
+h1{font-size:clamp(30px,6vw,46px);line-height:1;margin-top:5px;letter-spacing:.5px}
+.subtitle{color:var(--muted);font-size:14px;line-height:1.45;margin-top:8px}
+.motto{position:relative;z-index:1;border-left:3px solid var(--yellow);padding:8px 0 8px 12px;margin:22px 0 0;color:#fff;font-weight:700;font-size:14px;line-height:1.5}
+main{padding:22px clamp(12px,3vw,24px) 30px}
+.section-heading{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:13px}
+.section-heading h2{font-size:22px;line-height:1.2}.section-heading p{font-size:13px;color:var(--muted);margin-top:5px;line-height:1.45}
+.count{white-space:nowrap;background:rgba(255,255,0,.1);color:var(--yellow);border:1px solid rgba(255,255,0,.2);border-radius:10px;padding:7px 10px;font-size:12px;font-weight:900}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.study{background:linear-gradient(150deg,#0c2745,#071a2e);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;min-width:0;box-shadow:0 7px 20px rgba(0,0,0,.12)}
+.study-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.num{display:grid;place-items:center;flex:0 0 46px;height:46px;border-radius:13px;background:rgba(255,255,0,.1);border:1px solid rgba(255,255,0,.25);color:var(--yellow);font-weight:900;font-size:16px}
+.study-tag{font-size:10px;letter-spacing:1.2px;font-weight:900;color:var(--yellow);text-transform:uppercase}
+.scripture{font-size:12px;color:var(--muted);margin-top:4px}
+.study h3{font-size:19px;line-height:1.25;margin-bottom:9px}
+.central{padding:12px 13px;border-radius:12px;background:#071729;border:1px solid rgba(255,255,255,.07);margin:3px 0 12px}
+.central b{display:block;color:var(--yellow);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:5px}
+.central p{font-size:13px;line-height:1.5;color:#e1e9f2}
+.topics{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.topics span{font-size:11px;color:#d8e5f4;background:#142d49;border:1px solid rgba(255,255,255,.06);border-radius:999px;padding:6px 8px}
+.study-actions{margin-top:auto;display:grid;grid-template-columns:1fr;gap:8px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 13px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:900;transition:transform .15s ease}
+.btn:active{transform:scale(.99)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn-primary{background:var(--yellow);color:#071321;border:1px solid var(--yellow)}
+.btn-secondary{background:transparent;color:var(--yellow);border:1px solid rgba(255,255,0,.35)}
+.help-card{margin-top:22px;border:1px solid var(--line);background:linear-gradient(135deg,#0b223b,#07182b);border-radius:18px;padding:18px}
+.help-card h2{font-size:19px;margin-bottom:10px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.step{border-radius:12px;background:#102b49;padding:12px;min-width:0}
+.step b{display:block;color:var(--yellow);font-size:12px;margin-bottom:6px}
+.step p{color:#d6e1ed;font-size:12px;line-height:1.45}
+.pact{margin-top:14px;display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,0,.055);border:1px solid rgba(255,255,0,.18);border-radius:13px;padding:13px}
+.pact span{font-size:22px}.pact p{font-size:13px;line-height:1.5;color:#e2eaf2}.pact strong{color:var(--yellow)}
+.gate{margin:22px 0;padding:22px 18px;border:1px solid rgba(255,255,0,.22);border-radius:16px;background:#0b2139;text-align:center}
+.gate .gate-icon{font-size:33px;margin-bottom:8px}.gate h2{font-size:21px;margin-bottom:9px}.gate p{font-size:14px;line-height:1.55;color:var(--muted);margin-bottom:16px}.gate button{padding:12px 16px;border:0;border-radius:11px;background:var(--yellow);color:#071321;font-weight:900;cursor:pointer}
+.status{display:none;margin-top:12px;font-size:13px;color:var(--muted);line-height:1.5}
+footer{color:#8fa4bb;text-align:center;font-size:11px;line-height:1.5;padding:0 16px 24px}
+.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:1000px;min-height:76px;padding-bottom:env(safe-area-inset-bottom);background:linear-gradient(135deg,#06141a,#091c24);display:grid;grid-template-columns:repeat(5,1fr);border-radius:22px 22px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.2);z-index:50;border-top:1px solid rgba(255,255,0,.1)}
+.bottom a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#eee;text-decoration:none;font-size:10px;min-width:0}.bottom b{font-size:22px;line-height:1;font-weight:normal}.bottom .active{color:var(--yellow);font-weight:900}
+@media(max-width:660px){.cards{grid-template-columns:1fr}.study{padding:16px}.steps{grid-template-columns:1fr}.step{display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:start}.step b{margin-bottom:0}.section-heading{align-items:start}.count{font-size:11px}.hero{padding-top:calc(22px + env(safe-area-inset-top))}.brand-icon{flex-basis:52px;height:52px;font-size:27px}.motto{font-size:13px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <a class="back" href="./ministerios.html">← Ministérios</a>
+    <div class="brand">
+      <div class="brand-icon" aria-hidden="true">🛡️</div>
+      <div><div class="eyebrow">Discipulado de Homens · C.A.R.A.</div><h1>#FORJADOS</h1><p class="subtitle">Homens sendo moldados à imagem de Cristo.</p></div>
+    </div>
+    <div class="motto">“Não competimos para parecer fortes. Caminhamos juntos para crescer em Cristo.”</div>
+  </header>
+
+  <main>
+    <section id="gate" class="gate" aria-live="polite">
+      <div class="gate-icon">🔐</div>
+      <h2 id="gateTitle">Verificando seu acesso…</h2>
+      <p id="gateText">A área do discipulado é destinada aos membros com sessão ativa no C.A.R.A. App.</p>
+      <button id="gateButton" type="button" style="display:none" onclick="location.href='./index.html'">Voltar ao C.A.R.A. App</button>
+      <div id="gateStatus" class="status" style="display:block">Validando a sessão…</div>
+    </section>
+
+    <div id="forjadosContent" hidden>
+      <section>
+        <div class="section-heading">
+          <div><h2>📚 Biblioteca do #Forjados</h2><p>Os materiais são carregados do Google Drive privado da C.A.R.A. Entre no estudo e baixe o Word ou PDF para acompanhar o discipulado.</p></div>
+          <span class="count" id="fileCount">Carregando…</span>
+        </div>
+        <div id="libraryStatus" role="status" style="background:#0b2139;border:1px solid var(--line);border-radius:14px;padding:15px;color:var(--muted);font-size:13px;line-height:1.5;margin-bottom:14px">Buscando os materiais no Drive…</div>
+        <div class="cards" id="studyCards" aria-live="polite"></div>
+      </section>
+
+      <section class="help-card">
+        <h2>🧭 Como se preparar para o discipulado</h2>
+        <div class="steps">
+          <div class="step"><b>01 · Leia</b><p>Leia o texto bíblico indicado com calma, de preferência mais de uma vez.</p></div>
+          <div class="step"><b>02 · Reflita</b><p>Anote o que o texto revela sobre Deus e o que confronta em sua própria vida.</p></div>
+          <div class="step"><b>03 · Compartilhe</b><p>Chegue preparado para ouvir os irmãos, fazer perguntas e falar com honestidade e respeito.</p></div>
+        </div>
+        <div class="pact"><span>🤝</span><p><strong>Nosso pacto:</strong> não estamos aqui para competir, humilhar ou fingir perfeição. O objetivo é caminhar na verdade, orar uns pelos outros e crescer em obediência a Cristo.</p></div>
+      </section>
+
+      <section class="help-card">
+        <h2>🛡️ Materiais da família #Forjados</h2>
+        <p style="font-size:13px;line-height:1.55;color:var(--muted)">Os arquivos são mantidos na pasta privada da C.A.R.A. no Google Drive. O aplicativo só lista e entrega os materiais depois de validar uma sessão ativa. Não usamos links públicos nem colocamos os arquivos Word no GitHub.</p>
+        <div class="pact"><span>🤝</span><p><strong>Nosso pacto:</strong> não estamos aqui para competir, humilhar ou fingir perfeição. O objetivo é caminhar na verdade, orar uns pelos outros e crescer em obediência a Cristo.</p></div>
+      </section>
+    </div>
+  </main>
+  <footer>FORJADOS · Discipulado de Homens · Comunidade Apostólica Restaurando Almas<br>“Crescendo juntos em caráter, verdade e amor.”</footer>
+</div>
+
+<nav class="bottom" aria-label="Navegação principal">
+  <a href="./index.html"><b>🏠</b>Início</a>
+  <a href="./agenda.html"><b>📅</b>Agenda</a>
+  <a class="active" href="./ministerios.html"><b>▦</b>Ministérios</a>
+  <a href="./index.html#avisos"><b>🔔</b>Avisos</a>
+  <a href="./index.html#mais"><b>☰</b>Mais</a>
+</nav>
+
+<script>
+const API='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+async function postCentral(payload){
+  const r=await fetch(API,{method:'POST',credentials:'omit',redirect:'follow',cache:'no-store',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  return r.json();
+}
+function mostrarBloqueio(titulo,texto){
+  document.getElementById('gateTitle').textContent=titulo;
+  document.getElementById('gateText').textContent=texto;
+  document.getElementById('gateStatus').style.display='none';
+  document.getElementById('gateButton').style.display='inline-block';
+}
+function escapeHtml(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function formatDate(v){return String(v||'').trim() || '—'}
+function renderArquivos(arquivos){
+ const wrap=document.getElementById('studyCards');
+ const status=document.getElementById('libraryStatus');
+ const count=document.getElementById('fileCount');
+ count.textContent=(arquivos.length||0)+' arquivo(s)';
+ if(!arquivos.length){
+   wrap.innerHTML='';
+   status.textContent='Ainda não há arquivos nas pastas do #Forjados. A liderança pode adicionar os estudos Word ou PDF à pasta “01 - Estudos” no Google Drive; eles aparecerão aqui automaticamente.';
+   status.style.display='block';
+   return;
+ }
+ status.textContent='Materiais encontrados no Drive. Selecione “Baixar arquivo” para salvar uma cópia no seu dispositivo.';
+ status.style.display='block';
+ wrap.innerHTML=arquivos.map((a)=>{
+   const ext=String(a.extensao||'ARQUIVO').toUpperCase();
+   const icon=ext==='PDF'?'📕':(['DOC','DOCX','ODT','RTF'].includes(ext)?'📘':(['PNG','JPG','JPEG'].includes(ext)?'🖼️':'📄'));
+   return `<article class="study">
+      <div class="study-top"><div class="num">${icon}</div><div><div class="study-tag">${escapeHtml(a.categoria||'Material')}</div><div class="scripture">${escapeHtml(ext)} · ${escapeHtml(a.tamanhoTexto||'Tamanho indisponível')}</div></div></div>
+      <h3>${escapeHtml(a.nome)}</h3>
+      <div class="central"><b>Atualizado em</b><p>${escapeHtml(formatDate(a.atualizadoEm))}</p></div>
+      <div class="study-actions"><button class="btn btn-primary" type="button" onclick="baixarArquivo('${escapeHtml(a.id)}',this)" ${a.disponivel===false?'disabled':''}>⬇ Baixar arquivo</button></div>
+    </article>`;
+ }).join('');
+}
+async function carregarArquivos(token){
+ const status=document.getElementById('libraryStatus');
+ status.textContent='Buscando os materiais no Google Drive privado…';
+ status.style.display='block';
+ try{
+   const r=await postCentral({acao:'forjados-listar-arquivos',token});
+   if(!r||!r.sucesso){
+     if(r&&r.erro==='SESSAO_INVALIDA'){
+       localStorage.removeItem('cara_sessao_token');
+       mostrarBloqueio('Sua sessão expirou','Volte ao C.A.R.A. App e entre novamente para acessar os estudos.');
+       return;
+     }
+     status.textContent=(r&&r.mensagem)||'Não foi possível carregar os arquivos. Confira a configuração da pasta no Drive e tente novamente.';
+     document.getElementById('fileCount').textContent='Indisponível';
+     return;
+   }
+   renderArquivos(Array.isArray(r.arquivos)?r.arquivos:[]);
+ }catch(e){
+   console.error(e);
+   status.textContent='Não foi possível carregar os materiais agora. Confira a conexão e tente novamente.';
+ }
+}
+async function baixarArquivo(fileId,button){
+ const token=localStorage.getItem('cara_sessao_token');
+ if(!token){mostrarBloqueio('Entre no C.A.R.A. App','Sua sessão não está ativa. Entre novamente para baixar os materiais.');return;}
+ const original=button.textContent;
+ button.disabled=true;button.textContent='Preparando download…';
+ try{
+   const r=await postCentral({acao:'forjados-baixar-arquivo',token,fileId});
+   if(!r||!r.sucesso)throw new Error((r&&r.mensagem)||'Não foi possível baixar este arquivo.');
+   const binary=atob(r.conteudoBase64||'');
+   const bytes=new Uint8Array(binary.length);
+   for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+   const blob=new Blob([bytes],{type:r.mimeType||'application/octet-stream'});
+   const url=URL.createObjectURL(blob);
+   const a=document.createElement('a');a.href=url;a.download=r.nome||'material-forjados';document.body.appendChild(a);a.click();a.remove();
+   setTimeout(()=>URL.revokeObjectURL(url),2000);
+   button.textContent='✓ Download iniciado';
+   setTimeout(()=>{button.textContent=original;button.disabled=false;},1800);
+ }catch(e){
+   console.error(e);alert(e.message||'Falha ao baixar o arquivo.');button.textContent=original;button.disabled=false;
+ }
+}
+async function validarAcesso(){
+  const token=localStorage.getItem('cara_sessao_token');
+  if(!token){mostrarBloqueio('Entre no C.A.R.A. App','Para abrir a área #Forjados, primeiro entre no aplicativo com sua conta de membro.');return;}
+  try{
+    const r=await postCentral({acao:'sessao',token});
+    if(!r||!r.sucesso||!r.autenticado){
+      localStorage.removeItem('cara_sessao_token');
+      mostrarBloqueio('Sua sessão expirou','Volte ao C.A.R.A. App e entre novamente para acessar os estudos.');return;
+    }
+    document.getElementById('gate').hidden=true;
+    document.getElementById('forjadosContent').hidden=false;
+    await carregarArquivos(token);
+  }catch(e){
+    console.error(e);
+    mostrarBloqueio('Não foi possível validar o acesso','Confira sua conexão e tente novamente. Se o problema continuar, volte ao C.A.R.A. App e abra a área novamente.');
+  }
+}
+validarAcesso();
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error));
+</script>
+</body>
+</html>
