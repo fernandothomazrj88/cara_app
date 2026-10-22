@@ -14,9 +14,10 @@
 html{scroll-behavior:smooth}
 body{font-family:Arial,Helvetica,sans-serif;background:var(--navy);color:var(--white);min-height:100vh;padding-bottom:100px}
 .app{width:min(100%,1000px);margin:0 auto;min-height:100vh;background:var(--navy)}
-.hero{position:relative;overflow:hidden;padding:clamp(24px,5vw,44px) clamp(16px,4vw,34px) 28px;background:radial-gradient(ellipse at 82% 10%,rgba(255,255,0,.13),transparent 30%),linear-gradient(135deg,#0e2c4c,#06162a 63%,#030c18);border-bottom:3px solid var(--yellow)}
-.hero:after{content:"";position:absolute;width:260px;height:260px;right:-80px;bottom:-180px;border:1px solid rgba(255,255,0,.18);border-radius:50%;box-shadow:0 0 0 22px rgba(255,255,0,.025),0 0 0 48px rgba(255,255,0,.02);pointer-events:none}
-.back{display:inline-flex;align-items:center;min-height:40px;padding:0 13px;border:1px solid rgba(255,255,0,.5);border-radius:11px;background:rgba(5,19,38,.7);color:var(--yellow);text-decoration:none;font-weight:800;font-size:13px}
+.hero{position:relative;isolation:isolate;display:block;width:100%;aspect-ratio:3/1;min-height:0;overflow:hidden;padding:0;background:#051326 url("./banner-forjados.png") center center/100% 100% no-repeat;border-bottom:0}
+/* O banner inclui visualmente o botão ← Início; esta área invisível mantém o botão realmente clicável e acessível. */
+.banner-hotspot{position:absolute;z-index:5;left:1.2%;top:4.2%;width:9.5%;height:13.2%;display:block;border-radius:14px;background:transparent;text-decoration:none}
+.banner-hotspot:focus-visible{outline:3px solid #ffff00;outline-offset:2px}
 .brand{display:flex;gap:16px;align-items:center;margin-top:22px;position:relative;z-index:1}
 .brand-icon{display:grid;place-items:center;flex:0 0 62px;height:62px;border:1px solid rgba(255,255,0,.3);border-radius:18px;background:rgba(255,255,0,.08);font-size:32px}
 .eyebrow{color:var(--yellow);font-size:11px;letter-spacing:2px;font-weight:900;text-transform:uppercase}
@@ -57,20 +58,15 @@ main{padding:22px clamp(12px,3vw,24px) 30px}
 .gate .gate-icon{font-size:33px;margin-bottom:8px}.gate h2{font-size:21px;margin-bottom:9px}.gate p{font-size:14px;line-height:1.55;color:var(--muted);margin-bottom:16px}.gate button{padding:12px 16px;border:0;border-radius:11px;background:var(--yellow);color:#071321;font-weight:900;cursor:pointer}
 .status{display:none;margin-top:12px;font-size:13px;color:var(--muted);line-height:1.5}
 footer{color:#8fa4bb;text-align:center;font-size:11px;line-height:1.5;padding:0 16px 24px}
-.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:1000px;min-height:76px;padding-bottom:env(safe-area-inset-bottom);background:linear-gradient(135deg,#06141a,#091c24);display:grid;grid-template-columns:repeat(5,1fr);border-radius:22px 22px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.2);z-index:50;border-top:1px solid rgba(255,255,0,.1)}
+.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:1000px;min-height:76px;padding-bottom:env(safe-area-inset-bottom);background:linear-gradient(135deg,#06141a,#091c24);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-radius:22px 22px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.2);z-index:50;border-top:1px solid rgba(255,255,0,.1)}
 .bottom a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#eee;text-decoration:none;font-size:10px;min-width:0}.bottom b{font-size:22px;line-height:1;font-weight:normal}.bottom .active{color:var(--yellow);font-weight:900}
-@media(max-width:660px){.cards{grid-template-columns:1fr}.study{padding:16px}.steps{grid-template-columns:1fr}.step{display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:start}.step b{margin-bottom:0}.section-heading{align-items:start}.count{font-size:11px}.hero{padding-top:calc(22px + env(safe-area-inset-top))}.brand-icon{flex-basis:52px;height:52px;font-size:27px}.motto{font-size:13px}}
+@media(max-width:660px){.cards{grid-template-columns:1fr}.study{padding:16px}.steps{grid-template-columns:1fr}.step{display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:start}.step b{margin-bottom:0}.section-heading{align-items:start}.count{font-size:11px}}
 </style>
 </head>
 <body>
 <div class="app">
-  <header class="hero">
-    <a class="back" href="./ministerios.html">← Ministérios</a>
-    <div class="brand">
-      <div class="brand-icon" aria-hidden="true">🛡️</div>
-      <div><div class="eyebrow">Discipulado de Homens · C.A.R.A.</div><h1>#FORJADOS</h1><p class="subtitle">Homens sendo moldados à imagem de Cristo.</p></div>
-    </div>
-    <div class="motto">“Não competimos para parecer fortes. Caminhamos juntos para crescer em Cristo.”</div>
+  <header class="hero" aria-label="Banner #Forjados — Discipulado de Homens">
+    <a class="banner-hotspot" href="./index.html" aria-label="Voltar ao início" title="Voltar ao início"></a>
   </header>
 
   <main>
@@ -114,10 +110,8 @@ footer{color:#8fa4bb;text-align:center;font-size:11px;line-height:1.5;padding:0 
 
 <nav class="bottom" aria-label="Navegação principal">
   <a href="./index.html"><b>🏠</b>Início</a>
-  <a href="./agenda.html"><b>📅</b>Agenda</a>
-  <a class="active" href="./ministerios.html"><b>▦</b>Ministérios</a>
   <a href="./index.html#avisos"><b>🔔</b>Avisos</a>
-  <a href="./index.html#mais"><b>☰</b>Mais</a>
+  <a href="./ministerios.html" aria-label="Voltar à aba Ministérios"><b>☰</b>Mais</a>
 </nav>
 
 <script>

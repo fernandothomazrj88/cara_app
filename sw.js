@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v76-forjados-drive';
+const CACHE_VERSION = 'cara-app-v78-forjados-banner-padrao';
 
 const APP_SHELL = [
   './',
@@ -7,6 +7,7 @@ const APP_SHELL = [
   './louvor.html',
   './ministerios.html',
   './forjados.html',
+  './banner-forjados.png',
   './membros.html',
   './secretaria.html',
   './banner-secretaria.png',
