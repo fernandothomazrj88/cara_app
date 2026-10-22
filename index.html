@@ -859,6 +859,71 @@
     }
 
   
+    /* CALENDÁRIO DE ANIVERSARIANTES — C.A.R.A. */
+    .aniversariantes-calendario {
+      margin: 22px 0 12px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,0,.24);
+      border-radius: 22px;
+      background: linear-gradient(145deg, #071a30, #0b2039);
+      box-shadow: 0 12px 30px rgba(0,0,0,.14);
+      color: #fff;
+    }
+    .aniv-cabecalho {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #FFFF00;
+    }
+    .aniv-titulo { margin: 0; color: #fff; font-size: clamp(19px,2.4vw,25px); font-weight: 900; }
+    .aniv-subtitulo { margin: 6px 0 0; color: #FFFF00; font-size: 12px; line-height: 1.5; }
+    .aniv-navegacao { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+    .aniv-navegacao button {
+      width: 36px; height: 36px; border: 1px solid #365573; border-radius: 10px;
+      background: #102b45; color: #FFFF00; font-size: 23px; font-weight: 900; cursor: pointer;
+    }
+    .aniv-mes-label { min-width: 118px; text-align: center; color: #fff; font-size: 13px; font-weight: 900; text-transform: capitalize; }
+    .aniv-legenda { display: flex; align-items: center; gap: 7px; margin: 12px 0; color: #c9d8e7; font-size: 11px; }
+    .aniv-legenda-marcador { width: 9px; height: 9px; display: inline-block; border-radius: 50%; background: #FFFF00; box-shadow: 0 0 0 3px rgba(255,255,0,.12); }
+    .aniv-dias-semana, .aniv-grade { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 6px; }
+    .aniv-dias-semana { margin-bottom: 6px; }
+    .aniv-dias-semana span { padding: 5px 0; text-align: center; color: #9fb4c9; font-size: 10px; font-weight: 900; }
+    .aniv-dia {
+      position: relative; min-width: 0; min-height: 49px; padding: 7px 2px 8px; border: 1px solid #203d59;
+      border-radius: 11px; background: #0b2039; color: #fff; cursor: pointer; display: flex;
+      flex-direction: column; align-items: center; justify-content: flex-start; gap: 3px;
+    }
+    .aniv-dia-numero { font-size: 13px; font-weight: 800; line-height: 1.2; }
+    .aniv-dia-vazio { min-height: 49px; }
+    .aniv-dia.aniv-hoje { border-color: #9fb4c9; box-shadow: inset 0 0 0 1px rgba(255,255,255,.15); }
+    .aniv-dia.aniv-tem-aniversario { border-color: #FFFF00; background: linear-gradient(155deg,#25374c,#112c46); box-shadow: inset 0 0 0 1px rgba(255,255,0,.08); }
+    .aniv-dia.aniv-selecionado { outline: 2px solid #FFFF00; outline-offset: 1px; }
+    .aniv-dia-marcador { display: block; min-height: 11px; color: #FFFF00; font-size: 10px; line-height: 1; }
+    .aniv-contador { position: absolute; top: 3px; right: 4px; font-size: 9px; color: #FFFF00; font-weight: 900; }
+    .aniv-dia-detalhe { margin-top: 13px; padding: 12px 13px; border: 1px solid #24435e; border-radius: 13px; background: #10243D; }
+    .aniv-dia-detalhe h3 { margin: 0 0 7px; color: #FFFF00; font-size: 13px; }
+    .aniv-dia-detalhe p { margin: 0; color: #dbe7f2; font-size: 12px; line-height: 1.55; }
+    .aniv-dia-detalhe ul { margin: 0; padding-left: 18px; color: #fff; font-size: 13px; line-height: 1.75; }
+    .aniv-lista-mes { margin-top: 11px; border: 1px solid #24435e; border-radius: 13px; background: #0a1e33; overflow: hidden; }
+    .aniv-lista-mes summary { padding: 12px 13px; color: #fff; font-size: 12px; font-weight: 900; cursor: pointer; }
+    .aniv-lista-mes summary span { color: #FFFF00; }
+    .aniv-lista-corpo { padding: 0 13px 12px; }
+    .aniv-item-mes { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid rgba(255,255,255,.08); }
+    .aniv-item-dia { min-width: 43px; padding: 5px 4px; border-radius: 8px; background: #203a54; color: #FFFF00; text-align: center; font-size: 11px; font-weight: 900; }
+    .aniv-item-nomes { color: #fff; font-size: 12px; line-height: 1.5; }
+    .aniv-status { margin-top: 10px; color: #aebfd0; font-size: 11px; line-height: 1.5; }
+    @media (max-width: 600px) {
+      .aniversariantes-calendario { margin: 18px 0 12px; padding: 14px; border-radius: 18px; }
+      .aniv-cabecalho { flex-direction: column; align-items: stretch; }
+      .aniv-navegacao { justify-content: space-between; }
+      .aniv-mes-label { flex: 1; }
+      .aniv-dias-semana, .aniv-grade { gap: 4px; }
+      .aniv-dia, .aniv-dia-vazio { min-height: 43px; }
+      .aniv-dia { border-radius: 9px; padding-top: 6px; }
+    }
+
     /* IDENTIDADE INSTITUCIONAL C.A.R.A. */
     .identidade-cara {
       margin: 22px 0 12px;
@@ -970,9 +1035,6 @@
     .cadastro-complementar .cadastro-status{color:#CCFF00;font-size:12px;min-height:18px}
     .cadastro-complementar .campo-obrigatorio{color:#CCFF00}
     @media(max-width:390px){.cadastro-complementar .cadastro-grid{grid-template-columns:1fr}}
-
-/* Destino dos atalhos do menu inferior */
-#modulos { scroll-margin-top: 14px; }
 
 </style>
   <link rel="manifest" href="manifest.webmanifest">
@@ -1175,7 +1237,7 @@
         <div>
 
           <h3>
-            Estudo Bíblico
+            Ensino Bíblico
           </h3>
 
           <p>
@@ -1191,7 +1253,7 @@
       <!-- PREGAÇÕES -->
 
       <a
-        href="./pregacoes.html"
+        href="#"
         class="modulo pregacoes"
       >
 
@@ -1317,6 +1379,36 @@
     </section>
 
     <!-- IDENTIDADE INSTITUCIONAL C.A.R.A. -->
+    <!-- CALENDÁRIO DE ANIVERSARIANTES — VISÍVEL AOS MEMBROS AUTENTICADOS -->
+    <section class="aniversariantes-calendario" id="calendarioAniversariantes" aria-labelledby="anivTitulo">
+      <header class="aniv-cabecalho">
+        <div>
+          <h2 class="aniv-titulo" id="anivTitulo">🎂 Aniversariantes do mês</h2>
+          <p class="aniv-subtitulo">Vamos celebrar a vida da nossa família C.A.R.A.</p>
+        </div>
+        <div class="aniv-navegacao" aria-label="Navegar entre meses">
+          <button type="button" id="anivMesAnterior" aria-label="Mês anterior">‹</button>
+          <span class="aniv-mes-label" id="anivMesLabel">Carregando mês...</span>
+          <button type="button" id="anivMesSeguinte" aria-label="Próximo mês">›</button>
+        </div>
+      </header>
+      <div class="aniv-legenda"><span class="aniv-legenda-marcador"></span> Dia com aniversariante(s)</div>
+      <div class="aniv-dias-semana" aria-hidden="true">
+        <span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span>
+      </div>
+      <div class="aniv-grade" id="anivGrade" aria-live="polite"></div>
+      <div class="aniv-dia-detalhe" id="anivDiaDetalhe" aria-live="polite">
+        <h3 id="anivDiaTitulo">Aniversariantes do dia</h3>
+        <p id="anivDiaMensagem">Carregando aniversariantes...</p>
+        <ul id="anivDiaLista" hidden></ul>
+      </div>
+      <details class="aniv-lista-mes" id="anivListaMes" open>
+        <summary>Todos os aniversariantes deste mês (<span id="anivTotal">0</span>)</summary>
+        <div class="aniv-lista-corpo" id="anivListaCorpo"><p class="aniv-status">Carregando lista...</p></div>
+      </details>
+      <p class="aniv-status" id="anivStatus">Carregando aniversariantes da Base Central...</p>
+    </section>
+
     <section class="identidade-cara" aria-labelledby="identidadeCaraTitulo">
       <header class="identidade-cara-cabecalho">
         <h2 id="identidadeCaraTitulo">💛 Nossa Identidade</h2>
@@ -1569,33 +1661,6 @@
       if (avisos.classList.contains('aberto')) fechar(avisos, abrirAvisos);
     }
   });
-})();
-
-// Compatibilidade da navegação inferior usada pelos módulos:
-// index.html#avisos abre o painel real de avisos; index.html#mais leva à grade de módulos.
-(function compatibilidadeLinksMenuInferiorCARA(){
-  function tratarDestino(){
-    const destino = (window.location.hash || '').toLowerCase();
-    if (destino === '#avisos') {
-      const painel = document.getElementById('painelAvisosHome');
-      const fechar = document.getElementById('fecharAvisosHome');
-      const perfil = document.getElementById('painelPerfilHome');
-      if (painel) {
-        if (perfil) perfil.classList.remove('aberto');
-        painel.classList.add('aberto');
-        document.body.classList.add('home-modal-aberto');
-        if (fechar) fechar.focus();
-      }
-    } else if (destino === '#mais') {
-      const modulos = document.getElementById('modulos');
-      if (modulos) {
-        window.setTimeout(() => modulos.scrollIntoView({behavior:'smooth', block:'start'}), 80);
-      }
-    }
-  }
-  window.addEventListener('DOMContentLoaded', tratarDestino);
-  window.addEventListener('hashchange', tratarDestino);
-  if (document.readyState !== 'loading') tratarDestino();
 })();
 
 (function configurarFotoPerfilCARA(){
@@ -2088,6 +2153,135 @@ validarSessaoCARA();
 <script>
 const API_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 
+// CALENDÁRIO DE ANIVERSARIANTES — dados privados entregues somente a sessão autenticada.
+(function calendarioAniversariantesCARA(){
+  const raiz = document.getElementById('calendarioAniversariantes');
+  if (!raiz) return;
+  const grade = document.getElementById('anivGrade');
+  const labelMes = document.getElementById('anivMesLabel');
+  const detalheTitulo = document.getElementById('anivDiaTitulo');
+  const detalheMensagem = document.getElementById('anivDiaMensagem');
+  const detalheLista = document.getElementById('anivDiaLista');
+  const listaCorpo = document.getElementById('anivListaCorpo');
+  const totalEl = document.getElementById('anivTotal');
+  const statusEl = document.getElementById('anivStatus');
+  const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  const diasSemana = ['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+  const hoje = new Date();
+  let mesVisivel = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
+  let diaSelecionado = hoje.getDate();
+  let aniversariantes = [];
+  let carregamentoId = 0;
+
+  function escaparAniv(v){
+    return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function listarPorDia(dia){ return aniversariantes.filter(a => Number(a.dia) === Number(dia)); }
+  function formatarDia(dia){ return String(dia).padStart(2,'0') + '/' + String(mesVisivel.getMonth()+1).padStart(2,'0'); }
+  function renderizarDetalhe(){
+    const itens = listarPorDia(diaSelecionado);
+    const data = new Date(mesVisivel.getFullYear(), mesVisivel.getMonth(), diaSelecionado);
+    detalheTitulo.textContent = diasSemana[data.getDay()] + ', ' + String(diaSelecionado).padStart(2,'0') + ' de ' + meses[mesVisivel.getMonth()];
+    if (itens.length){
+      detalheMensagem.textContent = itens.length === 1 ? 'Hoje é dia de celebrar este membro da família C.A.R.A.:' : 'Vamos celebrar estes membros da família C.A.R.A.:';
+      detalheLista.innerHTML = itens.map(a => '<li>' + escaparAniv(a.nome) + '</li>').join('');
+      detalheLista.hidden = false;
+    } else {
+      detalheMensagem.textContent = 'Nenhum aniversariante nesta data. Toque em outro dia marcado no calendário.';
+      detalheLista.innerHTML = '';
+      detalheLista.hidden = true;
+    }
+    Array.from(grade.querySelectorAll('[data-dia]')).forEach(btn => {
+      btn.classList.toggle('aniv-selecionado', Number(btn.dataset.dia) === Number(diaSelecionado));
+    });
+  }
+  function renderizarListaMes(){
+    const agrupados = new Map();
+    aniversariantes.forEach(a => {
+      const dia = Number(a.dia);
+      if (!agrupados.has(dia)) agrupados.set(dia, []);
+      agrupados.get(dia).push(a.nome);
+    });
+    totalEl.textContent = String(aniversariantes.length);
+    if (!aniversariantes.length){
+      listaCorpo.innerHTML = '<p class="aniv-status">Não há aniversariantes cadastrados para este mês.</p>';
+      return;
+    }
+    listaCorpo.innerHTML = Array.from(agrupados.entries()).sort((a,b)=>a[0]-b[0]).map(([dia, nomes]) =>
+      '<div class="aniv-item-mes"><span class="aniv-item-dia">' + escaparAniv(formatarDia(dia)) + '</span><div class="aniv-item-nomes">' + nomes.map(escaparAniv).join('<br>') + '</div></div>'
+    ).join('');
+  }
+  function renderizarCalendario(){
+    const ano = mesVisivel.getFullYear(), mes = mesVisivel.getMonth();
+    labelMes.textContent = meses[mes] + ' de ' + ano;
+    const primeiroDia = new Date(ano, mes, 1).getDay();
+    const totalDias = new Date(ano, mes + 1, 0).getDate();
+    const itens = [];
+    for(let i=0;i<primeiroDia;i++) itens.push('<div class="aniv-dia-vazio" aria-hidden="true"></div>');
+    for(let dia=1; dia<=totalDias; dia++){
+      const tem = listarPorDia(dia);
+      const ehHoje = hoje.getFullYear()===ano && hoje.getMonth()===mes && hoje.getDate()===dia;
+      const classes = ['aniv-dia'];
+      if (tem.length) classes.push('aniv-tem-aniversario');
+      if (ehHoje) classes.push('aniv-hoje');
+      if (Number(diaSelecionado)===dia) classes.push('aniv-selecionado');
+      const nomes = tem.map(a=>a.nome).join(', ');
+      const label = String(dia) + (tem.length ? ': aniversariante(s) ' + nomes : '');
+      itens.push('<button type="button" class="' + classes.join(' ') + '" data-dia="' + dia + '" aria-label="' + escaparAniv(label) + '" title="' + escaparAniv(label) + '"><span class="aniv-dia-numero">' + dia + '</span><span class="aniv-dia-marcador">' + (tem.length ? '●' : '') + '</span>' + (tem.length > 1 ? '<span class="aniv-contador">' + tem.length + '</span>' : '') + '</button>');
+    }
+    grade.innerHTML = itens.join('');
+    renderizarDetalhe();
+  }
+  async function carregarMes(){
+    const id = ++carregamentoId;
+    const token = localStorage.getItem('cara_sessao_token');
+    statusEl.textContent = 'Carregando aniversariantes da Base Central...';
+    grade.innerHTML = '<div class="aniv-status" style="grid-column:1/-1">Carregando calendário...</div>';
+    listaCorpo.innerHTML = '<p class="aniv-status">Carregando lista...</p>';
+    try{
+      if (!token) throw new Error('Entre na C.A.R.A. para consultar os aniversariantes.');
+      const resp = await fetch(API_CARA, {
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify({acao:'listar-aniversariantes-mes',token:token,mes:mesVisivel.getMonth()+1,ano:mesVisivel.getFullYear()}),
+        credentials:'omit', cache:'no-store'
+      });
+      const dados = await resp.json();
+      if (id !== carregamentoId) return;
+      if (!dados || !dados.sucesso) throw new Error((dados && dados.mensagem) || 'Não foi possível consultar os aniversariantes.');
+      aniversariantes = Array.isArray(dados.aniversariantes) ? dados.aniversariantes : [];
+      aniversariantes.sort((a,b)=>Number(a.dia)-Number(b.dia)||String(a.nome).localeCompare(String(b.nome),'pt-BR'));
+      renderizarCalendario();
+      renderizarListaMes();
+      statusEl.textContent = 'Dados atualizados a partir dos cadastros ativos da Base Central. Apenas dia e mês são usados no calendário.';
+    }catch(erro){
+      if (id !== carregamentoId) return;
+      aniversariantes = [];
+      renderizarCalendario();
+      renderizarListaMes();
+      statusEl.textContent = erro && erro.message ? erro.message : 'Não foi possível carregar os aniversariantes. Tente atualizar a página.';
+    }
+  }
+  grade.addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-dia]');
+    if (!btn) return;
+    diaSelecionado = Number(btn.dataset.dia);
+    renderizarDetalhe();
+  });
+  document.getElementById('anivMesAnterior').addEventListener('click',()=>{
+    mesVisivel = new Date(mesVisivel.getFullYear(), mesVisivel.getMonth()-1, 1);
+    diaSelecionado = 1;
+    carregarMes();
+  });
+  document.getElementById('anivMesSeguinte').addEventListener('click',()=>{
+    mesVisivel = new Date(mesVisivel.getFullYear(), mesVisivel.getMonth()+1, 1);
+    diaSelecionado = 1;
+    carregarMes();
+  });
+  carregarMes();
+})();
+
+
 const card = document.getElementById('cardProximoEvento');
 const titulo = document.getElementById('eventoTitulo');
 const tipo = document.getElementById('eventoTipo');
@@ -2167,26 +2361,6 @@ if ('serviceWorker' in navigator) {
  if(list)list.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;const token=localStorage.getItem('cara_sessao_token');try{if(b.dataset.status){const r=await api({acao:'atualizar-solicitacao-acesso',token,id:b.dataset.id,status:b.dataset.status});alert(r.mensagem||'Atualizado');await load();}else if(b.dataset.gerar){location.href='./admin-convites.html?tipo='+encodeURIComponent(b.dataset.gerar);}}catch(err){alert('Não foi possível concluir a ação.');}});
 })();
 </script>
-</script>
-
-
-<script>
-(function menuInferiorCompatibilidadeCARA(){
- function executarDestino(){
-  const acao=(new URLSearchParams(window.location.search).get('abrir')||'').toLowerCase();
-  if(acao==='avisos'){
-   const painel=document.getElementById('painelAvisosHome');
-   const perfil=document.getElementById('painelPerfilHome');
-   if(perfil) perfil.classList.remove('aberto');
-   if(painel){painel.classList.add('aberto');document.body.classList.add('home-modal-aberto');}
-  } else if(acao==='mais'){
-   const modulos=document.getElementById('modulos');
-   if(modulos) modulos.scrollIntoView({behavior:'auto',block:'start'});
-  }
- }
- if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',executarDestino,{once:true});
- else executarDestino();
-})();
 </script>
 
 </body>
