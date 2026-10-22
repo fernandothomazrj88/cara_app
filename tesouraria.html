@@ -2,73 +2,147 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#051326">
 <title>C.A.R.A. — Tesouraria</title>
 <style>
-
-:root{--navy:#051326;--card:#10243d;--yellow:#ffff00;--white:#fff;--muted:#d6e0ed}
-*{box-sizing:border-box}
-body{margin:0;background:var(--navy);color:var(--white);font-family:Arial,Helvetica,sans-serif;padding-bottom:100px}
-.hero{min-height:245px;padding:28px clamp(18px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:24px;background:radial-gradient(circle at 75% 35%,#173f5c 0,#0b2038 38%,#051326 78%);border-bottom:4px solid var(--yellow)}
-.hero .eyebrow{color:var(--yellow);font-size:12px;letter-spacing:3px;font-weight:800}
-.hero h1{font-size:clamp(34px,5vw,64px);line-height:1;margin:10px 0}
-.hero p{color:#d9e5f2;margin:0;font-size:16px}
-.hero .symbol{font-size:clamp(64px,10vw,112px);filter:drop-shadow(0 8px 20px #0008)}
-.back{position:absolute;top:18px;left:18px;color:var(--yellow);text-decoration:none;border:1px solid var(--yellow);border-radius:12px;padding:10px 14px;font-weight:700;background:#051326d9}
-.verse{max-width:1180px;margin:18px auto 0;width:calc(100% - 32px);min-height:125px;border:1px solid #6e7900;border-bottom:4px solid var(--yellow);border-radius:18px;overflow:hidden;background:linear-gradient(90deg,#07182b,#102b42);display:grid;grid-template-columns:1.15fr .85fr}
-.verse-text{padding:22px 26px;display:flex;flex-direction:column;justify-content:center}
-.verse h2{font-size:clamp(19px,2.2vw,28px);margin:0 0 9px}
-.verse p{color:#eef4fb;font-style:italic;margin:0 0 8px;line-height:1.5}
-.verse strong{color:var(--yellow)}
-.verse-art{background:radial-gradient(circle at 70% 45%,#bb8533 0,#4b351e 15%,#12283a 45%,#07182b 75%);display:flex;align-items:center;justify-content:center;font-size:64px}
-.content{max-width:1180px;width:calc(100% - 32px);margin:24px auto}
-.panel{background:var(--card);border:1px solid #203851;border-radius:18px;padding:22px;margin-bottom:16px}
-.panel h2{margin:0 0 10px;color:var(--white)}
-.panel p{color:var(--muted);line-height:1.6;margin:0}
-.status{display:inline-block;color:var(--yellow);font-weight:800;font-size:12px;letter-spacing:1.5px;margin-bottom:8px}
-.quicknav{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:min(900px,calc(100% - 24px));background:#04191d;border:1px solid #1e3c3b;border-radius:22px 22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);padding:12px 8px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px #0004}
-.quicknav a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:#fff;font-size:12px}
-.quicknav .ico{font-size:23px}
-.quicknav a.active{color:var(--yellow);font-weight:800}
-@media(max-width:600px){.hero{min-height:190px;padding-top:62px}.verse{grid-template-columns:1fr}.verse-art{display:none}.verse-text{padding:18px}.content{margin-top:18px}.panel{padding:17px}}
-
-.hero{background:radial-gradient(circle at 75% 35%,#52646d55 0,#0b2038 42%,#051326 80%)}
+:root{--navy:#051326;--navy2:#071a2e;--card:#102943;--card2:#0a2036;--line:#254561;--yellow:#ffff00;--white:#fff;--muted:#d3e0ee;--green:#66e4a1;--red:#ff7777;--blue:#76baff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--navy);color:var(--white);font-family:Arial,Helvetica,sans-serif;padding:0 0 calc(96px + env(safe-area-inset-bottom));min-height:100vh}
+button,input,select,textarea{font:inherit}button,a,select{touch-action:manipulation}button{cursor:pointer}a{color:inherit}
+.hero{position:relative;width:100%;overflow:hidden;background:#051326;border-bottom:4px solid var(--yellow);line-height:0}.hero img{display:block;width:100%;height:auto;aspect-ratio:2171/724;object-fit:cover}.back-hotspot{position:absolute;left:1.55%;top:3.3%;width:8.9%;height:12.5%;border-radius:14px;text-decoration:none;color:transparent;line-height:normal;display:block}.back-hotspot:focus-visible{outline:3px solid var(--yellow);background:#05132622}
+.wrap{max-width:1280px;width:calc(100% - 28px);margin:0 auto}.topline{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:20px 0 15px;flex-wrap:wrap}.eyebrow{color:var(--yellow);font-size:11px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:7px}.page-title{font-size:clamp(24px,3vw,34px);line-height:1.12;margin:0 0 5px}.sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5}.actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid #385673;border-radius:13px;background:#0c233b;color:#fff;padding:11px 15px;font-weight:800;font-size:13px;min-height:42px}.btn:hover{border-color:var(--yellow)}.btn.primary{background:var(--yellow);border-color:var(--yellow);color:#051326}.btn.secondary{background:transparent}.btn.danger{border-color:#783b43;color:#ffc0c4}.btn:disabled{opacity:.5;cursor:not-allowed}.btn.small{padding:8px 10px;min-height:34px;font-size:12px;border-radius:10px}
+.auth-panel,.notice,.panel{background:var(--card2);border:1px solid #1c3a55;border-radius:18px;padding:18px;margin:16px 0}.auth-panel{padding:26px}.auth-panel h2,.panel h2{margin:0 0 8px;font-size:20px}.muted{color:var(--muted)}.notice{display:none;border-color:#6d5e19;color:#fff1a1;line-height:1.5}.notice.show{display:block}.auth-panel a{display:inline-block;margin-top:10px;color:var(--yellow);font-weight:800}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}.kpi{min-width:0;background:linear-gradient(145deg,#102c49,#091b30);border:1px solid #254561;border-radius:17px;padding:17px;box-shadow:0 8px 22px #0002}.kpi .label{color:var(--muted);font-size:12px;margin-bottom:9px}.kpi .value{font-size:clamp(19px,2.5vw,28px);font-weight:900;word-break:break-word}.kpi.income .value{color:var(--green)}.kpi.expense .value{color:#ffaaa9}.kpi.result .value{color:var(--yellow)}.kpi .hint{font-size:11px;color:#9db3ca;margin-top:8px;line-height:1.4}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:25px 0 12px}.section-head h2{margin:0;font-size:21px}.filters{display:grid;grid-template-columns:minmax(200px,1.3fr) minmax(145px,.8fr) minmax(145px,.8fr) minmax(140px,.7fr);gap:10px;margin:14px 0}.control{width:100%;background:#06182b;color:#fff;border:1px solid #31516d;border-radius:12px;padding:12px 13px;min-height:44px;outline:none}.control:focus{border-color:var(--yellow);box-shadow:0 0 0 2px #ffff0024}.control::placeholder{color:#839ab2}select.control{color-scheme:dark}.help{font-size:12px;color:#9fb3c8;line-height:1.5;display:block;margin-top:5px}.filehelp{border:1px dashed #31516d;border-radius:12px;padding:10px;color:var(--muted);font-size:12px;line-height:1.5;margin-top:8px}
+.entries{display:grid;gap:10px}.entry{display:grid;grid-template-columns:105px minmax(0,1fr) auto;gap:13px;align-items:center;background:linear-gradient(135deg,#102943,#081b30);border:1px solid #203e59;border-radius:15px;padding:14px}.datebox{color:var(--muted);font-size:12px;line-height:1.4}.datebox strong{display:block;color:#fff;font-size:14px;margin-bottom:4px}.entry-main{min-width:0}.entry-title{font-weight:800;font-size:15px;line-height:1.4;overflow-wrap:anywhere}.entry-meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:5px;color:#c1d1e2;font-size:12px}.pill{display:inline-flex;align-items:center;border:1px solid #35536e;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:900;letter-spacing:.3px;color:#d8e4f1}.pill.entrada{color:var(--green);border-color:#286c58;background:#0b332c}.pill.saida{color:#ffb1b1;border-color:#6e4148;background:#341d27}.pill.cancelado{color:#ffd979;border-color:#73652e;background:#332c13}.entry-value{font-weight:900;font-size:17px;text-align:right;white-space:nowrap}.entry-value.entrada{color:var(--green)}.entry-value.saida{color:#ffaaaa}.entry-actions{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px}.entry-right{min-width:115px}.empty{padding:32px 18px;border:1px dashed #31516d;border-radius:18px;text-align:center;color:var(--muted);line-height:1.6;background:#081b2e}.empty strong{display:block;color:#fff;font-size:16px;margin-bottom:8px}.empty .empty-icon{font-size:32px;margin-bottom:9px}.footnote{color:#8fa7bf;font-size:12px;line-height:1.5;margin:15px 0 0}.status-tag{font-size:10px;font-weight:800;color:#a6d5ff;letter-spacing:.6px}
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-start;justify-content:center;background:#000b;padding:22px 12px;overflow-y:auto}.modal.open{display:flex}.modal-card{width:min(800px,100%);background:#071a2e;border:1px solid #31516d;border-radius:20px;box-shadow:0 20px 70px #000a;overflow:hidden}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid #203a54}.modal-head h2{font-size:21px;margin:0}.close{width:38px;height:38px;border-radius:11px;background:#102b46;border:1px solid #294964;color:#fff;font-size:22px}.modal-body{padding:19px 20px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{min-width:0}.field.full{grid-column:1/-1}.field label{display:block;color:#eef4fc;font-weight:800;font-size:12px;margin-bottom:7px}.required{color:var(--yellow)}textarea.control{min-height:100px;resize:vertical}.form-actions{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap;margin-top:18px;padding-top:15px;border-top:1px solid #203a54}.message{display:none;border-radius:10px;padding:11px 12px;margin-top:12px;font-size:13px;line-height:1.45}.message.show{display:block}.message.ok{background:#0d352d;border:1px solid #27735d;color:#adffd4}.message.error{background:#391c24;border:1px solid #7b3d49;color:#ffd0d4}.progress{display:none;height:5px;background:#1a3650;border-radius:99px;overflow:hidden;margin-top:10px}.progress.show{display:block}.progress-bar{height:100%;width:0;background:var(--yellow);transition:width .2s}
+.quicknav{position:fixed;z-index:30;bottom:0;left:50%;transform:translateX(-50%);width:min(900px,100%);background:#04191d;border:1px solid #1e3c3b;border-bottom:0;border-radius:22px 22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);padding:11px 8px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px #0004}.quicknav a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:#fff;font-size:11px;min-height:41px}.quicknav .ico{font-size:22px;line-height:1}.quicknav a:focus-visible{outline:2px solid var(--yellow);border-radius:8px}.quicknav a:hover{color:var(--yellow)}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.entry{grid-template-columns:80px minmax(0,1fr)}.entry-right{grid-column:2;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-width:0}.entry-value{text-align:left}.topline{align-items:flex-start}}
+@media(max-width:560px){.wrap{width:calc(100% - 20px)}.topline{margin-top:16px}.actions{width:100%}.actions .btn{flex:1}.kpis{gap:8px}.kpi{padding:13px}.kpi .label{min-height:30px}.filters{grid-template-columns:1fr 1fr;gap:8px}.filters .search{grid-column:1/-1}.entry{grid-template-columns:1fr;gap:7px;padding:13px}.datebox strong{display:inline;margin-right:6px}.entry-right{grid-column:auto;border-top:1px solid #203e59;padding-top:10px}.entry-actions{margin-top:0}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.modal{padding:10px 8px}.modal-body{padding:15px}.modal-head{padding:14px 15px}.hero img{aspect-ratio:2171/724;min-height:125px;object-fit:cover}.back-hotspot{width:10%;height:14%;top:3%;left:1.5%}}
 </style>
 </head>
 <body>
-<a class="back" href="./index.html">← Início</a>
-<header class="hero">
-  <div>
-    <div class="eyebrow">C.A.R.A. · COMUNIDADE APOSTÓLICA RESTAURANDO ALMAS</div>
-    <h1>Tesouraria</h1>
-    <p>Transparência, responsabilidade e cuidado com os recursos.</p>
-  </div>
-  <div class="symbol" aria-hidden="true">💰</div>
+<header class="hero" aria-label="Banner da Tesouraria C.A.R.A.">
+  <img src="./banner-tesouraria.png" alt="Tesouraria C.A.R.A. — Organização, transparência e fidelidade. Provérbios 3:9.">
+  <a class="back-hotspot" href="./index.html" aria-label="Voltar ao início">Voltar ao início</a>
 </header>
-<section class="verse" aria-label="Fundamento bíblico">
-  <div class="verse-text">
-    <h2>Tudo seja feito com decência e ordem</h2>
-    <p>“Cada um contribua segundo propôs no coração; não com tristeza ou por necessidade, porque Deus ama a quem dá com alegria.”</p>
-    <strong>2 Coríntios 9:7</strong>
-  </div>
-  <div class="verse-art" aria-hidden="true">💰</div>
-</section>
-<main class="content">
-  <section class="panel">
-    <span class="status">ACESSO RESTRITO · ESTRUTURA INICIAL</span>
-    <h2>Tesouraria</h2>
-    <p>A Tesouraria será destinada ao registro de entradas, saídas, comprovantes e relatórios financeiros. Nenhum dado financeiro é exibido nesta versão. Antes de registrar valores, vamos integrar o módulo à Base Central e validar as permissões de acesso.</p>
+<main class="wrap">
+  <section id="authPanel" class="auth-panel" aria-live="polite">
+    <span class="status-tag">ÁREA FINANCEIRA RESTRITA</span>
+    <h2 id="authTitle">Verificando seu acesso…</h2>
+    <p id="authText" class="muted">Os dados financeiros só são carregados após validar sua sessão e permissão TESOURARIA.</p>
+    <a id="loginLink" href="./login.html" hidden>Entrar na C.A.R.A. →</a>
   </section>
-  <section class="panel">
-    <h2>Próximas etapas</h2>
-    <p>Este módulo já está conectado à navegação da Home. A próxima etapa é integrar os dados e as permissões à Base Central da C.A.R.A., sem criar cadastros duplicados nem expor informações restritas.</p>
+  <section id="appArea" hidden>
+    <div class="topline">
+      <div><div class="eyebrow">GESTÃO FINANCEIRA · C.A.R.A. 3.0</div><h1 class="page-title">Tesouraria</h1><p class="sub">Entradas, saídas, comprovantes e prestação de contas.</p></div>
+      <div class="actions"><button id="btnNew" class="btn primary" type="button" hidden onclick="openNewEntry()">＋ Novo lançamento</button><button class="btn secondary" type="button" onclick="exportCSV()">⇩ Exportar CSV</button><button class="btn secondary" type="button" onclick="loadEntries()">↻ Atualizar</button></div>
+    </div>
+    <div id="notice" class="notice" role="status"></div>
+    <div class="kpis" aria-label="Resumo do período">
+      <article class="kpi income"><div class="label">Entradas no período</div><div id="kpiIncome" class="value">R$ 0,00</div><div class="hint">Somente lançamentos ativos.</div></article>
+      <article class="kpi expense"><div class="label">Saídas no período</div><div id="kpiExpense" class="value">R$ 0,00</div><div class="hint">Somente lançamentos ativos.</div></article>
+      <article class="kpi result"><div class="label">Resultado do período</div><div id="kpiResult" class="value">R$ 0,00</div><div class="hint">Entradas menos saídas registradas.</div></article>
+      <article class="kpi"><div class="label">Lançamentos ativos</div><div id="kpiCount" class="value">0</div><div class="hint">No período selecionado.</div></article>
+    </div>
+    <section class="panel">
+      <div class="section-head" style="margin-top:0"><div><h2>Lançamentos financeiros</h2><p class="sub">Filtre por mês, tipo ou descrição e abra os comprovantes vinculados.</p></div><span id="resultCount" class="status-tag">0 REGISTROS</span></div>
+      <div class="filters">
+        <input id="searchFilter" class="control search" placeholder="Buscar descrição, categoria ou referência…" aria-label="Buscar lançamentos">
+        <input id="monthFilter" class="control" type="month" aria-label="Filtrar por mês">
+        <select id="typeFilter" class="control" aria-label="Filtrar por tipo"><option value="">Entradas e saídas</option><option value="ENTRADA">Somente entradas</option><option value="SAIDA">Somente saídas</option></select>
+        <select id="statusFilter" class="control" aria-label="Filtrar status"><option value="ATIVO">Somente ativos</option><option value="TODOS">Todos os status</option><option value="CANCELADO">Somente cancelados</option></select>
+      </div>
+      <div id="entriesList" class="entries"><div class="empty"><div class="empty-icon">⌛</div>Carregando lançamentos…</div></div>
+      <p class="footnote">Este painel soma os lançamentos cadastrados na Base Central. Não representa conciliação bancária nem saldo bancário confirmado. Comprovantes e dados financeiros são restritos a usuários autorizados.</p>
+    </section>
   </section>
 </main>
-<nav class="quicknav" aria-label="Acesso rápido">
-  <a href="./index.html" class="active"><span class="ico">🏠</span>Início</a>
-  <a href="./index.html#avisos" onclick="location.href='./index.html';"><span class="ico">🔔</span>Avisos</a>
-  <a href="./index.html#mais" onclick="location.href='./index.html';"><span class="ico">☰</span>Mais</a>
+<nav class="quicknav" aria-label="Navegação principal">
+  <a href="./index.html"><span class="ico">🏠</span>Início</a>
+  <a href="./index.html#avisos"><span class="ico">🔔</span>Avisos</a>
+  <a href="./index.html#mais"><span class="ico">☰</span>Mais</a>
 </nav>
+<div id="entryModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+ <div class="modal-card">
+  <div class="modal-head"><h2 id="formTitle">Novo lançamento</h2><button class="close" type="button" onclick="closeForm()" aria-label="Fechar">×</button></div>
+  <div class="modal-body">
+   <form id="entryForm" onsubmit="saveEntry(event)">
+    <div class="form-grid">
+     <div class="field"><label for="entryDate">Data <span class="required">*</span></label><input id="entryDate" class="control" type="date" required></div>
+     <div class="field"><label for="entryType">Tipo <span class="required">*</span></label><select id="entryType" class="control" required onchange="updateCategoryOptions()"><option value="ENTRADA">Entrada</option><option value="SAIDA">Saída</option></select></div>
+     <div class="field"><label for="entryCategory">Categoria <span class="required">*</span></label><select id="entryCategory" class="control" required></select></div>
+     <div class="field"><label for="entryValue">Valor (R$) <span class="required">*</span></label><input id="entryValue" class="control" type="number" inputmode="decimal" min="0.01" max="999999999" step="0.01" placeholder="0,00" required></div>
+     <div class="field full"><label for="entryDescription">Descrição <span class="required">*</span></label><input id="entryDescription" class="control" maxlength="500" placeholder="Ex.: Oferta do culto de domingo" required></div>
+     <div class="field"><label for="entryMethod">Forma de pagamento</label><select id="entryMethod" class="control"><option value="">Não informado</option><option>Dinheiro</option><option>PIX</option><option>Transferência</option><option>Cartão</option><option>Boleto</option><option>Outro</option></select></div>
+     <div class="field"><label for="entryReference">Referência / observação</label><input id="entryReference" class="control" maxlength="500" placeholder="Opcional"></div>
+     <div class="field full"><label for="entryReceipt">Comprovante (opcional)</label><input id="entryReceipt" class="control" type="file" accept="application/pdf,image/jpeg,image/png"><span class="help">PDF, JPG ou PNG · até 4 MB. O arquivo será guardado de forma privada no Google Drive.</span><div class="filehelp">Os comprovantes não são públicos. A equipe autorizada também precisa ter acesso à pasta de comprovantes no Drive para abrir os arquivos.</div></div>
+    </div>
+    <div id="formMessage" class="message" role="status"></div><div id="uploadProgress" class="progress"><div id="uploadProgressBar" class="progress-bar"></div></div>
+    <div class="form-actions"><button class="btn secondary" type="button" onclick="closeForm()">Cancelar</button><button id="btnSaveEntry" class="btn primary" type="submit">Salvar lançamento</button></div>
+   </form>
+  </div>
+ </div>
+</div>
+<script>
+const API = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+const $ = id => document.getElementById(id);
+const S = { token:'', canView:false, canCreate:false, canEdit:false, rows:[], filtered:[], editingId:'', saving:false };
+const CATS = {
+  ENTRADA: ['Dízimos','Ofertas','Doações','Campanhas','Contribuições','Eventos','Outras entradas'],
+  SAIDA: ['Estrutura e manutenção','Água e energia','Internet e comunicação','Materiais e equipamentos','Eventos e cultos','Ação social','Transporte','Taxas bancárias','Outras despesas']
+};
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
+async function postCentral(payload){const r=await fetch(API,{method:'POST',credentials:'omit',redirect:'follow',cache:'no-store',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}
+function money(v){return Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+function localISODate(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function currentMonth(){return localISODate().slice(0,7)}
+function dateText(v){if(!v)return 'Sem data';const s=String(v);const m=s.match(/^(\d{4})-(\d{2})-(\d{2})/);return m?`${m[3]}/${m[2]}/${m[1]}`:s}
+function showNotice(msg,isError=false){$('notice').textContent=msg;$('notice').classList.toggle('show',!!msg);$('notice').style.borderColor=isError?'#7b3d49':'#6d5e19';$('notice').style.color=isError?'#ffd0d4':'#fff1a1'}
+function authMessage(title,text,login=false){$('authTitle').textContent=title;$('authText').textContent=text;$('loginLink').hidden=!login}
+async function init(){
+  S.token=localStorage.getItem('cara_sessao_token')||'';
+  if(!S.token){authMessage('Acesso restrito à Tesouraria','Entre na C.A.R.A. com sua conta autorizada para consultar dados financeiros.',true);return}
+  try{
+    const sess=await postCentral({acao:'sessao',token:S.token});
+    if(!sess.sucesso||!sess.autenticado){authMessage('Sessão expirada','Entre novamente na C.A.R.A. para continuar.',true);return}
+    const checks=await Promise.all(['VISUALIZAR','CRIAR','EDITAR'].map(a=>postCentral({acao:'autorizar',token:S.token,modulo:'TESOURARIA',acaoPermissao:a})));
+    S.canView=!!checks[0].autorizado;S.canCreate=!!checks[1].autorizado;S.canEdit=!!checks[2].autorizado;
+    if(!S.canView){authMessage('Você não tem permissão para visualizar a Tesouraria','Peça à liderança para conceder a permissão TESOURARIA / VISUALIZAR. Nenhum dado financeiro foi carregado.');return}
+    $('authPanel').hidden=true;$('appArea').hidden=false;$('btnNew').hidden=!S.canCreate;
+    $('monthFilter').value=currentMonth();updateCategoryOptions();bindFilters();await loadEntries();
+  }catch(e){authMessage('Não foi possível validar o acesso','Confira a conexão e a implantação da API. Nenhum dado financeiro foi exibido.');showNotice('Falha na validação da sessão: '+(e.message||e),true)}
+}
+function bindFilters(){['searchFilter','monthFilter','typeFilter','statusFilter'].forEach(id=>$(id).addEventListener(id==='searchFilter'?'input':'change',renderEntries))}
+async function loadEntries(){if(!S.canView)return;$('entriesList').innerHTML='<div class="empty"><div class="empty-icon">⌛</div>Carregando lançamentos…</div>';try{const r=await postCentral({acao:'listar-lancamentos-tesouraria',token:S.token});if(!r.sucesso)throw new Error(r.mensagem||'Não foi possível consultar a Tesouraria.');S.rows=Array.isArray(r.lancamentos)?r.lancamentos:[];renderEntries();showNotice('')}catch(e){$('entriesList').innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><strong>Falha ao carregar os lançamentos</strong>${esc(e.message||e)}</div>`;showNotice(e.message||'Falha ao consultar dados financeiros.',true)}}
+function renderEntries(){
+  const month=$('monthFilter').value,type=$('typeFilter').value,status=$('statusFilter').value,search=$('searchFilter').value.trim().toLocaleLowerCase('pt-BR');
+  const all=S.rows.filter(x=>{const hay=[x.descricao,x.categoria,x.referencia,x.formaPagamento,x.id].join(' ').toLocaleLowerCase('pt-BR');return (!month||String(x.data||'').slice(0,7)===month)&&(!type||x.tipo===type)&&(status==='TODOS'||(x.status||'ATIVO')===status)&&(!search||hay.includes(search))});
+  S.filtered=all;
+  const active=all.filter(x=>(x.status||'ATIVO')==='ATIVO');const inc=active.filter(x=>x.tipo==='ENTRADA').reduce((s,x)=>s+Number(x.valor||0),0);const out=active.filter(x=>x.tipo==='SAIDA').reduce((s,x)=>s+Number(x.valor||0),0);
+  $('kpiIncome').textContent=money(inc);$('kpiExpense').textContent=money(out);$('kpiResult').textContent=money(inc-out);$('kpiResult').style.color=inc-out<0?'#ffaaaa':'var(--yellow)';$('kpiCount').textContent=String(active.length);$('resultCount').textContent=`${all.length} REGISTRO(S)`;
+  if(!all.length){$('entriesList').innerHTML=`<div class="empty"><div class="empty-icon">🧾</div><strong>${S.rows.length?'Nenhum lançamento corresponde aos filtros':'Nenhum lançamento cadastrado ainda'}</strong>${S.rows.length?'Experimente limpar a busca ou escolher outro período.':'Quando um lançamento autorizado for registrado, ele aparecerá aqui. Não há valores de demonstração nesta tela.'}</div>`;return}
+  $('entriesList').innerHTML=all.map(x=>{const canceled=(x.status||'ATIVO')==='CANCELADO';const sign=x.tipo==='ENTRADA'?'+':'−';const cls=x.tipo==='ENTRADA'?'entrada':'saida';const receipt=x.urlComprovante?`<a href="${esc(x.urlComprovante)}" target="_blank" rel="noopener noreferrer">📎 ${esc(x.nomeComprovante||'Comprovante')}</a>`:'';return `<article class="entry"><div class="datebox"><strong>${esc(dateText(x.data))}</strong>${esc(x.formaPagamento||'Forma não informada')}</div><div class="entry-main"><div class="entry-title">${esc(x.descricao)}</div><div class="entry-meta"><span class="pill ${cls}">${x.tipo==='ENTRADA'?'ENTRADA':'SAÍDA'}</span><span class="pill">${esc(x.categoria)}</span>${canceled?'<span class="pill cancelado">CANCELADO</span>':''}${x.referencia?`<span>${esc(x.referencia)}</span>`:''}${receipt?`<span>${receipt}</span>`:''}</div></div><div class="entry-right"><div class="entry-value ${cls}">${sign} ${money(x.valor)}</div><div class="entry-actions">${S.canEdit?`<button class="btn small secondary" onclick="openEditEntry('${esc(x.id)}')">Editar</button>${canceled?`<button class="btn small" onclick="changeStatus('${esc(x.id)}','ATIVO')">Reativar</button>`:`<button class="btn small danger" onclick="changeStatus('${esc(x.id)}','CANCELADO')">Cancelar</button>`}`:''}</div></div></article>`}).join('');
+}
+function updateCategoryOptions(selected=''){const t=$('entryType').value;const cats=CATS[t]||[];$('entryCategory').innerHTML=cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');if(selected&&cats.includes(selected))$('entryCategory').value=selected}
+function openNewEntry(){if(!S.canCreate)return;S.editingId='';$('entryForm').reset();$('formTitle').textContent='Novo lançamento';$('entryDate').value=localISODate();$('entryType').value='ENTRADA';updateCategoryOptions();$('formMessage').className='message';$('formMessage').textContent='';$('uploadProgress').classList.remove('show');$('btnSaveEntry').textContent='Salvar lançamento';$('entryModal').classList.add('open');document.body.style.overflow='hidden'}
+function openEditEntry(id){if(!S.canEdit)return;const x=S.rows.find(y=>y.id===id);if(!x)return;S.editingId=id;$('entryForm').reset();$('formTitle').textContent='Editar lançamento';$('entryDate').value=x.data;$('entryType').value=x.tipo;updateCategoryOptions(x.categoria);$('entryValue').value=Number(x.valor).toFixed(2);$('entryDescription').value=x.descricao;$('entryMethod').value=x.formaPagamento||'';$('entryReference').value=x.referencia||'';$('entryReceipt').value='';$('formMessage').className='message';$('formMessage').textContent='';$('uploadProgress').classList.remove('show');$('btnSaveEntry').textContent='Salvar alterações';$('entryModal').classList.add('open');document.body.style.overflow='hidden'}
+function closeForm(){$('entryModal').classList.remove('open');document.body.style.overflow=''}
+function formMessage(text,ok=false){$('formMessage').textContent=text;$('formMessage').className='message show '+(ok?'ok':'error')}
+function setProgress(p){$('uploadProgress').classList.add('show');$('uploadProgressBar').style.width=Math.max(0,Math.min(100,p))+'%'}
+function readFileBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',').pop());reader.onerror=()=>reject(new Error('Não foi possível ler o comprovante selecionado.'));reader.readAsDataURL(file)})}
+async function saveEntry(event){event.preventDefault();if(S.saving)return;if(S.editingId?!S.canEdit:!S.canCreate)return;S.saving=true;$('btnSaveEntry').disabled=true;try{
+  const file=$('entryReceipt').files[0];let comprobante;
+  if(file){if(file.size>4*1024*1024)throw new Error('O comprovante deve ter até 4 MB.');const allowed=['application/pdf','image/jpeg','image/png'];if(!allowed.includes(file.type))throw new Error('Use um comprovante PDF, JPG ou PNG.');formMessage('Preparando o lançamento e o comprovante…',true);setProgress(15);comprobante={nome:file.name,mime:file.type,base64:await readFileBase64(file)}}
+  const dados={id:S.editingId||'',data:$('entryDate').value,tipo:$('entryType').value,categoria:$('entryCategory').value,descricao:$('entryDescription').value.trim(),valor:Number($('entryValue').value),formaPagamento:$('entryMethod').value,referencia:$('entryReference').value.trim()};if(comprobante)dados.comprovante=comprobante;
+  setProgress(file?45:70);const r=await postCentral({acao:'salvar-lancamento-tesouraria',token:S.token,dados});if(!r.sucesso)throw new Error(r.mensagem||'Não foi possível salvar o lançamento.');setProgress(100);formMessage(r.mensagem||'Lançamento salvo.',true);await loadEntries();setTimeout(closeForm,700);
+ }catch(e){formMessage(e.message||'Erro ao salvar o lançamento.');}finally{S.saving=false;$('btnSaveEntry').disabled=false}}
+async function changeStatus(id,status){if(!S.canEdit)return;const x=S.rows.find(y=>y.id===id);if(!x)return;if(status==='CANCELADO'&&!confirm('Cancelar este lançamento? Ele permanecerá no histórico, mas deixará de compor os totais.'))return;try{const r=await postCentral({acao:'atualizar-status-lancamento-tesouraria',token:S.token,id,status});if(!r.sucesso)throw new Error(r.mensagem||'Não foi possível atualizar o status.');showNotice(r.mensagem||'Status atualizado.');await loadEntries()}catch(e){showNotice(e.message||'Erro ao atualizar status.',true)}}
+function csvCell(v){const s=String(v??'');return '"'+s.replace(/"/g,'""')+'"'}
+function exportCSV(){if(!S.canView)return;const rows=S.filtered;if(!rows.length){showNotice('Não há lançamentos no filtro selecionado para exportar.');return}const header=['ID','Data','Tipo','Categoria','Descrição','Valor (R$)','Forma de pagamento','Referência','Status','Comprovante'];const lines=[header,...rows.map(x=>[x.id,x.data,x.tipo,x.categoria,x.descricao,Number(x.valor||0).toFixed(2).replace('.',','),x.formaPagamento,x.referencia,x.status,x.urlComprovante])].map(row=>row.map(csvCell).join(';'));const blob=new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='CARA-Tesouraria-'+( $('monthFilter').value||'todos-periodos')+'.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
+$('entryModal').addEventListener('click',e=>{if(e.target===$('entryModal'))closeForm()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeForm()});$('entryType').addEventListener('change',()=>updateCategoryOptions());
+init();
+</script>
 </body>
 </html>
