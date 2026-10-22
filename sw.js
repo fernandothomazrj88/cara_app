@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v78-forjados-banner-padrao';
+const CACHE_VERSION = 'cara-app-v79-forjados-nomes-ajustados';
 
 const APP_SHELL = [
   './',
