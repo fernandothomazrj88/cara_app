@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v79-forjados-nomes-ajustados';
+const CACHE_VERSION = 'cara-app-v82-ministerios-limpeza-menu';
 
 const APP_SHELL = [
   './',
@@ -28,7 +28,6 @@ const APP_SHELL = [
   './banner-fundamento-agenda.png',
   './banner-ministerios.png',
   './banner-membros.png',
-  './banner-fundamento-ministerios.png',
   './banner-midia.png',
   './banner-estudos.png',
   './icon-192.png',
