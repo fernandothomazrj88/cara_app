@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v92-secretaria-pautas-flow';
+const CACHE_VERSION = 'cara-app-v94-home-event-details';
 
 const APP_SHELL = [
   './',

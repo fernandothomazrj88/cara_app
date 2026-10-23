@@ -711,6 +711,37 @@
       background: rgba(0,0,0,.72);
     }
     .home-overlay.aberto { display: flex; }
+    .home-overlay-evento { align-items: center; }
+    .home-painel-evento { width: min(620px, 100%); max-height: min(82vh, 760px); }
+    .evento-detalhe-resumo {
+      display: flex; align-items: center; gap: 13px; padding: 14px;
+      border: 1px solid #25435d; border-radius: 16px;
+      background: linear-gradient(135deg, #102b45, #0b2037); margin-bottom: 14px;
+    }
+    .evento-detalhe-icone {
+      width: 54px; height: 54px; flex: 0 0 54px; display: grid; place-items: center;
+      border-radius: 15px; background: #CCFF00; color: #051326; font-size: 27px;
+    }
+    .evento-detalhe-resumo h3 { margin: 0 0 5px; color: #fff; font-size: 20px; line-height: 1.25; overflow-wrap: anywhere; }
+    .evento-detalhe-tipo { color: #CCFF00; font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+    .evento-detalhe-grade { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .evento-detalhe-item { min-width: 0; padding: 12px; border: 1px solid #25435d; border-radius: 12px; background: #061629; }
+    .evento-detalhe-item[hidden] { display: none !important; }
+    .evento-detalhe-item strong { display: block; margin-bottom: 5px; color: #CCFF00; font-size: 10px; font-weight: 900; letter-spacing: .9px; text-transform: uppercase; }
+    .evento-detalhe-item span, .evento-detalhe-item p { display: block; margin: 0; color: #fff; font-size: 14px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .evento-detalhe-item.descricao { grid-column: 1 / -1; }
+    .evento-detalhe-aviso { display: none; margin-top: 12px; padding: 12px; border: 1px solid #34516d; border-radius: 12px; color: #dce6ef; background: #0b2037; font-size: 13px; line-height: 1.5; }
+    .evento-detalhe-acoes { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 16px; }
+    .evento-detalhe-acoes a, .evento-detalhe-acoes button { min-height: 42px; padding: 11px 16px; border-radius: 11px; font: inherit; font-size: 13px; font-weight: 850; cursor: pointer; text-decoration: none; text-align: center; }
+    .evento-detalhe-fechar { border: 1px solid #365573; background: #102b45; color: #fff; }
+    .evento-detalhe-agenda { border: 0; background: #CCFF00; color: #051326; }
+    @media (max-width: 520px) {
+      .home-painel-evento { padding: 14px; max-height: min(84vh, 760px); }
+      .evento-detalhe-grade { grid-template-columns: 1fr; }
+      .evento-detalhe-item.descricao { grid-column: auto; }
+      .evento-detalhe-acoes { flex-direction: column-reverse; }
+      .evento-detalhe-acoes a, .evento-detalhe-acoes button { width: 100%; box-sizing: border-box; }
+    }
     .home-overlay.aberto .home-painel-perfil{align-self:center;margin:auto 0;}
     .home-painel {
       width: min(560px, 100%);
@@ -1604,6 +1635,34 @@
   </section>
 </div>
 
+<div class="home-overlay home-overlay-evento" id="painelDetalhesEvento" role="dialog" aria-modal="true" aria-labelledby="tituloPainelDetalhesEvento">
+  <section class="home-painel home-painel-evento">
+    <header class="home-painel-topo">
+      <h2 id="tituloPainelDetalhesEvento">Detalhes do evento</h2>
+      <button type="button" class="home-fechar" id="fecharDetalhesEvento" aria-label="Fechar detalhes do evento">×</button>
+    </header>
+    <div class="evento-detalhe-resumo">
+      <div class="evento-detalhe-icone" id="detEventoIcone" aria-hidden="true">📅</div>
+      <div style="min-width:0">
+        <h3 id="detEventoTitulo">Evento da C.A.R.A.</h3>
+        <div class="evento-detalhe-tipo" id="detEventoTipo">C.A.R.A.</div>
+      </div>
+    </div>
+    <div class="evento-detalhe-grade">
+      <div class="evento-detalhe-item" id="detEventoDataItem"><strong>Data</strong><span id="detEventoData">A definir</span></div>
+      <div class="evento-detalhe-item" id="detEventoHoraItem"><strong>Horário</strong><span id="detEventoHora">A definir</span></div>
+      <div class="evento-detalhe-item" id="detEventoModalidadeItem" hidden><strong>Modalidade</strong><span id="detEventoModalidade"></span></div>
+      <div class="evento-detalhe-item" id="detEventoLocalItem"><strong>Local</strong><span id="detEventoLocal">A definir</span></div>
+      <div class="evento-detalhe-item descricao" id="detEventoDescricaoItem"><strong>Descrição</strong><p id="detEventoDescricao"></p></div>
+    </div>
+    <div class="evento-detalhe-aviso" id="detEventoAviso" role="status"></div>
+    <div class="evento-detalhe-acoes">
+      <button type="button" class="evento-detalhe-fechar" id="fecharDetalhesEventoRodape">Fechar</button>
+      <a class="evento-detalhe-agenda" href="./agenda.html">Abrir Agenda <span aria-hidden="true">›</span></a>
+    </div>
+  </section>
+</div>
+
 
 <script>
 (function configurarAcessoRapidoHomeCARA(){
@@ -2289,6 +2348,11 @@ const data = document.getElementById('eventoData');
 const hora = document.getElementById('eventoHora');
 const local = document.getElementById('eventoLocal');
 const icone = document.getElementById('eventoIcone');
+const botaoDetalhesEvento = document.getElementById('eventoBotao');
+const painelDetalhesEvento = document.getElementById('painelDetalhesEvento');
+const fecharDetalhesEventoBtn = document.getElementById('fecharDetalhesEvento');
+const fecharDetalhesEventoRodapeBtn = document.getElementById('fecharDetalhesEventoRodape');
+let eventoAtualCARA = null;
 
 function formatarDataCARA(dataISO) {
   if (!dataISO) return 'Data a definir';
@@ -2309,6 +2373,94 @@ function iconeEventoCARA(tipoEvento) {
   return '📅';
 }
 
+function formatarDataDetalheEventoCARA(dataISO) {
+  if (!dataISO) return 'Data a definir';
+  const partes = String(dataISO).split('-');
+  if (partes.length !== 3) return String(dataISO);
+  const ano = Number(partes[0]), mes = Number(partes[1]) - 1, dia = Number(partes[2]);
+  const d = new Date(ano, mes, dia);
+  const dias = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+  const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  return dias[d.getDay()] + ', ' + dia + ' de ' + meses[mes] + ' de ' + ano;
+}
+
+function preencherCampoEventoCARA(itemId, valorId, valor, fallback) {
+  const item = document.getElementById(itemId);
+  const el = document.getElementById(valorId);
+  const limpo = String(valor == null ? '' : valor).trim();
+  item.hidden = !limpo && !fallback;
+  if (!item.hidden) el.textContent = limpo || fallback || '';
+}
+
+function abrirDetalhesEventoCARA() {
+  if (!painelDetalhesEvento) return;
+  const evento = eventoAtualCARA;
+  const aviso = document.getElementById('detEventoAviso');
+  const descricaoItem = document.getElementById('detEventoDescricaoItem');
+  const modalidade = evento ? String(evento.modalidade || '').trim() : '';
+  aviso.style.display = 'none';
+  aviso.textContent = '';
+
+  if (evento) {
+    document.getElementById('detEventoIcone').textContent = iconeEventoCARA(evento.tipo);
+    document.getElementById('detEventoTitulo').textContent = evento.titulo || 'Próximo evento';
+    document.getElementById('detEventoTipo').textContent = evento.tipo || 'Evento da C.A.R.A.';
+    document.getElementById('detEventoData').textContent = formatarDataDetalheEventoCARA(evento.data);
+    const horaInicio = String(evento.horaInicio || '').trim();
+    const horaFim = String(evento.horaFim || '').trim();
+    document.getElementById('detEventoHora').textContent = horaInicio && horaFim ? horaInicio + ' – ' + horaFim : (horaInicio || 'Horário a definir');
+    document.getElementById('detEventoDataItem').hidden = !evento.data;
+    document.getElementById('detEventoHoraItem').hidden = !horaInicio && !horaFim;
+    document.getElementById('detEventoModalidade').textContent = modalidade;
+    document.getElementById('detEventoModalidadeItem').hidden = !modalidade;
+    document.getElementById('detEventoLocal').textContent = String(evento.local || '').trim() || (modalidade.toUpperCase() === 'ONLINE' ? 'Online' : 'Local a definir');
+    document.getElementById('detEventoLocalItem').hidden = !String(evento.local || '').trim() && modalidade.toUpperCase() !== 'ONLINE';
+    const descricao = String(evento.descricao || '').trim();
+    document.getElementById('detEventoDescricao').textContent = descricao || 'Nenhuma descrição adicional foi cadastrada para este evento.';
+    descricaoItem.hidden = false;
+  } else {
+    document.getElementById('detEventoIcone').textContent = '📅';
+    document.getElementById('detEventoTitulo').textContent = 'Detalhes do evento indisponíveis';
+    document.getElementById('detEventoTipo').textContent = 'Agenda C.A.R.A.';
+    document.getElementById('detEventoDataItem').hidden = true;
+    document.getElementById('detEventoHoraItem').hidden = true;
+    document.getElementById('detEventoModalidadeItem').hidden = true;
+    document.getElementById('detEventoLocalItem').hidden = true;
+    descricaoItem.hidden = true;
+    aviso.textContent = 'Não foi possível carregar os dados do evento agora. Abra a Agenda para consultar a programação atualizada.';
+    aviso.style.display = 'block';
+  }
+  painelDetalhesEvento.classList.add('aberto');
+  document.body.classList.add('home-modal-aberto');
+  if (fecharDetalhesEventoBtn) fecharDetalhesEventoBtn.focus();
+}
+
+function fecharPainelDetalhesEventoCARA() {
+  if (!painelDetalhesEvento) return;
+  painelDetalhesEvento.classList.remove('aberto');
+  if (!document.querySelector('.home-overlay.aberto')) document.body.classList.remove('home-modal-aberto');
+  if (botaoDetalhesEvento) botaoDetalhesEvento.focus();
+}
+
+if (botaoDetalhesEvento) {
+  botaoDetalhesEvento.addEventListener('click', function(event) {
+    event.preventDefault();
+    abrirDetalhesEventoCARA();
+  });
+}
+if (fecharDetalhesEventoBtn) fecharDetalhesEventoBtn.addEventListener('click', fecharPainelDetalhesEventoCARA);
+if (fecharDetalhesEventoRodapeBtn) fecharDetalhesEventoRodapeBtn.addEventListener('click', fecharPainelDetalhesEventoCARA);
+if (painelDetalhesEvento) {
+  painelDetalhesEvento.addEventListener('click', function(event) {
+    if (event.target === painelDetalhesEvento) fecharPainelDetalhesEventoCARA();
+  });
+}
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape' && painelDetalhesEvento && painelDetalhesEvento.classList.contains('aberto')) {
+    fecharPainelDetalhesEventoCARA();
+  }
+});
+
 async function carregarProximoEvento() {
   try {
     const resposta = await fetch(API_CARA + '?rota=proximoevento', {
@@ -2319,6 +2471,7 @@ async function carregarProximoEvento() {
     if (!json.sucesso || !json.evento) throw new Error('Nenhum próximo evento');
 
     const evento = json.evento;
+    eventoAtualCARA = evento;
     titulo.textContent = evento.titulo || 'Próximo evento';
     tipo.textContent = evento.tipo || 'C.A.R.A.';
     data.textContent = formatarDataCARA(evento.data);
@@ -2327,6 +2480,7 @@ async function carregarProximoEvento() {
     icone.textContent = iconeEventoCARA(evento.tipo);
     card.classList.remove('carregando');
   } catch (erro) {
+    eventoAtualCARA = null;
     console.error('Erro ao carregar próximo evento:', erro);
     titulo.textContent = 'Agenda C.A.R.A.';
     tipo.textContent = 'Consulte nossa programação';
