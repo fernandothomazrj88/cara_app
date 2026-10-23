@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v91-louvor-hotspot-fix';
+const CACHE_VERSION = 'cara-app-v92-secretaria-pautas-flow';
 
 const APP_SHELL = [
   './',
