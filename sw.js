@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v82-ministerios-limpeza-menu';
+const CACHE_VERSION = 'cara-app-v83-nomes-ministerios-padronizados';
 
 const APP_SHELL = [
   './',

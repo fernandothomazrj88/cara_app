@@ -98,6 +98,15 @@ const icones={
 
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function nome(m){return m.nome||m.NOME||m.ministerio||m.MINISTERIO||m.titulo||'Ministério'}
+function nomeExibicaoMinisterio(m){
+ const original=String(nome(m)||'').trim();
+ const chave=chaveMinisterio(original);
+ if(!original)return 'Ministério';
+ if(chave.startsWith('MINISTERIO'))return original;
+ // Nome de categoria que funciona melhor sem a preposição "de".
+ if(chave==='EMPRESARIAL')return 'Ministério Empresarial';
+ return 'Ministério de '+original;
+}
 function id(m){return m.id||m.ID||m.idMinisterio||m.ID_MINISTERIO||''}
 function descricao(m){return m.descricao||m.DESCRICAO||m.proposito||m.PROPOSITO||''}
 function ativo(m){return String(m.status||m.STATUS||'ATIVO').toUpperCase()!=='INATIVO'}
@@ -110,7 +119,7 @@ function render(lista){
  c.innerHTML=lista.map((m,i)=>`
    <button class="card" onclick="abrir(${i})">
     <div class="icon">${icon(nome(m))}</div>
-    <h2>${esc(nome(m))}</h2>
+    <h2>${esc(nomeExibicaoMinisterio(m))}</h2>
     ${descricao(m)?`<p>${esc(descricao(m))}</p>`:''}
     <span class="arrow">›</span>
    </button>`).join('');
@@ -191,7 +200,7 @@ function dadosArea(m){
 
 function abrir(i){
  const m=ministerios[i]; if(!m)return;
- document.getElementById('mTitulo').textContent=nome(m);
+ document.getElementById('mTitulo').textContent=nomeExibicaoMinisterio(m);
  const area=dadosArea(m);
  document.getElementById('mCorpo').innerHTML=`
    <div class="area-label">PROPÓSITO</div>
@@ -199,7 +208,7 @@ function abrir(i){
 
    <div class="area-label">ÁREA DO MINISTÉRIO</div>
    <div class="area-box">
-     <strong>${esc(nome(m))}</strong>
+     <strong>${esc(nomeExibicaoMinisterio(m))}</strong>
      <span>${esc(area.area)}</span>
    </div>
 
@@ -214,7 +223,7 @@ document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')fechar()}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')fechar()})
 document.getElementById('busca').addEventListener('input',e=>{
  const q=e.target.value.trim().toLowerCase();
- render(ministerios.filter(m=>nome(m).toLowerCase().includes(q)));
+ render(ministerios.filter(m=>nome(m).toLowerCase().includes(q)||nomeExibicaoMinisterio(m).toLowerCase().includes(q)));
 });
 carregar();
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error));
