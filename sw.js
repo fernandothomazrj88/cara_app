@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v87-top-spacing-louvor-button';
+const CACHE_VERSION = 'cara-app-v88-midia-louvor-ajustes';
 
 const APP_SHELL = [
   './',
