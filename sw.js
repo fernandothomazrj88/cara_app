@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v85-ministerio-lazer-comunhao';
+const CACHE_VERSION = 'cara-app-v86-banner-bottom-line';
 
 const APP_SHELL = [
   './',

@@ -1648,6 +1648,164 @@ async function getCentral(rota) {
 .topo-hero .banner-louvor { display:block !important; position:absolute !important; inset:0 !important; width:100% !important; height:100% !important; min-height:0 !important; max-height:none !important; margin:0 !important; object-fit:cover !important; object-position:center !important; }
 @media (max-width:600px) { .topo-hero { aspect-ratio:2048 / 768 !important; } }
 </style>
+
+<style id="cara-banner-header-unificado-v86">
+/* C.A.R.A. 3.0 v86 — cabeçalho visual corrigido para todas as áreas.
+   A arte tem a linha amarela colada à borda inferior; o HTML não desenha outra.
+   O texto “← Início” está desenhado na própria arte. Os links abaixo são hotspots invisíveis. */
+html, body {
+  margin: 0 !important;
+  padding-top: 0 !important;
+  background-color: #051326 !important;
+  overflow-x: hidden !important;
+}
+header.hero,
+header.topo,
+header.topo.topo-hero {
+  position: relative !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  aspect-ratio: 3 / 1 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  line-height: 0 !important;
+  overflow: hidden !important;
+  background-position: center bottom !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
+}
+header.hero::before, header.hero::after,
+header.topo::before, header.topo::after,
+header.topo.topo-hero::before, header.topo.topo-hero::after {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+header.hero > img,
+header.topo > img,
+header.topo.topo-hero > img {
+  position: absolute !important;
+  display: block !important;
+  inset: 0 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  object-fit: fill !important;
+  object-position: center bottom !important;
+}
+/* Hide the HTML button visuals because the official artwork already contains one.
+   Keep only a transparent, keyboard-accessible click target over the artwork button. */
+header a.voltar,
+header a.voltar-app-principal,
+header a.hero-back,
+header a.back,
+header a.banner-hotspot,
+header a.hero-hotspot,
+header a.back-hotspot {
+  position: absolute !important;
+  z-index: 90 !important;
+  left: 1.5% !important;
+  top: 4.5% !important;
+  right: auto !important;
+  bottom: auto !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 11% !important;
+  height: 15% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  background: transparent !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  letter-spacing: 0 !important;
+  text-indent: -9999px !important;
+  text-shadow: none !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+}
+header a.voltar::before, header a.voltar::after,
+header a.voltar-app-principal::before, header a.voltar-app-principal::after,
+header a.hero-back::before, header a.hero-back::after,
+header a.back::before, header a.back::after,
+header a.banner-hotspot::before, header a.banner-hotspot::after,
+header a.hero-hotspot::before, header a.hero-hotspot::after,
+header a.back-hotspot::before, header a.back-hotspot::after {
+  content: none !important;
+  display: none !important;
+}
+header a:focus-visible {
+  outline: 2px solid #FFFF00 !important;
+  outline-offset: -2px !important;
+}
+/* Louvor: align the transparent click target with its artwork’s Início button. */
+header.topo.topo-hero a.voltar-app-principal {
+  left: 1.7% !important;
+  top: 6.8% !important;
+  width: 8.8% !important;
+  height: 10.5% !important;
+}
+/* The yellow footer stripe is inside each PNG. Remove all HTML duplicates immediately after it. */
+header + .divisoria-fluorescente,
+header + .separador-conteudo,
+header + .banner-separator,
+header + .linha-banner,
+header + .linha-amarela,
+header + .filete-banner {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+@media (max-width: 720px) {
+  header.hero, header.topo, header.topo.topo-hero {
+    width: 100% !important;
+    aspect-ratio: 3 / 1 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+  header.topo.topo-hero a.voltar-app-principal {
+    left: 1.7% !important;
+    top: 6.8% !important;
+    width: 8.8% !important;
+    height: 10.5% !important;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -1661,8 +1819,6 @@ async function getCentral(rota) {
     alt="Ministério de Louvor C.A.R.A."
   >
 </header>
-<div class="divisoria-fluorescente" aria-hidden="true"></div>
-
 <main class="conteudo">
 
 
@@ -4631,149 +4787,7 @@ html body .topo.topo-hero > img.banner-louvor { display:block !important; positi
 
 
 
-<style id="cara-banner-header-unificado-v84">
-/* C.A.R.A. 3.0 v84 — cabeçalho único para banners panorâmicos 3:1.
-   As artes oficiais já incluem o botão visual “← Início” e o filete amarelo.
-   Os links HTML ficam transparentes por cima da área do botão para continuar clicáveis. */
-html {
-  margin: 0 !important;
-  padding-top: 0 !important;
-  background: #051326 !important;
-}
-body {
-  margin: 0 !important;
-  padding-top: 0 !important;
-  overflow-x: hidden !important;
-}
-header.hero,
-header.topo,
-header.topo.topo-hero {
-  position: relative !important;
-  display: block !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  max-width: none !important;
-  height: auto !important;
-  aspect-ratio: 3 / 1 !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-bottom: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  line-height: 0 !important;
-  overflow: hidden !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  background-size: 100% 100% !important;
-}
-header.hero > img,
-header.topo > img,
-header.topo.topo-hero > img,
-header.hero img.banner-louvor {
-  position: absolute !important;
-  display: block !important;
-  inset: 0 !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  max-width: none !important;
-  height: 100% !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  object-fit: fill !important;
-  object-position: center center !important;
-}
-/* O botão “← Início” já está desenhado na imagem. Esta área invisível conserva o link real. */
-header .voltar,
-header .voltar-app-principal,
-header .hero-back,
-header .back,
-header .banner-hotspot,
-header .hero-hotspot,
-header .back-hotspot {
-  position: absolute !important;
-  z-index: 90 !important;
-  left: 1.4% !important;
-  top: 4.3% !important;
-  right: auto !important;
-  bottom: auto !important;
-  display: block !important;
-  box-sizing: border-box !important;
-  width: 12% !important;
-  height: 15% !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  max-width: none !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 12px !important;
-  outline: none;
-  background: transparent !important;
-  color: transparent !important;
-  text-shadow: none !important;
-  font-size: 0 !important;
-  line-height: 0 !important;
-  text-indent: -9999px !important;
-  text-decoration: none !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  opacity: 1 !important;
-  overflow: hidden !important;
-  cursor: pointer !important;
-}
-header .voltar:focus-visible,
-header .voltar-app-principal:focus-visible,
-header .hero-back:focus-visible,
-header .back:focus-visible,
-header .banner-hotspot:focus-visible,
-header .hero-hotspot:focus-visible,
-header .back-hotspot:focus-visible {
-  outline: 2px solid #ffff00 !important;
-  outline-offset: 1px !important;
-}
-/* A linha amarela faz parte da arte. Remove separadores adicionais logo após o banner. */
-header.hero + .divisoria-fluorescente,
-header.topo + .divisoria-fluorescente,
-header.hero + .separador-conteudo,
-header.topo + .separador-conteudo {
-  display: none !important;
-  height: 0 !important;
-  margin: 0 !important;
-  border: 0 !important;
-}
-@media (max-width: 720px) {
-  header.hero,
-  header.topo,
-  header.topo.topo-hero {
-    width: 100% !important;
-    aspect-ratio: 3 / 1 !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-  }
-  header .voltar,
-  header .voltar-app-principal,
-  header .hero-back,
-  header .back,
-  header .banner-hotspot,
-  header .hero-hotspot,
-  header .back-hotspot {
-    left: 1.4% !important;
-    top: 4.3% !important;
-    width: 12% !important;
-    height: 15% !important;
-  }
-}
-</style>
+
 
 </body>
 
