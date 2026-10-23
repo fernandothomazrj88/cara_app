@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v86-banner-bottom-line';
+const CACHE_VERSION = 'cara-app-v87-top-spacing-louvor-button';
 
 const APP_SHELL = [
   './',
