@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v84-banners-alinhados';
+const CACHE_VERSION = 'cara-app-v85-ministerio-lazer-comunhao';
 
 const APP_SHELL = [
   './',

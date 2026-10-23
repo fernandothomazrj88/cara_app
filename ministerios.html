@@ -93,7 +93,8 @@ const icones={
  'APOIO':'⚙️',
  'LÍDERES':'👥','LIDERES':'👥',
  'EMPRESARIAL':'💼',
- 'ANIVERSARIANTES':'🎂'
+ 'ANIVERSARIANTES':'🎂',
+ 'LAZER':'🤝','COMUNHÃO':'🤝','COMUNHAO':'🤝'
 };
 
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -145,6 +146,20 @@ async function carregar(){
       }
       return m;
     });
+
+  // Cartão adicional da vitrine: se a liderança cadastrar esse ministério
+  // na Base Central depois, não exibimos uma segunda cópia.
+  const jaTemLazerComunhao=ministerios.some(m=>{
+    const chave=chaveMinisterio(nome(m));
+    return chave.includes('LAZER') && chave.includes('COMUNHAO');
+  });
+  if(!jaTemLazerComunhao){
+    ministerios.push({
+      id:'MINISTERIO_LAZER_COMUNHAO',
+      nome:'Ministério do Lazer & Comunhão',
+      descricao:'Promover momentos de comunhão, integração e alegria entre os membros da C.A.R.A.'
+    });
+  }
   render(ministerios);
  }catch(e){
   console.error(e);
@@ -174,6 +189,13 @@ function dadosArea(m){
     area:'A área própria da Mídia será conectada aqui na próxima etapa.',
     href:'',
     botao:'Área da Mídia em construção'
+  };
+
+  if(n.includes('LAZER') && n.includes('COMUNHAO')) return {
+    proposito:'Promover a comunhão, a integração e o fortalecimento dos vínculos entre os membros da C.A.R.A. por meio de momentos de convivência, lazer e confraternização.',
+    area:'Organização de confraternizações, passeios, dinâmicas e encontros de comunhão da comunidade.',
+    href:'./agenda.html',
+    botao:'Ver Agenda da C.A.R.A.'
   };
 
   if(n.includes('ENSINO') || n.includes('DISCIPULADO')) return {
