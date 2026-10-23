@@ -674,4 +674,25 @@ html body header.hero {
 }
 html body header.hero + main { margin-top:0 !important; padding-top:0 !important; }
 </style>
+
+
+<style id="cara-v89-midia-faixa-fluorescente-no-limite">
+/* v89: banner PNG recortado/ajustado para a linha fluorescente tocar o último pixel. Sem faixa de fundo abaixo. */
+html, body { margin:0 !important; padding-top:0 !important; overflow-x:hidden !important; background:#051326 !important; }
+html body header.hero {
+  display:block !important; position:relative !important; box-sizing:border-box !important;
+  width:100% !important; max-width:none !important; height:auto !important;
+  aspect-ratio:2172 / 724 !important; min-height:0 !important; max-height:none !important;
+  margin:0 !important; padding:0 !important; border:0 !important; border-bottom:0 !important;
+  border-radius:0 !important; box-shadow:none !important; line-height:0 !important;
+  overflow:hidden !important; background-color:#051326 !important;
+  background-image:url("./banner-midia.png") !important;
+  background-repeat:no-repeat !important; background-position:center bottom !important;
+  background-size:100% 100% !important;
+}
+html body header.hero::before, html body header.hero::after { content:none !important; display:none !important; }
+html body header.hero + main.wrap { margin-top:0 !important; padding-top:0 !important; }
+@media(max-width:720px) { html body header.hero { aspect-ratio:2172 / 724 !important; } }
+</style>
+
 </body></html>

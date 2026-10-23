@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v88-midia-louvor-ajustes';
+const CACHE_VERSION = 'cara-app-v90-midia-louvor-banner-revised';
 
 const APP_SHELL = [
   './',
