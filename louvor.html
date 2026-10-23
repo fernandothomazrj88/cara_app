@@ -1806,13 +1806,28 @@ header + .filete-banner {
   }
 }
 </style>
+
+<style id="cara-louvor-banner-hotspot-v91">
+/* v91: proporção exata da arte e hotspot transparente alinhado ao botão impresso no PNG. */
+html, body { width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important; overflow-x:hidden !important; }
+html body #louvorHero.topo.topo-hero { display:block !important; position:relative !important; box-sizing:border-box !important; width:100% !important; max-width:none !important; height:auto !important; aspect-ratio:2172 / 724 !important; min-height:0 !important; max-height:none !important; margin:0 !important; padding:0 !important; border:0 !important; border-radius:0 !important; box-shadow:none !important; overflow:hidden !important; line-height:0 !important; }
+html body #louvorHero.topo.topo-hero > img.banner-louvor { display:block !important; position:absolute !important; inset:0 !important; box-sizing:border-box !important; width:100% !important; max-width:none !important; height:100% !important; min-height:0 !important; max-height:none !important; margin:0 !important; padding:0 !important; border:0 !important; object-fit:fill !important; object-position:left top !important; }
+html body #louvorHero.topo.topo-hero > a.louvor-banner-hotspot { position:absolute !important; display:block !important; z-index:999 !important; left:1.72% !important; top:6.9% !important; width:8.2% !important; height:10.2% !important; min-width:0 !important; min-height:0 !important; max-width:none !important; max-height:none !important; margin:0 !important; padding:0 !important; border:0 !important; border-radius:10px !important; background:transparent !important; color:transparent !important; font-size:0 !important; line-height:0 !important; text-indent:-9999px !important; text-decoration:none !important; text-shadow:none !important; box-shadow:none !important; transform:none !important; outline-offset:-2px !important; overflow:hidden !important; }
+html body #louvorHero.topo.topo-hero > a.louvor-banner-hotspot::before,
+html body #louvorHero.topo.topo-hero > a.louvor-banner-hotspot::after { content:none !important; display:none !important; }
+html body #louvorHero.topo.topo-hero > a.louvor-banner-hotspot:focus-visible { outline:2px solid #FFFF00 !important; }
+@media (max-width:720px) {
+  html body #louvorHero.topo.topo-hero { aspect-ratio:2172 / 724 !important; }
+  html body #louvorHero.topo.topo-hero > a.louvor-banner-hotspot { left:1.72% !important; top:6.9% !important; width:8.2% !important; height:10.2% !important; }
+}
+</style>
 </head>
 
 <body>
 <div id="toast" class="toast"></div>
 
-<header class="topo topo-hero">
-  <a class="voltar-app-principal" href="index.html" aria-label="Voltar ao início do App C.A.R.A.">← Início</a>
+<header id="louvorHero" class="topo topo-hero">
+  <a class="louvor-banner-hotspot" href="index.html" aria-label="Voltar ao início do App C.A.R.A.">Voltar ao início</a>
   <img
     src="./banner-louvor.png"
     class="banner-louvor"
@@ -4777,72 +4792,6 @@ function fecharQuickLouvorFora(event,id){if(event.target && event.target.id===id
 document.addEventListener('keydown',function(event){if(event.key==='Escape'){fecharQuickLouvor('louvorAvisosOverlay');fecharQuickLouvor('louvorMaisOverlay');}});
 </script>
 
-<style id="cara-banner-louvor-largura-total-v43">
-/* Correção definitiva: o banner do Louvor ocupa a largura completa, igual à Agenda. */
-html, body { width:100% !important; max-width:none !important; margin:0 !important; padding-left:0 !important; padding-right:0 !important; overflow-x:hidden !important; }
-html body .topo.topo-hero { display:block !important; position:relative !important; box-sizing:border-box !important; width:100% !important; max-width:none !important; height:auto !important; min-height:0 !important; max-height:none !important; aspect-ratio:2048 / 768 !important; margin:0 !important; padding:0 !important; overflow:hidden !important; }
-html body .topo.topo-hero > img.banner-louvor { display:block !important; position:absolute !important; inset:0 !important; box-sizing:border-box !important; width:100% !important; max-width:none !important; height:100% !important; min-height:0 !important; max-height:none !important; margin:0 !important; padding:0 !important; object-fit:cover !important; object-position:center !important; }
-@media (max-width:720px) { html body .topo.topo-hero { width:100% !important; aspect-ratio:2048 / 768 !important; min-height:0 !important; } }
-</style>
-
-
-
-
-
-<style id="cara-ajuste-botao-inicio-louvor-v87">
-/* v87: o “← Início” está desenhado na arte; o link HTML é só a área clicável transparente. */
-html body header.topo.topo-hero > a.voltar-app-principal {
-  position: absolute !important;
-  z-index: 99 !important;
-  left: 1.3% !important;
-  top: 7.2% !important;
-  right: auto !important;
-  bottom: auto !important;
-  width: 8.7% !important;
-  height: 10% !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  max-width: none !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 12px !important;
-  background: transparent !important;
-  color: transparent !important;
-  font-size: 0 !important;
-  line-height: 0 !important;
-  text-indent: -9999px !important;
-  text-shadow: none !important;
-  text-decoration: none !important;
-  box-shadow: none !important;
-  transform: none !important;
-  overflow: hidden !important;
-}
-html body header.topo.topo-hero > a.voltar-app-principal::before,
-html body header.topo.topo-hero > a.voltar-app-principal::after { content: none !important; display: none !important; }
-@media (max-width: 720px) {
-  html body header.topo.topo-hero > a.voltar-app-principal { left: 1.3% !important; top: 7.2% !important; width: 8.7% !important; height: 10% !important; }
-}
-</style>
-
-<style id="cara-v88-louvor-botao-inicio">
-/* v88: botão Início do banner do Louvor: hotspot clicável alinhado à arte, sem corte lateral. */
-html body header.topo.topo-hero { overflow:hidden !important; }
-html body header.topo.topo-hero > a.voltar-app-principal {
-  position:absolute !important; z-index:999 !important;
-  left:1.5% !important; right:auto !important; top:6.5% !important; bottom:auto !important;
-  width:10.5% !important; height:13% !important; min-width:0 !important; min-height:0 !important;
-  max-width:none !important; max-height:none !important; margin:0 !important; padding:0 !important;
-  display:block !important; transform:none !important;
-  border:0 !important; border-radius:12px !important; background:transparent !important;
-  color:transparent !important; font-size:0 !important; line-height:0 !important;
-  text-indent:-9999px !important; box-shadow:none !important; text-shadow:none !important;
-  opacity:1 !important; overflow:hidden !important;
-}
-html body header.topo.topo-hero > a.voltar-app-principal::before,
-html body header.topo.topo-hero > a.voltar-app-principal::after { content:none !important; display:none !important; }
-</style>
 </body>
 
 </html>
