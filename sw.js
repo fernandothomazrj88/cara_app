@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v96-home-fundo-cinza-azulado';
+const CACHE_VERSION = 'cara-app-v98-home-retorno-fundo-branco';
 
 const APP_SHELL = [
   './',
