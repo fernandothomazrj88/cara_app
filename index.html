@@ -678,7 +678,7 @@
 
     /* ACESSO RÁPIDO OFICIAL: INÍCIO · AVISOS · MAIS */
     .menu-inferior {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       min-height: 78px;
       padding: 6px 12px calc(6px + env(safe-area-inset-bottom));
       background: linear-gradient(135deg, #06141a, #091c24);
@@ -1069,6 +1069,7 @@
 
 
     #jornadaPalavraView[hidden]{display:none!important}
+    #painelJornadaPalavra .home-painel-perfil{width:min(620px,100%)}
     .jornada-card{border:1px solid #CCFF00!important;box-shadow:0 0 0 1px #CCFF0015,0 8px 22px #0003}
     #jornadaHistorico article{padding:12px;border:1px solid #25435d;border-radius:12px;background:#061629;color:#fff;overflow-wrap:anywhere}
     #jornadaHistorico article strong{color:#CCFF00;display:block;margin-bottom:5px}
@@ -1499,11 +1500,43 @@
     <span>🔔<b id="contadorAvisosAcesso" style="display:none;background:#CCFF00;color:#051326;border-radius:99px;padding:2px 5px;font-size:10px;margin-left:3px">0</b></span>
     Avisos
   </button>
+  <button type="button" class="menu-item" id="abrirJornadaPalavra" aria-haspopup="dialog" aria-controls="painelJornadaPalavra">
+    <span>📜</span>
+    Palavra
+  </button>
   <button type="button" class="menu-item" id="abrirPerfilHome" aria-haspopup="dialog" aria-controls="painelPerfilHome">
     <span>👤</span>
     Meu Perfil
   </button>
 </nav>
+
+<div class="home-overlay" id="painelJornadaPalavra" role="dialog" aria-modal="true" aria-labelledby="tituloJornadaPalavra">
+  <section class="home-painel home-painel-perfil">
+    <header class="home-painel-topo">
+      <h2 id="tituloJornadaPalavra">📜 Minha Jornada na Palavra</h2>
+      <button type="button" class="home-fechar" id="fecharJornadaPalavra" aria-label="Fechar jornada">×</button>
+    </header>
+    <div class="perfil-conteudo-scroll">
+      <section class="perfil-secao" id="jornadaPalavraView">
+        <div class="perfil-secao-conteudo" style="grid-template-columns:1fr">
+          <button type="button" id="voltarPerfilJornada" class="perfil-foto-btn" style="min-height:40px;text-align:left">← Voltar ao Início</button>
+          <p class="perfil-nota">Uma jornada pessoal de leitura e reflexão. Seus registros ficam vinculados à sua conta.</p>
+          <div class="perfil-campo"><label for="jornadaMeta">Minha meta de leitura</label><input id="jornadaMeta" maxlength="180" placeholder="Ex.: Ler o Novo Testamento em 6 meses"></div>
+          <button type="button" id="salvarMetaJornada" class="perfil-salvar">Salvar meta</button>
+          <div id="jornadaResumo" style="padding:12px;border:1px solid #25435d;border-radius:12px;background:#061629;color:#fff;line-height:1.5">Carregando sua jornada...</div>
+          <div class="perfil-campo"><label for="jornadaLivro">Livro da Bíblia</label><select id="jornadaLivro"><option value="">Selecione um livro</option></select></div>
+          <div class="perfil-campo"><label for="jornadaCapitulos">Capítulos lidos (ex.: 1-3 ou 1, 2, 5)</label><input id="jornadaCapitulos" maxlength="120" placeholder="Ex.: 1-3"></div>
+          <div class="perfil-campo"><label for="jornadaData">Data da leitura</label><input id="jornadaData" type="date"></div>
+          <div class="perfil-campo"><label for="jornadaReflexao">O que eu entendi / reflexão</label><textarea id="jornadaReflexao" maxlength="8000" placeholder="Registre suas observações, aprendizados e perguntas..." style="min-height:130px"></textarea></div>
+          <button type="button" id="salvarLeituraJornada" class="perfil-salvar">Salvar leitura e reflexão</button>
+          <div id="jornadaStatus" class="perfil-status" role="status"></div>
+          <h4 style="color:#CCFF00;margin-top:8px">Histórico de leituras</h4>
+          <div id="jornadaHistorico" style="display:grid;gap:10px"><p class="perfil-nota">Nenhuma leitura carregada.</p></div>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>
 
 <div class="home-overlay" id="painelPerfilHome" role="dialog" aria-modal="true" aria-labelledby="tituloPerfilHome">
   <section class="home-painel home-painel-perfil">
@@ -1609,31 +1642,6 @@
           <div class="perfil-campo" style="grid-column:1/-1"><label for="perfilPedidoOracaoEdit">Pedido de oração</label><textarea id="perfilPedidoOracaoEdit"></textarea></div>
         </div>
       </section>
-      <section class="perfil-secao jornada-card" id="jornadaCardPerfil">
-        <h3><span class="perfil-icone">📖</span> Minha Jornada na Palavra</h3>
-        <div class="perfil-secao-conteudo" style="grid-template-columns:1fr">
-          <p style="color:#dce6ef;line-height:1.5;font-size:13px">Acompanhe sua leitura bíblica, defina metas pessoais e registre o que Deus tem falado ao seu coração.</p>
-          <button type="button" id="abrirJornadaPalavra" class="perfil-salvar" style="width:100%">📖 Abrir minha jornada</button>
-        </div>
-      </section>
-      <section class="perfil-secao" id="jornadaPalavraView" hidden>
-        <h3><span class="perfil-icone">📖</span> Minha Jornada na Palavra</h3>
-        <div class="perfil-secao-conteudo" style="grid-template-columns:1fr">
-          <button type="button" id="voltarPerfilJornada" class="perfil-foto-btn" style="min-height:40px;text-align:left">← Voltar ao Meu Perfil</button>
-          <p class="perfil-nota">Uma jornada pessoal de leitura e reflexão. Seus registros ficam vinculados à sua conta.</p>
-          <div class="perfil-campo"><label for="jornadaMeta">Minha meta de leitura</label><input id="jornadaMeta" maxlength="180" placeholder="Ex.: Ler o Novo Testamento em 6 meses"></div>
-          <button type="button" id="salvarMetaJornada" class="perfil-salvar">Salvar meta</button>
-          <div id="jornadaResumo" style="padding:12px;border:1px solid #25435d;border-radius:12px;background:#061629;color:#fff;line-height:1.5">Carregando sua jornada...</div>
-          <div class="perfil-campo"><label for="jornadaLivro">Livro da Bíblia</label><select id="jornadaLivro"><option value="">Selecione um livro</option></select></div>
-          <div class="perfil-campo"><label for="jornadaCapitulos">Capítulos lidos (ex.: 1-3 ou 1, 2, 5)</label><input id="jornadaCapitulos" maxlength="120" placeholder="Ex.: 1-3"></div>
-          <div class="perfil-campo"><label for="jornadaData">Data da leitura</label><input id="jornadaData" type="date"></div>
-          <div class="perfil-campo"><label for="jornadaReflexao">O que eu entendi / reflexão</label><textarea id="jornadaReflexao" maxlength="8000" placeholder="Registre suas observações, aprendizados e perguntas..." style="min-height:130px"></textarea></div>
-          <button type="button" id="salvarLeituraJornada" class="perfil-salvar">Salvar leitura e reflexão</button>
-          <div id="jornadaStatus" class="perfil-status" role="status"></div>
-          <h4 style="color:#CCFF00;margin-top:8px">Histórico de leituras</h4>
-          <div id="jornadaHistorico" style="display:grid;gap:10px"><p class="perfil-nota">Nenhuma leitura carregada.</p></div>
-        </div>
-      </section>
       <section class="perfil-secao">
         <h3><span class="perfil-icone">♧</span> Ministérios vinculados</h3>
         <div class="perfil-secao-conteudo" id="perfilMinisteriosLista"><p class="perfil-nota">Carregando ministérios...</p></div>
@@ -1699,6 +1707,9 @@
 (function configurarAcessoRapidoHomeCARA(){
   const perfil = document.getElementById('painelPerfilHome');
   const avisos = document.getElementById('painelAvisosHome');
+  const jornada = document.getElementById('painelJornadaPalavra');
+  const abrirJornada = document.getElementById('abrirJornadaPalavra');
+  const fecharJornada = document.getElementById('fecharJornadaPalavra');
   const abrirPerfil = document.getElementById('abrirPerfilHome');
   const fecharPerfil = document.getElementById('fecharPerfilHome');
   const abrirAvisos = document.getElementById('abrirAvisosHome');
@@ -1707,6 +1718,7 @@
   function abrir(painel, foco) {
     perfil.classList.remove('aberto');
     avisos.classList.remove('aberto');
+    if (jornada) jornada.classList.remove('aberto');
     painel.classList.add('aberto');
     document.body.classList.add('home-modal-aberto');
     foco.focus();
@@ -1735,11 +1747,16 @@
   fecharPerfil.addEventListener('click', () => fechar(perfil, abrirPerfil));
   abrirAvisos.addEventListener('click', () => abrir(avisos, fecharAvisos));
   fecharAvisos.addEventListener('click', () => fechar(avisos, abrirAvisos));
+  if (abrirJornada && jornada && fecharJornada) {
+    abrirJornada.addEventListener('click', () => { abrir(jornada, fecharJornada); });
+    fecharJornada.addEventListener('click', () => fechar(jornada, abrirJornada));
+    jornada.addEventListener('click', event => { if (event.target === jornada) fechar(jornada, abrirJornada); });
+  }
 
-  [perfil, avisos].forEach(painel => {
+  [perfil, avisos, jornada].filter(Boolean).forEach(painel => {
     painel.addEventListener('click', event => {
       if (event.target === painel) {
-        const retorno = painel === perfil ? abrirPerfil : abrirAvisos;
+        const retorno = painel === perfil ? abrirPerfil : (painel === avisos ? abrirAvisos : abrirJornada);
         fechar(painel, retorno);
       }
     });
@@ -2551,14 +2568,14 @@ if ('serviceWorker' in navigator) {
 // MINHA JORNADA NA PALAVRA — interface integrada à sessão autenticada CARA.
 (function jornadaPalavraCARA(){
  const livros=['Gênesis','Êxodo','Levítico','Números','Deuteronômio','Josué','Juízes','Rute','1 Samuel','2 Samuel','1 Reis','2 Reis','1 Crônicas','2 Crônicas','Esdras','Neemias','Ester','Jó','Salmos','Provérbios','Eclesiastes','Cânticos','Isaías','Jeremias','Lamentações','Ezequiel','Daniel','Oseias','Joel','Amós','Obadias','Jonas','Miqueias','Naum','Habacuque','Sofonias','Ageu','Zacarias','Malaquias','Mateus','Marcos','Lucas','João','Atos','Romanos','1 Coríntios','2 Coríntios','Gálatas','Efésios','Filipenses','Colossenses','1 Tessalonicenses','2 Tessalonicenses','1 Timóteo','2 Timóteo','Tito','Filemom','Hebreus','Tiago','1 Pedro','2 Pedro','1 João','2 João','3 João','Judas','Apocalipse'];
- const $=id=>document.getElementById(id); const card=$('jornadaCardPerfil'), view=$('jornadaPalavraView'); if(!card||!view)return;
+ const $=id=>document.getElementById(id); const view=$('jornadaPalavraView'); const painel=$('painelJornadaPalavra'); if(!painel||!view)return;
  const select=$('jornadaLivro'); livros.forEach(l=>{const o=document.createElement('option');o.value=l;o.textContent=l;select.appendChild(o)});
  const hoje=new Date(); $('jornadaData').value=[hoje.getFullYear(),String(hoje.getMonth()+1).padStart(2,'0'),String(hoje.getDate()).padStart(2,'0')].join('-');
  let carregada=false; let carregamentoEmCurso=false;
  async function api(acao,dados={}){const token=localStorage.getItem('cara_sessao_token');if(!token)throw new Error('Sua sessão expirou. Entre novamente.');const r=await fetch(API_SESSAO_CARA,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({acao,token,dados}),credentials:'omit',cache:'no-store'});if(!r.ok)throw new Error('Falha de comunicação com a Base Central.');const j=await r.json();if(!j.sucesso)throw new Error(j.mensagem||'Não foi possível concluir a operação.');return j;}
  function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
- function show(){card.hidden=true;view.hidden=false;$('salvarPerfilHome').style.display='none';$('perfilStatusEdicao').textContent='';$('perfil-conteudo-scroll').scrollTop=0;load();}
- function back(){view.hidden=true;card.hidden=false;$('salvarPerfilHome').style.display='';$('perfil-conteudo-scroll').scrollTop=0;}
+ function show(){painel.classList.add('aberto');document.body.classList.add('home-modal-aberto');painel.querySelector('.perfil-conteudo-scroll').scrollTop=0;load();}
+ function back(){painel.classList.remove('aberto');document.body.classList.remove('home-modal-aberto');}
  async function load(){if(carregamentoEmCurso)return;carregamentoEmCurso=true;$('jornadaStatus').textContent='Carregando sua jornada...';$('jornadaResumo').textContent='Carregando sua jornada...';try{const d=await api('jornada-palavra-carregar');$('jornadaMeta').value=d.meta||'';const leituras=Array.isArray(d.leituras)?d.leituras:[];const totalCap=leituras.reduce((n,x)=>n+Number(x.quantidadeCapitulos||0),0);$('jornadaResumo').innerHTML='<strong style="color:#CCFF00">Seu progresso</strong><br>Registros de leitura: '+leituras.length+'<br>Capítulos registrados: '+totalCap+'<br><span style="color:#b9c9d8">Meta: '+esc(d.meta||'Ainda não definida')+'</span>';$('jornadaHistorico').innerHTML=leituras.length?leituras.map(x=>'<article style="padding:10px;border:1px solid #25435d;border-radius:10px;background:#0b2037"><strong>'+esc(x.livro)+' · Capítulo(s) '+esc(x.capitulos)+'</strong><small style="display:block;color:#b9c9d8;margin-top:4px">'+esc(x.data||'Data não informada')+'</small><p style="margin-top:7px;white-space:pre-wrap">'+esc(x.reflexao||'Sem reflexão registrada.')+'</p></article>').join(''):'<p class="perfil-nota">Você ainda não registrou leituras. Comece preenchendo os campos acima.</p>';$('jornadaStatus').textContent='';carregada=true;}catch(e){$('jornadaResumo').textContent='Não foi possível carregar sua jornada. '+e.message;$('jornadaHistorico').innerHTML='<p class="perfil-nota">Tente abrir novamente. Seus registros salvos não foram apagados.</p>';$('jornadaStatus').textContent=e.message;carregada=false;}finally{carregamentoEmCurso=false;}}
  $('abrirJornadaPalavra').addEventListener('click',show);$('voltarPerfilJornada').addEventListener('click',back);
  $('salvarMetaJornada').addEventListener('click',async()=>{const b=$('salvarMetaJornada');b.disabled=true;$('jornadaStatus').textContent='Salvando meta...';try{await api('jornada-palavra-salvar-meta',{meta:$('jornadaMeta').value.trim()});$('jornadaStatus').textContent='Meta salva com sucesso.';carregada=false;await load();}catch(e){$('jornadaStatus').textContent=e.message;}finally{b.disabled=false;}});
