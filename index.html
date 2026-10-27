@@ -1667,7 +1667,16 @@
       <button type="button" class="home-fechar" id="fecharAvisosHome" aria-label="Fechar avisos">×</button>
     </header>
     <p style="color:#dce6ef;line-height:1.5;margin-bottom:14px">Acompanhe os avisos da comunidade e as solicitações de acesso que precisam da atenção da liderança.</p>
-    <div id="avisosSolicitacoesAcesso" style="display:none;margin:12px 0;padding:12px;border:1px solid #CCFF00;border-radius:14px;background:#0b2037;color:#fff"><strong style="color:#CCFF00">Solicitações de acesso</strong><div id="listaSolicitacoesAcesso" style="display:grid;gap:9px;margin-top:10px"></div><button id="atualizarSolicitacoesAcesso" type="button" style="margin-top:10px;background:#CCFF00;color:#051326;border:0;border-radius:9px;padding:10px;font-weight:800;width:100%">Atualizar solicitações</button></div>
+    <div id="avisosSolicitacoesAcesso" style="display:none;margin:12px 0;padding:12px;border:1px solid #CCFF00;border-radius:14px;background:#0b2037;color:#fff">
+      <strong style="color:#CCFF00">Solicitações de acesso</strong>
+      <div id="listaSolicitacoesAcesso" style="display:grid;gap:9px;margin-top:10px"></div>
+      <p id="statusAtualizacaoSolicitacoes" style="font-size:11px;color:#c1ceda;margin:8px 0 0">Atualização automática a cada 15 segundos enquanto este painel estiver aberto.</p>
+    </div>
+    <div id="ferramentasLiderancaAcesso" style="display:none;margin:12px 0;padding:12px;border:1px solid #28435c;border-radius:14px;background:#0b2037;color:#fff">
+      <strong style="color:#CCFF00;display:block;margin-bottom:10px">🛡️ Ferramentas da liderança</strong>
+      <button id="atualizarSolicitacoesAcesso" type="button" style="margin-bottom:8px;background:#CCFF00;color:#051326;border:0;border-radius:9px;padding:11px;font-weight:800;width:100%">↻ Atualizar lista</button>
+      <button id="abrirGerarCodigoAcesso" type="button" style="background:transparent;color:#CCFF00;border:1px solid #CCFF00;border-radius:9px;padding:11px;font-weight:800;width:100%">🔑 Gerar código de acesso</button>
+    </div>
     <p id="avisoSemSessaoAcesso" style="color:#dce6ef;font-size:13px;margin:12px 0">Entre na sua conta para consultar avisos administrativos.</p>
     <a class="home-link-agenda" href="./agenda.html">📅 Abrir Agenda <span>›</span></a>
     <a class="home-link-agenda" href="./acesso.html" style="margin-top:8px">🔐 Primeiro acesso / recuperar senha <span>›</span></a>
@@ -2551,16 +2560,39 @@ if ('serviceWorker' in navigator) {
 (function avisosAcessoCARA(){
  const API='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
  const btn=document.getElementById('abrirAvisosHome'), refresh=document.getElementById('atualizarSolicitacoesAcesso');
- const box=document.getElementById('avisosSolicitacoesAcesso'), list=document.getElementById('listaSolicitacoesAcesso'), count=document.getElementById('contadorAvisosAcesso'), noSession=document.getElementById('avisoSemSessaoAcesso');
- async function api(body){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body),credentials:'omit',cache:'no-store'});return r.json();}
- async function load(){const token=localStorage.getItem('cara_sessao_token');if(!token){box.style.display='none';noSession.style.display='block';return;}
-  try{const d=await api({acao:'listar-solicitacoes-acesso',token});if(!d.sucesso){box.style.display='none';noSession.style.display='block';return;}
-   noSession.style.display='none';box.style.display='block';const pend=d.solicitacoes.filter(s=>s.status==='PENDENTE'||s.status==='EM_ANALISE');count.textContent=pend.length;count.style.display=pend.length?'inline-block':'none';
-   list.innerHTML=d.solicitacoes.length?d.solicitacoes.map(s=>`<article style="border:1px solid #28435c;border-radius:10px;padding:10px"><strong style="color:#CCFF00">${escA(s.tipo==='ativacao'?'Primeiro acesso':'Recuperação de conta')}</strong><div style="margin-top:4px;font-size:13px">${escA(s.nome)} · ${escA(s.identificador)}</div><small style="color:#c1ceda">${escA(s.status)} · ${escA(new Date(s.criadoEm).toLocaleString('pt-BR'))}</small><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><button data-status="EM_ANALISE" data-id="${escA(s.id)}" style="padding:7px;border-radius:7px;border:0;background:#203b57;color:#fff">Em análise</button><button data-status="CONCLUIDA" data-id="${escA(s.id)}" style="padding:7px;border-radius:7px;border:0;background:#CCFF00;color:#051326;font-weight:800">Concluída</button><button data-gerar="${escA(s.tipo)}" style="padding:7px;border-radius:7px;border:1px solid #CCFF00;background:transparent;color:#CCFF00">Gerar código</button></div></article>`).join(''):'<p style="font-size:13px;color:#dce6ef">Nenhuma solicitação registrada.</p>';
-  }catch(e){noSession.style.display='block';noSession.textContent='Não foi possível carregar os avisos. Verifique a conexão e tente novamente.';}}
+ const generator=document.getElementById('abrirGerarCodigoAcesso');
+ const panel=document.getElementById('painelAvisosHome');
+ const box=document.getElementById('avisosSolicitacoesAcesso'), tools=document.getElementById('ferramentasLiderancaAcesso');
+ const list=document.getElementById('listaSolicitacoesAcesso'), count=document.getElementById('contadorAvisosAcesso'), noSession=document.getElementById('avisoSemSessaoAcesso');
+ const updateStatus=document.getElementById('statusAtualizacaoSolicitacoes');
+ let carregando=false, timer=null;
+ async function api(body){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body),credentials:'omit',cache:'no-store'});if(!r.ok)throw new Error('Falha de comunicação com a Central.');return r.json();}
+ async function load(silencioso=false){
+  if(carregando)return;
+  const token=localStorage.getItem('cara_sessao_token');
+  if(!token){box.style.display='none';tools.style.display='none';noSession.style.display='block';return;}
+  carregando=true;
+  if(!silencioso && updateStatus)updateStatus.textContent='Atualizando solicitações...';
+  try{
+   const d=await api({acao:'listar-solicitacoes-acesso',token});
+   if(!d.sucesso){box.style.display='none';tools.style.display='none';noSession.style.display='block';return;}
+   noSession.style.display='none';box.style.display='block';tools.style.display='block';
+   const solicitacoes=Array.isArray(d.solicitacoes)?d.solicitacoes:[];
+   const pend=solicitacoes.filter(s=>s.status==='PENDENTE'||s.status==='EM_ANALISE');
+   count.textContent=pend.length;count.style.display=pend.length?'inline-block':'none';
+   list.innerHTML=solicitacoes.length?solicitacoes.map(s=>`<article style="border:1px solid #28435c;border-radius:10px;padding:10px"><strong style="color:#CCFF00">${escA(s.tipo==='ativacao'?'Primeiro acesso':'Recuperação de conta')}</strong><div style="margin-top:4px;font-size:13px">${escA(s.nome)} · ${escA(s.identificador)}</div><small style="color:#c1ceda">${escA(s.status)} · ${escA(new Date(s.criadoEm).toLocaleString('pt-BR'))}</small><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><button data-status="EM_ANALISE" data-id="${escA(s.id)}" style="padding:7px;border-radius:7px;border:0;background:#203b57;color:#fff">Em análise</button><button data-status="CONCLUIDA" data-id="${escA(s.id)}" style="padding:7px;border-radius:7px;border:0;background:#CCFF00;color:#051326;font-weight:800">Concluída</button></div></article>`).join(''):'<p style="font-size:13px;color:#dce6ef">Nenhuma solicitação registrada.</p>';
+   if(updateStatus)updateStatus.textContent='Lista atualizada às '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+'. Atualização automática a cada 15 segundos.';
+  }catch(e){if(!silencioso){noSession.style.display='block';noSession.textContent='Não foi possível carregar os avisos. Verifique a conexão e tente novamente.';}if(updateStatus)updateStatus.textContent='Falha na atualização. Tente atualizar manualmente.';}
+  finally{carregando=false;}
+ }
  function escA(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
- if(btn)btn.addEventListener('click',load);if(refresh)refresh.addEventListener('click',load);
- if(list)list.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;const token=localStorage.getItem('cara_sessao_token');try{if(b.dataset.status){const r=await api({acao:'atualizar-solicitacao-acesso',token,id:b.dataset.id,status:b.dataset.status});alert(r.mensagem||'Atualizado');await load();}else if(b.dataset.gerar){location.href='./admin-convites.html?tipo='+encodeURIComponent(b.dataset.gerar);}}catch(err){alert('Não foi possível concluir a ação.');}});
+ function startAuto(){if(timer)clearInterval(timer);timer=setInterval(()=>{if(panel&&panel.classList.contains('aberto'))load(true);},15000);}
+ if(btn)btn.addEventListener('click',()=>{load();startAuto();});
+ if(refresh)refresh.addEventListener('click',()=>load(false));
+ if(generator)generator.addEventListener('click',()=>{window.location.href='./admin-convites.html';});
+ const fechar=document.getElementById('fecharAvisosHome');
+ if(fechar)fechar.addEventListener('click',()=>{if(timer){clearInterval(timer);timer=null;}});
+ if(list)list.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;const token=localStorage.getItem('cara_sessao_token');if(!token)return;try{if(b.dataset.status){b.disabled=true;const r=await api({acao:'atualizar-solicitacao-acesso',token,id:b.dataset.id,status:b.dataset.status});if(!r.sucesso)throw new Error(r.mensagem||'Não foi possível atualizar a solicitação.');await load(false);}}catch(err){alert(err.message||'Não foi possível concluir a ação.');}finally{b.disabled=false;}});
 })();
 </script>
 

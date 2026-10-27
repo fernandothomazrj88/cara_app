@@ -24,5 +24,6 @@ btnGenerate.addEventListener('click',async()=>{const token=tokenInput.value.trim
 // Se encontrou uma sessão salva, tenta carregar a lista automaticamente.
 if(tokenInput.value.trim()){btnLoad.click()}
 
+if(tokenInput.value.trim()){btnLoad.click()}
 document.getElementById('copiar').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('codigo').textContent);msg('Código copiado. Entregue-o com segurança ao membro.','ok')}catch(e){msg('Não foi possível copiar automaticamente. Selecione e copie o código manualmente.','error')}});
 </script></body></html>

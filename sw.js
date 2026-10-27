@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v100-jornada-menu-palavra';
+const CACHE_VERSION = 'cara-app-v5';
 
 const APP_SHELL = [
   './',
