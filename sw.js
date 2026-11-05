@@ -1,9 +1,10 @@
-const CACHE_VERSION = 'cara-app-v103-palavra-navegacao';
+const CACHE_VERSION = 'cara-app-v104-palavra-unificada';
 
 const APP_SHELL = [
   './',
   './index.html',
   './palavra.html',
+  './biblia.html',
   './banner-palavra.png',
   './agenda.html',
   './louvor.html',

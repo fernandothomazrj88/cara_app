@@ -2693,29 +2693,12 @@ if ('serviceWorker' in navigator) {
  function show(){painel.classList.add('aberto');document.body.classList.add('home-modal-aberto');painel.querySelector('.perfil-conteudo-scroll').scrollTop=0;load();}
  function back(){painel.classList.remove('aberto');document.body.classList.remove('home-modal-aberto');}
  async function load(){if(carregamentoEmCurso)return;carregamentoEmCurso=true;$('jornadaStatus').textContent='Carregando sua jornada...';$('jornadaResumo').textContent='Carregando sua jornada...';try{const d=await api('jornada-palavra-carregar');$('jornadaMeta').value=d.meta||'';const leituras=Array.isArray(d.leituras)?d.leituras:[];const totalCap=leituras.reduce((n,x)=>n+Number(x.quantidadeCapitulos||0),0);$('jornadaResumo').innerHTML='<strong style="color:#CCFF00">Seu progresso</strong><br>Registros de leitura: '+leituras.length+'<br>Capítulos registrados: '+totalCap+'<br><span style="color:#b9c9d8">Meta: '+esc(d.meta||'Ainda não definida')+'</span>';$('jornadaHistorico').innerHTML=leituras.length?leituras.map(x=>'<article style="padding:10px;border:1px solid #25435d;border-radius:10px;background:#0b2037"><strong>'+esc(x.livro)+' · Capítulo(s) '+esc(x.capitulos)+'</strong><small style="display:block;color:#b9c9d8;margin-top:4px">'+esc(x.data||'Data não informada')+'</small><p style="margin-top:7px;white-space:pre-wrap">'+esc(x.reflexao||'Sem reflexão registrada.')+'</p></article>').join(''):'<p class="perfil-nota">Você ainda não registrou leituras. Comece preenchendo os campos acima.</p>';$('jornadaStatus').textContent='';carregada=true;}catch(e){$('jornadaResumo').textContent='Não foi possível carregar sua jornada. '+e.message;$('jornadaHistorico').innerHTML='<p class="perfil-nota">Tente abrir novamente. Seus registros salvos não foram apagados.</p>';$('jornadaStatus').textContent=e.message;carregada=false;}finally{carregamentoEmCurso=false;}}
- $('abrirJornadaPalavra').addEventListener('click',show);$('voltarPerfilJornada').addEventListener('click',back);
+ const botaoJornadaAntigo=$('abrirJornadaPalavra'); if(botaoJornadaAntigo) botaoJornadaAntigo.addEventListener('click',show); $('voltarPerfilJornada').addEventListener('click',back);
  $('salvarMetaJornada').addEventListener('click',async()=>{const b=$('salvarMetaJornada');b.disabled=true;$('jornadaStatus').textContent='Salvando meta...';try{await api('jornada-palavra-salvar-meta',{meta:$('jornadaMeta').value.trim()});$('jornadaStatus').textContent='Meta salva com sucesso.';carregada=false;await load();}catch(e){$('jornadaStatus').textContent=e.message;}finally{b.disabled=false;}});
  $('salvarLeituraJornada').addEventListener('click',async()=>{const livro=select.value,capitulos=$('jornadaCapitulos').value.trim(),data=$('jornadaData').value,reflexao=$('jornadaReflexao').value.trim();if(!livro||!capitulos){$('jornadaStatus').textContent='Selecione o livro e informe os capítulos lidos.';return;}const b=$('salvarLeituraJornada');b.disabled=true;$('jornadaStatus').textContent='Salvando leitura...';try{await api('jornada-palavra-salvar-leitura',{livro,capitulos,data,reflexao});$('jornadaCapitulos').value='';$('jornadaReflexao').value='';$('jornadaStatus').textContent='Leitura registrada!';carregada=false;await load();}catch(e){$('jornadaStatus').textContent=e.message;}finally{b.disabled=false;}});
 })();
 
 </script>
 
-<script>
-/* Abre a Jornada existente quando o membro escolhe "Minha Jornada" no módulo Palavra. */
-(function abrirJornadaPorLink(){
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('abrirJornada') !== '1') return;
-  const painel = document.getElementById('painelJornadaPalavra');
-  const fechar = document.getElementById('fecharJornadaPalavra');
-  if (painel) {
-    painel.classList.add('aberto');
-    document.body.classList.add('home-modal-aberto');
-    if (fechar) fechar.focus();
-    params.delete('abrirJornada');
-    const query = params.toString();
-    history.replaceState({}, '', window.location.pathname + (query ? '?' + query : '') + window.location.hash);
-  }
-})();
-</script>
 </body>
 </html>
