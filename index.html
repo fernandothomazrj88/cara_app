@@ -1563,10 +1563,10 @@
     <span>🔔<b id="contadorAvisosAcesso" style="display:none;background:#CCFF00;color:#051326;border-radius:99px;padding:2px 5px;font-size:10px;margin-left:3px">0</b></span>
     Avisos
   </button>
-  <button type="button" class="menu-item" id="abrirJornadaPalavra" aria-haspopup="dialog" aria-controls="painelJornadaPalavra">
+  <a href="./palavra.html" class="menu-item" id="linkModuloPalavra">
     <span>📜</span>
     Palavra
-  </button>
+  </a>
   <button type="button" class="menu-item" id="abrirPerfilHome" aria-haspopup="dialog" aria-controls="painelPerfilHome">
     <span>👤</span>
     Meu Perfil
@@ -2700,5 +2700,22 @@ if ('serviceWorker' in navigator) {
 
 </script>
 
+<script>
+/* Abre a Jornada existente quando o membro escolhe "Minha Jornada" no módulo Palavra. */
+(function abrirJornadaPorLink(){
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('abrirJornada') !== '1') return;
+  const painel = document.getElementById('painelJornadaPalavra');
+  const fechar = document.getElementById('fecharJornadaPalavra');
+  if (painel) {
+    painel.classList.add('aberto');
+    document.body.classList.add('home-modal-aberto');
+    if (fechar) fechar.focus();
+    params.delete('abrirJornada');
+    const query = params.toString();
+    history.replaceState({}, '', window.location.pathname + (query ? '?' + query : '') + window.location.hash);
+  }
+})();
+</script>
 </body>
 </html>
