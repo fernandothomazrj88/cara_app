@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#051326">
+<title>Leitura Bíblica — C.A.R.A.</title>
+<link rel="icon" href="./icon-192.png">
+<style>
+:root{--bg:#051326;--card:#0b2038;--card2:#102d4d;--y:#CCFF00;--w:#fff;--m:#b9c9d8;--line:#285477}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--w);font-family:Arial,Helvetica,sans-serif}
+body{padding-bottom:100px}
+.hero{position:relative;width:100%;aspect-ratio:8/3;min-height:220px;max-height:560px;overflow:hidden;background:#020b17;border-bottom:3px solid var(--y)}
+/* Mantém a linguagem visual dos banners oficiais; o degradê cobre apenas a tipografia do banner de referência. */
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(2,11,23,.04) 43%,#020b17 57%,#020b17 100%),url('./banner-palavra.png') center/cover no-repeat;}
+.hero-content{position:absolute;inset:0 3% 0 48%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px 10px}
+.hero-book{font-size:clamp(25px,4vw,54px);line-height:1;margin-bottom:7px;color:#fff}
+.hero h1{margin:0;color:var(--y);font-size:clamp(34px,6.2vw,86px);font-weight:1000;letter-spacing:1px;line-height:1;text-shadow:0 2px 8px #000}
+.hero .phrase{font-size:clamp(12px,1.7vw,24px);font-weight:700;font-style:italic;margin:10px 0 12px}
+.hero .verse-ref{color:var(--y);font-weight:900;font-size:clamp(12px,1.5vw,21px);margin:3px 0 7px}
+.hero .verse{font-size:clamp(11px,1.35vw,19px);font-style:italic;line-height:1.35;margin:0;max-width:600px}
+.back{position:absolute;z-index:2;top:12px;left:14px;padding:12px 20px;border:2px solid var(--y);border-radius:14px;background:#020b17;color:var(--y);font-weight:900;text-decoration:none;font-size:clamp(13px,1.5vw,20px)}
+.wrap{width:min(calc(100% - 36px),1200px);margin:auto;padding:24px 0 45px}
+h2{font-size:clamp(25px,3vw,36px);margin:0 0 8px}.lead{font-size:17px;color:var(--m);margin:0 0 24px}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.option{min-height:150px;padding:20px 24px;display:grid;grid-template-columns:110px 1fr 28px;align-items:center;gap:18px;text-decoration:none;color:var(--w);background:linear-gradient(135deg,#061522,#071b30);border:2px solid var(--line);border-radius:24px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.option:hover,.option:focus-visible{transform:translateY(-2px);outline:none;border-color:var(--y);box-shadow:0 0 14px #ccff0055}
+.option.primary{border:3px solid var(--y);box-shadow:0 0 10px #ccff0066}
+.option-icon{font-size:58px;color:var(--y);text-align:center;border-right:2px solid #dce7f0;padding-right:15px}
+.option h3{font-size:clamp(22px,2.4vw,34px);margin:0 0 5px}.option p{font-size:clamp(14px,1.4vw,19px);line-height:1.45;margin:0;color:#e4edf5}.chevron{font-size:40px;color:var(--y);font-weight:900}
+.info{margin-top:22px;padding:16px 18px;border:1px solid #24445f;border-radius:15px;background:#071a2e;color:var(--m);line-height:1.5;font-size:13px}
+.bottom-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(204,255,0,.18);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}
+.bottom-nav a,.bottom-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}.bottom-nav .icon{font-size:23px;line-height:1}
+@media(max-width:700px){.hero{aspect-ratio:auto;height:230px;min-height:230px}.hero:before{background:linear-gradient(90deg,rgba(2,11,23,.15),rgba(2,11,23,.8)),url('./banner-palavra.png') 44% center/cover no-repeat}.hero-content{left:28%;right:2%;padding:8px}.hero .phrase{margin:7px 0}.hero .verse{max-width:360px}.wrap{width:calc(100% - 24px);padding-top:22px}.options{grid-template-columns:1fr;gap:14px}.option{min-height:130px;grid-template-columns:78px 1fr 20px;padding:16px;gap:12px}.option-icon{font-size:44px;padding-right:10px}.option h3{font-size:23px}.option p{font-size:14px}.chevron{font-size:32px}}
+@media(max-width:380px){.hero-content{left:24%}.hero h1{font-size:31px}.hero .phrase{font-size:11px}.hero .verse{font-size:10px}.back{top:8px;left:8px;padding:9px 12px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <a class="back" href="./index.html">← Início</a>
+  <div class="hero-content">
+    <div class="hero-book" aria-hidden="true">📖</div>
+    <h1>PALAVRA</h1>
+    <p class="phrase">A Palavra que transforma, orienta e restaura.</p>
+    <div class="verse-ref">SALMO 119:105</div>
+    <p class="verse">“Lâmpada para os meus pés é a tua palavra e luz para o meu caminho.”</p>
+  </div>
+</header>
+<main class="wrap">
+  <h2>Leitura Bíblica 📖</h2>
+  <p class="lead">A Palavra que ensina, transforma e restaura.</p>
+  <section class="options" aria-label="Opções da Palavra">
+    <a class="option primary" href="./biblia.html">
+      <div class="option-icon" aria-hidden="true">📖</div>
+      <div><h3>Ler a Bíblia</h3><p>Acesse os 66 livros, escolha os capítulos e leia a Bíblia Sagrada – NVI.</p></div>
+      <span class="chevron" aria-hidden="true">›</span>
+    </a>
+    <a class="option" href="./index.html?abrirJornada=1">
+      <div class="option-icon" aria-hidden="true">☑</div>
+      <div><h3>Minha Jornada</h3><p>Acompanhe seu progresso, marque capítulos lidos e registre suas reflexões.</p></div>
+      <span class="chevron" aria-hidden="true">›</span>
+    </a>
+  </section>
+  <div class="info">📖 <strong style="color:#CCFF00">Bíblia Sagrada — NVI</strong><br>O leitor será conectado ao conteúdo NVI após a confirmação da autorização de uso. Sua Jornada atual continua preservada.</div>
+</main>
+<nav class="bottom-nav" aria-label="Acesso rápido">
+  <a href="./index.html"><span class="icon">🏠</span>Início</a>
+  <a href="./index.html#avisos"><span class="icon">🔔</span>Avisos</a>
+  <a href="./index.html#mais"><span class="icon">☰</span>Mais</a>
+</nav>
+</body>
+</html>
