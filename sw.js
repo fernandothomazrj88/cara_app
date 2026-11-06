@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v104-palavra-unificada';
+const CACHE_VERSION = 'cara-app-v105-palavra-header-agenda';
 
 const APP_SHELL = [
   './',

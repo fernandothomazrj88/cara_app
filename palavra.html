@@ -7,47 +7,38 @@
 <title>Leitura Bíblica — C.A.R.A.</title>
 <link rel="icon" href="./icon-192.png">
 <style>
-:root{--bg:#051326;--card:#0b2038;--card2:#102d4d;--y:#FFFF00;--w:#fff;--m:#b9c9d8;--line:#285477}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{min-height:100%;background:var(--bg);color:var(--w);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
-body{padding-bottom:30px}
+:root{--bg:#051326;--card:#0b2038;--y:#CCFF00;--w:#fff;--m:#b9c9d8;--line:#285477}
+*{box-sizing:border-box}
+html,body{margin:0!important;min-height:100%;padding:0!important;background:#051326!important;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body{padding-bottom:132px!important}
 .app{width:100%;min-height:100vh}
-.topo{position:relative;width:100%;aspect-ratio:3/1;min-height:0;max-height:none;background:var(--bg);overflow:hidden}
-.topo img{display:block;width:100%;height:100%;object-fit:fill;object-position:center bottom}
-.back{position:absolute;z-index:5;left:1.5%;top:4.5%;width:11%;height:15%;display:block;border:0;border-radius:12px;background:transparent;color:transparent;font-size:0;overflow:hidden;text-indent:-9999px}
-.back:focus-visible{outline:2px solid var(--y);outline-offset:-2px}
-main{width:min(calc(100% - 28px),980px);margin:0 auto;padding:30px 0 20px}
-h2{font-size:clamp(25px,4vw,34px);margin:0 0 7px}
-.lead{font-size:16px;color:#b9c9db;line-height:1.5;margin:0 0 22px}
+/* Mesmo padrão do cabeçalho da Agenda: arte única, proporção 3:1, sem faixa extra. */
+header.topo{position:relative;display:block;width:100%;height:auto;aspect-ratio:3/1;min-height:0;max-height:none;margin:0;padding:0;border:0;overflow:hidden;background:#051326;line-height:0}
+header.topo>img{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;min-height:0;max-height:none;margin:0;padding:0;border:0;object-fit:fill;object-position:center bottom}
+header.topo a.voltar{position:absolute;z-index:5;left:1.5%;top:4.5%;width:11%;height:15%;margin:0;padding:0;border:0;border-radius:12px;background:transparent;color:transparent;font-size:0;line-height:0;text-indent:-9999px;overflow:hidden}
+header.topo a.voltar:focus-visible{outline:2px solid var(--y);outline-offset:-2px}
+main{width:min(calc(100% - 36px),980px);margin:0 auto;padding:24px 0 140px}
+h2{font-size:clamp(25px,3vw,34px);line-height:1.2;margin:0 0 8px}
+.lead{font-size:16px;color:var(--m);line-height:1.45;margin:0 0 18px}
 .options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.option{min-height:126px;padding:17px 18px;display:grid;grid-template-columns:76px minmax(0,1fr) 20px;align-items:center;gap:14px;text-decoration:none;color:var(--w);background:linear-gradient(135deg,#061522,#071b30);border:1px solid var(--line);border-radius:18px;transition:transform .15s,border-color .15s,box-shadow .15s}
-.option:hover,.option:focus-visible{transform:translateY(-2px);outline:none;border-color:var(--y);box-shadow:0 0 14px #ccff0055}
-.option.primary{border:2px solid var(--y);box-shadow:0 0 8px #ccff0044}
-.option-icon{font-size:42px;color:var(--y);text-align:center;border-right:1px solid #dce7f0;padding-right:12px}
-.option h3{font-size:clamp(19px,2vw,25px);margin:0 0 5px}
-.option p{font-size:14px;line-height:1.4;margin:0;color:#e4edf5}
-.chevron{font-size:30px;color:var(--y);font-weight:900;text-align:center}
-.info{margin-top:18px;padding:13px 16px;border:1px solid #24445f;border-radius:13px;background:#071a2e;color:var(--m);line-height:1.5;font-size:12px}
-.bottom-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(204,255,0,.18);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}
-.bottom-nav a,.bottom-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}
-.bottom-nav .icon{font-size:23px;line-height:1}
-@media(max-width:700px){
- .topo{aspect-ratio:3/1}
- main{width:calc(100% - 24px);padding-top:22px}
- .options{grid-template-columns:1fr;gap:12px}
- .option{min-height:112px;grid-template-columns:64px minmax(0,1fr) 18px;padding:14px;gap:11px}
- .option-icon{font-size:36px;padding-right:9px}
- .option h3{font-size:21px}
- .option p{font-size:13px}
- .chevron{font-size:27px}
-}
+.option{min-height:112px;padding:14px 16px;display:grid;grid-template-columns:64px minmax(0,1fr) 18px;align-items:center;gap:12px;text-decoration:none;color:var(--w);background:linear-gradient(135deg,#061522,#071b30);border:1px solid var(--line);border-radius:16px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.option:hover,.option:focus-visible{transform:translateY(-2px);outline:none;border-color:var(--y);box-shadow:0 0 12px #ccff0044}
+.option.primary{border:2px solid var(--y);box-shadow:0 0 7px #ccff0033}
+.option-icon{font-size:36px;color:var(--y);text-align:center;border-right:1px solid #dce7f0;padding-right:9px}
+.option h3{font-size:clamp(19px,2vw,24px);line-height:1.2;margin:0 0 4px}
+.option p{font-size:13px;line-height:1.4;margin:0;color:#e4edf5}
+.chevron{font-size:28px;color:var(--y);font-weight:900;text-align:center}
+.info{margin-top:14px;padding:11px 14px;border:1px solid #24445f;border-radius:12px;background:#071a2e;color:var(--m);line-height:1.45;font-size:12px}
+.acesso-rapido{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(255,255,0,.12);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}
+.acesso-rapido a,.acesso-rapido button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}
+.acesso-rapido .icone{font-size:23px;line-height:1}
+@media(max-width:720px){header.topo{width:100%;aspect-ratio:3/1;height:auto;min-height:0;max-height:none}main{width:calc(100% - 24px);padding:18px 0 150px}.lead{margin-bottom:14px}.options{grid-template-columns:1fr;gap:11px}.option{min-height:94px;grid-template-columns:56px minmax(0,1fr) 17px;padding:12px;gap:10px}.option-icon{font-size:32px;padding-right:8px}.option h3{font-size:20px}.option p{font-size:13px}.chevron{font-size:25px}.info{margin-top:12px;padding:10px 12px}}
 </style>
 </head>
 <body>
-<div class="app">
 <header class="topo" aria-label="Palavra">
   <img src="./banner-palavra.png" alt="Palavra — A Palavra que transforma, orienta e restaura. Salmo 119:105">
-  <a class="back" href="./index.html" aria-label="Voltar para o início">← Início</a>
+  <a class="voltar" href="./index.html" aria-label="Voltar para o início">← Início</a>
 </header>
 <main>
   <h2>Leitura Bíblica 📖</h2>
@@ -66,11 +57,10 @@ h2{font-size:clamp(25px,4vw,34px);margin:0 0 7px}
   </section>
   <div class="info">📖 <strong style="color:#CCFF00">Bíblia Sagrada — NVI</strong><br>O leitor será conectado ao conteúdo NVI após a confirmação da autorização de uso. Sua Jornada atual continua preservada.</div>
 </main>
-<nav class="bottom-nav" aria-label="Acesso rápido">
-  <a href="./index.html"><span class="icon">🏠</span>Início</a>
-  <a href="./index.html#avisos"><span class="icon">🔔</span>Avisos</a>
-  <a href="./index.html#mais"><span class="icon">☰</span>Mais</a>
+<nav class="acesso-rapido" aria-label="Acesso rápido">
+  <a href="./index.html"><span class="icone">🏠</span>Início</a>
+  <a href="./index.html#avisos"><span class="icone">🔔</span>Avisos</a>
+  <a href="./index.html#mais"><span class="icone">☰</span>Mais</a>
 </nav>
-</div>
 </body>
 </html>
