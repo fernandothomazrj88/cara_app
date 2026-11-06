@@ -1,32 +1,76 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#051326"><title>Palavra — C.A.R.A.</title><link rel="icon" href="./icon-192.png">
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#051326">
+<title>Leitura Bíblica — C.A.R.A.</title>
+<link rel="icon" href="./icon-192.png">
 <style>
-:root{--bg:#051326;--card:#0b2038;--y:#CCFF00;--w:#fff;--m:#b9c9d8;--line:#285477}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--w);font-family:Arial,Helvetica,sans-serif}body{padding-bottom:96px}
-.hero{position:relative;width:100%;aspect-ratio:3.2/1;min-height:170px;max-height:560px;overflow:hidden;background:#020b17 url('./banner-palavra.png') center/cover no-repeat;border-bottom:3px solid var(--y)}.back{position:absolute;z-index:2;top:12px;left:14px;padding:11px 18px;border:2px solid var(--y);border-radius:14px;background:#020b17;color:var(--y);font-weight:900;text-decoration:none;font-size:clamp(13px,1.5vw,20px)}
-.wrap{width:min(calc(100% - 36px),1200px);margin:auto;padding:24px 0 40px}h2{font-size:clamp(25px,3vw,36px);margin:0 0 8px}.lead{font-size:17px;color:var(--m);margin:0 0 24px}.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.option{min-height:150px;padding:20px 24px;display:grid;grid-template-columns:100px 1fr 28px;align-items:center;gap:18px;text-align:left;color:var(--w);background:linear-gradient(135deg,#061522,#071b30);border:2px solid var(--line);border-radius:24px;cursor:pointer}.option.primary{border:3px solid var(--y);box-shadow:0 0 10px #ccff0066}.option-icon{font-size:54px;color:var(--y);text-align:center;border-right:2px solid #dce7f0;padding-right:15px}.option h3{font-size:clamp(22px,2.4vw,34px);margin:0 0 5px}.option p{font-size:clamp(14px,1.4vw,19px);line-height:1.4;margin:0;color:#e4edf5}.chevron{font-size:40px;color:var(--y);font-weight:900}
-.subview{display:none}.subview.active{display:block}.subhead{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}.subhead button,.action{border:1px solid var(--line);background:#102944;color:#fff;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}.panel{background:#081a2e;border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}.field{display:grid;gap:7px;margin:12px 0}.field label{font-weight:700;font-size:13px}.field input,.field select,.field textarea{width:100%;background:#061629;color:#fff;border:1px solid #385b78;border-radius:10px;padding:12px;font:inherit}.field textarea{min-height:110px;resize:vertical}.save{width:100%;border:0;border-radius:11px;background:var(--y);color:#061326;font-weight:900;padding:14px;cursor:pointer}.status{color:var(--m);font-size:13px;min-height:20px}.progress{line-height:1.6;color:#fff}.progress strong{color:var(--y)}.bottom-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(204,255,0,.18);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}.bottom-nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#fff;text-decoration:none;font-size:11px}.bottom-nav .icon{font-size:23px}
-@media(max-width:700px){.hero{aspect-ratio:3.2/1;min-height:0;height:auto}.wrap{width:calc(100% - 24px);padding-top:22px}.options{grid-template-columns:1fr;gap:14px}.option{min-height:125px;grid-template-columns:72px 1fr 20px;padding:15px;gap:12px}.option-icon{font-size:42px;padding-right:10px}.option h3{font-size:23px}.option p{font-size:14px}.chevron{font-size:32px}}
-</style></head><body>
-<header class="hero" aria-label="Banner Palavra"><a class="back" href="./index.html">← Início</a></header>
-<main class="wrap">
-<section id="palavraHome"><h2>Leitura Bíblica 📖</h2><p class="lead">A Palavra que ensina, transforma e restaura.</p><div class="options">
-<button class="option primary" id="abrirLeitor" type="button"><div class="option-icon">📖</div><div><h3>Ler a Bíblia</h3><p>Acesse os 66 livros, escolha os capítulos e leia a Bíblia Sagrada – NVI.</p></div><span class="chevron">›</span></button>
-<button class="option" id="abrirJornada" type="button"><div class="option-icon">☑</div><div><h3>Minha Jornada</h3><p>Acompanhe seu progresso, marque capítulos lidos e registre suas reflexões.</p></div><span class="chevron">›</span></button></div></section>
-<section id="jornadaView" class="subview"><div class="subhead"><button id="voltarPalavra" type="button">← Palavra</button><h2>Minha Jornada na Palavra</h2></div><p class="lead">Uma jornada pessoal de leitura e reflexão. Seus registros ficam vinculados à sua conta.</p><div class="panel">
-<div class="field"><label for="jornadaMeta">Minha meta de leitura</label><input id="jornadaMeta" maxlength="180" placeholder="Ex.: Ler a Bíblia toda até junho de 2027"></div><button class="save" id="salvarMetaJornada" type="button">Salvar meta</button><div id="jornadaResumo" class="panel progress">Carregando seu progresso...</div>
-<div class="field"><label for="jornadaLivro">Livro da Bíblia</label><select id="jornadaLivro"><option value="">Selecione um livro</option></select></div><div class="field"><label for="jornadaCapitulos">Capítulos lidos (ex.: 1-3 ou 1, 2, 5)</label><input id="jornadaCapitulos" maxlength="120" placeholder="Ex.: 1-3"></div><div class="field"><label for="jornadaData">Data da leitura</label><input id="jornadaData" type="date"></div><div class="field"><label for="jornadaReflexao">O que eu entendi / reflexão</label><textarea id="jornadaReflexao" maxlength="8000" placeholder="Registre suas observações, aprendizados e perguntas..."></textarea></div><button class="save" id="salvarLeituraJornada" type="button">Salvar leitura e reflexão</button><div id="jornadaStatus" class="status" role="status"></div></div><h3 style="color:var(--y)">Histórico de leituras</h3><div id="jornadaHistorico" class="panel">Nenhuma leitura carregada.</div></section>
-<section id="leitorView" class="subview"><div class="subhead"><button id="voltarPalavraLeitor" type="button">← Palavra</button><h2>Leitura Bíblica — NVI</h2></div><div class="panel"><p><strong style="color:var(--y)">A Bíblia NVI ainda não está conectada.</strong></p><p>Estamos preparando a integração com uma fonte autorizada da Nova Versão Internacional. Por respeito aos direitos autorais, não vamos copiar o texto integral para uma planilha sem licença.</p><p>O progresso, favoritos, destaques e anotações poderão ser guardados no Sheets; o texto bíblico será fornecido por uma fonte licenciada.</p></div></section>
+:root{--bg:#051326;--card:#0b2038;--card2:#102d4d;--y:#FFFF00;--w:#fff;--m:#b9c9d8;--line:#285477}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--w);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body{padding-bottom:30px}
+.app{width:100%;min-height:100vh}
+.topo{position:relative;width:100%;aspect-ratio:3/1;min-height:0;max-height:none;background:var(--bg);overflow:hidden}
+.topo img{display:block;width:100%;height:100%;object-fit:fill;object-position:center bottom}
+.back{position:absolute;z-index:5;left:1.5%;top:4.5%;width:11%;height:15%;display:block;border:0;border-radius:12px;background:transparent;color:transparent;font-size:0;overflow:hidden;text-indent:-9999px}
+.back:focus-visible{outline:2px solid var(--y);outline-offset:-2px}
+main{width:min(calc(100% - 28px),980px);margin:0 auto;padding:30px 0 20px}
+h2{font-size:clamp(25px,4vw,34px);margin:0 0 7px}
+.lead{font-size:16px;color:#b9c9db;line-height:1.5;margin:0 0 22px}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.option{min-height:126px;padding:17px 18px;display:grid;grid-template-columns:76px minmax(0,1fr) 20px;align-items:center;gap:14px;text-decoration:none;color:var(--w);background:linear-gradient(135deg,#061522,#071b30);border:1px solid var(--line);border-radius:18px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.option:hover,.option:focus-visible{transform:translateY(-2px);outline:none;border-color:var(--y);box-shadow:0 0 14px #ccff0055}
+.option.primary{border:2px solid var(--y);box-shadow:0 0 8px #ccff0044}
+.option-icon{font-size:42px;color:var(--y);text-align:center;border-right:1px solid #dce7f0;padding-right:12px}
+.option h3{font-size:clamp(19px,2vw,25px);margin:0 0 5px}
+.option p{font-size:14px;line-height:1.4;margin:0;color:#e4edf5}
+.chevron{font-size:30px;color:var(--y);font-weight:900;text-align:center}
+.info{margin-top:18px;padding:13px 16px;border:1px solid #24445f;border-radius:13px;background:#071a2e;color:var(--m);line-height:1.5;font-size:12px}
+.bottom-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(204,255,0,.18);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}
+.bottom-nav a,.bottom-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}
+.bottom-nav .icon{font-size:23px;line-height:1}
+@media(max-width:700px){
+ .topo{aspect-ratio:3/1}
+ main{width:calc(100% - 24px);padding-top:22px}
+ .options{grid-template-columns:1fr;gap:12px}
+ .option{min-height:112px;grid-template-columns:64px minmax(0,1fr) 18px;padding:14px;gap:11px}
+ .option-icon{font-size:36px;padding-right:9px}
+ .option h3{font-size:21px}
+ .option p{font-size:13px}
+ .chevron{font-size:27px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topo" aria-label="Palavra">
+  <img src="./banner-palavra.png" alt="Palavra — A Palavra que transforma, orienta e restaura. Salmo 119:105">
+  <a class="back" href="./index.html" aria-label="Voltar para o início">← Início</a>
+</header>
+<main>
+  <h2>Leitura Bíblica 📖</h2>
+  <p class="lead">A Palavra que ensina, transforma e restaura.</p>
+  <section class="options" aria-label="Opções da Palavra">
+    <a class="option primary" href="./biblia.html">
+      <div class="option-icon" aria-hidden="true">📖</div>
+      <div><h3>Ler a Bíblia</h3><p>Acesse os 66 livros, escolha os capítulos e leia a Bíblia Sagrada – NVI.</p></div>
+      <span class="chevron" aria-hidden="true">›</span>
+    </a>
+    <a class="option" href="./index.html?abrirJornada=1">
+      <div class="option-icon" aria-hidden="true">☑</div>
+      <div><h3>Minha Jornada</h3><p>Acompanhe seu progresso, marque capítulos lidos e registre suas reflexões.</p></div>
+      <span class="chevron" aria-hidden="true">›</span>
+    </a>
+  </section>
+  <div class="info">📖 <strong style="color:#CCFF00">Bíblia Sagrada — NVI</strong><br>O leitor será conectado ao conteúdo NVI após a confirmação da autorização de uso. Sua Jornada atual continua preservada.</div>
 </main>
-<nav class="bottom-nav"><a href="./index.html"><span class="icon">🏠</span>Início</a><a href="./index.html#avisos"><span class="icon">🔔</span>Avisos</a><a href="./index.html#mais"><span class="icon">☰</span>Mais</a></nav>
-<script>
-const API_SESSAO_CARA='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
-const livros=['Gênesis','Êxodo','Levítico','Números','Deuteronômio','Josué','Juízes','Rute','1 Samuel','2 Samuel','1 Reis','2 Reis','1 Crônicas','2 Crônicas','Esdras','Neemias','Ester','Jó','Salmos','Provérbios','Eclesiastes','Cânticos','Isaías','Jeremias','Lamentações','Ezequiel','Daniel','Oseias','Joel','Amós','Obadias','Jonas','Miqueias','Naum','Habacuque','Sofonias','Ageu','Zacarias','Malaquias','Mateus','Marcos','Lucas','João','Atos','Romanos','1 Coríntios','2 Coríntios','Gálatas','Efésios','Filipenses','Colossenses','1 Tessalonicenses','2 Tessalonicenses','1 Timóteo','2 Timóteo','Tito','Filemom','Hebreus','Tiago','1 Pedro','2 Pedro','1 João','2 João','3 João','Judas','Apocalipse'];
-const $=id=>document.getElementById(id);const hoje=new Date();$('jornadaData').value=[hoje.getFullYear(),String(hoje.getMonth()+1).padStart(2,'0'),String(hoje.getDate()).padStart(2,'0')].join('-');livros.forEach(l=>{let o=document.createElement('option');o.value=l;o.textContent=l;$('jornadaLivro').appendChild(o)});
-function view(id){$('palavraHome').style.display=id==='palavraHome'?'block':'none';$('jornadaView').classList.toggle('active',id==='jornadaView');$('leitorView').classList.toggle('active',id==='leitorView');window.scrollTo({top:0,behavior:'smooth'})}
-function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-async function api(acao,dados={}){const token=localStorage.getItem('cara_sessao_token');if(!token)throw new Error('Sua sessão expirou. Entre novamente.');const r=await fetch(API_SESSAO_CARA,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({acao,token,dados}),credentials:'omit',cache:'no-store'});if(!r.ok)throw new Error('Falha de comunicação com a Base Central.');const j=await r.json();if(!j.sucesso)throw new Error(j.mensagem||'Não foi possível concluir a operação.');return j}
-async function loadJornada(){$('jornadaStatus').textContent='Carregando sua jornada...';try{const d=await api('jornada-palavra-carregar');$('jornadaMeta').value=d.meta||'';const a=Array.isArray(d.leituras)?d.leituras:[];const total=a.reduce((n,x)=>n+Number(x.quantidadeCapitulos||0),0);$('jornadaResumo').innerHTML='<strong>Seu progresso</strong><br>Registros de leitura: '+a.length+'<br>Capítulos registrados: '+total+'<br><span style="color:#b9c9d8">Meta: '+esc(d.meta||'Ainda não definida')+'</span>';$('jornadaHistorico').innerHTML=a.length?a.map(x=>'<article style="padding:10px;border:1px solid #25435d;border-radius:10px;background:#0b2037;margin:8px 0"><strong>'+esc(x.livro)+' · Capítulo(s) '+esc(x.capitulos)+'</strong><small style="display:block;color:#b9c9d8;margin-top:4px">'+esc(x.data||'Data não informada')+'</small><p style="margin-top:7px;white-space:pre-wrap">'+esc(x.reflexao||'Sem reflexão registrada.')+'</p></article>').join(''):'<p>Você ainda não registrou leituras.</p>';$('jornadaStatus').textContent=''}catch(e){$('jornadaResumo').textContent='Não foi possível carregar sua jornada. '+e.message;$('jornadaHistorico').textContent='Tente novamente. Seus registros salvos não foram apagados.';$('jornadaStatus').textContent=e.message}}
-$('abrirJornada').addEventListener('click',()=>{view('jornadaView');loadJornada()});$('abrirLeitor').addEventListener('click',()=>view('leitorView'));$('voltarPalavra').addEventListener('click',()=>view('palavraHome'));$('voltarPalavraLeitor').addEventListener('click',()=>view('palavraHome'));
-$('salvarMetaJornada').addEventListener('click',async()=>{let b=$('salvarMetaJornada');b.disabled=true;$('jornadaStatus').textContent='Salvando meta...';try{await api('jornada-palavra-salvar-meta',{meta:$('jornadaMeta').value.trim()});await loadJornada();$('jornadaStatus').textContent='Meta salva com sucesso.'}catch(e){$('jornadaStatus').textContent=e.message}finally{b.disabled=false}});
-$('salvarLeituraJornada').addEventListener('click',async()=>{const livro=$('jornadaLivro').value,capitulos=$('jornadaCapitulos').value.trim(),data=$('jornadaData').value,reflexao=$('jornadaReflexao').value.trim();if(!livro||!capitulos){$('jornadaStatus').textContent='Selecione o livro e informe os capítulos lidos.';return}let b=$('salvarLeituraJornada');b.disabled=true;$('jornadaStatus').textContent='Salvando leitura...';try{await api('jornada-palavra-salvar-leitura',{livro,capitulos,data,reflexao});$('jornadaCapitulos').value='';$('jornadaReflexao').value='';await loadJornada();$('jornadaStatus').textContent='Leitura registrada!'}catch(e){$('jornadaStatus').textContent=e.message}finally{b.disabled=false}});
-</script></body></html>
+<nav class="bottom-nav" aria-label="Acesso rápido">
+  <a href="./index.html"><span class="icon">🏠</span>Início</a>
+  <a href="./index.html#avisos"><span class="icon">🔔</span>Avisos</a>
+  <a href="./index.html#mais"><span class="icon">☰</span>Mais</a>
+</nav>
+</div>
+</body>
+</html>
