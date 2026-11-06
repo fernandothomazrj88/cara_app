@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v103-galeria-50-capa';
+const CACHE_VERSION = 'cara-app-v104-galeria-100-fotos';
 
 const APP_SHELL = [
   './',
