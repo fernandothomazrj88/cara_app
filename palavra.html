@@ -8,17 +8,13 @@
 <link rel="icon" href="./icon-192.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--azul:#051326;--azul2:#081b32;--amarelo:#FFFF00;--branco:#fff;--texto:#dbe6f3;--linha:rgba(255,255,255,.10)}
+:root{--azul:#051326;--azul-2:#081b32;--amarelo:#FFFF00;--branco:#fff;--texto:#dbe6f3;--linha:rgba(255,255,255,.10)}
 html,body{margin:0;min-height:100%;background:var(--azul);color:var(--branco);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
 body{padding-bottom:112px}
 .app{width:100%;min-height:100vh}
-
-/* Mesmo padrão estrutural do cabeçalho da Agenda: banner 3:1, sem faixa extra. */
-.topo{position:relative;width:100%;aspect-ratio:3/1;min-height:0;max-height:none;background:url("./banner-palavra.png") center center/contain no-repeat;background-color:var(--azul);margin:0;padding:0;border:0;overflow:hidden}
+.topo{position:relative;width:100%;aspect-ratio:8/3;min-height:0;max-height:620px;background:url("./banner-palavra.png") center center/contain no-repeat;background-color:var(--azul);border-bottom:3px solid var(--amarelo);margin:0;padding:0;overflow:hidden}
 .voltar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:14px;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 13px;border:1px solid rgba(255,255,0,.55);border-radius:11px;background:#051326;opacity:1;color:var(--amarelo);text-decoration:none;font-weight:800;font-size:13px}
-
-/* Mesma largura e espaçamento-base do módulo Agenda. */
-main{width:min(100% - 28px,980px);margin:0 auto;padding:23px 0 28px}
+main{width:min(100% - 28px,980px);margin:0 auto;padding:30px 0 20px}
 .saudacao h1{font-size:clamp(25px,4vw,34px);margin-bottom:7px;line-height:1.2}
 .saudacao p{color:#b9c9db;line-height:1.5;margin-bottom:18px}
 .options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -30,18 +26,15 @@ main{width:min(100% - 28px,980px);margin:0 auto;padding:23px 0 28px}
 .option p{font-size:13px;line-height:1.35;margin:0;color:#e4edf5}
 .chevron{font-size:27px;color:var(--amarelo);font-weight:900;text-align:center}
 .info{margin-top:12px;padding:10px 13px;border:1px solid #24445f;border-radius:12px;background:#071a2e;color:#b9c9d8;line-height:1.45;font-size:12px}
-
-/* Barra inferior com as mesmas dimensões da Agenda. */
 .acesso-rapido{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(255,255,0,.12);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}
 .acesso-rapido a,.acesso-rapido button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}
 .acesso-rapido .icone{font-size:23px;line-height:1}
-
 @media(max-width:600px){
- .topo{aspect-ratio:3/1;min-height:0;max-height:none;background-size:contain;background-repeat:no-repeat;background-position:center center}
- main{width:min(100% - 22px,980px);padding-top:18px;padding-bottom:30px}
- .saudacao p{margin-bottom:14px}
+ .topo{height:auto;aspect-ratio:8/3;min-height:0;background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#051326}
+ main{width:min(100% - 22px,980px);padding-top:23px;padding-bottom:24px}
+ .saudacao p{margin-bottom:15px}
  .options{grid-template-columns:1fr;gap:11px}
- .option{min-height:92px;grid-template-columns:56px minmax(0,1fr) 17px;padding:11px;gap:10px}
+ .option{min-height:94px;grid-template-columns:56px minmax(0,1fr) 17px;padding:11px;gap:10px}
  .option-icon{font-size:32px;padding-right:8px}
  .option h3{font-size:20px}
  .option p{font-size:13px}
@@ -51,19 +44,12 @@ main{width:min(100% - 28px,980px);margin:0 auto;padding:23px 0 28px}
 </style>
 </head>
 <body>
-<header class="topo" aria-label="Palavra">
-  <a class="voltar" href="./index.html">← Início</a>
-  <div class="hero-content">
-    <div class="hero-book" aria-hidden="true">📖</div>
-    <h1>PALAVRA</h1>
-    <p class="phrase">A Palavra que transforma, orienta e restaura.</p>
-    <div class="verse-ref">SALMO 119:105</div>
-    <p class="verse">“Lâmpada para os meus pés é a tua palavra e luz para o meu caminho.”</p>
-  </div>
+<header class="topo" aria-label="Palavra e leitura bíblica">
+  <a class="voltar" href="./index.html" aria-label="Voltar para o início">← Início</a>
 </header>
-<main class="wrap">
-  <h2>Leitura Bíblica 📖</h2>
-  <p class="lead">A Palavra que ensina, transforma e restaura.</p>
+<main>
+  <section class="saudacao"><h1>Leitura Bíblica 📖</h1>
+  <p>A Palavra que ensina, transforma e restaura.</p></section>
   <section class="options" aria-label="Opções da Palavra">
     <a class="option primary" href="./biblia.html">
       <div class="option-icon" aria-hidden="true">📖</div>
