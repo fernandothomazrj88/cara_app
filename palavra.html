@@ -201,6 +201,51 @@ header + .filete-banner {
   }
 }
 </style>
+
+<style id="palavra-ajustes-finais">
+/* Palavra: a arte não contém o botão Início, então ele precisa ficar visível. */
+header.topo a.voltar{
+  position:absolute!important;
+  z-index:120!important;
+  top:12px!important;
+  left:14px!important;
+  right:auto!important;
+  bottom:auto!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:auto!important;
+  height:38px!important;
+  min-width:0!important;
+  min-height:38px!important;
+  max-width:none!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0 13px!important;
+  border:1px solid #FFFF00!important;
+  border-radius:11px!important;
+  background:#051326!important;
+  color:#FFFF00!important;
+  font-size:13px!important;
+  font-weight:800!important;
+  line-height:1!important;
+  letter-spacing:normal!important;
+  text-indent:0!important;
+  text-shadow:none!important;
+  text-decoration:none!important;
+  box-shadow:0 2px 8px rgba(0,0,0,.35)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+/* Um único filete um pouco mais espesso para fechar o banner. */
+header.topo{
+  border:0!important;
+  border-bottom:4px solid #FFFF00!important;
+}
+@media(max-width:600px){
+  header.topo a.voltar{top:8px!important;left:8px!important;height:34px!important;min-height:34px!important;font-size:12px!important;padding:0 10px!important}
+}
+</style>
 </head>
 <body>
 <header class="topo" aria-label="Palavra">

@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v106-palavra-agenda-header-exato';
+const CACHE_VERSION = 'cara-app-v107-palavra-botao-e-filete';
 
 const APP_SHELL = [
   './',
