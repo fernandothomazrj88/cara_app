@@ -7,24 +7,61 @@
 <title>Leitura Bíblica — C.A.R.A.</title>
 <link rel="icon" href="./icon-192.png">
 <style>
-:root{--bg:#051326;--y:#CCFF00;--w:#fff;--m:#b9c9d8;--line:#285477}*{box-sizing:border-box}
-html,body{margin:0!important;min-height:100%;padding:0!important;background:var(--bg)!important;color:var(--w);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}body{padding-bottom:88px!important}
-header.topo{position:relative;display:block;width:100%;height:auto;aspect-ratio:2172/668;min-height:0;margin:0;padding:0;border:0;overflow:hidden;background:var(--bg);line-height:0}
-header.topo>img{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;min-height:0;max-height:none;margin:0;padding:0;border:0;object-fit:fill}
-header.topo a.voltar{position:absolute;z-index:5;left:14px;top:14px;display:inline-flex;align-items:center;justify-content:center;width:auto;height:auto;padding:9px 14px;border:2px solid var(--y);border-radius:12px;background:rgba(3,17,31,.94);color:var(--y);font-size:17px;font-weight:700;line-height:1.15;text-indent:0;text-decoration:none;box-shadow:0 2px 10px #0008}
-header.topo a.voltar:focus-visible{outline:2px solid #fff;outline-offset:2px}
-main{width:min(calc(100% - 36px),980px);margin:0 auto;padding:14px 0 88px}h2{font-size:clamp(25px,3vw,34px);line-height:1.2;margin:0 0 6px}.lead{font-size:16px;color:var(--m);line-height:1.4;margin:0 0 14px}
-.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.option{min-height:104px;padding:12px 14px;display:grid;grid-template-columns:60px minmax(0,1fr) 18px;align-items:center;gap:11px;text-decoration:none;color:var(--w);background:linear-gradient(135deg,#061522,#071b30);border:1px solid var(--line);border-radius:16px;transition:transform .15s,border-color .15s,box-shadow .15s}.option:hover,.option:focus-visible{transform:translateY(-2px);outline:none;border-color:var(--y);box-shadow:0 0 12px #ccff0044}.option.primary{border:2px solid var(--y);box-shadow:0 0 7px #ccff0033}.option-icon{font-size:34px;color:var(--y);text-align:center;border-right:1px solid #dce7f0;padding-right:8px}.option h3{font-size:clamp(19px,2vw,23px);line-height:1.2;margin:0 0 4px}.option p{font-size:13px;line-height:1.35;margin:0;color:#e4edf5}.chevron{font-size:27px;color:var(--y);font-weight:900;text-align:center}.info{margin-top:12px;padding:10px 13px;border:1px solid #24445f;border-radius:12px;background:#071a2e;color:var(--m);line-height:1.4;font-size:12px}
-.acesso-rapido{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(255,255,0,.12);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}.acesso-rapido a,.acesso-rapido button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}.acesso-rapido .icone{font-size:23px;line-height:1}
-@media(max-width:720px){header.topo{width:100%;aspect-ratio:2172/668;height:auto;min-height:0}header.topo a.voltar{left:9px;top:9px;padding:7px 10px;font-size:15px}main{width:calc(100% - 24px);padding:12px 0 88px}.lead{margin-bottom:12px}.options{grid-template-columns:1fr;gap:10px}.option{min-height:90px;grid-template-columns:54px minmax(0,1fr) 17px;padding:11px;gap:9px}.option-icon{font-size:31px;padding-right:7px}.option h3{font-size:20px}.option p{font-size:13px}.chevron{font-size:25px}.info{margin-top:10px;padding:9px 11px}}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--azul:#051326;--azul2:#081b32;--amarelo:#FFFF00;--branco:#fff;--texto:#dbe6f3;--linha:rgba(255,255,255,.10)}
+html,body{margin:0;min-height:100%;background:var(--azul);color:var(--branco);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body{padding-bottom:112px}
+.app{width:100%;min-height:100vh}
+
+/* Mesmo padrão estrutural do cabeçalho da Agenda: banner 3:1, sem faixa extra. */
+.topo{position:relative;width:100%;aspect-ratio:3/1;min-height:0;max-height:none;background:url("./banner-palavra.png") center center/contain no-repeat;background-color:var(--azul);margin:0;padding:0;border:0;overflow:hidden}
+.voltar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:14px;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 13px;border:1px solid rgba(255,255,0,.55);border-radius:11px;background:#051326;opacity:1;color:var(--amarelo);text-decoration:none;font-weight:800;font-size:13px}
+
+/* Mesma largura e espaçamento-base do módulo Agenda. */
+main{width:min(100% - 28px,980px);margin:0 auto;padding:23px 0 28px}
+.saudacao h1{font-size:clamp(25px,4vw,34px);margin-bottom:7px;line-height:1.2}
+.saudacao p{color:#b9c9db;line-height:1.5;margin-bottom:18px}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.option{min-height:108px;padding:13px 15px;display:grid;grid-template-columns:64px minmax(0,1fr) 18px;align-items:center;gap:12px;text-decoration:none;color:var(--branco);background:linear-gradient(135deg,#061522,#071b30);border:1px solid #285477;border-radius:16px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.option:hover,.option:focus-visible{transform:translateY(-2px);outline:none;border-color:var(--amarelo);box-shadow:0 0 12px #ccff0044}
+.option.primary{border:2px solid var(--amarelo);box-shadow:0 0 7px #ccff0033}
+.option-icon{font-size:36px;color:var(--amarelo);text-align:center;border-right:1px solid #dce7f0;padding-right:9px}
+.option h3{font-size:clamp(19px,2vw,23px);line-height:1.2;margin:0 0 4px}
+.option p{font-size:13px;line-height:1.35;margin:0;color:#e4edf5}
+.chevron{font-size:27px;color:var(--amarelo);font-weight:900;text-align:center}
+.info{margin-top:12px;padding:10px 13px;border:1px solid #24445f;border-radius:12px;background:#071a2e;color:#b9c9d8;line-height:1.45;font-size:12px}
+
+/* Barra inferior com as mesmas dimensões da Agenda. */
+.acesso-rapido{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(255,255,0,.12);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}
+.acesso-rapido a,.acesso-rapido button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}
+.acesso-rapido .icone{font-size:23px;line-height:1}
+
+@media(max-width:600px){
+ .topo{aspect-ratio:3/1;min-height:0;max-height:none;background-size:contain;background-repeat:no-repeat;background-position:center center}
+ main{width:min(100% - 22px,980px);padding-top:18px;padding-bottom:30px}
+ .saudacao p{margin-bottom:14px}
+ .options{grid-template-columns:1fr;gap:11px}
+ .option{min-height:92px;grid-template-columns:56px minmax(0,1fr) 17px;padding:11px;gap:10px}
+ .option-icon{font-size:32px;padding-right:8px}
+ .option h3{font-size:20px}
+ .option p{font-size:13px}
+ .chevron{font-size:25px}
+ .info{margin-top:10px;padding:9px 11px}
+}
 </style>
 </head>
 <body>
 <header class="topo" aria-label="Palavra">
-  <img src="./banner-palavra-v106.png" alt="Palavra — A Palavra que transforma, orienta e restaura. Salmo 119:105">
-  <a class="voltar" href="./index.html" aria-label="Voltar para o início">← Início</a>
+  <a class="voltar" href="./index.html">← Início</a>
+  <div class="hero-content">
+    <div class="hero-book" aria-hidden="true">📖</div>
+    <h1>PALAVRA</h1>
+    <p class="phrase">A Palavra que transforma, orienta e restaura.</p>
+    <div class="verse-ref">SALMO 119:105</div>
+    <p class="verse">“Lâmpada para os meus pés é a tua palavra e luz para o meu caminho.”</p>
+  </div>
 </header>
-<main>
+<main class="wrap">
   <h2>Leitura Bíblica 📖</h2>
   <p class="lead">A Palavra que ensina, transforma e restaura.</p>
   <section class="options" aria-label="Opções da Palavra">
