@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cara-app-v107-palavra-botao-e-filete';
+const CACHE_VERSION = 'cara-app-v103-galeria-50-capa';
 
 const APP_SHELL = [
   './',
