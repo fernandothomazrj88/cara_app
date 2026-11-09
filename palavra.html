@@ -7,260 +7,58 @@
 <title>Leitura Bíblica — C.A.R.A.</title>
 <link rel="icon" href="./icon-192.png">
 <style>
-:root{--azul:#051326;--azul2:#081b32;--amarelo:#FFFF00;--branco:#fff;--texto:#dbe6f3;--linha:rgba(255,255,255,.10)}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height:100%;background:var(--azul);color:var(--branco);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
-body{padding-bottom:112px}
+:root{--bg:#051326;--card:#0b2038;--card2:#102d4d;--y:#FFFF00;--w:#fff;--m:#b9c9d8;--line:#285477}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--w);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body{padding-bottom:30px}
 .app{width:100%;min-height:100vh}
-
-/* Cabeçalho copiado do padrão aprovado da Agenda; só muda o arquivo de arte. */
-.topo{position:relative;width:100%;aspect-ratio:8/3;min-height:0;max-height:620px;background:url("./banner-palavra.png") center center/contain no-repeat;background-color:var(--azul);border-bottom:3px solid var(--amarelo);margin:0;padding:0;overflow:hidden}
-.voltar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:14px;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 13px;border:1px solid rgba(255,255,0,.55);border-radius:11px;background:#051326;opacity:1;color:var(--amarelo);text-decoration:none;font-weight:800;font-size:13px;backdrop-filter:blur(5px)}
-main{width:min(100% - 28px,980px);margin:0 auto;padding:30px 0 20px}
-.saudacao h1{font-size:clamp(25px,4vw,34px);margin:0 0 7px;line-height:1.2}
-.saudacao p{color:#b9c9db;line-height:1.5;margin:0 0 20px}
-.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.option{min-height:108px;padding:13px 15px;display:grid;grid-template-columns:64px minmax(0,1fr) 18px;align-items:center;gap:12px;text-decoration:none;color:var(--branco);background:linear-gradient(135deg,#061522,#071b30);border:1px solid #285477;border-radius:16px}
-.option:hover,.option:focus-visible{outline:none;border-color:var(--amarelo);box-shadow:0 0 12px #ccff0044}
-.option.primary{border:2px solid var(--amarelo);box-shadow:0 0 7px #ccff0033}
-.option-icon{font-size:36px;color:var(--amarelo);text-align:center;border-right:1px solid #dce7f0;padding-right:9px}
-.option h3{font-size:clamp(19px,2vw,23px);line-height:1.2;margin:0 0 4px}
-.option p{font-size:13px;line-height:1.35;margin:0;color:#e4edf5}
-.chevron{font-size:27px;color:var(--amarelo);font-weight:900;text-align:center}
-.info{margin-top:12px;padding:10px 13px;border:1px solid #24445f;border-radius:12px;background:#071a2e;color:#b9c9d8;line-height:1.45;font-size:12px}
-
-/* Mesmo menu inferior do módulo Agenda. */
-.acesso-rapido{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(255,255,0,.12);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}
-.acesso-rapido a,.acesso-rapido button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}
-.acesso-rapido .icone{font-size:23px;line-height:1}
-@media(max-width:600px){
- .topo{aspect-ratio:8/3;min-height:0;max-height:none;background-size:contain;background-position:center center}
- main{width:min(100% - 22px,980px);padding-top:23px;padding-bottom:24px}
- .saudacao p{margin-bottom:15px}
- .options{grid-template-columns:1fr;gap:11px}
- .option{min-height:94px;grid-template-columns:56px minmax(0,1fr) 17px;padding:11px;gap:10px}
- .option-icon{font-size:32px;padding-right:8px}
- .option h3{font-size:20px}
+.topo{position:relative;width:100%;aspect-ratio:3/1;min-height:0;max-height:none;background:var(--bg);overflow:hidden}
+.topo img{display:block;width:100%;height:100%;object-fit:fill;object-position:center bottom}
+.back{position:absolute;z-index:5;left:1.5%;top:4.5%;width:11%;height:15%;display:block;border:0;border-radius:12px;background:transparent;color:transparent;font-size:0;overflow:hidden;text-indent:-9999px}
+.back:focus-visible{outline:2px solid var(--y);outline-offset:-2px}
+main{width:min(calc(100% - 28px),980px);margin:0 auto;padding:30px 0 20px}
+h2{font-size:clamp(25px,4vw,34px);margin:0 0 7px}
+.lead{font-size:16px;color:#b9c9db;line-height:1.5;margin:0 0 22px}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.option{min-height:126px;padding:17px 18px;display:grid;grid-template-columns:76px minmax(0,1fr) 20px;align-items:center;gap:14px;text-decoration:none;color:var(--w);background:linear-gradient(135deg,#061522,#071b30);border:1px solid var(--line);border-radius:18px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.option:hover,.option:focus-visible{transform:translateY(-2px);outline:none;border-color:var(--y);box-shadow:0 0 14px #ccff0055}
+.option.primary{border:2px solid var(--y);box-shadow:0 0 8px #ccff0044}
+.option-icon{font-size:42px;color:var(--y);text-align:center;border-right:1px solid #dce7f0;padding-right:12px}
+.option h3{font-size:clamp(19px,2vw,25px);margin:0 0 5px}
+.option p{font-size:14px;line-height:1.4;margin:0;color:#e4edf5}
+.chevron{font-size:30px;color:var(--y);font-weight:900;text-align:center}
+.info{margin-top:18px;padding:13px 16px;border:1px solid #24445f;border-radius:13px;background:#071a2e;color:var(--m);line-height:1.5;font-size:12px}
+.bottom-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:900;width:min(100%,900px);min-height:76px;padding:6px 10px env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(135deg,#06141a,#091c24);border:1px solid rgba(204,255,0,.18);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.35)}
+.bottom-nav a,.bottom-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;border:0;background:transparent;color:#fff;text-decoration:none;font:inherit;font-size:11px;cursor:pointer}
+.bottom-nav .icon{font-size:23px;line-height:1}
+@media(max-width:700px){
+ .topo{aspect-ratio:3/1}
+ main{width:calc(100% - 24px);padding-top:22px}
+ .options{grid-template-columns:1fr;gap:12px}
+ .option{min-height:112px;grid-template-columns:64px minmax(0,1fr) 18px;padding:14px;gap:11px}
+ .option-icon{font-size:36px;padding-right:9px}
+ .option h3{font-size:21px}
  .option p{font-size:13px}
-}
-</style>
-<style id="cara-banner-header-unificado-v86">
-/* C.A.R.A. 3.0 v86 — cabeçalho visual corrigido para todas as áreas.
-   A arte tem a linha amarela colada à borda inferior; o HTML não desenha outra.
-   O texto “← Início” está desenhado na própria arte. Os links abaixo são hotspots invisíveis. */
-html, body {
-  margin: 0 !important;
-  padding-top: 0 !important;
-  background-color: #051326 !important;
-  overflow-x: hidden !important;
-}
-header.hero,
-header.topo,
-header.topo.topo-hero {
-  position: relative !important;
-  display: block !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  max-width: none !important;
-  height: auto !important;
-  aspect-ratio: 3 / 1 !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-bottom: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  line-height: 0 !important;
-  overflow: hidden !important;
-  background-position: center bottom !important;
-  background-repeat: no-repeat !important;
-  background-size: 100% 100% !important;
-}
-header.hero::before, header.hero::after,
-header.topo::before, header.topo::after,
-header.topo.topo-hero::before, header.topo.topo-hero::after {
-  content: none !important;
-  display: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-header.hero > img,
-header.topo > img,
-header.topo.topo-hero > img {
-  position: absolute !important;
-  display: block !important;
-  inset: 0 !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  max-width: none !important;
-  height: 100% !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  object-fit: fill !important;
-  object-position: center bottom !important;
-}
-/* Hide the HTML button visuals because the official artwork already contains one.
-   Keep only a transparent, keyboard-accessible click target over the artwork button. */
-header a.voltar,
-header a.voltar-app-principal,
-header a.hero-back,
-header a.back,
-header a.banner-hotspot,
-header a.hero-hotspot,
-header a.back-hotspot {
-  position: absolute !important;
-  z-index: 90 !important;
-  left: 1.5% !important;
-  top: 4.5% !important;
-  right: auto !important;
-  bottom: auto !important;
-  display: block !important;
-  box-sizing: border-box !important;
-  width: 11% !important;
-  height: 15% !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  max-width: none !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 12px !important;
-  background: transparent !important;
-  color: transparent !important;
-  font-size: 0 !important;
-  line-height: 0 !important;
-  letter-spacing: 0 !important;
-  text-indent: -9999px !important;
-  text-shadow: none !important;
-  text-decoration: none !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  opacity: 1 !important;
-  overflow: hidden !important;
-  cursor: pointer !important;
-}
-header a.voltar::before, header a.voltar::after,
-header a.voltar-app-principal::before, header a.voltar-app-principal::after,
-header a.hero-back::before, header a.hero-back::after,
-header a.back::before, header a.back::after,
-header a.banner-hotspot::before, header a.banner-hotspot::after,
-header a.hero-hotspot::before, header a.hero-hotspot::after,
-header a.back-hotspot::before, header a.back-hotspot::after {
-  content: none !important;
-  display: none !important;
-}
-header a:focus-visible {
-  outline: 2px solid #FFFF00 !important;
-  outline-offset: -2px !important;
-}
-/* Louvor: align the transparent click target with its artwork’s Início button. */
-header.topo.topo-hero a.voltar-app-principal {
-  left: 1.7% !important;
-  top: 6.8% !important;
-  width: 8.8% !important;
-  height: 10.5% !important;
-}
-/* The yellow footer stripe is inside each PNG. Remove all HTML duplicates immediately after it. */
-header + .divisoria-fluorescente,
-header + .separador-conteudo,
-header + .banner-separator,
-header + .linha-banner,
-header + .linha-amarela,
-header + .filete-banner {
-  display: none !important;
-  visibility: hidden !important;
-  width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  background: transparent !important;
-}
-@media (max-width: 720px) {
-  header.hero, header.topo, header.topo.topo-hero {
-    width: 100% !important;
-    aspect-ratio: 3 / 1 !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-  }
-  header.topo.topo-hero a.voltar-app-principal {
-    left: 1.7% !important;
-    top: 6.8% !important;
-    width: 8.8% !important;
-    height: 10.5% !important;
-  }
-}
-</style>
-
-<style id="palavra-ajustes-finais">
-/* Palavra: a arte não contém o botão Início, então ele precisa ficar visível. */
-header.topo a.voltar{
-  position:absolute!important;
-  z-index:120!important;
-  top:12px!important;
-  left:14px!important;
-  right:auto!important;
-  bottom:auto!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  width:auto!important;
-  height:38px!important;
-  min-width:0!important;
-  min-height:38px!important;
-  max-width:none!important;
-  max-height:none!important;
-  margin:0!important;
-  padding:0 13px!important;
-  border:1px solid #FFFF00!important;
-  border-radius:11px!important;
-  background:#051326!important;
-  color:#FFFF00!important;
-  font-size:13px!important;
-  font-weight:800!important;
-  line-height:1!important;
-  letter-spacing:normal!important;
-  text-indent:0!important;
-  text-shadow:none!important;
-  text-decoration:none!important;
-  box-shadow:0 2px 8px rgba(0,0,0,.35)!important;
-  backdrop-filter:none!important;
-  -webkit-backdrop-filter:none!important;
-}
-/* Um único filete um pouco mais espesso para fechar o banner. */
-header.topo{
-  border:0!important;
-  border-bottom:4px solid #FFFF00!important;
-}
-@media(max-width:600px){
-  header.topo a.voltar{top:8px!important;left:8px!important;height:34px!important;min-height:34px!important;font-size:12px!important;padding:0 10px!important}
+ .chevron{font-size:27px}
 }
 </style>
 </head>
 <body>
+<div class="app">
 <header class="topo" aria-label="Palavra">
-  <a class="voltar" href="./index.html" aria-label="Voltar para o início">← Início</a>
+  <img src="./banner-palavra.png" alt="Palavra — A Palavra que transforma, orienta e restaura. Salmo 119:105">
+  <a class="back" href="./index.html" aria-label="Voltar para o início">← Início</a>
 </header>
 <main>
-  <section class="saudacao"><h1>Leitura Bíblica 📖</h1>
-  <p>A Palavra que ensina, transforma e restaura.</p></section>
+  <h2>Leitura Bíblica 📖</h2>
+  <p class="lead">A Palavra que ensina, transforma e restaura.</p>
   <section class="options" aria-label="Opções da Palavra">
     <a class="option primary" href="./biblia.html">
       <div class="option-icon" aria-hidden="true">📖</div>
       <div><h3>Ler a Bíblia</h3><p>Acesse os 66 livros, escolha os capítulos e leia a Bíblia Sagrada – NVT.</p></div>
       <span class="chevron" aria-hidden="true">›</span>
     </a>
-    <a class="option" href="./index.html?abrirJornada=1">
+    <a class="option" href="./jornada-palavra.html">
       <div class="option-icon" aria-hidden="true">☑</div>
       <div><h3>Minha Jornada</h3><p>Acompanhe seu progresso, marque capítulos lidos e registre suas reflexões.</p></div>
       <span class="chevron" aria-hidden="true">›</span>
@@ -268,10 +66,11 @@ header.topo{
   </section>
   <div class="info">📖 <strong style="color:#CCFF00">Bíblia Sagrada — NVT</strong><br>O leitor será conectado ao conteúdo NVT após a confirmação da autorização de uso. Sua Jornada atual continua preservada.</div>
 </main>
-<nav class="acesso-rapido" aria-label="Acesso rápido">
-  <a href="./index.html"><span class="icone">🏠</span>Início</a>
-  <a href="./index.html#avisos"><span class="icone">🔔</span>Avisos</a>
-  <a href="./index.html#mais"><span class="icone">☰</span>Mais</a>
+<nav class="bottom-nav" aria-label="Acesso rápido">
+  <a href="./index.html"><span class="icon">🏠</span>Início</a>
+  <a href="./index.html#avisos"><span class="icon">🔔</span>Avisos</a>
+  <a href="./index.html#mais"><span class="icon">☰</span>Mais</a>
 </nav>
+</div>
 </body>
 </html>

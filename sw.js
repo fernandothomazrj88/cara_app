@@ -1,11 +1,13 @@
-const CACHE_VERSION = 'cara-app-v104-galeria-100-fotos';
+const CACHE_VERSION = 'cara-app-v109-jornada-palavra';
 
 const APP_SHELL = [
   './',
   './index.html',
   './palavra.html',
+  './jornada-palavra.html',
   './biblia.html',
   './banner-palavra.png',
+  './banner-palavra-v106.png',
   './agenda.html',
   './louvor.html',
   './ministerios.html',
