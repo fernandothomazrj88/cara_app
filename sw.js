@@ -1,8 +1,10 @@
-const CACHE_VERSION = 'cara-app-v109-jornada-palavra';
+const CACHE_VERSION = 'cara-app-v110-proposito-dica-semana';
 
 const APP_SHELL = [
   './',
   './index.html',
+  './proposito-espiritual.html',
+  './dica-semana.html',
   './palavra.html',
   './jornada-palavra.html',
   './biblia.html',

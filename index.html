@@ -324,15 +324,13 @@
       transform: scale(.97);
     }
 
-    /* DICA DA SEMANA — mesmo padrão visual e largura do Próximo Evento */
-    .dica-semana-card { min-height: 219px; }
-    .dica-semana-conteudo { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
-    .dica-item { display:flex; align-items:flex-start; gap:12px; min-width:0; }
-    .dica-item-icone { font-size:32px; line-height:1.1; flex-shrink:0; }
+    /* CARDS DE DESTAQUE — mesmo padrão visual do Próximo Evento */
+    .dica-semana-card { min-height: 0; }
+    .dica-semana-conteudo { display:flex; align-items:center; gap:15px; min-width:0; }
+    .dica-item-icone { font-size:39px; line-height:1; flex-shrink:0; }
     .dica-item-texto { min-width:0; }
-    .dica-item-texto strong { display:block; font-size:18px; line-height:1.2; }
-    .dica-item-texto p { margin-top:5px; color:#e4e4e4; font-size:13px; line-height:1.4; }
-    .dica-item-texto a { display:inline-block; margin-top:7px; color:var(--dourado); font-weight:800; font-size:13px; text-decoration:none; }
+    .dica-item-texto strong { display:block; font-size:22px; line-height:1.15; overflow-wrap:anywhere; }
+    .dica-item-texto p { margin-top:5px; color:#e4e4e4; font-size:15px; line-height:1.45; }
     .dica-admin-btn { border:1px solid var(--dourado); background:transparent; color:var(--dourado); border-radius:12px; padding:10px 14px; font-weight:800; cursor:pointer; }
     .dica-editor-overlay { display:none; position:fixed; inset:0; z-index:1200; background:rgba(0,0,0,.72); padding:18px; overflow:auto; }
     .dica-editor-overlay.aberto { display:flex; align-items:flex-start; justify-content:center; }
@@ -346,7 +344,8 @@
     .dica-editor-acoes button { flex:1; border:0; border-radius:10px; padding:12px; font-weight:800; cursor:pointer; }
     #salvarDicaSemana { background:var(--dourado); color:#081326; }
     #cancelarDicaSemana { background:#263d55; color:#fff; }
-    @media(max-width:560px) { .dica-semana-conteudo { grid-template-columns:1fr; gap:13px; } .dica-semana-card { min-height:219px; } }
+    .dica-semana-card .evento-texto h2 { font-size:22px; }
+    @media(max-width:560px) { .dica-semana-conteudo { gap:13px; } .dica-item-icone { font-size:35px; } .dica-item-texto strong { font-size:19px; } }
 
 
     /* ========================================
@@ -1166,6 +1165,27 @@
 
 
     <!-- ==================================
+         PROPÓSITO ESPIRITUAL
+    =================================== -->
+
+    <section class="evento" id="cardPropositoEspiritual">
+      <div class="evento-label">PROPÓSITO ESPIRITUAL</div>
+      <div class="evento-principal">
+        <div class="evento-icone" aria-hidden="true">🙏</div>
+        <div class="evento-texto">
+          <h2>Jejum coletivo da Comunidade CARA</h2>
+          <p>Um tempo de consagração, edificação e avivamento!</p>
+        </div>
+      </div>
+      <div class="evento-linha"></div>
+      <div class="evento-rodape">
+        <div class="evento-info"><span class="icone">🍬</span><span>Propósito de abrir mão dos doces</span></div>
+        <div class="evento-info"><span class="icone">📖</span><span>Tiago 4:7–10</span></div>
+        <a href="./proposito-espiritual.html" class="evento-botao">Ver detalhes <span>›</span></a>
+      </div>
+    </section>
+
+    <!-- ==================================
          PRÓXIMO EVENTO — API CENTRAL
     =================================== -->
 
@@ -1195,12 +1215,19 @@
     =================================== -->
     <section class="evento dica-semana-card" id="cardDicaSemana">
       <div class="evento-label">DICA DA SEMANA</div>
-      <div class="dica-semana-conteudo" id="dicaSemanaConteudo">
-        <div class="dica-item"><div class="dica-item-icone">💡</div><div class="dica-item-texto"><strong>Preparando a dica desta semana</strong><p>Em breve teremos uma nova indicação de leitura ou filme para compartilhar com a comunidade.</p></div></div>
+      <div class="evento-principal">
+        <div class="evento-icone" id="dicaSemanaIcone" aria-hidden="true">💡</div>
+        <div class="evento-texto dica-semana-conteudo" id="dicaSemanaConteudo">
+          <div class="dica-item-texto">
+            <h2 id="dicaSemanaTitulo">Preparando a dica desta semana</h2>
+            <p id="dicaSemanaDescricao">Em breve teremos uma indicação de livro ou filme para compartilhar com a comunidade.</p>
+          </div>
+        </div>
       </div>
       <div class="evento-linha"></div>
       <div class="evento-rodape">
         <span class="evento-info"><span class="icone">✨</span><span id="dicaSemanaAtualizacao">Conteúdo selecionado pela equipe C.A.R.A.</span></span>
+        <a href="./dica-semana.html" class="evento-botao">Ver dica <span>›</span></a>
         <button type="button" class="dica-admin-btn" id="editarDicaSemana" hidden>Editar dica</button>
       </div>
     </section>
@@ -2622,18 +2649,31 @@ carregarProximoEvento();
     const j=await r.json(); if(!j.sucesso) throw new Error(j.mensagem||'Não foi possível concluir.'); return j;
   }
   function linkSeguro(url){ const v=String(url||'').trim(); return /^https:\/\//i.test(v) ? v : ''; }
-  function montarItem(tipoItem,titulo,subtitulo,descricao,imagem,link){
-    if(!titulo) return '';
-    const icone=tipoItem==='LIVRO'?'📚':'🎬';
-    const rotulo=tipoItem==='LIVRO'?'DICA DE LEITURA':'DICA DE FILME';
-    const destino=linkSeguro(link);
-    const capa=linkSeguro(imagem);
-    return `<article class="dica-item">${capa?`<img src="${escaparHtmlCARA(capa)}" alt="" style="width:64px;height:82px;object-fit:cover;border-radius:8px;flex-shrink:0">`:`<div class="dica-item-icone">${icone}</div>`}<div class="dica-item-texto"><span style="display:block;color:var(--dourado);font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:5px">${rotulo}</span><strong>${escaparHtmlCARA(titulo)}</strong>${subtitulo?`<p style="margin-top:3px">${escaparHtmlCARA(subtitulo)}</p>`:''}${descricao?`<p>${escaparHtmlCARA(descricao)}</p>`:''}${destino?`<a href="${escaparHtmlCARA(destino)}" target="_blank" rel="noopener noreferrer">Ver recomendação ›</a>`:''}</div></article>`;
-  }
   function renderizar(d){
-    dicaAtual=d||null; const area=$('dicaSemanaConteudo');
-    if(!d || (!d.livroTitulo && !d.filmeTitulo)) { area.innerHTML='<div class="dica-item"><div class="dica-item-icone">💡</div><div class="dica-item-texto"><strong>Preparando a dica desta semana</strong><p>Em breve teremos uma nova indicação de leitura ou filme para compartilhar com a comunidade.</p></div></div>'; }
-    else { area.innerHTML=[montarItem('LIVRO',d.livroTitulo,d.livroAutor,d.livroDescricao,d.livroImagem,d.livroLink),montarItem('FILME',d.filmeTitulo,'',d.filmeDescricao,d.filmeImagem,d.filmeLink)].filter(Boolean).join(''); }
+    dicaAtual=d||null;
+    const livro=String(d&&d.livroTitulo||'').trim();
+    const autor=String(d&&d.livroAutor||'').trim();
+    const filme=String(d&&d.filmeTitulo||'').trim();
+    const titulo=$('dicaSemanaTitulo');
+    const descricao=$('dicaSemanaDescricao');
+    const icone=$('dicaSemanaIcone');
+    if(livro && filme){
+      icone.textContent='📚';
+      titulo.textContent='Uma leitura e um filme para esta semana';
+      descricao.textContent=livro+' · '+filme;
+    } else if(livro){
+      icone.textContent='📚';
+      titulo.textContent=livro;
+      descricao.textContent=autor?'Livro recomendado · '+autor:'Confira a indicação de leitura desta semana.';
+    } else if(filme){
+      icone.textContent='🎬';
+      titulo.textContent=filme;
+      descricao.textContent='Indicação de filme da equipe C.A.R.A.';
+    } else {
+      icone.textContent='💡';
+      titulo.textContent='Preparando a dica desta semana';
+      descricao.textContent='Em breve teremos uma indicação de livro ou filme para compartilhar com a comunidade.';
+    }
     $('dicaSemanaAtualizacao').textContent=d&&d.atualizadoEm?'Atualizada em '+new Date(d.atualizadoEm).toLocaleDateString('pt-BR'):'Conteúdo selecionado pela equipe C.A.R.A.';
   }
   async function carregar(){

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#051326">
+  <title>Dica da Semana — C.A.R.A.</title>
+  <link rel="icon" href="./icon-192.png">
+  <style>
+    :root{--bg:#051326;--panel:#0b2038;--panel2:#061629;--lime:#CCFF00;--white:#fff;--muted:#c3d0dc;--line:#285477}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+    body{padding-bottom:86px}
+    header{position:sticky;top:0;z-index:5;background:#071a2e;border-bottom:2px solid var(--lime);padding:12px 15px;display:flex;align-items:center;gap:12px}
+    header a{color:var(--lime);text-decoration:none;font-weight:800;border:1px solid var(--lime);border-radius:10px;padding:9px 12px;white-space:nowrap}
+    header h1{font-size:18px;line-height:1.2}
+    main{width:min(calc(100% - 28px),760px);margin:auto;padding:22px 0 28px}
+    .intro{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:16px}
+    .card{background:linear-gradient(145deg,#0b2038,#071a2e);border:1px solid var(--line);border-radius:16px;padding:17px;margin-bottom:14px;overflow:hidden}
+    .kind{color:var(--lime);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:9px}
+    .item-layout{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:16px;align-items:start}
+    .cover{width:100%;max-height:270px;object-fit:contain;object-position:top center;border-radius:10px;background:#061629;border:1px solid #29435a}
+    .card h2{font-size:21px;line-height:1.2;margin-bottom:7px;overflow-wrap:anywhere}
+    .author{color:var(--lime);font-size:13px;font-weight:700;margin-bottom:10px}
+    .description{font-size:14px;line-height:1.65;color:#e8eef4;white-space:pre-line;overflow-wrap:anywhere}
+    .external{display:inline-flex;align-items:center;justify-content:center;margin-top:15px;background:var(--lime);color:#051326;text-decoration:none;font-size:13px;font-weight:900;border-radius:10px;padding:11px 14px;min-height:42px}
+    .empty{background:#0b2038;border:1px dashed #45617b;border-radius:16px;padding:20px;color:var(--muted);font-size:14px;line-height:1.6}
+    .status{color:var(--lime);font-size:13px;line-height:1.5;margin-bottom:12px;min-height:18px}
+    .bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,900px);padding:11px 16px calc(11px + env(safe-area-inset-bottom));background:#071a2e;border-top:1px solid #29415b;text-align:center;z-index:4}
+    .bottom a{display:inline-block;color:#051326;background:var(--lime);border-radius:10px;padding:11px 20px;text-decoration:none;font-weight:900}
+    @media(max-width:560px){.item-layout{grid-template-columns:minmax(0,112px) minmax(0,1fr);gap:12px}.cover{max-height:190px}.card{padding:14px}.card h2{font-size:18px}}
+    @media(max-width:360px){.item-layout{grid-template-columns:1fr}.cover{max-width:180px;max-height:230px}}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="./index.html">← Início</a>
+    <h1>Dica da Semana</h1>
+  </header>
+  <main>
+    <p class="intro">Indicações de livros e filmes escolhidas pela equipe C.A.R.A. para edificar a fé, ampliar o conhecimento e inspirar boas conversas.</p>
+    <div id="statusDica" class="status" role="status" aria-live="polite">Carregando a indicação desta semana...</div>
+    <div id="conteudoDica">
+      <div class="empty">Estamos buscando a indicação da semana.</div>
+    </div>
+  </main>
+  <nav class="bottom"><a href="./index.html">Voltar ao início</a></nav>
+  <script>
+    (function(){
+      'use strict';
+      const API_SESSAO_CARA='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+      const $=id=>document.getElementById(id);
+      const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      const httpsUrl=v=>{const s=String(v||'').trim();try{const u=new URL(s);return u.protocol==='https:'?u.href:'';}catch(_){return '';}};
+      function montarItem(tipo,titulo,autor,descricao,imagem,link){
+        if(!String(titulo||'').trim())return '';
+        const isLivro=tipo==='LIVRO';
+        const imageUrl=httpsUrl(imagem),external=httpsUrl(link);
+        return `<article class="card">
+          <div class="kind">${isLivro?'Indicação de leitura':'Indicação de filme'}</div>
+          <div class="item-layout">
+            ${imageUrl?`<img class="cover" src="${esc(imageUrl)}" alt="${isLivro?'Capa do livro':'Imagem do filme'}: ${esc(titulo)}" loading="lazy" referrerpolicy="no-referrer">`:''}
+            <div>
+              <h2>${esc(titulo)}</h2>
+              ${autor?`<div class="author">${isLivro?'Autor: ':''}${esc(autor)}</div>`:''}
+              ${descricao?`<p class="description">${esc(descricao)}</p>`:'<p class="description">A equipe C.A.R.A. compartilha esta indicação para sua edificação e reflexão.</p>'}
+              ${external?`<a class="external" href="${esc(external)}" target="_blank" rel="noopener noreferrer">Saiba mais <span aria-hidden="true">›</span></a>`:''}
+            </div>
+          </div>
+        </article>`;
+      }
+      async function carregar(){
+        const token=localStorage.getItem('cara_sessao_token')||'';
+        if(!token){location.replace('./login.html?next='+encodeURIComponent('./dica-semana.html'));return;}
+        try{
+          const r=await fetch(API_SESSAO_CARA,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({acao:'listar-dica-semana',token,dados:{}}),credentials:'omit',redirect:'follow',cache:'no-store'});
+          if(!r.ok)throw new Error('Falha de comunicação com a Base Central.');
+          const j=await r.json();
+          if(!j.sucesso)throw new Error(j.mensagem||'Não foi possível carregar a indicação.');
+          const d=j.dica||{};
+          const cards=[montarItem('LIVRO',d.livroTitulo,d.livroAutor,d.livroDescricao,d.livroImagem,d.livroLink),montarItem('FILME',d.filmeTitulo,'',d.filmeDescricao,d.filmeImagem,d.filmeLink)].filter(Boolean);
+          if(cards.length){$('conteudoDica').innerHTML=cards.join('');$('statusDica').textContent=d.atualizadoEm?'Atualizada em '+new Date(d.atualizadoEm).toLocaleDateString('pt-BR'):'';}
+          else{$('conteudoDica').innerHTML='<div class="empty"><strong style="display:block;color:#CCFF00;margin-bottom:7px">A próxima dica está sendo preparada.</strong>Em breve a equipe C.A.R.A. compartilhará uma nova indicação de livro ou filme.</div>';$('statusDica').textContent='';}
+        }catch(e){$('statusDica').textContent=e.message||'Não foi possível carregar a dica.';$('conteudoDica').innerHTML='<div class="empty">Verifique sua conexão e tente novamente. Se o problema continuar, entre em contato com a equipe C.A.R.A.</div>';}
+      }
+      carregar();
+    })();
+  </script>
+</body>
+</html>
