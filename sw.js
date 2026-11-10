@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v111-cache-banner-palavra-fix';
+const CACHE_VERSION = 'cara-app-v112-jejum-dia-2';
 
 const APP_SHELL = [
   './',

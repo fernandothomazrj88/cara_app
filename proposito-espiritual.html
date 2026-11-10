@@ -24,16 +24,40 @@
     .pill strong{color:var(--lime)}
     .card{background:linear-gradient(145deg,#0b2038,#071a2e);border:1px solid var(--line);border-radius:16px;padding:17px;margin-bottom:13px}
     .card h3{color:var(--lime);font-size:16px;letter-spacing:.3px;margin-bottom:10px}
-    .card p{font-size:14px;line-height:1.65;color:#edf2f6;white-space:pre-line}
+    .card p{font-size:14px;line-height:1.7;color:#edf2f6;white-space:pre-line}
+    .day-list{display:grid;gap:10px}
+    .day-button{width:100%;display:flex;align-items:center;gap:13px;text-align:left;padding:13px;border:1px solid #31516d;border-radius:14px;background:#061629;color:#fff;cursor:pointer;transition:border-color .15s,transform .15s}
+    .day-button:active{transform:scale(.99)}
+    .day-button.active,.day-button.available:hover{border-color:var(--lime)}
+    .day-number{width:46px;height:46px;flex:0 0 46px;border-radius:12px;background:var(--lime);color:#051326;display:grid;place-items:center;font-weight:900;font-size:17px}
+    .day-info{min-width:0;flex:1}
+    .day-info strong{display:block;font-size:14px;line-height:1.35;margin-bottom:3px}
+    .day-info small{display:block;color:#b9c8d6;font-size:12px;line-height:1.4}
+    .day-status{color:var(--lime);font-size:11px;font-weight:800;white-space:nowrap}
+    .day-button.locked{opacity:.65;cursor:default}
+    .detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:13px}
+    .detail-head h2{font-size:23px;line-height:1.2}
+    .back-days{border:1px solid var(--lime);background:transparent;color:var(--lime);border-radius:9px;padding:8px 10px;font-weight:800;white-space:nowrap;cursor:pointer}
+    .theme{color:var(--lime);font-weight:900;font-size:17px;line-height:1.4;margin:6px 0 12px}
+    .scripture{background:#061629;border:1px solid #45617b;border-radius:13px;padding:15px;margin:12px 0 16px;color:#fff;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.7}
+    .scripture strong{display:block;color:var(--lime);font-family:Arial,Helvetica,sans-serif;font-size:13px;margin-bottom:8px}
     .points{display:grid;gap:12px}
     .point{border-left:3px solid var(--lime);padding:2px 0 2px 12px}
     .point strong{display:block;color:#fff;font-size:14px;margin-bottom:4px}
-    .point p{color:#d9e3ec;font-size:13px;line-height:1.55}
-    .prayer{background:#061629;border:1px solid #45617b;border-radius:13px;padding:15px;color:#fff;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.65;font-style:italic}
+    .point p{color:#d9e3ec;font-size:13px;line-height:1.6}
+    .prayer{background:#061629;border:1px solid #45617b;border-radius:13px;padding:15px;color:#fff;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.7;font-style:italic}
+    .challenge{border:1px solid #536b22;background:#17250b;border-radius:13px;padding:15px;color:#f4f8eb;font-size:14px;line-height:1.65}
+    .challenge strong{color:var(--lime)}
+    .declaration{font-size:17px!important;font-weight:800;color:var(--lime)!important}
     .signature{color:var(--muted);font-size:12px;line-height:1.6;margin-top:10px}
     .motto{color:var(--lime);font-weight:800;margin-top:12px;font-size:13px;line-height:1.5}
+    .day-nav{display:flex;gap:10px;margin-top:14px}
+    .day-nav button{flex:1;border:1px solid #45617b;background:#061629;color:#fff;border-radius:11px;padding:12px;font-weight:800;cursor:pointer}
+    .day-nav button:disabled{opacity:.35;cursor:not-allowed}
+    .hidden{display:none!important}
     .bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,900px);padding:11px 16px calc(11px + env(safe-area-inset-bottom));background:#071a2e;border-top:1px solid #29415b;text-align:center;z-index:4}
     .bottom a{display:inline-block;color:#051326;background:var(--lime);border-radius:10px;padding:11px 20px;text-decoration:none;font-weight:900}
+    @media(max-width:420px){.day-status{font-size:10px}.detail-head h2{font-size:21px}.back-days{font-size:12px;padding:8px}}
   </style>
 </head>
 <body>
@@ -53,39 +77,113 @@
       </div>
     </section>
 
-    <section class="card">
-      <h3>Nosso propósito</h3>
-      <p>Estamos abrindo mão dos doces como um ato de consagração ao Senhor. Nosso propósito vai além de deixar de consumir algo de que gostamos: queremos dedicar este tempo para buscar mais intensamente a presença de Deus, permitindo que o Espírito Santo edifique nossas vidas, desperte a Igreja para um novo tempo de avivamento e nos conceda direção para os passos que precisamos dar como comunidade.
-
-Que cada vez que sentirmos o desejo de consumir aquilo de que estamos abrindo mão, sejamos lembrados de transformar esse momento em uma oportunidade de oração, adoração e comunhão com Deus.
-
-Não fazemos este propósito por obrigação, mas por amor e pelo desejo de estar mais perto do Senhor.</p>
-    </section>
-
-    <section class="card">
-      <h3>Fundamentação bíblica — Tiago 4:7–10</h3>
-      <div class="points">
-        <div class="point"><strong>Sujeição e resistência — versículo 7</strong><p>A resistência ao mal e às tentações começa com a submissão da nossa vontade a Deus.</p></div>
-        <div class="point"><strong>Proximidade e pureza — versículo 8</strong><p>Um convite à intimidade com o Criador, acompanhado de arrependimento prático e sinceridade interior.</p></div>
-        <div class="point"><strong>Arrependimento verdadeiro — versículo 9</strong><p>Um chamado à contrição genuína, trocando a leviandade por uma reflexão séria sobre nosso estado espiritual.</p></div>
-        <div class="point"><strong>Humildade — versículo 10</strong><p>A verdadeira elevação e honra vêm de Deus para aqueles que reconhecem suas limitações e se humilham diante dele.</p></div>
+    <section id="listaDias" class="card">
+      <h3>Nossa jornada — escolha o dia</h3>
+      <p style="margin-bottom:14px">A cada dia, um texto, uma reflexão e um alvo de oração para caminharmos juntos como comunidade.</p>
+      <div class="day-list">
+        <button class="day-button available" type="button" data-day="1">
+          <span class="day-number">01</span><span class="day-info"><strong>Primeiro dia — Nosso propósito</strong><small>Consagração, oração e unidade</small></span><span class="day-status">DISPONÍVEL ›</span>
+        </button>
+        <button class="day-button available" type="button" data-day="2">
+          <span class="day-number">02</span><span class="day-info"><strong>Edificados para o crescimento!</strong><small>Terça-feira · Colossenses 2:6–7</small></span><span class="day-status">DISPONÍVEL ›</span>
+        </button>
+        <div class="day-button locked" aria-disabled="true"><span class="day-number">03</span><span class="day-info"><strong>Terceiro dia</strong><small>Conteúdo será disponibilizado em breve</small></span><span class="day-status">EM BREVE</span></div>
       </div>
     </section>
 
-    <section class="card">
-      <h3>Nossa oração durante este período</h3>
-      <div class="prayer">Senhor, edifique a Tua Igreja! Desperta em nós uma fome maior pela Tua presença. Aviva nossa fé, fortalece nossa unidade e concede à Comunidade CARA a direção do Teu Espírito Santo. Que sejamos uma comunidade sensível à Tua voz e disponível para cumprir a Tua vontade! Em nome do Senhor Jesus!</div>
-    </section>
-
-    <section class="card">
-      <h3>Seguimos juntos em unidade</h3>
-      <p>Que este jejum produza frutos em nossas vidas e que, ao final deste propósito, estejamos mais fortalecidos espiritualmente, mais unidos e mais comprometidos com o Reino de Deus.
-
-Não queremos apenas deixar de consumir doces; queremos desenvolver ainda mais a sensibilidade à voz do Espírito Santo e o desejo pelas coisas do Reino!</p>
-      <div class="signature">Com carinho e cobertura pastoral,<br><strong>Pra. Juçara Soares</strong><br>Comunidade Apostólica Restaurando Almas — CARA</div>
-      <div class="motto">“Um amor que acolhe, a verdade que liberta e a graça que restaura!”</div>
+    <section id="conteudoDia" class="hidden">
+      <div class="card">
+        <div class="detail-head"><div><div class="eyebrow" id="diaRotulo">DIA 2 — TERÇA-FEIRA</div><h2 id="diaTitulo">Edificados para o crescimento!</h2></div><button class="back-days" id="voltarDias" type="button">← Dias</button></div>
+        <div class="theme" id="diaTema"></div>
+        <div class="scripture"><strong id="referencia">Colossenses 2:6–7</strong><span id="textoBiblico"></span></div>
+        <div id="blocosDia"></div>
+        <div class="day-nav"><button id="diaAnterior" type="button">← Dia anterior</button><button id="proximoDia" type="button" disabled>Próximo dia →</button></div>
+      </div>
     </section>
   </main>
   <nav class="bottom"><a href="./index.html">Voltar ao início</a></nav>
+
+  <script>
+    const dias = {
+      1: {
+        rotulo: 'DIA 1 — SEGUNDA-FEIRA',
+        titulo: 'Nosso propósito',
+        tema: 'Um tempo de consagração, edificação e avivamento!',
+        referencia: 'Tiago 4:7–10',
+        texto: 'Nosso propósito é abrir mão dos doces como um ato de consagração ao Senhor. Queremos dedicar este tempo para buscar mais intensamente a presença de Deus, permitindo que o Espírito Santo edifique nossas vidas, desperte a Igreja para um novo tempo de avivamento e nos conceda direção para os passos que precisamos dar como comunidade.',
+        blocos: [
+          {titulo:'Nosso propósito', texto:'Estamos abrindo mão dos doces como um ato de consagração ao Senhor. Nosso propósito vai além de deixar de consumir algo de que gostamos: queremos dedicar este tempo para buscar mais intensamente a presença de Deus, permitindo que o Espírito Santo edifique nossas vidas, desperte a Igreja para um novo tempo de avivamento e nos conceda direção para os passos que precisamos dar como comunidade.\n\nQue cada vez que sentirmos o desejo de consumir aquilo de que estamos abrindo mão, sejamos lembrados de transformar esse momento em uma oportunidade de oração, adoração e comunhão com Deus.\n\nNão fazemos este propósito por obrigação, mas por amor e pelo desejo de estar mais perto do Senhor.'},
+          {titulo:'Fundamentação bíblica — Tiago 4:7–10', texto:'Sujeição e resistência — versículo 7: A resistência ao mal e às tentações começa com a submissão da nossa vontade a Deus.\n\nProximidade e pureza — versículo 8: Um convite à intimidade com o Criador, acompanhado de arrependimento prático e sinceridade interior.\n\nArrependimento verdadeiro — versículo 9: Um chamado à contrição genuína, trocando a leviandade por uma reflexão séria sobre nosso estado espiritual.\n\nHumildade — versículo 10: A verdadeira elevação e honra vêm de Deus para aqueles que reconhecem suas limitações e se humilham diante dele.'},
+          {titulo:'Nossa oração durante este período', tipo:'oracao', texto:'Senhor, edifique a Tua Igreja! Desperta em nós uma fome maior pela Tua presença. Aviva nossa fé, fortalece nossa unidade e concede à Comunidade CARA a direção do Teu Espírito Santo. Que sejamos uma comunidade sensível à Tua voz e disponível para cumprir a Tua vontade! Em nome do Senhor Jesus!'},
+          {titulo:'Seguimos juntos em unidade', texto:'Que este jejum produza frutos em nossas vidas e que, ao final deste propósito, estejamos mais fortalecidos espiritualmente, mais unidos e mais comprometidos com o Reino de Deus.\n\nNão queremos apenas deixar de consumir doces; queremos desenvolver ainda mais a sensibilidade à voz do Espírito Santo e o desejo pelas coisas do Reino.'}
+        ],
+        assinatura: true
+      },
+      2: {
+        rotulo: 'DIA 2 — TERÇA-FEIRA',
+        titulo: 'Edificados para o crescimento!',
+        tema: 'Edificados para o crescimento!',
+        referencia: 'Colossenses 2:6–7',
+        texto: '6 E agora, assim como aceitaram Cristo Jesus como Senhor, continuem a segui-lo.\n7 Aprofundem nele suas raízes e sobre ele edifiquem sua vida. Então sua fé se fortalecerá na verdade que lhes foi ensinada, e vocês transbordarão de gratidão.',
+        blocos: [
+          {titulo:'Querida família CARA', texto:'Nesse segundo dia do nosso jejum, somos convidados a refletir sobre a importância de estarmos firmados em Cristo.\n\nUma comunidade espiritualmente forte não é construída apenas por reuniões, atividades ou projetos, mas por vidas que estão profundamente enraizadas em Jesus.\n\nAssim como uma árvore precisa de raízes profundas para permanecer firme diante dos ventos, nós também precisamos aprofundar nossa comunhão com Deus para permanecermos firmes diante das circunstâncias.\n\nNosso desejo neste propósito não é apenas ver uma comunidade crescer em número, mas crescer em maturidade, conhecimento da Palavra, unidade e intimidade com o Senhor.\n\nHoje, nossa oração será para que Deus nos edifique individualmente e como Igreja.'},
+          {titulo:'Alvo de oração', tipo:'pontos', itens:['Que nossa fé seja fortalecida.','Que nossas raízes estejam firmadas em Cristo.','Que cresçamos em maturidade espiritual.','Que a CARA seja uma Comunidade fundamentada na Palavra.']},
+          {titulo:'Desafio do dia', tipo:'desafio', texto:'Quero te desafiar que ao sentir vontade de consumir um doce, transforme esse momento em uma oração, pedindo ao Senhor que aprofunde suas raízes espirituais.'},
+          {titulo:'Oração', tipo:'oracao', texto:'Senhor, edifica a nossa vida sobre Cristo. Fortalece nossas raízes, amadurece nossa fé e nos ensina a crescer em Tua presença. Que a Comunidade CARA seja uma igreja firme, saudável e fundamentada na Tua Palavra. Em nome do Senhor Jesus. Amém!'},
+          {titulo:'Declare', tipo:'declaracao', texto:'Não desejamos apenas crescer, desejamos crescer com nossas raízes aprofundadas em Cristo!'}
+        ],
+        assinatura: true
+      }
+    };
+
+    const listaDias = document.getElementById('listaDias');
+    const conteudoDia = document.getElementById('conteudoDia');
+    const blocosDia = document.getElementById('blocosDia');
+
+    function criarBloco(bloco) {
+      const section = document.createElement('section');
+      section.className = 'card';
+      const h = document.createElement('h3'); h.textContent = bloco.titulo; section.appendChild(h);
+      if (bloco.tipo === 'pontos') {
+        const wrap = document.createElement('div'); wrap.className = 'points';
+        bloco.itens.forEach(item => { const p = document.createElement('div'); p.className='point'; const t=document.createElement('p'); t.textContent=item; p.appendChild(t); wrap.appendChild(p); });
+        section.appendChild(wrap);
+      } else if (bloco.tipo === 'oracao') {
+        const p=document.createElement('div'); p.className='prayer'; p.textContent=bloco.texto; section.appendChild(p);
+      } else if (bloco.tipo === 'desafio') {
+        const p=document.createElement('div'); p.className='challenge'; p.textContent=bloco.texto; section.appendChild(p);
+      } else if (bloco.tipo === 'declaracao') {
+        const p=document.createElement('p'); p.className='declaration'; p.textContent=bloco.texto; section.appendChild(p);
+      } else {
+        const p=document.createElement('p'); p.textContent=bloco.texto; section.appendChild(p);
+      }
+      return section;
+    }
+
+    function abrirDia(numero) {
+      const dia = dias[numero];
+      if (!dia) return;
+      document.getElementById('diaRotulo').textContent=dia.rotulo;
+      document.getElementById('diaTitulo').textContent=dia.titulo;
+      document.getElementById('diaTema').textContent=dia.tema;
+      document.getElementById('referencia').textContent=dia.referencia;
+      document.getElementById('textoBiblico').textContent=dia.texto;
+      blocosDia.replaceChildren(...dia.blocos.map(criarBloco));
+      if (dia.assinatura) {
+        const assinatura=document.createElement('div'); assinatura.className='card';
+        assinatura.innerHTML='<div class="signature">Com carinho e cobertura pastoral,<br><strong>Pra. Juçara Soares</strong><br>Comunidade Apostólica Restaurando Almas — CARA</div><div class="motto">“Um amor que acolhe, a verdade que liberta e a graça que restaura!”</div><p style="margin-top:12px;color:#CCFF00;font-weight:800">#JUNTOSPODEMOSMAIS 🤜🤛</p>';
+        blocosDia.appendChild(assinatura);
+      }
+      document.getElementById('diaAnterior').disabled = numero === 1;
+      document.getElementById('proximoDia').disabled = !dias[numero+1];
+      document.getElementById('diaAnterior').onclick=()=>abrirDia(numero-1);
+      document.getElementById('proximoDia').onclick=()=>abrirDia(numero+1);
+      listaDias.classList.add('hidden'); conteudoDia.classList.remove('hidden');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    document.querySelectorAll('[data-day]').forEach(btn=>btn.addEventListener('click',()=>abrirDia(Number(btn.dataset.day))));
+    document.getElementById('voltarDias').addEventListener('click',()=>{conteudoDia.classList.add('hidden');listaDias.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});});
+  </script>
 </body>
 </html>
