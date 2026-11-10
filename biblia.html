@@ -48,9 +48,16 @@ button:disabled{opacity:.5;cursor:wait}
  <div class="reader-head"><h2 id="referencia">Leitura bíblica</h2><span>NVT</span></div>
  <article id="texto" class="texto"></article>
  <div class="navcap"><button id="anterior" type="button">← Anterior</button><button id="proximo" type="button">Próximo →</button></div>
- <div id="credito" class="credito">Texto bíblico fornecido pela API.Bible. NVT — Nova Versão Transformadora. Direitos reservados aos respectivos titulares.</div>
+ <div id="credito" class="credito">Bíblia Sagrada, Nova Versão Transformadora © 2016 por Editora Mundo Cristão. Copyright atribuído a Tyndale House Foundation, 2021. Todos os direitos reservados.</div>
 </section>
 </main>
+<script type="text/javascript" src="https://pkg.api.bible/fumsV3.min.js"></script>
+<script>
+window.fumsData = window.fumsData || [];
+window.fums = window.fums || function () {
+  window.fumsData.push(arguments);
+};
+</script>
 <script>
 (function(){
 'use strict';
@@ -114,8 +121,15 @@ async function ler(index){
   const c=capitulos[index],d=await api('biblia-nvt-obter-capitulo',{capituloId:c.id});
   $('referencia').textContent=d.capitulo.referencia||livro.options[livro.selectedIndex].text+' '+c.numero;
   $('texto').innerHTML=sanitizarHtml(d.capitulo.conteudo);
+  // FUMS v3: usa apenas ID interno não identificável; o tracker oficial aplica SHA-256.
+  if (d.capitulo.fumsUserId && typeof window.fums === 'function') {
+   window.fums('config', { userId: d.capitulo.fumsUserId });
+  }
+  if (d.capitulo.fumsToken && typeof window.fums === 'function') {
+   window.fums('trackView', d.capitulo.fumsToken);
+  }
   const cred=d.capitulo.copyrightShort||d.capitulo.copyright;
-  $('credito').textContent=cred||'Texto bíblico NVT fornecido pela API.Bible. Direitos reservados aos respectivos titulares.';
+  $('credito').textContent=cred||'Bíblia Sagrada, Nova Versão Transformadora © 2016 por Editora Mundo Cristão. Copyright atribuído a Tyndale House Foundation, 2021. Todos os direitos reservados.';
   $('reader').style.display='block';setStatus('Capítulo carregado.');
   $('anterior').disabled=index===0;$('proximo').disabled=index===capitulos.length-1;
   $('reader').scrollIntoView({behavior:'smooth',block:'start'});
