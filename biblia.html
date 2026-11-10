@@ -25,10 +25,11 @@ button:disabled{opacity:.5;cursor:wait}
 .reader-head h2{color:var(--y);font-size:21px;margin:0}.reader-head span{font-size:12px;color:var(--m)}
 .texto{font-family:Georgia,'Times New Roman',serif;font-size:19px;line-height:1.85;color:#f7f9fc;overflow-wrap:anywhere}
 .texto p{margin:0 0 12px}.texto h1,.texto h2,.texto h3{color:var(--y);font-family:Arial,sans-serif;font-size:18px;margin:18px 0 10px}
-.texto .v{color:var(--y);font:700 11px Arial,sans-serif;vertical-align:super;margin-right:4px}
+.texto .v{color:var(--y);font:700 11px Arial,sans-serif;vertical-align:super;margin-right:4px;cursor:pointer;padding:3px;border-radius:5px}.texto .v.selecionado{background:var(--y);color:#051326}
 .navcap{display:flex;gap:10px;margin-top:18px}.navcap button{flex:1}
 .credito{font-size:11px;color:var(--m);line-height:1.5;margin-top:16px;border-top:1px solid #29445f;padding-top:12px}
 .empty{color:var(--m);font-size:14px;line-height:1.5}
+.pessoal h3{margin:0 0 8px;color:var(--y);font-size:17px}.pessoal textarea{width:100%;min-height:100px;resize:vertical;background:#061326;color:#fff;border:1px solid #45617b;border-radius:10px;padding:12px;font:inherit;line-height:1.5}.acoes-pessoais{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.acoes-pessoais button{flex:1;min-width:130px}.secundario{background:#173a5c;color:#fff;border:1px solid #45617b}.painel-lista{margin-top:12px;border-top:1px solid #29445f;padding-top:10px}.item-pessoal{padding:10px 0;border-bottom:1px solid #29445f}.item-pessoal strong{color:var(--y)}.item-pessoal p{margin:5px 0;color:#e7eef7;white-space:pre-wrap}.item-pessoal button{width:auto;min-height:34px;padding:6px 10px;font-size:12px}
 @media(max-width:650px){.controls{grid-template-columns:1fr 1fr}.controls .load{grid-column:1/-1}.texto{font-size:18px}.top h1{font-size:16px}}
 </style>
 </head>
@@ -48,6 +49,13 @@ button:disabled{opacity:.5;cursor:wait}
  <div class="reader-head"><h2 id="referencia">Leitura bíblica</h2><span>NVT</span></div>
  <article id="texto" class="texto"></article>
  <div class="navcap"><button id="anterior" type="button">← Anterior</button><button id="proximo" type="button">Próximo →</button></div>
+ <section class="pessoal card" style="margin-top:16px;background:#081a2d">
+  <h3>✍️ Minha reflexão</h3>
+  <p class="empty" id="versoSelecionado">Toque no número de um versículo para selecioná-lo.</p>
+  <textarea id="notaVersiculo" maxlength="8000" placeholder="Escreva aqui sua reflexão sobre este versículo..."></textarea>
+  <div class="acoes-pessoais"><button id="salvarNota" type="button" disabled>Salvar anotação</button><button id="favoritarVerso" class="secundario" type="button" disabled>☆ Favoritar versículo</button></div>
+  <div id="statusPessoal" class="status" role="status" aria-live="polite"></div>
+ </section>
  <div id="credito" class="credito">Bíblia Sagrada, Nova Versão Transformadora © 2016 por Editora Mundo Cristão. Copyright atribuído a Tyndale House Foundation, 2021. Todos os direitos reservados.</div>
 </section>
 </main>
@@ -64,7 +72,7 @@ window.fums = window.fums || function () {
 const API='https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
 const $=id=>document.getElementById(id);
 const livro=$('livro'),capitulo=$('capitulo'),abrir=$('abrir');
-let livros=[],capitulos=[],capituloIndex=-1;
+let livros=[],capitulos=[],capituloIndex=-1, capituloAtual=null, versiculoAtual=null, registrosPessoais=[];
 function token(){return localStorage.getItem('cara_sessao_token')||''}
 function erroSessao(){location.href='./login.html?next='+encodeURIComponent('./biblia.html')}
 async function api(acao,dados){
@@ -96,6 +104,66 @@ function sanitizarHtml(html){
  });
  return doc.body.innerHTML;
 }
+function statusPessoal(t){$('statusPessoal').textContent=t}
+function referenciaVersiculo(){
+ if(!capituloAtual||!versiculoAtual)return '';
+ return capituloAtual.referencia+' : '+versiculoAtual.numero;
+}
+function textoDoVersiculo(el){
+ let texto='';
+ let no=el;
+ while(no){
+  if(no!==el && no.nodeType===1 && no.classList && no.classList.contains('v'))break;
+  texto += no.textContent||'';
+  no=no.nextSibling;
+ }
+ return texto.replace(/^\s+|\s+$/g,'').slice(0,1200);
+}
+function chaveRegistro(ref){return String(ref||'').trim()}
+function atualizarPainelVersiculo(){
+ const ref=referenciaVersiculo();
+ $('versoSelecionado').textContent=ref?'Selecionado: '+ref+' — '+(versiculoAtual.texto||''):'Toque no número de um versículo para selecioná-lo.';
+ $('salvarNota').disabled=!ref;$('favoritarVerso').disabled=!ref;
+ const existente=registrosPessoais.find(x=>x.referencia===ref && x.tipo==='ANOTACAO');
+ $('notaVersiculo').value=existente?existente.nota||'':'';
+ const fav=registrosPessoais.some(x=>x.referencia===ref && x.tipo==='FAVORITO');
+ $('favoritarVerso').textContent=fav?'★ Remover dos favoritos':'☆ Favoritar versículo';
+}
+async function carregarPessoais(){
+ try{const d=await api('biblia-pessoal-listar');registrosPessoais=Array.isArray(d.registros)?d.registros:[];renderizarPessoais();}
+ catch(e){statusPessoal(e.message)}
+}
+function renderizarPessoais(){
+ let alvo=$('listaPessoal');if(!alvo)return;
+ const itens=registrosPessoais.slice().sort((a,b)=>String(b.atualizadoEm||'').localeCompare(String(a.atualizadoEm||'')));
+ alvo.innerHTML=itens.length?itens.map(x=>'<div class="item-pessoal"><strong>'+esc(x.referencia)+'</strong> · '+(x.tipo==='FAVORITO'?'⭐ Favorito':'📝 Anotação')+(x.nota?'<p>'+esc(x.nota)+'</p>':'')+'<button class="secundario" type="button" data-remover="'+esc(x.id)+'">Excluir</button></div>').join(''):'<p class="empty">Você ainda não salvou favoritos ou anotações.</p>';
+ alvo.querySelectorAll('[data-remover]').forEach(b=>b.addEventListener('click',()=>removerPessoal(b.dataset.remover)));
+}
+async function salvarAnotacao(){
+ if(!versiculoAtual)return;
+ const nota=$('notaVersiculo').value.trim();if(!nota){statusPessoal('Escreva sua reflexão antes de salvar.');return;}
+ try{const d=await api('biblia-pessoal-salvar',{tipo:'ANOTACAO',referencia:referenciaVersiculo(),livro:livro.options[livro.selectedIndex].text,capitulo:capituloAtual.numero,versiculo:versiculoAtual.numero,nota:nota});statusPessoal(d.mensagem||'Anotação salva.');await carregarPessoais();atualizarPainelVersiculo();}
+ catch(e){statusPessoal(e.message)}
+}
+async function alternarFavorito(){
+ if(!versiculoAtual)return;
+ const ref=referenciaVersiculo(),existe=registrosPessoais.find(x=>x.tipo==='FAVORITO'&&x.referencia===ref);
+ try{
+  if(existe)await api('biblia-pessoal-excluir',{id:existe.id});
+  else await api('biblia-pessoal-salvar',{tipo:'FAVORITO',referencia:ref,livro:livro.options[livro.selectedIndex].text,capitulo:capituloAtual.numero,versiculo:versiculoAtual.numero,nota:''});
+  await carregarPessoais();atualizarPainelVersiculo();statusPessoal(existe?'Favorito removido.':'Versículo adicionado aos favoritos.');
+ }catch(e){statusPessoal(e.message)}
+}
+async function removerPessoal(id){try{await api('biblia-pessoal-excluir',{id:id});await carregarPessoais();atualizarPainelVersiculo();statusPessoal('Registro excluído.')}catch(e){statusPessoal(e.message)}}
+function ativarSelecaoVersiculos(){
+ $('texto').querySelectorAll('.v').forEach(el=>{el.addEventListener('click',()=>{
+  $('texto').querySelectorAll('.v.selecionado').forEach(x=>x.classList.remove('selecionado'));
+  el.classList.add('selecionado');
+  versiculoAtual={numero:(el.textContent||'').trim(),texto:textoDoVersiculo(el)};
+  atualizarPainelVersiculo();
+  $('notaVersiculo').scrollIntoView({behavior:'smooth',block:'center'});
+ });});
+}
 async function carregarLivros(){
  try{
   const d=await api('biblia-nvt-listar-livros');
@@ -121,6 +189,8 @@ async function ler(index){
   const c=capitulos[index],d=await api('biblia-nvt-obter-capitulo',{capituloId:c.id});
   $('referencia').textContent=d.capitulo.referencia||livro.options[livro.selectedIndex].text+' '+c.numero;
   $('texto').innerHTML=sanitizarHtml(d.capitulo.conteudo);
+  capituloAtual={id:c.id,numero:c.numero,referencia:d.capitulo.referencia||livro.options[livro.selectedIndex].text+' '+c.numero};
+  versiculoAtual=null;ativarSelecaoVersiculos();atualizarPainelVersiculo();
   // FUMS v3: usa apenas ID interno não identificável; o tracker oficial aplica SHA-256.
   if (d.capitulo.fumsUserId && typeof window.fums === 'function') {
    window.fums('config', { userId: d.capitulo.fumsUserId });
@@ -133,6 +203,7 @@ async function ler(index){
   $('reader').style.display='block';setStatus('Capítulo carregado.');
   $('anterior').disabled=index===0;$('proximo').disabled=index===capitulos.length-1;
   $('reader').scrollIntoView({behavior:'smooth',block:'start'});
+  await carregarPessoais();
  }catch(e){setStatus(e.message)}
  finally{abrir.disabled=false}
 }
@@ -141,7 +212,12 @@ capitulo.addEventListener('change',()=>{abrir.disabled=capitulo.value===''});
 abrir.addEventListener('click',()=>ler(Number(capitulo.value)));
 $('anterior').addEventListener('click',()=>ler(capituloIndex-1));
 $('proximo').addEventListener('click',()=>ler(capituloIndex+1));
+$('salvarNota').addEventListener('click',salvarAnotacao);
+$('favoritarVerso').addEventListener('click',alternarFavorito);
+// Lista pessoal fica abaixo do leitor e é carregada após autenticação.
+const lista=document.createElement('section');lista.className='card';lista.innerHTML='<h3 style="color:var(--y);margin:0 0 8px">⭐ Meus favoritos e anotações</h3><div id="listaPessoal" class="painel-lista"></div>';$('reader').after(lista);
 carregarLivros();
+carregarPessoais();
 })();
 </script>
 </body>
