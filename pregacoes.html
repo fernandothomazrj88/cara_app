@@ -501,15 +501,27 @@ function atualizarFavoritos(){
   });
 }
 function abrirModalMensagem(titulo,html){
-  document.getElementById('modalMensagemTitulo').textContent=titulo;
-  document.getElementById('modalMensagemTexto').innerHTML=html;
-  document.getElementById('modalMensagem').classList.add('aberto');
+  const modal=document.getElementById('modalMensagem');
+  const tituloEl=document.getElementById('modalMensagemTitulo');
+  const textoEl=document.getElementById('modalMensagemTexto');
+  if(!modal||!tituloEl||!textoEl) throw new Error('Janela de leitura não encontrada.');
+  tituloEl.textContent=titulo;
+  textoEl.innerHTML=html;
+  modal.classList.add('aberto');
+  modal.style.display='flex';
+  modal.setAttribute('aria-hidden','false');
   document.body.classList.add('menu-aberto');
-  document.getElementById('fecharMensagem').focus();
+  const fechar=document.getElementById('fecharMensagem');
+  if(fechar) fechar.focus();
 }
 function fecharModalMensagem(){
   const m=document.getElementById('modalMensagem');
-  if(m){m.classList.remove('aberto');document.body.classList.remove('menu-aberto');}
+  if(m){
+    m.classList.remove('aberto');
+    m.style.display='none';
+    m.setAttribute('aria-hidden','true');
+    document.body.classList.remove('menu-aberto');
+  }
 }
 document.getElementById('fecharMensagem').addEventListener('click',fecharModalMensagem);
 document.getElementById('modalMensagem').addEventListener('click',e=>{
@@ -574,7 +586,7 @@ function renderizarDestaque(){
       <button class="favorito" type="button" data-fav="${local.id}" aria-label="Favoritar pregação">♡</button>
       <h3>CAIR EM SI</h3><div class="metadados"><span>▣ 08/11/2026</span><span>♟ Pra. Juçara Soares</span><span>◆ Lucas 15:11–24</span></div>
       <p class="descricao-destaque">${escaparHTML(local.resumo)}</p>
-      <div class="acoes-destaque"><button class="acao" type="button" data-ler-cair-em-si>▤ Ler ministração</button></div></div></article>`;
+      <div class="acoes-destaque"><button class="acao" type="button" data-ler-cair-em-si onclick="abrirPregacaoCairEmSi()">▤ Ler ministração</button></div></div></article>`;
     return;
   }
   const capa=urlSegura(s.capaUrl)||'./pregacao-biblia.jpg';
@@ -612,7 +624,7 @@ function renderizarLinha(s){
   if(s.local) return `<article class="linha-pregacao" data-id="${escaparHTML(s.id)}">
     <img class="linha-imagem" src="./banner-cair-em-si.png" alt="Capa CAIR EM SI" loading="lazy">
     <div class="linha-corpo"><h3>CAIR EM SI</h3><div class="metadados"><span>▣ 08/11/2026</span><span>♟ Pra. Juçara Soares</span><span>◆ Lucas 15:11–24</span></div><div class="metadados"><span>◆ Restauração espiritual</span></div></div>
-    <div class="linha-acoes"><button class="icone-acao" type="button" data-fav="${escaparHTML(s.id)}" aria-label="Favoritar pregação">♡</button><button class="acao-lista" type="button" data-ler-cair-em-si>Ler ministração</button></div></article>`;
+    <div class="linha-acoes"><button class="icone-acao" type="button" data-fav="${escaparHTML(s.id)}" aria-label="Favoritar pregação">♡</button><button class="acao-lista" type="button" data-ler-cair-em-si onclick="abrirPregacaoCairEmSi()">Ler ministração</button></div></article>`;
   return `<article class="linha-pregacao" data-id="${escaparHTML(s.id)}">
     <img class="linha-imagem" src="${escaparHTML(capa)}" alt="" loading="lazy">
     <div class="linha-corpo">
@@ -691,8 +703,14 @@ function alternarFavorito(id){
   filtrar();
 }
 document.addEventListener('click',e=>{
-  if(e.target.closest('[data-ler-cair-em-si]')){e.preventDefault();abrirPregacaoCairEmSi();return;}
-  const fav=e.target.closest('[data-fav]');
+  const alvo=e.target && e.target.closest ? e.target.closest('[data-ler-cair-em-si]') : null;
+  if(alvo){
+    e.preventDefault();
+    try { abrirPregacaoCairEmSi(); }
+    catch(erro){ console.error('Erro ao abrir a ministração CAIR EM SI:',erro); alert('Não foi possível abrir a ministração. Atualize o aplicativo e tente novamente.'); }
+    return;
+  }
+  const fav=e.target && e.target.closest ? e.target.closest('[data-fav]') : null;
   if(fav){e.preventDefault();alternarFavorito(fav.dataset.fav);}
 });
 const abas=[...document.querySelectorAll('[data-view]')];
