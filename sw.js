@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v114-pregacao-cair-em-si-leitura-fix';
+const CACHE_VERSION = 'cara-app-v115-cair-em-si-texto-fix';
 
 const APP_SHELL = [
   './',
