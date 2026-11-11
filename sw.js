@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v112-jejum-dia-2';
+const CACHE_VERSION = 'cara-app-v113-pregacao-cair-em-si';
 
 const APP_SHELL = [
   './',
@@ -21,6 +21,7 @@ const APP_SHELL = [
   './midia.html',
   './estudos.html',
   './pregacoes.html',
+  './banner-cair-em-si.png',
   './banner-pregacoes.png',
   './pregacao-biblia.jpg',
   './galeria.html',
