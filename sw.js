@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v116-jejum-dia-3';
+const CACHE_VERSION = 'cara-app-v117-jejum-dia-4';
 
 const APP_SHELL = [
   './',
