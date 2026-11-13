@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080D18">
+  <meta name="description" content="Conheça a Comunidade Apostólica Restaurando Almas — C.A.R.A.">
+  <title>Quem Somos — C.A.R.A.</title>
+  <link rel="icon" href="./icon-192.png">
+  <style>
+    :root{--preto:#080D18;--lima:#CCFF00;--branco:#FFFFFF;--azul:#172235;--sombra:0 8px 20px rgba(8,13,24,.12)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--branco)}
+    body{margin:0;min-height:100vh;background:var(--branco);color:var(--preto);font-family:Inter,Arial,Helvetica,sans-serif}
+    button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}
+    .pagina{min-height:100vh;display:flex;flex-direction:column;padding-bottom:76px}
+    .topo{background:var(--preto);border-bottom:4px solid var(--lima);padding:7px clamp(12px,3vw,28px)}
+    .topo-inner{width:min(1120px,100%);min-height:142px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center}
+    .marca{display:flex;justify-content:center;align-items:center;min-width:0;height:132px;width:100%}
+    .marca img{display:block;width:min(100%,370px);height:auto;max-height:132px;object-fit:contain;object-position:center}
+    .voltar{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 17px;border-radius:999px;background:var(--azul);border:2px solid var(--lima);color:var(--branco);font-size:14px;font-weight:800;text-decoration:none;white-space:nowrap}
+    .voltar svg{width:18px;height:18px;stroke:var(--lima);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    main{width:min(1060px,100%);margin:0 auto;padding:0 clamp(12px,3vw,26px) 26px;flex:1}
+    .titulo-pagina{display:flex;align-items:center;justify-content:center;gap:clamp(12px,3vw,26px);margin:18px 0 17px;color:var(--preto)}
+    .titulo-icone{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:clamp(42px,7vw,62px);line-height:1}
+    .titulo-texto{font-size:clamp(30px,5.5vw,54px);font-weight:900;font-style:italic;line-height:1.05;text-align:center}
+    .titulo-texto:after{content:"";display:block;width:88%;height:5px;margin:9px auto 0;border-radius:50%;background:var(--lima);transform:rotate(-1.5deg)}
+    .apresentacao{background:var(--branco);border-radius:22px;padding:20px clamp(16px,4vw,34px);margin:0 0 18px;color:var(--preto);font-size:clamp(16px,2.4vw,21px);line-height:1.42;text-align:center;box-shadow:var(--sombra)}
+    .apresentacao strong{font-weight:900}
+    .lista{display:grid;gap:12px;margin:0}
+    .item{overflow:hidden;border:2px solid rgba(23,34,53,.18);border-radius:18px;background:var(--branco);box-shadow:var(--sombra)}
+    .item-botao{width:100%;min-height:96px;display:grid;grid-template-columns:minmax(0,38%) minmax(0,1fr) 30px;align-items:center;gap:12px;padding:10px 15px;background:var(--branco);border:0;color:var(--preto);text-align:left;cursor:pointer}
+    .item-identidade{align-self:stretch;display:flex;align-items:center;gap:12px;min-width:0;padding:9px 12px;border-radius:14px;background:linear-gradient(105deg,var(--lima),#efffa5);color:var(--preto)}
+    .item-icone{flex:0 0 auto;width:48px;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:35px;line-height:1}
+    .item-nome{font-size:clamp(17px,2.5vw,25px);font-weight:900;line-height:1.05}
+    .item-resumo{font-size:clamp(14px,2vw,18px);line-height:1.28;color:var(--preto)}
+    .item-seta{font-size:26px;font-weight:900;color:var(--azul);transition:transform .18s}
+    .item[aria-expanded="true"] .item-seta{transform:rotate(90deg);color:var(--preto)}
+    .item-botao:focus-visible{outline:3px solid var(--lima);outline-offset:-5px}
+    .item-conteudo{display:none;padding:0 20px 19px  calc(38% + 28px);color:var(--preto);font-size:16px;line-height:1.55}
+    .item[aria-expanded="true"] .item-conteudo{display:block}
+    .item-conteudo p{margin:0}
+    .rodape-espaco{height:6px}
+    .nav-inferior{position:fixed;z-index:20;left:0;right:0;bottom:0;min-height:68px;padding:7px max(12px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:var(--azul);border-top:4px solid var(--lima);display:flex;justify-content:center;box-shadow:0 -5px 18px rgba(8,13,24,.12)}
+    .nav-inner{width:min(720px,100%);display:grid;grid-template-columns:repeat(3,1fr);align-items:center}
+    .nav-item{min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:var(--branco);font-size:12px;font-weight:700}
+    .nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .nav-item.ativo{color:var(--lima)}.nav-item+.nav-item{border-left:1px solid rgba(204,255,0,.55)}
+    @media(min-width:760px){.item-botao{min-height:112px}.item-icone{font-size:42px;width:58px}.item-conteudo{font-size:18px}}
+    @media(max-width:520px){
+      .topo{padding:5px 10px}.topo-inner{min-height:116px;gap:8px}.marca{height:108px}.marca img{width:min(100%,320px);max-height:108px}.voltar{min-height:40px;padding:8px 11px;font-size:12px;gap:5px}.voltar svg{width:16px;height:16px}
+      main{padding-left:10px;padding-right:10px}.titulo-pagina{margin:14px 0 13px;gap:12px}.titulo-icone{font-size:43px}.titulo-texto{font-size:clamp(29px,7vw,38px)}.titulo-texto:after{height:4px;margin-top:7px}
+      .apresentacao{padding:16px 14px;margin-bottom:13px;border-radius:17px;font-size:15px;line-height:1.38}.lista{gap:9px}.item{border-radius:15px}.item-botao{min-height:78px;grid-template-columns:minmax(0,39%) minmax(0,1fr) 19px;gap:8px;padding:7px 8px}.item-identidade{padding:7px 6px;gap:5px;border-radius:11px}.item-icone{width:34px;font-size:27px}.item-nome{font-size:clamp(15px,4vw,18px)}.item-resumo{font-size:13px;line-height:1.22}.item-seta{font-size:21px}.item-conteudo{padding:0 14px 15px calc(39% + 18px);font-size:14px;line-height:1.45}.pagina{padding-bottom:73px}.nav-inferior{min-height:65px}.nav-item{font-size:11px;min-height:44px}.nav-item svg{width:20px;height:20px}
+    }
+    @media(max-width:365px){.topo-inner{min-height:104px;gap:5px}.marca{height:96px}.marca img{max-height:96px}.voltar{font-size:11px;padding:7px 8px}.item-botao{grid-template-columns:minmax(0,40%) minmax(0,1fr) 16px;gap:6px;padding:6px}.item-identidade{gap:3px;padding:6px 4px}.item-icone{width:29px;font-size:24px}.item-nome{font-size:14px}.item-resumo{font-size:12px}.item-conteudo{padding-left:calc(40% + 15px)}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="pagina">
+  <header class="topo">
+    <div class="topo-inner">
+      <a class="marca" href="./visitante.html" aria-label="Voltar à página inicial do visitante"><img src="./logo-cara.png" alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas"></a>
+      <a class="voltar" href="./visitante.html" aria-label="Voltar à área do visitante">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg>Voltar
+      </a>
+    </div>
+  </header>
+  <main>
+    <div class="titulo-pagina"><span class="titulo-icone" aria-hidden="true">👥</span><h1 class="titulo-texto">Quem Somos</h1></div>
+    <section class="apresentacao">
+      <strong>A C.A.R.A. — Comunidade Apostólica Restaurando Almas</strong> é uma família de fé, chamada por Deus para anunciar o Evangelho, acolher pessoas, ensinar a verdade da Palavra e promover a restauração de vidas por meio do amor e da graça de Jesus Cristo.
+    </section>
+    <section class="lista" aria-label="Conheça nossa missão, visão e valores">
+      <article class="item" data-accordion aria-expanded="false">
+        <button class="item-botao" type="button" aria-expanded="false" aria-controls="texto-missao">
+          <span class="item-identidade"><span class="item-icone" aria-hidden="true">🎯</span><span class="item-nome">Nossa Missão</span></span>
+          <span class="item-resumo">Acolher, discipular e restaurar vidas por meio do Evangelho de Jesus Cristo.</span>
+          <span class="item-seta" aria-hidden="true">›</span>
+        </button>
+        <div class="item-conteudo" id="texto-missao"><p>Acolher, discipular e restaurar vidas por meio do Evangelho de Jesus Cristo.</p></div>
+      </article>
+      <article class="item" data-accordion aria-expanded="false">
+        <button class="item-botao" type="button" aria-expanded="false" aria-controls="texto-visao">
+          <span class="item-identidade"><span class="item-icone" aria-hidden="true">👁️</span><span class="item-nome">Nossa Visão</span></span>
+          <span class="item-resumo">Ser uma comunidade relevante, comprometida com o Reino de Deus, formando discípulos e servindo à sociedade.</span>
+          <span class="item-seta" aria-hidden="true">›</span>
+        </button>
+        <div class="item-conteudo" id="texto-visao"><p>Ser uma comunidade relevante, comprometida com o Reino de Deus, formando discípulos e servindo à sociedade.</p></div>
+      </article>
+      <article class="item" data-accordion aria-expanded="false">
+        <button class="item-botao" type="button" aria-expanded="false" aria-controls="texto-valores">
+          <span class="item-identidade"><span class="item-icone" aria-hidden="true">❤️</span><span class="item-nome">Nossos Valores</span></span>
+          <span class="item-resumo">Amor, Verdade, Graça, Comunhão, Discipulado e Serviço.</span>
+          <span class="item-seta" aria-hidden="true">›</span>
+        </button>
+        <div class="item-conteudo" id="texto-valores"><p>Amor, Verdade, Graça, Comunhão, Discipulado e Serviço.</p></div>
+      </article>
+    </section>
+    <div class="rodape-espaco"></div>
+  </main>
+  <nav class="nav-inferior" aria-label="Navegação inferior">
+    <div class="nav-inner">
+      <a class="nav-item" href="./visitante.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Início</span></a>
+      <a class="nav-item ativo" href="./quem-somos.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/></svg><span>Sobre</span></a>
+      <a class="nav-item" href="https://www.instagram.com/comunidadecara/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Instagram</span></a>
+    </div>
+  </nav>
+</div>
+<script>
+(() => {
+  const itens = [...document.querySelectorAll('[data-accordion]')];
+  itens.forEach(item => {
+    const botao = item.querySelector('.item-botao');
+    botao.addEventListener('click', () => {
+      const abrir = botao.getAttribute('aria-expanded') !== 'true';
+      itens.forEach(outro => {
+        outro.setAttribute('aria-expanded', 'false');
+        outro.querySelector('.item-botao').setAttribute('aria-expanded', 'false');
+      });
+      if (abrir) {
+        item.setAttribute('aria-expanded', 'true');
+        botao.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

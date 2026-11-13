@@ -86,10 +86,10 @@
     <h2 class="titulo-secao">Conheça nossa comunidade</h2>
 
     <section class="grade" aria-label="Navegação do visitante">
-      <button class="card" type="button" data-destino="Quem Somos">
+      <a class="card" href="./quem-somos.html">
         <span class="card-icone" aria-hidden="true">👥</span>
         <span class="card-rodape">Quem Somos</span>
-      </button>
+      </a>
       <button class="card" type="button" data-destino="Agenda">
         <span class="card-icone" aria-hidden="true">📅</span>
         <span class="card-rodape">Agenda</span>
@@ -111,7 +111,7 @@
   <nav class="nav-inferior" aria-label="Navegação inferior">
     <div class="nav-inner">
       <a class="nav-item ativo" href="./visitante.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Início</span></a>
-      <a class="nav-item" href="#sobre" id="navSobre"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/></svg><span>Sobre</span></a>
+      <a class="nav-item" href="./quem-somos.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/></svg><span>Sobre</span></a>
       <a class="nav-item" href="https://www.instagram.com/comunidadecara/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Instagram</span></a>
     </div>
   </nav>
@@ -132,10 +132,6 @@
     const nome = el.getAttribute('data-destino');
     mostrarAviso('Estamos preparando a área “' + nome + '”. Em breve ela estará disponível!');
   }));
-  document.getElementById('navSobre').addEventListener('click', e => {
-    e.preventDefault();
-    mostrarAviso('A apresentação da C.A.R.A. estará disponível na seção Quem Somos.');
-  });
 })();
 </script>
 </body>

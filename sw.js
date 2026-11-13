@@ -1,11 +1,12 @@
 
-const CACHE_VERSION = 'cara-app-v122-visitante-logo-ampliada';
+const CACHE_VERSION = 'cara-app-v123-quem-somos-accordion';
 
 const APP_SHELL = [
   './',
   './index.html',
   './entrada.html',
   './visitante.html',
+  './quem-somos.html',
   './proposito-espiritual.html',
   './dica-semana.html',
   './palavra.html',
