@@ -1,9 +1,10 @@
 
-const CACHE_VERSION = 'cara-app-v120-visitante-home-paleta-oficial';
+const CACHE_VERSION = 'cara-app-v121-visitante-home-ajustes';
 
 const APP_SHELL = [
   './',
   './index.html',
+  './entrada.html',
   './visitante.html',
   './proposito-espiritual.html',
   './dica-semana.html',
