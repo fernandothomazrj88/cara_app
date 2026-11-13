@@ -23,9 +23,9 @@
     button{font:inherit}
     .pagina{min-height:100vh;display:flex;flex-direction:column;padding-bottom:76px;overflow:hidden}
     .topo{position:relative;z-index:5;background:var(--preto-azulado);border-bottom:4px solid var(--lima);padding:7px clamp(12px,3vw,28px)}
-    .topo-inner{width:min(1120px,100%);min-height:94px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center}
-    .marca{display:flex;justify-content:center;align-items:center;min-width:0;height:88px}
-    .marca img{display:block;width:min(100%,390px);height:88px;object-fit:contain;object-position:center}
+    .topo-inner{width:min(1120px,100%);min-height:142px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center}
+    .marca{display:flex;justify-content:center;align-items:center;min-width:0;height:132px;width:100%}
+    .marca img{display:block;width:min(100%,370px);height:auto;max-height:132px;object-fit:contain;object-position:center}
     .voltar{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 17px;border-radius:999px;background:var(--azul);border:2px solid var(--lima);color:var(--branco);font-size:14px;font-weight:800;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
     .voltar:hover,.voltar:focus-visible{background:var(--lima);color:var(--preto-azulado);outline:2px solid var(--branco);outline-offset:2px}
     .voltar svg{width:18px;height:18px;stroke:var(--lima);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
@@ -55,10 +55,10 @@
     .nav-item+.nav-item{border-left:1px solid rgba(204,255,0,.55)}
     @media(min-width:760px){.hero{min-height:190px;margin-top:18px}.card{min-height:132px}.card-icone{height:75px;font-size:50px}.card-rodape{min-height:48px}.card-catalogo{min-height:78px}}
     @media(max-width:520px){
-      .topo{padding:5px 10px}.topo-inner{min-height:78px;grid-template-columns:minmax(0,1fr) auto;gap:8px}.marca{height:74px}.marca img{width:min(100%,340px);height:74px}.voltar{min-height:40px;padding:8px 11px;font-size:12px;gap:5px}.voltar svg{width:16px;height:16px}
+      .topo{padding:5px 10px}.topo-inner{min-height:116px;grid-template-columns:minmax(0,1fr) auto;gap:8px}.marca{height:108px}.marca img{width:min(100%,320px);height:auto;max-height:108px}.voltar{min-height:40px;padding:8px 11px;font-size:12px;gap:5px}.voltar svg{width:16px;height:16px}
       main{padding-left:10px;padding-right:10px}.hero{min-height:158px;margin:11px 0 11px;border-radius:18px;padding:19px 12px}.saudacao{font-size:clamp(31px,8vw,43px)}.slogan{font-size:clamp(14px,3.5vw,17px)}.titulo-secao{font-size:18px;margin:10px 0 11px;gap:8px}.titulo-secao:before,.titulo-secao:after{width:23px}.grade{gap:10px}.card{min-height:104px;border-radius:16px;padding:8px 8px 0}.card-icone{height:54px;font-size:39px}.card-rodape{width:calc(100% + 16px);min-height:39px;margin:0 -8px;padding:7px 6px;font-size:15px}.card-catalogo{min-height:65px;padding:7px 12px}.card-catalogo .card-rodape{min-height:0;margin:0;padding:7px;font-size:19px}.pagina{padding-bottom:73px}.nav-inferior{min-height:65px}.nav-item{font-size:11px;min-height:44px}.nav-item svg{width:20px;height:20px}
     }
-    @media(max-width:365px){.topo-inner{gap:5px}.marca{height:64px}.marca img{height:64px}.voltar{font-size:11px;padding:7px 8px}.hero{min-height:148px}.card{min-height:98px}.card-rodape{font-size:14px}}
+    @media(max-width:365px){.topo-inner{gap:5px;min-height:104px}.marca{height:96px}.marca img{max-height:96px}.voltar{font-size:11px;padding:7px 8px}.hero{min-height:148px}.card{min-height:98px}.card-rodape{font-size:14px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
