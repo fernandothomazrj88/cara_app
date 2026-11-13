@@ -3,181 +3,180 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#E8D2B2">
+  <meta name="theme-color" content="#080D18">
   <meta name="description" content="Conheça a Comunidade Apostólica Restaurando Almas — C.A.R.A.">
-  <title>Visitante — C.A.R.A.</title>
+  <title>Área do Visitante — C.A.R.A.</title>
   <link rel="icon" href="./icon-192.png">
   <style>
     :root{
-      --bege:#E8D2B2;
-      --terracota:#8F321B;
-      --aveia:#E9DDD2;
-      --musgo:#284703;
-      --dourado:#D9A441;
-      --texto:#284703;
-      --sombra:0 10px 24px rgba(65,39,20,.13);
+      --preto-azulado:#080D18;
+      --lima:#CCFF00;
+      --branco:#FFFFFF;
+      --azul:#172235;
+      --cinza:#667085;
+      --sombra:0 9px 22px rgba(8,13,24,.13);
       --raio:22px;
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;min-height:100vh;background:var(--bege);color:var(--musgo);font-family:Georgia,"Times New Roman",serif}
-    a{color:inherit}
-    .pagina{min-height:100vh;display:flex;flex-direction:column;overflow:hidden}
-    .topo{position:relative;z-index:5;background:var(--bege);padding:14px clamp(16px,4vw,34px) 12px;border-bottom:3px solid var(--dourado)}
-    .topo-inner{width:min(1120px,100%);margin:auto;display:grid;grid-template-columns:54px 1fr auto;align-items:center;gap:14px}
-    .menu-btn{width:48px;height:48px;border:1.5px solid rgba(40,71,3,.22);border-radius:15px;background:rgba(255,255,255,.25);display:grid;place-items:center;color:var(--musgo);cursor:pointer}
-    .menu-btn svg{width:25px;height:25px}
-    .marca{display:flex;align-items:center;justify-content:center;gap:12px;min-width:0}
-    .marca-fundo{background:var(--musgo);border-radius:15px;padding:8px 13px;display:flex;align-items:center;justify-content:center;min-width:0;box-shadow:0 4px 10px rgba(40,71,3,.15)}
-    .marca img{display:block;width:min(100%,330px);height:62px;object-fit:contain}
-    .marca-texto{display:none;text-align:center;color:var(--musgo);font-weight:700;line-height:1.05}
-    .marca-texto strong{font-size:clamp(22px,4vw,32px);letter-spacing:2px;display:block}
-    .marca-texto span{font-size:11px;letter-spacing:.6px}
-    .visitante-tag{display:inline-flex;align-items:center;gap:8px;background:var(--terracota);color:#fff;border:1.5px solid var(--dourado);border-radius:999px;padding:11px 16px;font:700 13px Arial,sans-serif;white-space:nowrap;box-shadow:0 4px 10px rgba(74,30,14,.16)}
-    .visitante-tag svg{width:18px;height:18px}
-    .conteudo{width:min(1120px,100%);margin:0 auto;padding:0 clamp(14px,3vw,28px) 24px;flex:1}
-    .hero{position:relative;margin:16px 0 18px;min-height:220px;border-radius:26px;overflow:hidden;background:linear-gradient(115deg,rgba(40,71,3,.88),rgba(40,71,3,.66)),radial-gradient(ellipse at 15% 45%,#F4C36B 0 9%,transparent 10%),linear-gradient(135deg,#B9684B,#E8B56D 52%,#667447);box-shadow:var(--sombra);display:flex;align-items:center;justify-content:center;text-align:center;padding:30px 18px}
-    .hero:before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,#FFE4A6 0 5%,rgba(255,205,112,.65) 6% 18%,rgba(255,205,112,.08) 58%,transparent 70%);left:-42px;top:-62px}
-    .hero:after{content:"";position:absolute;inset:auto -5% -60px;height:145px;background:linear-gradient(160deg,transparent 0 20%,rgba(30,55,5,.28) 21% 35%,transparent 36%),linear-gradient(10deg,#263D16,#52663A);clip-path:polygon(0 40%,13% 15%,28% 38%,43% 8%,58% 35%,72% 12%,88% 37%,100% 18%,100% 100%,0 100%);opacity:.68}
-    .hero-conteudo{position:relative;z-index:1;max-width:760px}
-    .saudacao{display:inline-block;margin:0 0 13px;padding:7px 23px 10px;color:#fff;background:var(--musgo);border:1px solid rgba(217,164,65,.85);border-radius:48% 18% 42% 15% / 18% 48% 20% 45%;font-size:clamp(30px,6vw,54px);font-style:italic;font-weight:700;line-height:1.1;text-shadow:0 2px 4px #182b02}
-    .slogan{margin:0 auto;color:#fff;font-size:clamp(16px,2.5vw,23px);line-height:1.4;font-style:italic;font-weight:700;text-shadow:0 2px 5px rgba(0,0,0,.35);max-width:680px}
-    .slogan-linha{width:min(270px,55%);height:4px;border-radius:100%;background:var(--dourado);margin:16px auto 0;box-shadow:0 1px 3px #4b3213}
-    .secao-titulo{margin:20px 0 14px;text-align:center;color:var(--musgo);font-size:clamp(21px,3vw,27px);font-weight:700}
-    .secao-titulo:before,.secao-titulo:after{content:"";display:inline-block;vertical-align:middle;width:clamp(28px,8vw,90px);height:2px;background:var(--dourado);margin:0 13px;transform:skewX(-28deg)}
-    .grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .card{position:relative;min-height:176px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-decoration:none;text-align:center;overflow:hidden;background:var(--aveia);border:2px solid var(--dourado);border-radius:23px;box-shadow:var(--sombra);transition:transform .18s ease,box-shadow .18s ease}
-    .card:hover,.card:focus-visible{transform:translateY(-3px);box-shadow:0 14px 26px rgba(65,39,20,.2);outline:3px solid rgba(40,71,3,.2);outline-offset:2px}
-    .card-icone{flex:1;min-height:112px;width:100%;display:grid;place-items:center;padding:18px 12px 10px;color:var(--musgo)}
-    .card-icone svg{width:66px;height:66px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
-    .card-nome{width:100%;min-height:55px;display:flex;align-items:center;justify-content:center;padding:9px 8px;background:var(--terracota);color:#fff;font-size:clamp(16px,2.2vw,21px);font-weight:700;line-height:1.12;border-top:1px solid rgba(217,164,65,.7)}
-    .rodape-imagem{position:relative;height:80px;margin:22px 0 0;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .livro{position:relative;width:180px;height:56px;filter:drop-shadow(0 5px 4px rgba(40,25,10,.2))}
-    .livro:before,.livro:after{content:"";position:absolute;bottom:0;width:50%;height:48px;background:linear-gradient(100deg,#8A5525,#E8C58A 50%,#F7E7C8);border:2px solid #9C713E}
-    .livro:before{left:0;border-radius:5px 2px 3px 12px;transform:skewY(-8deg);transform-origin:bottom right}
-    .livro:after{right:0;border-radius:2px 5px 12px 3px;transform:skewY(8deg);transform-origin:bottom left}
-    .nav-inferior{margin-top:auto;background:var(--musgo);border-top:4px solid var(--dourado);color:#fff;padding:12px 18px calc(12px + env(safe-area-inset-bottom));}
-    .nav-inner{width:min(650px,100%);margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-    .nav-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-decoration:none;font:700 13px Arial,sans-serif;color:#fff;padding:5px;border-radius:12px}
-    .nav-link svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-    .nav-link.ativo{color:var(--dourado)}
-    .nav-link:focus-visible{outline:2px solid var(--dourado);outline-offset:2px}
-    .menu-overlay{position:fixed;inset:0;background:rgba(18,29,9,.48);z-index:20;display:none}
-    .menu-overlay.aberto{display:block}
-    .gaveta{position:absolute;top:0;left:0;height:100%;width:min(330px,86vw);background:var(--bege);padding:22px 18px;box-shadow:10px 0 30px rgba(0,0,0,.2);transform:translateX(-100%);transition:transform .22s ease}
-    .menu-overlay.aberto .gaveta{transform:translateX(0)}
-    .gaveta-topo{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-    .gaveta-titulo{font-size:20px;font-weight:700;color:var(--musgo)}
-    .fechar-menu{width:38px;height:38px;border:0;border-radius:50%;background:var(--aveia);color:var(--musgo);font-size:24px;cursor:pointer}
-    .gaveta a{display:flex;align-items:center;gap:12px;padding:14px 10px;margin:5px 0;border-radius:12px;background:var(--aveia);color:var(--musgo);text-decoration:none;font:700 15px Arial,sans-serif}
-    .gaveta a span{width:27px;text-align:center;color:var(--terracota)}
-    .aviso-futuro{position:fixed;left:50%;bottom:92px;transform:translate(-50%,14px);z-index:30;max-width:calc(100vw - 32px);padding:12px 17px;border-radius:14px;background:var(--musgo);color:#fff;border:1px solid var(--dourado);font:600 13px Arial,sans-serif;box-shadow:var(--sombra);opacity:0;pointer-events:none;transition:.2s;text-align:center}
-    .aviso-futuro.mostrar{opacity:1;transform:translate(-50%,0)}
-    @media(max-width:700px){
-      .topo{padding:10px 12px 9px}.topo-inner{grid-template-columns:42px 1fr auto;gap:8px}.menu-btn{width:40px;height:40px;border-radius:12px}.marca-fundo{padding:6px 9px;border-radius:12px}.marca img{height:48px;width:min(100%,240px)}.visitante-tag{padding:9px 11px;font-size:11px;gap:5px}.visitante-tag svg{width:15px;height:15px}
-      .conteudo{padding:0 13px 18px}.hero{min-height:190px;margin:13px 0 14px;border-radius:21px}.grade{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{min-height:152px;border-radius:19px}.card-icone{min-height:100px}.card-icone svg{width:58px;height:58px}.card-nome{min-height:49px;font-size:17px}.secao-titulo{font-size:21px;margin:16px 0 12px}.secao-titulo:before,.secao-titulo:after{margin:0 7px;width:24px}.rodape-imagem{height:56px;margin-top:12px}.livro{transform:scale(.78)}
-    }
-    @media(max-width:370px){.topo-inner{grid-template-columns:36px 1fr auto;gap:6px}.menu-btn{width:35px;height:35px}.marca img{height:41px}.visitante-tag{font-size:10px;padding:8px}.card-nome{font-size:15px}.card{min-height:142px}}
-    @media(min-width:701px){.hero{min-height:250px}.card{min-height:190px}.card-icone svg{width:76px;height:76px}.card-nome{min-height:62px}}
-    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+    html{scroll-behavior:smooth;background:var(--branco)}
+    body{margin:0;min-height:100vh;background:var(--branco);color:var(--preto-azulado);font-family:Inter,Arial,Helvetica,sans-serif}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+    .pagina{min-height:100vh;display:flex;flex-direction:column;padding-bottom:76px;overflow:hidden}
+    .topo{position:relative;z-index:10;background:var(--preto-azulado);border-bottom:4px solid var(--lima);padding:9px clamp(12px,3vw,28px)}
+    .topo-inner{width:min(1120px,100%);min-height:66px;margin:auto;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center}
+    .menu-btn{width:42px;height:42px;border:1px solid rgba(204,255,0,.42);border-radius:13px;background:transparent;color:var(--lima);display:grid;place-items:center;cursor:pointer}
+    .menu-btn svg{width:23px;height:23px}
+    .marca{display:flex;justify-content:center;align-items:center;min-width:0}
+    .marca img{display:block;width:min(100%,310px);height:58px;object-fit:contain;object-position:center}
+    .visitante-tag{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 14px;border-radius:999px;background:var(--azul);border:1.5px solid var(--lima);color:var(--branco);font-size:13px;font-weight:800;white-space:nowrap}
+    .visitante-tag svg{width:17px;height:17px;color:var(--lima)}
+    main{width:min(1060px,100%);margin:0 auto;padding:0 clamp(12px,3vw,26px) 22px;flex:1}
+    .hero{position:relative;isolation:isolate;min-height:188px;margin:15px 0 14px;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,rgba(8,13,24,.06),rgba(8,13,24,.68)),linear-gradient(180deg,#f4b35c 0%,#e68b4c 34%,#24344b 76%,#101b2b 100%);box-shadow:var(--sombra);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px 18px}
+    .hero:before{content:"";position:absolute;z-index:-2;left:-5%;right:-5%;top:-12%;height:82%;background:radial-gradient(circle at 18% 60%,#fff5bb 0 2.3%,#ffd36d 2.8% 5%,rgba(255,192,89,.55) 11%,transparent 29%),linear-gradient(170deg,transparent 0 38%,rgba(22,39,54,.25) 39% 100%);}
+    .hero:after{content:"";position:absolute;z-index:-1;left:-3%;right:-3%;bottom:-1px;height:48%;background:#101b2b;clip-path:polygon(0 60%,11% 32%,22% 55%,34% 22%,47% 58%,59% 28%,71% 56%,83% 20%,100% 55%,100% 100%,0 100%);opacity:.9}
+    .hero-conteudo{max-width:790px;position:relative;z-index:1}
+    .saudacao{display:inline-block;margin:0;padding:4px 22px 8px;border-radius:48% 16% 42% 18% / 18% 45% 20% 42%;background:var(--preto-azulado);color:var(--branco);font-family:Georgia,"Times New Roman",serif;font-size:clamp(32px,6vw,55px);font-style:italic;font-weight:700;line-height:1.12;text-shadow:0 2px 5px rgba(0,0,0,.45)}
+    .saudacao-linha{width:min(280px,62%);height:5px;margin:8px auto 13px;border-radius:50%;background:var(--lima);transform:rotate(-2deg)}
+    .slogan{max-width:730px;margin:0 auto;color:var(--branco);font-size:clamp(15px,2.4vw,21px);font-weight:800;font-style:italic;line-height:1.35;text-shadow:0 2px 5px rgba(0,0,0,.65)}
+    .titulo-secao{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0 13px;text-align:center;color:var(--preto-azulado);font-size:clamp(18px,2.8vw,24px);font-weight:850}
+    .titulo-secao:before,.titulo-secao:after{content:"";width:clamp(22px,7vw,76px);height:3px;border-radius:10px;background:var(--lima)}
+    .grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .card{--icon:var(--preto-azulado);position:relative;min-height:116px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-decoration:none;border:2px solid var(--lima);border-radius:21px;background:var(--lima);color:var(--preto-azulado);box-shadow:var(--sombra);transition:transform .16s ease,box-shadow .16s ease;cursor:pointer;padding:11px 12px 0}
+    .card:hover,.card:focus-visible{transform:translateY(-2px);box-shadow:0 12px 24px rgba(8,13,24,.2);outline:3px solid rgba(204,255,0,.45);outline-offset:2px}
+    .card-icone{height:62px;display:grid;place-items:center;color:var(--icon)}
+    .card-icone svg{width:51px;height:51px;stroke:currentColor;stroke-width:1.75;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .card-rodape{position:relative;width:calc(100% + 24px);min-height:43px;margin:0 -12px;padding:8px 28px 9px;background:var(--azul);color:var(--branco);display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(15px,2vw,19px);font-weight:800;line-height:1.12}
+    .card-rodape:before{content:"";position:absolute;left:-2%;right:-2%;top:-10px;height:18px;background:var(--azul);border-radius:50% 50% 0 0 / 100% 100% 0 0}
+    .card-rodape span{position:relative;z-index:1}
+    .card-catalogo{grid-column:1/-1;min-height:82px;flex-direction:row;justify-content:center;gap:18px;padding:9px 18px}
+    .card-catalogo .card-icone{height:auto}
+    .card-catalogo .card-icone svg{width:55px;height:55px}
+    .card-catalogo .card-rodape{width:auto;min-height:0;margin:0;padding:0;background:transparent;color:var(--preto-azulado);font-size:clamp(19px,3vw,25px)}
+    .card-catalogo .card-rodape:before{display:none}
+    .catalogo-seta{margin-left:auto;color:var(--azul);font-size:30px;font-weight:900}
+    .rodape-respiro{height:7px}
+    .nav-inferior{position:fixed;z-index:20;left:0;right:0;bottom:0;min-height:68px;padding:7px max(12px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:var(--azul);border-top:4px solid var(--lima);display:flex;justify-content:center;box-shadow:0 -5px 18px rgba(8,13,24,.12)}
+    .nav-inner{width:min(720px,100%);display:grid;grid-template-columns:repeat(3,1fr);align-items:center}
+    .nav-item{min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:var(--branco);font-size:12px;font-weight:700}
+    .nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .nav-item.ativo{color:var(--lima)}
+    .nav-item+.nav-item{border-left:1px solid rgba(204,255,0,.55)}
+    .aviso{position:fixed;z-index:30;left:50%;bottom:88px;transform:translate(-50%,12px);width:min(90%,420px);padding:12px 16px;border-radius:14px;background:var(--preto-azulado);border:1px solid var(--lima);color:var(--branco);font-size:14px;text-align:center;box-shadow:var(--sombra);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+    .aviso.visivel{opacity:1;transform:translate(-50%,0)}
+    .menu-overlay{position:fixed;z-index:40;inset:0;background:rgba(8,13,24,.52);opacity:0;pointer-events:none;transition:opacity .2s}
+    .menu-overlay.aberto{opacity:1;pointer-events:auto}
+    .menu-lateral{position:absolute;top:0;bottom:0;left:0;width:min(310px,86vw);padding:22px 18px;background:var(--preto-azulado);border-right:3px solid var(--lima);transform:translateX(-102%);transition:transform .22s;display:flex;flex-direction:column;gap:12px}
+    .menu-overlay.aberto .menu-lateral{transform:translateX(0)}
+    .menu-topo{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;color:var(--branco);font-weight:800}
+    .menu-fechar{border:1px solid rgba(204,255,0,.5);border-radius:10px;background:transparent;color:var(--lima);width:36px;height:36px;font-size:22px;cursor:pointer}
+    .menu-link{padding:13px 12px;border-radius:12px;text-decoration:none;color:var(--branco);background:var(--azul);border:1px solid rgba(204,255,0,.22);font-weight:700}
+    .menu-link:active{background:var(--lima);color:var(--preto-azulado)}
+    @media(min-width:760px){.hero{min-height:215px;margin-top:20px}.card{min-height:138px}.card-icone{height:78px}.card-icone svg{width:60px;height:60px}.card-rodape{min-height:48px}.card-catalogo{min-height:90px}.card-catalogo .card-icone svg{width:60px;height:60px}}
+    @media(max-width:520px){.topo{padding:7px 10px}.topo-inner{grid-template-columns:38px minmax(0,1fr) auto;gap:7px;min-height:57px}.menu-btn{width:36px;height:36px;border-radius:11px}.menu-btn svg{width:20px;height:20px}.marca img{height:48px;width:min(100%,230px)}.visitante-tag{padding:8px 9px;font-size:11px;gap:5px}.visitante-tag svg{width:15px;height:15px}main{padding-left:10px;padding-right:10px}.hero{min-height:166px;margin:11px 0 11px;border-radius:19px;padding:20px 12px}.saudacao{font-size:clamp(29px,8vw,42px);padding:4px 14px 7px}.slogan{font-size:clamp(14px,3.5vw,17px)}.titulo-secao{font-size:18px;margin:10px 0 11px;gap:8px}.titulo-secao:before,.titulo-secao:after{width:23px}.grade{gap:10px}.card{min-height:105px;border-radius:17px;padding:8px 8px 0}.card-icone{height:55px}.card-icone svg{width:43px;height:43px}.card-rodape{width:calc(100% + 16px);min-height:39px;margin:0 -8px;padding:7px 7px;font-size:15px}.card-catalogo{min-height:70px;flex-direction:row;padding:7px 14px;gap:12px}.card-catalogo .card-icone svg{width:44px;height:44px}.card-catalogo .card-rodape{min-height:0;margin:0;padding:0;font-size:19px}.catalogo-seta{font-size:25px}.pagina{padding-bottom:73px}.nav-inferior{min-height:65px}.nav-item{font-size:11px;min-height:44px}.nav-item svg{width:20px;height:20px}}
+    @media(max-width:365px){.marca img{height:42px}.visitante-tag{font-size:0;padding:9px}.visitante-tag svg{width:18px;height:18px}.hero{min-height:154px}.card{min-height:98px}.card-rodape{font-size:14px}.card-catalogo .card-rodape{font-size:18px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
 <div class="pagina">
   <header class="topo">
     <div class="topo-inner">
-      <button class="menu-btn" id="abrirMenu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menuVisitante">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <button class="menu-btn" id="abrirMenu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menuVisitante">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
-      <div class="marca" aria-label="Comunidade Apostólica Restaurando Almas">
-        <div class="marca-fundo"><img src="./logo-cara.png" alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas"></div>
-      </div>
-      <div class="visitante-tag">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20M9 10a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM20 8v6m3-3h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <a class="marca" href="./visitante.html" aria-label="Página inicial do visitante"><img src="./logo-cara.png" alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas"></a>
+      <span class="visitante-tag">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 8v6m3-3h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         Visitante
-      </div>
+      </span>
     </div>
   </header>
 
-  <main class="conteudo">
-    <section class="hero" aria-labelledby="saudacao">
+  <main>
+    <section class="hero" aria-label="Boas-vindas">
       <div class="hero-conteudo">
-        <h1 class="saudacao" id="saudacao">Shalom, Shalom!</h1>
+        <h1 class="saudacao">Shalom, Shalom!</h1>
+        <div class="saudacao-linha"></div>
         <p class="slogan">Um amor que acolhe, a verdade que liberta e a graça que restaura!</p>
-        <div class="slogan-linha" aria-hidden="true"></div>
       </div>
     </section>
 
-    <h2 class="secao-titulo">Conheça nossa comunidade</h2>
-    <nav class="grade" aria-label="Seções da área do visitante">
-      <a class="card" href="./quem-somos.html" data-em-breve="Quem Somos">
-        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="17" r="9"/><circle cx="12" cy="25" r="6"/><circle cx="52" cy="25" r="6"/><path d="M14 52v-5c0-8 7-14 15-14h6c8 0 15 6 15 14v5H14ZM2 51v-4c0-6 4-11 10-12m50 16v-4c0-6-4-11-10-12"/></svg></span>
-        <span class="card-nome">Quem Somos</span>
-      </a>
-      <a class="card" href="./agenda-visitante.html" data-em-breve="Agenda">
-        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="13" width="48" height="43" rx="6"/><path d="M20 7v12M44 7v12M8 25h48M19 34h7m8 0h7m-22 9h7m8 0h7"/></svg></span>
-        <span class="card-nome">Agenda</span>
-      </a>
-      <a class="card" href="./louvores-visitante.html" data-em-breve="Louvores">
-        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M39 10v34.5a8 8 0 1 1-5-7.4V17l22-5v27.5a8 8 0 1 1-5-7.4V7l-12 3Z"/></svg></span>
-        <span class="card-nome">Louvores</span>
-      </a>
-      <a class="card" href="./acao-social.html" data-em-breve="Ação Social">
-        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 53S8 39 8 23a12 12 0 0 1 22-6 12 12 0 0 1 26 6c0 16-24 30-24 30Z"/><path d="M5 48h13l7-8h11l6 5 8-7 9 6-13 12H22l-5-4H5"/></svg></span>
-        <span class="card-nome">Ação Social</span>
-      </a>
-      <a class="card" href="./catalogo.html" data-em-breve="Catálogo">
-        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M7 10h7l6 32h31l7-23H18M24 51a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm21 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/><path d="M25 26h24M29 19v14m12-14v14"/></svg></span>
-        <span class="card-nome">Catálogo</span>
-      </a>
-    </nav>
-    <div class="rodape-imagem" aria-hidden="true"><div class="livro"></div></div>
+    <h2 class="titulo-secao">Conheça nossa comunidade</h2>
+
+    <section class="grade" aria-label="Navegação do visitante">
+      <button class="card" type="button" data-destino="Quem Somos">
+        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="17" r="9"/><circle cx="13" cy="25" r="6"/><circle cx="51" cy="25" r="6"/><path d="M13 51v-5c0-8 8-14 19-14s19 6 19 14v5H13ZM2 49v-5c0-6 4-10 11-11M62 49v-5c0-6-4-10-11-11"/></svg></span>
+        <span class="card-rodape"><span>Quem Somos</span></span>
+      </button>
+      <button class="card" type="button" data-destino="Agenda">
+        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="12" width="48" height="44" rx="6"/><path d="M20 7v11M44 7v11M8 25h48M20 35h7M37 35h7M20 45h7M37 45h7"/></svg></span>
+        <span class="card-rodape"><span>Agenda</span></span>
+      </button>
+      <button class="card" type="button" data-destino="Louvores">
+        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M37 9v34.5a9 9 0 1 1-5-8.1V17l24-5v25.5a9 9 0 1 1-5-8.1V7l-14 2Z"/></svg></span>
+        <span class="card-rodape"><span>Louvores</span></span>
+      </button>
+      <button class="card" type="button" data-destino="Ação Social">
+        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 54S8 40 8 24c0-8 6-13 13-13 5 0 9 3 11 8 2-5 6-8 11-8 7 0 13 5 13 13 0 7-5 14-12 20M4 49h18l6-7 7 6h15"/></svg></span>
+        <span class="card-rodape"><span>Ação Social</span></span>
+      </button>
+      <button class="card card-catalogo" type="button" data-destino="Catálogo">
+        <span class="card-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M5 9h7l7 34h31l8-24H16M23 27h27M29 19v16M42 19v16"/><circle cx="25" cy="52" r="3"/><circle cx="49" cy="52" r="3"/></svg></span>
+        <span class="card-rodape"><span>Catálogo</span></span>
+        <span class="catalogo-seta" aria-hidden="true">›</span>
+      </button>
+    </section>
   </main>
 
   <nav class="nav-inferior" aria-label="Navegação inferior">
     <div class="nav-inner">
-      <a class="nav-link ativo" href="./visitante.html" aria-current="page"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Início</span></a>
-      <a class="nav-link" href="./quem-somos.html" data-em-breve="Quem Somos"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg><span>Sobre</span></a>
-      <a class="nav-link" href="https://www.instagram.com/comunidadecara/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Instagram</span></a>
+      <a class="nav-item ativo" href="./visitante.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Início</span></a>
+      <a class="nav-item" href="#sobre" id="navSobre"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/></svg><span>Sobre</span></a>
+      <a class="nav-item" href="https://www.instagram.com/comunidadecara/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Instagram</span></a>
     </div>
   </nav>
 </div>
 
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 <div class="menu-overlay" id="menuVisitante" aria-hidden="true">
-  <aside class="gaveta" role="dialog" aria-modal="true" aria-label="Menu do visitante">
-    <div class="gaveta-topo"><strong class="gaveta-titulo">C.A.R.A. — Visitante</strong><button class="fechar-menu" id="fecharMenu" type="button" aria-label="Fechar menu">×</button></div>
-    <a href="./visitante.html"><span>⌂</span>Início</a>
-    <a href="./quem-somos.html" data-em-breve="Quem Somos"><span>◎</span>Quem Somos</a>
-    <a href="./agenda-visitante.html" data-em-breve="Agenda"><span>▦</span>Agenda</a>
-    <a href="./louvores-visitante.html" data-em-breve="Louvores"><span>♫</span>Louvores</a>
-    <a href="./acao-social.html" data-em-breve="Ação Social"><span>♡</span>Ação Social</a>
-    <a href="./catalogo.html" data-em-breve="Catálogo"><span>▣</span>Catálogo</a>
-    <a href="./entrada.html"><span>↩</span>Voltar à entrada</a>
+  <aside class="menu-lateral" role="dialog" aria-modal="true" aria-label="Menu do visitante">
+    <div class="menu-topo"><span>Área do Visitante</span><button class="menu-fechar" id="fecharMenu" aria-label="Fechar menu">×</button></div>
+    <a class="menu-link" href="./visitante.html">Início</a>
+    <button class="menu-link" type="button" data-destino="Quem Somos">Quem Somos</button>
+    <button class="menu-link" type="button" data-destino="Agenda">Agenda</button>
+    <button class="menu-link" type="button" data-destino="Louvores">Louvores</button>
+    <button class="menu-link" type="button" data-destino="Ação Social">Ação Social</button>
+    <button class="menu-link" type="button" data-destino="Catálogo">Catálogo</button>
   </aside>
 </div>
-<div class="aviso-futuro" id="avisoFuturo" role="status" aria-live="polite"></div>
 
 <script>
-(function(){
-  const overlay=document.getElementById('menuVisitante');
-  const abrir=document.getElementById('abrirMenu');
-  const fechar=document.getElementById('fecharMenu');
-  const aviso=document.getElementById('avisoFuturo');
+(() => {
+  const aviso = document.getElementById('aviso');
+  const overlay = document.getElementById('menuVisitante');
+  const abrir = document.getElementById('abrirMenu');
+  const fechar = document.getElementById('fecharMenu');
   let avisoTimer;
+  function mostrarAviso(texto) {
+    aviso.textContent = texto;
+    aviso.classList.add('visivel');
+    clearTimeout(avisoTimer);
+    avisoTimer = setTimeout(() => aviso.classList.remove('visivel'), 2600);
+  }
   function abrirMenu(){overlay.classList.add('aberto');overlay.setAttribute('aria-hidden','false');abrir.setAttribute('aria-expanded','true');fechar.focus();}
   function fecharMenu(){overlay.classList.remove('aberto');overlay.setAttribute('aria-hidden','true');abrir.setAttribute('aria-expanded','false');abrir.focus();}
   abrir.addEventListener('click',abrirMenu);
   fechar.addEventListener('click',fecharMenu);
   overlay.addEventListener('click',e=>{if(e.target===overlay)fecharMenu();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('aberto'))fecharMenu();});
-  document.querySelectorAll('[data-em-breve]').forEach(link=>link.addEventListener('click',e=>{
-    e.preventDefault();
-    const nome=link.getAttribute('data-em-breve');
-    aviso.textContent=nome+' — estamos preparando esta área. Em breve estará disponível!';
-    aviso.classList.add('mostrar');
-    clearTimeout(avisoTimer);avisoTimer=setTimeout(()=>aviso.classList.remove('mostrar'),3000);
-    if(overlay.classList.contains('aberto'))fecharMenu();
+  document.querySelectorAll('[data-destino]').forEach(el=>el.addEventListener('click',()=>{
+    const nome=el.getAttribute('data-destino');
+    fecharMenuSemFoco();
+    mostrarAviso('Estamos preparando a área “'+nome+'”. Em breve ela estará disponível!');
   }));
+  function fecharMenuSemFoco(){overlay.classList.remove('aberto');overlay.setAttribute('aria-hidden','true');abrir.setAttribute('aria-expanded','false');}
+  document.getElementById('navSobre').addEventListener('click',e=>{e.preventDefault();mostrarAviso('A apresentação da C.A.R.A. estará disponível na seção Quem Somos.');});
 })();
 </script>
 </body>

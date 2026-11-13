@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v119-home-visitante';
+const CACHE_VERSION = 'cara-app-v120-visitante-home-paleta-oficial';
 
 const APP_SHELL = [
   './',
