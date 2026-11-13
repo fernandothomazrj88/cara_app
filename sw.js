@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v118-biblia-leitura-destaques';
+const CACHE_VERSION = 'cara-app-v119-jejum-dia-5';
 
 const APP_SHELL = [
   './',
