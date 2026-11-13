@@ -1,9 +1,10 @@
 
-const CACHE_VERSION = 'cara-app-v119-jejum-dia-5';
+const CACHE_VERSION = 'cara-app-v119-home-visitante';
 
 const APP_SHELL = [
   './',
   './index.html',
+  './visitante.html',
   './proposito-espiritual.html',
   './dica-semana.html',
   './palavra.html',
