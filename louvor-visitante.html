@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080D18">
+<meta name="description" content="Louvores do Culto e Biblioteca de Louvores da Comunidade Apostólica Restaurando Almas.">
+<title>Louvor — C.A.R.A.</title>
+<link rel="icon" href="./icon-192.png">
+<style>
+:root{--preto:#080D18;--lima:#CCFF00;--branco:#fff;--azul:#172235;--sombra:0 8px 20px rgba(8,13,24,.12)}
+*{box-sizing:border-box}html{background:var(--branco);scroll-behavior:smooth}body{margin:0;background:var(--branco);color:var(--preto);font-family:Inter,Arial,Helvetica,sans-serif}button,input{font:inherit;-webkit-tap-highlight-color:transparent}.pagina{min-height:100vh;padding-bottom:78px;display:flex;flex-direction:column}.topo{background:var(--preto);border-bottom:4px solid var(--lima);padding:7px 12px}.topo-inner{width:min(1120px,100%);min-height:112px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}.marca{display:flex;justify-content:center;align-items:center;height:104px;min-width:0}.marca img{display:block;width:min(100%,370px);max-height:104px;object-fit:contain}.voltar{display:flex;align-items:center;gap:7px;padding:9px 14px;min-height:42px;border:2px solid var(--lima);border-radius:999px;background:var(--azul);color:var(--branco);font-weight:800;text-decoration:none;white-space:nowrap}.voltar svg{width:18px;height:18px;stroke:var(--lima);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}main{width:min(1060px,100%);margin:0 auto;padding:0 14px 24px;flex:1}.titulo-pagina{display:flex;align-items:center;justify-content:center;gap:16px;margin:18px 0 15px;color:var(--preto);font-size:clamp(34px,6vw,52px);font-style:italic;font-weight:900}.titulo-pagina .icone{font-style:normal;font-size:clamp(36px,6vw,52px)}.titulo-pagina span:last-child{position:relative}.titulo-pagina span:last-child:after{content:"";display:block;height:5px;width:85%;margin:5px auto 0;background:var(--lima);border-radius:50%;transform:rotate(-1.5deg)}.intro{background:var(--branco);border-radius:24px;padding:20px 18px 22px;text-align:center;box-shadow:var(--sombra);margin-bottom:20px}.intro h2{font-size:clamp(22px,4vw,32px);margin:0 0 6px;font-weight:900}.intro p{font-size:clamp(17px,3vw,23px);line-height:1.35;margin:0}.opcoes{display:grid;gap:14px}.opcao{width:100%;min-height:132px;display:grid;grid-template-columns:minmax(110px,25%) 1fr auto;align-items:stretch;padding:0;border:0;border-radius:22px;overflow:hidden;background:var(--azul);color:var(--branco);text-align:left;cursor:pointer;box-shadow:var(--sombra)}.opcao-icone{display:grid;place-items:center;background:var(--lima);color:var(--preto);font-size:clamp(45px,8vw,68px);border-right:5px solid var(--preto)}.opcao-texto{align-self:center;padding:15px 18px}.opcao-texto strong{display:block;color:var(--lima);font-size:clamp(22px,4.2vw,34px);font-style:italic;line-height:1.08;margin-bottom:6px}.opcao-texto small{display:block;color:var(--branco);font-size:clamp(16px,3vw,22px);line-height:1.25}.seta{align-self:center;padding:0 20px;color:var(--lima);font-size:48px;font-weight:500}.opcao:focus-visible{outline:3px solid var(--lima);outline-offset:3px}.sobre-titulo{display:flex;align-items:center;justify-content:center;gap:12px;margin:27px 0 15px;text-align:center;font-size:clamp(21px,3.5vw,30px);font-weight:900}.sobre-titulo:before,.sobre-titulo:after{content:"";height:4px;width:clamp(24px,14vw,130px);background:var(--lima);border-radius:20px}.sobre-card{display:grid;grid-template-columns:24% 1fr;align-items:center;border:4px solid var(--lima);border-radius:22px;padding:15px;gap:16px;background:var(--branco);box-shadow:var(--sombra)}.sobre-icone{font-size:clamp(45px,8vw,70px);text-align:center;border-right:5px solid var(--lima);padding:8px}.sobre-card p{font-size:clamp(16px,2.7vw,22px);line-height:1.35;margin:0}.painel{display:none;margin-top:20px}.painel.ativo{display:block}.painel-topo{display:flex;align-items:center;gap:12px;margin-bottom:14px}.voltar-painel{border:2px solid var(--lima);background:var(--azul);color:#fff;border-radius:12px;padding:9px 13px;font-weight:800;cursor:pointer}.painel-topo h2{margin:0;font-size:clamp(21px,4vw,29px)}.busca{width:100%;padding:13px 15px;border:2px solid var(--azul);border-radius:13px;margin:0 0 14px;font-size:16px}.lista{display:grid;gap:10px}.item{width:100%;text-align:left;border:2px solid var(--azul);border-radius:15px;background:var(--branco);padding:14px 16px;color:var(--preto);cursor:pointer;box-shadow:var(--sombra)}.item strong{display:block;font-size:18px;margin-bottom:4px}.item small{font-size:14px;color:#39445a}.vazio,.carregando{background:#f3f5f8;border-radius:14px;padding:18px;text-align:center;color:#29364c;line-height:1.45}.detalhe{margin-top:14px;padding:18px;border:2px solid var(--lima);border-radius:16px;background:#f7f9fc}.detalhe h3{margin:0 0 8px;font-size:22px}.detalhe-meta{color:#43506a;margin:0 0 12px}.abas{display:flex;gap:8px;margin:12px 0}.aba{border:2px solid var(--azul);border-radius:999px;padding:8px 14px;background:var(--branco);color:var(--azul);font-weight:800;cursor:pointer}.aba.ativa{background:var(--azul);color:var(--lima)}.texto-louvor{white-space:pre-wrap;line-height:1.65;font-size:16px;margin:0;max-height:55vh;overflow:auto}.nav{position:fixed;z-index:20;left:0;right:0;bottom:0;min-height:68px;padding:6px 12px max(6px,env(safe-area-inset-bottom));background:var(--azul);border-top:4px solid var(--lima);display:flex;justify-content:center}.nav-inner{width:min(720px,100%);display:grid;grid-template-columns:repeat(3,1fr)}.nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;text-decoration:none;font-size:12px;font-weight:800}.nav a svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}.nav a.ativo{color:var(--lima)}.nav a+a{border-left:1px solid rgba(204,255,0,.55)}
+@media(max-width:520px){.topo{padding:5px 9px}.topo-inner{min-height:102px;gap:6px}.marca{height:94px}.marca img{max-height:94px;width:min(100%,320px)}.voltar{padding:8px 10px;font-size:12px;min-height:39px}.titulo-pagina{margin:14px 0 12px;gap:10px}.intro{padding:17px 12px;margin-bottom:15px}.opcao{min-height:116px;grid-template-columns:25% 1fr auto;border-radius:17px}.opcao-icone{font-size:43px;border-right-width:4px}.opcao-texto{padding:12px}.opcao-texto strong{font-size:clamp(20px,5.2vw,26px)}.opcao-texto small{font-size:15px}.seta{font-size:38px;padding:0 11px}.sobre-titulo{margin:22px 0 12px}.sobre-card{grid-template-columns:22% 1fr;padding:10px;gap:10px;border-width:3px}.sobre-icone{font-size:43px;border-right-width:4px}.sobre-card p{font-size:15px}.pagina{padding-bottom:73px}}
+@media(max-width:360px){.topo-inner{grid-template-columns:minmax(0,1fr) auto}.voltar{padding:7px 8px;font-size:11px}.opcao-texto{padding:9px}.opcao-texto strong{font-size:19px}.opcao-texto small{font-size:14px}.seta{padding:0 7px}}
+</style>
+</head>
+<body>
+<div class="pagina">
+<header class="topo"><div class="topo-inner">
+<a class="marca" href="./visitante.html" aria-label="Página inicial do visitante"><img src="./logo-cara.png" alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas"></a>
+<a class="voltar" href="./visitante.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg>Voltar</a>
+</div></header>
+<main>
+<h1 class="titulo-pagina"><span class="icone" aria-hidden="true">🎸</span><span>Louvor</span></h1>
+<section id="inicio">
+<div class="intro"><h2>Ministério de Louvor da C.A.R.A.</h2><p>Servindo a Deus através da adoração, com músicas que exaltam o Senhor e edificam a Sua Igreja.</p></div>
+<div class="opcoes">
+<button class="opcao" type="button" id="btnCulto"><span class="opcao-icone" aria-hidden="true">📅</span><span class="opcao-texto"><strong>Louvores do Culto</strong><small>Veja o repertório preparado para os cultos.</small></span><span class="seta" aria-hidden="true">›</span></button>
+<button class="opcao" type="button" id="btnBiblioteca"><span class="opcao-icone" aria-hidden="true">📖</span><span class="opcao-texto"><strong>Biblioteca de Louvores</strong><small>Consulte letras e cifras.</small></span><span class="seta" aria-hidden="true">›</span></button>
+</div>
+<h2 class="sobre-titulo">Sobre o Ministério</h2>
+<div class="sobre-card"><div class="sobre-icone" aria-hidden="true">👥</div><p>Nosso propósito é conduzir a comunidade a uma adoração genuína, em espírito e em verdade (João 4:23–24), glorificando a Deus em tudo o que fazemos.</p></div>
+</section>
+<section class="painel" id="painelCulto" aria-live="polite"><div class="painel-topo"><button class="voltar-painel" type="button" data-voltar>← Voltar</button><h2>Louvores do Culto</h2></div><div id="listaRepertorios" class="lista"><div class="carregando">Carregando repertórios...</div></div><div id="detalheRepertorio" class="detalhe" hidden></div></section>
+<section class="painel" id="painelBiblioteca" aria-live="polite"><div class="painel-topo"><button class="voltar-painel" type="button" data-voltar>← Voltar</button><h2>Biblioteca de Louvores</h2></div><input id="buscaLouvor" class="busca" type="search" placeholder="Buscar por louvor ou cantor..." aria-label="Buscar louvor"><div id="listaLouvores" class="lista"><div class="carregando">Carregando biblioteca...</div></div><div id="detalheBiblioteca" class="detalhe" hidden></div></section>
+</main>
+<nav class="nav" aria-label="Navegação inferior"><div class="nav-inner">
+<a href="./visitante.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Início</span></a>
+<a href="./quem-somos.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/></svg><span>Sobre</span></a>
+<a href="https://www.instagram.com/comunidadecara/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Instagram</span></a>
+</div></nav>
+</div>
+<script>
+(() => {
+  'use strict';
+  const API = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+  const $ = id => document.getElementById(id);
+  let louvores = [], repertorios = [], repertorioAtual = null;
+  const texto = v => String(v == null ? '' : v);
+  const escapar = v => texto(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  async function buscar(rota) {
+    const r = await fetch(API + '?rota=' + encodeURIComponent(rota) + '&_=' + Date.now(), {credentials:'omit',redirect:'follow',cache:'no-store'});
+    if (!r.ok) throw new Error('Não foi possível consultar a Base Central (HTTP ' + r.status + ').');
+    const d = await r.json();
+    if (!d || d.sucesso !== true) throw new Error((d && (d.mensagem || d.erro)) || 'A Base Central não retornou os dados esperados.');
+    return d;
+  }
+  function mostrarPainel(id) {
+    $('inicio').hidden = true;
+    document.querySelectorAll('.painel').forEach(p => p.classList.remove('ativo'));
+    $(id).classList.add('ativo');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function voltarInicio() {
+    document.querySelectorAll('.painel').forEach(p => p.classList.remove('ativo'));
+    $('inicio').hidden = false;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  document.querySelectorAll('[data-voltar]').forEach(b => b.addEventListener('click', voltarInicio));
+  function dataBR(v) {
+    if (!v) return 'Data não informada';
+    const d = new Date(v);
+    return Number.isNaN(d.getTime()) ? texto(v) : d.toLocaleDateString('pt-BR',{timeZone:'UTC'});
+  }
+  function abrirDetalheLouvor(l, destino) {
+    const alvo = $(destino);
+    alvo.hidden = false;
+    const letra = texto(l.letra || l.linkLetra || 'Letra não cadastrada.');
+    const cifra = texto(l.cifra || 'Cifra não cadastrada.');
+    alvo.innerHTML = '<h3>' + escapar(l.titulo || 'Louvor') + '</h3><p class="detalhe-meta">' + escapar([l.cantor, l.tom ? 'Tom: ' + l.tom : ''].filter(Boolean).join(' • ')) + '</p><div class="abas"><button class="aba ativa" type="button" data-aba="letra">Letra</button><button class="aba" type="button" data-aba="cifra">Cifra</button></div><pre class="texto-louvor" id="textoLouvor">' + escapar(letra) + '</pre>';
+    alvo.querySelectorAll('[data-aba]').forEach(b => b.addEventListener('click', () => {
+      alvo.querySelectorAll('[data-aba]').forEach(x => x.classList.toggle('ativa', x === b));
+      $('textoLouvor').textContent = b.dataset.aba === 'letra' ? letra : cifra;
+    }));
+    alvo.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function renderLouvores(lista) {
+    const c = $('listaLouvores'); c.innerHTML = '';
+    if (!lista.length) { c.innerHTML = '<div class="vazio">Nenhum louvor está disponível na biblioteca no momento.</div>'; return; }
+    lista.forEach(l => {
+      const b = document.createElement('button'); b.type='button'; b.className='item';
+      b.innerHTML = '<strong>' + escapar(l.titulo || 'Louvor sem título') + '</strong><small>' + escapar([l.cantor || '',l.tom ? 'Tom: '+l.tom : ''].filter(Boolean).join(' • ')) + '</small>';
+      b.addEventListener('click', () => abrirDetalheLouvor(l,'detalheBiblioteca'));
+      c.appendChild(b);
+    });
+  }
+  function renderRepertorios(lista) {
+    const c = $('listaRepertorios'); c.innerHTML = '';
+    if (!lista.length) { c.innerHTML = '<div class="vazio">Ainda não há repertórios publicados para os cultos.</div>'; return; }
+    lista.forEach(rep => {
+      const b = document.createElement('button'); b.type='button'; b.className='item';
+      const itens = Array.isArray(rep.itens) ? rep.itens : [];
+      b.innerHTML = '<strong>' + escapar(rep.tipoCulto || 'Culto') + '</strong><small>📅 ' + escapar(dataBR(rep.data)) + ' • ' + itens.length + ' louvor(es)</small>';
+      b.addEventListener('click', () => {
+        repertorioAtual = rep;
+        const d = $('detalheRepertorio'); d.hidden = false;
+        let html = '<h3>' + escapar(rep.tipoCulto || 'Repertório do culto') + '</h3><p class="detalhe-meta">' + escapar(dataBR(rep.data)) + (rep.ministro ? ' • Ministro: ' + escapar(rep.ministro) : '') + '</p>';
+        if (rep.observacoes) html += '<p>' + escapar(rep.observacoes) + '</p>';
+        if (!itens.length) html += '<div class="vazio">Nenhum louvor foi incluído neste repertório.</div>';
+        itens.forEach((l,i) => { html += '<button class="item" type="button" data-item-rep="' + i + '"><strong>' + (i+1) + '. ' + escapar(l.titulo || 'Louvor') + '</strong><small>' + escapar([l.cantor || '',l.tom ? 'Tom: '+l.tom : ''].filter(Boolean).join(' • ')) + '</small></button>'; });
+        d.innerHTML = html;
+        d.querySelectorAll('[data-item-rep]').forEach(x => x.addEventListener('click', () => abrirDetalheLouvor(itens[Number(x.dataset.itemRep)] || {},'detalheRepertorio')));
+        d.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+      c.appendChild(b);
+    });
+  }
+  $('btnCulto').addEventListener('click', async () => {
+    mostrarPainel('painelCulto'); $('listaRepertorios').innerHTML='<div class="carregando">Carregando repertórios...</div>';
+    $('detalheRepertorio').hidden=true;
+    try { const d=await buscar('repertorios'); repertorios=Array.isArray(d.repertorios)?d.repertorios:[]; renderRepertorios(repertorios); }
+    catch(e) { $('listaRepertorios').innerHTML='<div class="vazio">Não foi possível carregar os repertórios agora.<br><small>'+escapar(e.message)+'</small></div>'; }
+  });
+  $('btnBiblioteca').addEventListener('click', async () => {
+    mostrarPainel('painelBiblioteca'); $('listaLouvores').innerHTML='<div class="carregando">Carregando biblioteca...</div>';
+    $('detalheBiblioteca').hidden=true;
+    try { const d=await buscar('louvores'); louvores=Array.isArray(d.louvores)?d.louvores:[]; renderLouvores(louvores); }
+    catch(e) { $('listaLouvores').innerHTML='<div class="vazio">Não foi possível carregar a biblioteca agora.<br><small>'+escapar(e.message)+'</small></div>'; }
+  });
+  $('buscaLouvor').addEventListener('input', e => { const q=e.target.value.trim().toLocaleLowerCase('pt-BR'); renderLouvores(louvores.filter(l => (texto(l.titulo)+' '+texto(l.cantor)).toLocaleLowerCase('pt-BR').includes(q))); $('detalheBiblioteca').hidden=true; });
+})();
+</script>
+</body>
+</html>
