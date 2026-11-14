@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v127-acao-social-visitante';
+const CACHE_VERSION = 'cara-app-v128-catalogo-visitante';
 
 const APP_SHELL = [
   './',
@@ -10,6 +10,7 @@ const APP_SHELL = [
   './agenda-visitante.html',
   './louvor-visitante.html',
   './acao-social-visitante.html',
+  './catalogo-visitante.html',
   './proposito-espiritual.html',
   './dica-semana.html',
   './palavra.html',
