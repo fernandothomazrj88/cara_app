@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v123-quem-somos-accordion';
+const CACHE_VERSION = 'cara-app-v124-quem-somos-textos-oficiais';
 
 const APP_SHELL = [
   './',

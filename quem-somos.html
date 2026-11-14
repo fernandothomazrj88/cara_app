@@ -29,16 +29,15 @@
     .apresentacao strong{font-weight:900}
     .lista{display:grid;gap:12px;margin:0}
     .item{overflow:hidden;border:2px solid rgba(23,34,53,.18);border-radius:18px;background:var(--branco);box-shadow:var(--sombra)}
-    .item-botao{width:100%;min-height:96px;display:grid;grid-template-columns:minmax(0,38%) minmax(0,1fr) 30px;align-items:center;gap:12px;padding:10px 15px;background:var(--branco);border:0;color:var(--preto);text-align:left;cursor:pointer}
-    .item-identidade{align-self:stretch;display:flex;align-items:center;gap:12px;min-width:0;padding:9px 12px;border-radius:14px;background:linear-gradient(105deg,var(--lima),#efffa5);color:var(--preto)}
+    .item-botao{width:100%;min-height:96px;display:grid;grid-template-columns:minmax(0,1fr) 30px;align-items:center;gap:12px;padding:10px 15px;background:var(--branco);border:0;color:var(--preto);text-align:left;cursor:pointer}
+    .item-identidade{align-self:stretch;display:flex;align-items:center;gap:12px;min-width:0;padding:9px 18px;border-radius:14px;background:linear-gradient(105deg,var(--lima),#efffa5);color:var(--preto)}
     .item-icone{flex:0 0 auto;width:48px;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:35px;line-height:1}
     .item-nome{font-size:clamp(17px,2.5vw,25px);font-weight:900;line-height:1.05}
-    .item-resumo{font-size:clamp(14px,2vw,18px);line-height:1.28;color:var(--preto)}
     .item-seta{font-size:26px;font-weight:900;color:var(--azul);transition:transform .18s}
     .item[aria-expanded="true"] .item-seta{transform:rotate(90deg);color:var(--preto)}
     .item-botao:focus-visible{outline:3px solid var(--lima);outline-offset:-5px}
-    .item-conteudo{display:none;padding:0 20px 19px  calc(38% + 28px);color:var(--preto);font-size:16px;line-height:1.55}
-    .item[aria-expanded="true"] .item-conteudo{display:block}
+    .item-conteudo{display:none;padding:0 22px 20px 22px;color:var(--preto);font-size:16px;line-height:1.55}
+    .item[aria-expanded="true"] .item-conteudo{display:block}.item-conteudo[hidden]{display:none!important}.item-conteudo.valores ul{margin:0;padding-left:1.1em;list-style:none}.item-conteudo.valores li{margin:7px 0}
     .item-conteudo p{margin:0}
     .rodape-espaco{height:6px}
     .nav-inferior{position:fixed;z-index:20;left:0;right:0;bottom:0;min-height:68px;padding:7px max(12px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:var(--azul);border-top:4px solid var(--lima);display:flex;justify-content:center;box-shadow:0 -5px 18px rgba(8,13,24,.12)}
@@ -50,9 +49,9 @@
     @media(max-width:520px){
       .topo{padding:5px 10px}.topo-inner{min-height:116px;gap:8px}.marca{height:108px}.marca img{width:min(100%,320px);max-height:108px}.voltar{min-height:40px;padding:8px 11px;font-size:12px;gap:5px}.voltar svg{width:16px;height:16px}
       main{padding-left:10px;padding-right:10px}.titulo-pagina{margin:14px 0 13px;gap:12px}.titulo-icone{font-size:43px}.titulo-texto{font-size:clamp(29px,7vw,38px)}.titulo-texto:after{height:4px;margin-top:7px}
-      .apresentacao{padding:16px 14px;margin-bottom:13px;border-radius:17px;font-size:15px;line-height:1.38}.lista{gap:9px}.item{border-radius:15px}.item-botao{min-height:78px;grid-template-columns:minmax(0,39%) minmax(0,1fr) 19px;gap:8px;padding:7px 8px}.item-identidade{padding:7px 6px;gap:5px;border-radius:11px}.item-icone{width:34px;font-size:27px}.item-nome{font-size:clamp(15px,4vw,18px)}.item-resumo{font-size:13px;line-height:1.22}.item-seta{font-size:21px}.item-conteudo{padding:0 14px 15px calc(39% + 18px);font-size:14px;line-height:1.45}.pagina{padding-bottom:73px}.nav-inferior{min-height:65px}.nav-item{font-size:11px;min-height:44px}.nav-item svg{width:20px;height:20px}
+      .apresentacao{padding:16px 14px;margin-bottom:13px;border-radius:17px;font-size:15px;line-height:1.38}.lista{gap:9px}.item{border-radius:15px}.item-botao{min-height:78px;grid-template-columns:minmax(0,1fr) 19px;gap:8px;padding:7px 8px}.item-identidade{padding:7px 6px;gap:5px;border-radius:11px}.item-icone{width:34px;font-size:27px}.item-nome{font-size:clamp(15px,4vw,18px)}.item-seta{font-size:21px}.item-conteudo{padding:0 16px 16px;font-size:14px;line-height:1.5}.pagina{padding-bottom:73px}.nav-inferior{min-height:65px}.nav-item{font-size:11px;min-height:44px}.nav-item svg{width:20px;height:20px}
     }
-    @media(max-width:365px){.topo-inner{min-height:104px;gap:5px}.marca{height:96px}.marca img{max-height:96px}.voltar{font-size:11px;padding:7px 8px}.item-botao{grid-template-columns:minmax(0,40%) minmax(0,1fr) 16px;gap:6px;padding:6px}.item-identidade{gap:3px;padding:6px 4px}.item-icone{width:29px;font-size:24px}.item-nome{font-size:14px}.item-resumo{font-size:12px}.item-conteudo{padding-left:calc(40% + 15px)}}
+    @media(max-width:365px){.topo-inner{min-height:104px;gap:5px}.marca{height:96px}.marca img{max-height:96px}.voltar{font-size:11px;padding:7px 8px}.item-botao{grid-template-columns:minmax(0,1fr) 16px;gap:6px;padding:6px}.item-identidade{gap:3px;padding:6px 4px}.item-icone{width:29px;font-size:24px}.item-nome{font-size:14px}.item-conteudo{padding-left:14px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
@@ -75,26 +74,23 @@
       <article class="item" data-accordion aria-expanded="false">
         <button class="item-botao" type="button" aria-expanded="false" aria-controls="texto-missao">
           <span class="item-identidade"><span class="item-icone" aria-hidden="true">🎯</span><span class="item-nome">Nossa Missão</span></span>
-          <span class="item-resumo">Acolher, discipular e restaurar vidas por meio do Evangelho de Jesus Cristo.</span>
           <span class="item-seta" aria-hidden="true">›</span>
         </button>
-        <div class="item-conteudo" id="texto-missao"><p>Acolher, discipular e restaurar vidas por meio do Evangelho de Jesus Cristo.</p></div>
+        <div class="item-conteudo" id="texto-missao" hidden><p>Restaurar vidas por meio do amor e da verdade do Senhor Jesus Cristo, oferecendo um ambiente de cura, esperança e restauração à imagem e semelhança do Criador, fundamentados na Sua Palavra.</p></div>
       </article>
       <article class="item" data-accordion aria-expanded="false">
         <button class="item-botao" type="button" aria-expanded="false" aria-controls="texto-visao">
           <span class="item-identidade"><span class="item-icone" aria-hidden="true">👁️</span><span class="item-nome">Nossa Visão</span></span>
-          <span class="item-resumo">Ser uma comunidade relevante, comprometida com o Reino de Deus, formando discípulos e servindo à sociedade.</span>
           <span class="item-seta" aria-hidden="true">›</span>
         </button>
-        <div class="item-conteudo" id="texto-visao"><p>Ser uma comunidade relevante, comprometida com o Reino de Deus, formando discípulos e servindo à sociedade.</p></div>
+        <div class="item-conteudo" id="texto-visao" hidden><p>Ser uma comunidade acolhedora e comprometida com a verdade e o amor, sendo instrumentos nas mãos de Deus para a restauração espiritual e emocional das pessoas, por meio da pregação do Evangelho de Jesus Cristo.</p></div>
       </article>
       <article class="item" data-accordion aria-expanded="false">
         <button class="item-botao" type="button" aria-expanded="false" aria-controls="texto-valores">
           <span class="item-identidade"><span class="item-icone" aria-hidden="true">❤️</span><span class="item-nome">Nossos Valores</span></span>
-          <span class="item-resumo">Amor, Verdade, Graça, Comunhão, Discipulado e Serviço.</span>
           <span class="item-seta" aria-hidden="true">›</span>
         </button>
-        <div class="item-conteudo" id="texto-valores"><p>Amor, Verdade, Graça, Comunhão, Discipulado e Serviço.</p></div>
+        <div class="item-conteudo valores" id="texto-valores" hidden><ul><li>❤️ Amor incondicional de Jesus Cristo.</li><li>📖 Verdade Bíblica como fonte de libertação.</li><li>🤝 Unidade, comunhão e apoio mútuo.</li><li>✝️ Sagradas Escrituras como base da fé.</li><li>🕊️ Crença na Trindade: Pai, Filho e Espírito Santo.</li><li>🙏 Salvação pela fé em Jesus Cristo.</li></ul></div>
       </article>
     </section>
     <div class="rodape-espaco"></div>
@@ -117,10 +113,12 @@
       itens.forEach(outro => {
         outro.setAttribute('aria-expanded', 'false');
         outro.querySelector('.item-botao').setAttribute('aria-expanded', 'false');
+        outro.querySelector('.item-conteudo').hidden = true;
       });
       if (abrir) {
         item.setAttribute('aria-expanded', 'true');
         botao.setAttribute('aria-expanded', 'true');
+        item.querySelector('.item-conteudo').hidden = false;
       }
     });
   });
