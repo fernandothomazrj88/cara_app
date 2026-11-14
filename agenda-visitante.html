@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080D18">
+  <meta name="description" content="Acompanhe a programação e os próximos eventos da Comunidade Apostólica Restaurando Almas — C.A.R.A.">
+  <title>Agenda — C.A.R.A.</title>
+  <link rel="icon" href="./icon-192.png">
+  <style>
+    :root{--preto:#080D18;--lima:#CCFF00;--branco:#fff;--azul:#172235;--sombra:0 8px 22px rgba(8,13,24,.12)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--branco)}
+    body{margin:0;min-height:100vh;background:var(--branco);color:var(--preto);font-family:Inter,Arial,Helvetica,sans-serif}
+    button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}
+    .pagina{min-height:100vh;display:flex;flex-direction:column;padding-bottom:76px}
+    .topo{background:var(--preto);border-bottom:4px solid var(--lima);padding:7px clamp(12px,3vw,28px)}
+    .topo-inner{width:min(1120px,100%);min-height:126px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center}
+    .marca{display:flex;justify-content:center;align-items:center;min-width:0;height:116px;width:100%}
+    .marca img{display:block;width:min(100%,370px);height:auto;max-height:116px;object-fit:contain;object-position:center}
+    .voltar{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 17px;border-radius:999px;background:var(--azul);border:2px solid var(--lima);color:var(--branco);font-size:14px;font-weight:800;text-decoration:none;white-space:nowrap}
+    .voltar svg{width:18px;height:18px;stroke:var(--lima);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    main{width:min(1060px,100%);margin:0 auto;padding:0 clamp(12px,3vw,26px) 26px;flex:1}
+    .titulo-pagina{display:flex;align-items:center;justify-content:center;gap:clamp(12px,3vw,26px);margin:18px 0 10px;color:var(--preto)}
+    .titulo-icone{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:clamp(42px,7vw,62px);line-height:1}
+    .titulo-texto{font-size:clamp(34px,6vw,56px);font-weight:900;font-style:italic;line-height:1.05;text-align:center}
+    .titulo-texto:after{content:"";display:block;width:88%;height:5px;margin:9px auto 0;border-radius:50%;background:var(--lima);transform:rotate(-1.5deg)}
+    .intro{margin:0 0 18px;padding:17px 20px;border-radius:20px;background:var(--branco);box-shadow:var(--sombra);text-align:center;font-size:clamp(16px,2.5vw,21px);line-height:1.4}
+    .rotulo{display:flex;align-items:center;gap:12px;margin:22px 0 13px;font-size:clamp(18px,3vw,24px);font-weight:900;text-align:center}
+    .rotulo:before,.rotulo:after{content:"";height:3px;flex:1;max-width:90px;background:var(--lima);border-radius:9px}
+    .programacao{display:grid;gap:12px}
+    .programa-card{width:100%;min-height:106px;display:grid;grid-template-columns:112px minmax(0,1fr) 30px;align-items:stretch;overflow:hidden;padding:0;border:2px solid var(--azul);border-radius:22px;background:var(--azul);color:var(--branco);text-align:left;box-shadow:var(--sombra)}
+    .programa-icone{display:grid;place-items:center;background:var(--lima);color:var(--preto);font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:48px}
+    .programa-info{align-self:center;padding:14px 17px}
+    .programa-info h3{margin:0 0 5px;color:var(--lima);font-size:clamp(18px,3vw,26px);font-weight:900;font-style:italic;line-height:1.12}
+    .programa-info p{margin:0;color:var(--branco);font-size:clamp(14px,2.2vw,18px);font-weight:700;line-height:1.35}
+    .programa-seta{align-self:center;padding-right:12px;color:var(--lima);font-size:36px;font-weight:800}
+    .eventos{display:grid;gap:11px}
+    .estado{padding:20px;border:1px solid rgba(23,34,53,.16);border-radius:18px;background:#f7f9fc;color:#334155;text-align:center;line-height:1.5}
+    .evento-card{width:100%;display:grid;grid-template-columns:78px minmax(0,1fr) 24px;gap:13px;align-items:center;padding:12px;border:2px solid var(--lima);border-radius:20px;background:var(--branco);color:var(--preto);text-align:left;box-shadow:var(--sombra);cursor:pointer}
+    .data-box{min-height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:15px;background:var(--azul);color:var(--branco);font-weight:900}
+    .data-box strong{font-size:31px;line-height:1;color:var(--lima)}
+    .data-box span{margin-top:5px;font-size:13px;letter-spacing:.06em}
+    .evento-info h3{margin:0 0 6px;font-size:clamp(16px,2.6vw,22px);font-weight:900;line-height:1.18}
+    .evento-info p{margin:3px 0;color:#344054;font-size:14px;line-height:1.35}
+    .evento-seta{font-size:30px;font-weight:900;color:var(--azul)}
+    .botao-completo{display:flex;align-items:center;justify-content:center;gap:12px;width:min(100%,520px);min-height:60px;margin:20px auto 0;padding:12px 20px;border:3px solid var(--lima);border-radius:999px;background:var(--azul);color:var(--branco);font-size:clamp(17px,2.7vw,22px);font-weight:900;text-decoration:none;box-shadow:var(--sombra)}
+    .botao-completo span{font-size:25px;color:var(--lima)}
+    .nav-inferior{position:fixed;z-index:20;left:0;right:0;bottom:0;min-height:68px;padding:7px max(12px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:var(--azul);border-top:4px solid var(--lima);display:flex;justify-content:center;box-shadow:0 -5px 18px rgba(8,13,24,.12)}
+    .nav-inner{width:min(720px,100%);display:grid;grid-template-columns:repeat(3,1fr);align-items:center}
+    .nav-item{min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:var(--branco);font-size:12px;font-weight:700}
+    .nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .nav-item.ativo{color:var(--lima)}.nav-item+.nav-item{border-left:1px solid rgba(204,255,0,.55)}
+    .modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(8,13,24,.72)}
+    .modal.aberto{display:flex}
+    .modal-card{width:min(560px,100%);max-height:min(82vh,720px);overflow:auto;border:2px solid var(--lima);border-radius:22px;background:var(--branco);box-shadow:0 20px 70px rgba(0,0,0,.3)}
+    .modal-topo{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;background:var(--azul);color:var(--branco)}
+    .modal-topo h2{margin:0;color:var(--lima);font-size:21px}
+    .fechar{width:38px;height:38px;border:1px solid var(--lima);border-radius:11px;background:transparent;color:var(--branco);font-size:24px;cursor:pointer}
+    .modal-corpo{padding:18px;color:var(--preto);font-size:16px;line-height:1.55}
+    .modal-corpo p{margin:8px 0}
+    @media(max-width:600px){
+      .topo{padding:5px 10px}.topo-inner{min-height:108px;gap:8px}.marca{height:100px}.marca img{width:min(100%,310px);max-height:100px}.voltar{min-height:40px;padding:8px 11px;font-size:12px;gap:5px}
+      main{padding-left:10px;padding-right:10px}.titulo-pagina{margin:14px 0 10px;gap:12px}.titulo-icone{font-size:43px}.titulo-texto{font-size:clamp(31px,8vw,42px)}.intro{padding:15px 13px;margin-bottom:14px;border-radius:17px;font-size:15px}
+      .rotulo{font-size:18px;margin:19px 0 11px;gap:8px}.rotulo:before,.rotulo:after{max-width:35px}
+      .programacao{gap:9px}.programa-card{min-height:88px;grid-template-columns:76px minmax(0,1fr) 22px;border-radius:17px}.programa-icone{font-size:37px}.programa-info{padding:10px 11px}.programa-info h3{font-size:17px}.programa-info p{font-size:13px}.programa-seta{font-size:29px;padding-right:8px}
+      .evento-card{grid-template-columns:60px minmax(0,1fr) 17px;gap:9px;padding:9px;border-radius:16px}.data-box{min-height:68px;border-radius:12px}.data-box strong{font-size:25px}.data-box span{font-size:11px}.evento-info h3{font-size:15px}.evento-info p{font-size:12px}.evento-seta{font-size:25px}
+      .botao-completo{min-height:54px;margin-top:16px;font-size:17px}.pagina{padding-bottom:73px}.nav-inferior{min-height:65px}.nav-item{font-size:11px;min-height:44px}.nav-item svg{width:20px;height:20px}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="pagina">
+  <header class="topo">
+    <div class="topo-inner">
+      <a class="marca" href="./visitante.html" aria-label="Página inicial do visitante"><img src="./logo-cara.png" alt="C.A.R.A. — Comunidade Apostólica Restaurando Almas"></a>
+      <a class="voltar" href="./visitante.html" aria-label="Voltar à página inicial do visitante">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg>Voltar
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="titulo-pagina"><span class="titulo-icone" aria-hidden="true">📅</span><h1 class="titulo-texto">Agenda</h1></div>
+    <p class="intro">Acompanhe aqui a nossa programação semanal, cultos, estudos e eventos da comunidade.</p>
+
+    <h2 class="rotulo">Programação da comunidade</h2>
+    <section class="programacao" aria-label="Programação regular">
+      <article class="programa-card">
+        <div class="programa-icone" aria-hidden="true">🙌</div>
+        <div class="programa-info"><h3>Culto de Celebração</h3><p>Domingo · 10h00</p></div>
+        <span class="programa-seta" aria-hidden="true">›</span>
+      </article>
+      <article class="programa-card">
+        <div class="programa-icone" aria-hidden="true">🍞</div>
+        <div class="programa-info"><h3>Santa Ceia</h3><p>Consulte a programação mensal publicada pela comunidade.</p></div>
+        <span class="programa-seta" aria-hidden="true">›</span>
+      </article>
+      <article class="programa-card">
+        <div class="programa-icone" aria-hidden="true">📖</div>
+        <div class="programa-info"><h3>Estudo Bíblico Online</h3><p>Terça-feira · 21h45</p></div>
+        <span class="programa-seta" aria-hidden="true">›</span>
+      </article>
+    </section>
+
+    <h2 class="rotulo" id="tituloEventos">📅 Próximos Eventos</h2>
+    <section id="proximoEvento" class="eventos" aria-live="polite">
+      <div class="estado">Carregando os próximos eventos...</div>
+    </section>
+    <section id="listaEventos" class="eventos" aria-label="Lista de próximos eventos" style="margin-top:11px">
+      <div class="estado">Carregando agenda...</div>
+    </section>
+    <a class="botao-completo" href="#tituloEventos"><span aria-hidden="true">▦</span> Ver Agenda Completa</a>
+  </main>
+
+  <nav class="nav-inferior" aria-label="Navegação inferior">
+    <div class="nav-inner">
+      <a class="nav-item" href="./visitante.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Início</span></a>
+      <a class="nav-item" href="./quem-somos.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/></svg><span>Sobre</span></a>
+      <a class="nav-item" href="https://www.instagram.com/comunidadecara/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Instagram</span></a>
+    </div>
+  </nav>
+</div>
+
+<div class="modal" id="modalEvento" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitulo">
+  <div class="modal-card">
+    <div class="modal-topo"><h2 id="modalTitulo">Detalhes do evento</h2><button class="fechar" id="fecharModal" type="button" aria-label="Fechar">×</button></div>
+    <div class="modal-corpo" id="modalCorpo"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const API_CARA = 'https://script.google.com/macros/s/AKfycbwFGFIC3s9i6X7qsKzrfJju59Y0UXBrfS2UgNKx6P_htJWHkyguZTaceL9ohG30rAML/exec';
+  const proximoEl = document.getElementById('proximoEvento');
+  const listaEl = document.getElementById('listaEventos');
+  const modal = document.getElementById('modalEvento');
+  const modalTitulo = document.getElementById('modalTitulo');
+  const modalCorpo = document.getElementById('modalCorpo');
+  let eventos = [];
+
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function dataParts(value) {
+    const p = String(value || '').split('-');
+    if (p.length !== 3 || p.some(v => !/^\d+$/.test(v))) return null;
+    return {ano:Number(p[0]),mes:Number(p[1]),dia:Number(p[2])};
+  }
+  function dataLonga(value) {
+    const p = dataParts(value); if (!p) return 'Data a definir';
+    const d = new Date(p.ano,p.mes-1,p.dia);
+    const dias = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+    const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+    return `${dias[d.getDay()]}, ${p.dia} de ${meses[p.mes-1]}`;
+  }
+  function mesCurto(value) {
+    const p = dataParts(value); return p ? ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'][p.mes-1] : '—';
+  }
+  function hora(e) { return e.horaInicio ? (e.horaFim ? `${e.horaInicio} – ${e.horaFim}` : e.horaInicio) : 'Horário a definir'; }
+  function local(e) { return e.local || (e.modalidade === 'ONLINE' ? 'Online' : 'Local a definir'); }
+  function cardEvento(e,index) {
+    const p=dataParts(e.data);
+    return `<button class="evento-card" type="button" data-evento="${index}">
+      <span class="data-box"><strong>${p ? String(p.dia).padStart(2,'0') : '—'}</strong><span>${esc(mesCurto(e.data))}</span></span>
+      <span class="evento-info"><h3>${esc(e.titulo || 'Evento')}</h3><p>📅 ${esc(dataLonga(e.data))}</p><p>🕘 ${esc(hora(e))} · 📍 ${esc(local(e))}</p></span>
+      <span class="evento-seta" aria-hidden="true">›</span>
+    </button>`;
+  }
+  function detalheEvento(e) {
+    modalTitulo.textContent = e.titulo || 'Evento';
+    modalCorpo.innerHTML = `<p><strong>📅 Data:</strong> ${esc(dataLonga(e.data))}</p>
+      <p><strong>🕘 Horário:</strong> ${esc(hora(e))}</p>
+      <p><strong>📍 Local:</strong> ${esc(local(e))}</p>
+      ${e.modalidade ? `<p><strong>Modalidade:</strong> ${esc(e.modalidade)}</p>` : ''}
+      ${e.tipo ? `<p><strong>Tipo:</strong> ${esc(e.tipo)}</p>` : ''}
+      ${e.descricao ? `<p>${esc(e.descricao)}</p>` : '<p>Não há descrição adicional cadastrada para este evento.</p>'}`;
+    modal.classList.add('aberto'); modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden'; document.getElementById('fecharModal').focus();
+  }
+  function fecharModal() { modal.classList.remove('aberto'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  document.getElementById('fecharModal').addEventListener('click',fecharModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)fecharModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('aberto'))fecharModal();});
+  listaEl.addEventListener('click',e=>{const b=e.target.closest('[data-evento]');if(!b)return;const item=eventos[Number(b.dataset.evento)];if(item)detalheEvento(item);});
+
+  async function buscar(rota) {
+    const response = await fetch(`${API_CARA}?rota=${encodeURIComponent(rota)}`,{method:'GET',credentials:'omit',redirect:'follow',cache:'no-store'});
+    if(!response.ok)throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  }
+  async function carregar() {
+    try {
+      const [proximo,lista] = await Promise.all([buscar('proximoevento'),buscar('eventos')]);
+      if(proximo && proximo.sucesso && proximo.evento) {
+        proximoEl.innerHTML = cardEvento(proximo.evento,-1);
+        proximoEl.querySelector('[data-evento]').addEventListener('click',()=>detalheEvento(proximo.evento));
+      } else {
+        proximoEl.innerHTML = '<div class="estado">Nenhum próximo evento publicado no momento.</div>';
+      }
+      eventos = Array.isArray(lista?.eventos) ? lista.eventos : (Array.isArray(lista?.dados) ? lista.dados : []);
+      if(!lista?.sucesso || !eventos.length) {
+        listaEl.innerHTML = '<div class="estado">Ainda não há outros eventos futuros publicados.</div>';
+      } else {
+        listaEl.innerHTML = eventos.map(cardEvento).join('');
+      }
+    } catch(error) {
+      console.error('Falha ao carregar agenda pública da C.A.R.A.:',error);
+      proximoEl.innerHTML = '<div class="estado">Não foi possível carregar o próximo evento. Tente novamente mais tarde.</div>';
+      listaEl.innerHTML = '<div class="estado">Não foi possível carregar a agenda agora. Verifique sua conexão e tente novamente.</div>';
+    }
+  }
+  carregar();
+})();
+</script>
+</body>
+</html>
