@@ -96,6 +96,9 @@
         <button class="day-button available" type="button" data-day="5">
           <span class="day-number">05</span><span class="day-info"><strong>Avivados para viver e cumprir o propósito de Deus</strong><small>Sexta-feira · Habacuque 3:2</small></span><span class="day-status">DISPONÍVEL ›</span>
         </button>
+        <button class="day-button available" type="button" data-encerramento="true">
+          <span class="day-number">✦</span><span class="day-info"><strong>Encerramento — Mais do que um propósito, um compromisso com Deus!</strong><small>Palavra de encerramento · Isaías 40:31</small></span><span class="day-status">DISPONÍVEL ›</span>
+        </button>
       </div>
     </section>
 
@@ -213,6 +216,44 @@
       return section;
     }
 
+    function abrirEncerramento() {
+      document.getElementById('diaRotulo').textContent = 'ENCERRAMENTO DO JEJUM COLETIVO';
+      document.getElementById('diaTitulo').textContent = 'MAIS DO QUE UM PROPÓSITO, UM COMPROMISSO COM DEUS!';
+      document.getElementById('diaTema').textContent = '';
+      document.getElementById('referencia').textContent = 'Isaías 40:31';
+      document.getElementById('textoBiblico').textContent = '"Mas os que esperam no Senhor renovarão as suas forças..."';
+
+      const encerramento = [
+        {titulo:'', texto:'Querida Comunidade CARA,\\n\\nHoje encerramos nosso propósito coletivo de jejum, mas não encerramos nossa busca por Deus!\\n\\nDurante esses cinco dias, abrimos mão de algo que faz parte da nossa rotina para dedicar um tempo dedicadol ao Senhor. Fizemos isso com um propósito: buscar edificação, avivamento e direção do Espírito Santo para nossas vidas e para nossa comunidade.\\n\\nMas precisamos compreender algo muito importante: o verdadeiro resultado de um jejum não deve ser medido apenas pelos dias em que conseguimos permanecer em abstinência, mas pelos frutos espirituais que esse propósito produzirá em nossa caminhada.\\n\\nNão queremos que a oração termine com o jejum, que a busca termine com o propósito ou que a disposição de obedecer a Deus termine com esta semana.\\n\\nQueremos continuar crescendo em intimidade com o Senhor, fortalecendo nossa unidade e desenvolvendo uma vida de compromisso com Sua Palavra.\\n\\nQue tudo aquilo que aprendemos durante esses dias se transforme em atitudes. Que sejamos mais pacientes uns com os outros, mais comprometidos com a obra, mais sensíveis às necessidades das pessoas e mais disponíveis para servir.\\n\\nA Comunidade CARA precisa continuar sendo edificada em Cristo, fortalecida pelo Espírito Santo e conduzida pela Palavra de Deus.\\n\\nHoje não estamos apenas encerrando um jejum; estamos reafirmando nosso compromisso de caminhar com Deus!'},
+        {titulo:'ORAÇÃO DE ENCERRAMENTO', tipo:'oracao', texto:'Pai, nós Te agradecemos por esses dias de consagração. Obrigada por cada vida que participou desse propósito e por cada momento dedicado à oração e à busca pela Tua presença.\\n\\nPedimos que os frutos desse jejum permaneçam em nós. Edifica a nossa comunidade, fortalece nossa unidade, desperta os dons, renova nossas forças e concede-nos direção para os próximos passos.\\n\\nQue o Espírito Santo continue conduzindo nossas vidas e que tudo aquilo que fizermos seja para a glória do Teu nome.\\n\\nDeclaramos que a Comunidade CARA pertence ao Senhor e deseja permanecer firme em Cristo, comprometida com Sua Palavra e disponível para cumprir Sua vontade.\\n\\nEm nome do Senhor Jesus. Amém!'},
+        {titulo:'DECLARE', tipo:'declaracao', texto:'O jejum termina, mas nossa consagração continua. A abstinência termina, mas nossa busca permanece. Nosso propósito termina, mas nosso compromisso com Deus se renova a cada dia!'}
+      ];
+
+      blocosDia.replaceChildren(...encerramento.map(criarBloco));
+      const assinatura = document.createElement('div');
+      assinatura.className = 'card';
+      const assinaturaTexto = document.createElement('p');
+      assinaturaTexto.textContent = 'Com amor e oração,\\n\\nPra. Juçara Soares\\nComunidade Apostólica Restaurando Almas — CARA';
+      assinatura.appendChild(assinaturaTexto);
+      const lema = document.createElement('p');
+      lema.className = 'motto';
+      lema.textContent = '“Um amor que acolhe, a verdade que liberta e a graça que restaura”';
+      assinatura.appendChild(lema);
+      const hashtag = document.createElement('p');
+      hashtag.style.cssText = 'margin-top:12px;color:#CCFF00;font-weight:800';
+      hashtag.textContent = '#JUNTOSPODEMOSMAIS🤜🤛';
+      assinatura.appendChild(hashtag);
+      blocosDia.appendChild(assinatura);
+
+      document.getElementById('diaAnterior').disabled = true;
+      document.getElementById('proximoDia').disabled = true;
+      document.getElementById('diaAnterior').onclick = null;
+      document.getElementById('proximoDia').onclick = null;
+      listaDias.classList.add('hidden');
+      conteudoDia.classList.remove('hidden');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
     function abrirDia(numero) {
       const dia = dias[numero];
       if (!dia) return;
@@ -236,6 +277,7 @@
     }
 
     document.querySelectorAll('[data-day]').forEach(btn=>btn.addEventListener('click',()=>abrirDia(Number(btn.dataset.day))));
+    document.querySelector('[data-encerramento]').addEventListener('click', abrirEncerramento);
     document.getElementById('voltarDias').addEventListener('click',()=>{conteudoDia.classList.add('hidden');listaDias.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});});
   </script>
 </body>

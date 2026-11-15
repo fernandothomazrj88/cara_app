@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v130-catalogo-artes-originais';
+const CACHE_VERSION = 'cara-app-v131-encerramento-jejum';
 
 const APP_SHELL = [
   './',
