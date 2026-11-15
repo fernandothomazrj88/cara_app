@@ -117,22 +117,6 @@
   </nav>
 </div>
 
-<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
-<script>
-(() => {
-  const aviso = document.getElementById('aviso');
-  let avisoTimer;
-  function mostrarAviso(texto) {
-    aviso.textContent = texto;
-    aviso.classList.add('visivel');
-    clearTimeout(avisoTimer);
-    avisoTimer = setTimeout(() => aviso.classList.remove('visivel'), 2600);
-  }
-  document.querySelectorAll('[data-destino]').forEach(el => el.addEventListener('click', () => {
-    const nome = el.getAttribute('data-destino');
-    mostrarAviso('Estamos preparando a área “' + nome + '”. Em breve ela estará disponível!');
-  }));
-})();
-</script>
+
 </body>
 </html>

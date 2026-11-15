@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v128-catalogo-visitante';
+const CACHE_VERSION = 'cara-app-v130-catalogo-artes-originais';
 
 const APP_SHELL = [
   './',
@@ -11,6 +11,9 @@ const APP_SHELL = [
   './louvor-visitante.html',
   './acao-social-visitante.html',
   './catalogo-visitante.html',
+  './quadro-batei-e-a-porta.png',
+  './quadro-orai-sem-cessar.png',
+  './quadro-lampada-palavra.png',
   './proposito-espiritual.html',
   './dica-semana.html',
   './palavra.html',

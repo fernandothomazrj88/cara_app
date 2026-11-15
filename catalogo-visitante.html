@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#080D18">
-  <meta name="description" content="Catálogo de quadros decorativos da Comunidade Apostólica Restaurando Almas — C.A.R.A.">
+  <meta name="description" content="Catálogo de quadros decorativos da Comunidade Apostólica Restaurando Almas — C.A.R.A. Consultas pelo Instagram.">
   <title>Catálogo de Quadros — C.A.R.A.</title>
   <link rel="icon" href="./icon-192.png">
   <style>
@@ -14,9 +14,10 @@
     main{width:min(1100px,100%);margin:0 auto;padding:0 16px 24px;flex:1}.titulo{display:flex;align-items:center;justify-content:center;gap:16px;margin:20px 0 12px;color:var(--ink);text-align:left}.titulo-icone{width:72px;height:72px;display:grid;place-items:center;border-right:5px solid var(--lime);padding-right:12px}.titulo-icone svg{width:58px;height:58px;stroke:var(--white);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.titulo h1{font-size:clamp(25px,5vw,42px);font-weight:900;font-style:italic;line-height:1.03;margin:0}.titulo-linha{width:min(460px,85%);height:5px;border-radius:50%;background:var(--lime);margin:0 auto 18px;transform:rotate(-1deg)}
     .intro{border-radius:22px 22px 0 0;background:var(--white);padding:20px 18px 12px;text-align:center}.intro p{margin:0 auto;max-width:850px;font-size:clamp(17px,2.6vw,24px);font-weight:650;line-height:1.35}.categorias{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 12px 20px;background:var(--white)}.categoria{min-height:132px;border:3px solid var(--lime);border-radius:22px;background:var(--navy);color:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px 8px;text-align:center;font-size:clamp(14px,2vw,18px);font-weight:850;line-height:1.15;cursor:pointer;box-shadow:0 4px 0 rgba(8,13,24,.12)}.categoria[aria-pressed="true"]{background:var(--lime);color:var(--ink);outline:2px solid var(--navy);outline-offset:-7px}.categoria svg{width:48px;height:48px;stroke:var(--lime);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.categoria[aria-pressed="true"] svg{stroke:var(--ink)}
     .secao-titulo{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0 16px;font-size:clamp(20px,3vw,30px);font-weight:900;font-style:italic;text-align:center}.secao-titulo:before,.secao-titulo:after{content:"";height:4px;width:clamp(24px,10vw,110px);border-radius:10px;background:var(--lime)}
-    .vazio{border:2px dashed var(--line);border-radius:22px;background:#f7f8fa;padding:28px 20px;text-align:center;max-width:760px;margin:0 auto 22px}.vazio-icone{width:76px;height:76px;margin:0 auto 12px;border-radius:20px;background:var(--lime);display:grid;place-items:center}.vazio-icone svg{width:43px;height:43px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.vazio h2{margin:0 0 8px;font-size:clamp(20px,3vw,25px)}.vazio p{margin:0 auto;max-width:570px;font-size:16px;line-height:1.5;color:#273244}.orientacao{display:flex;align-items:center;gap:14px;max-width:760px;margin:0 auto 18px;padding:15px 18px;border-radius:20px;background:#eef0f3;color:var(--ink);font-size:15px;font-weight:700;line-height:1.4}.orientacao svg{width:42px;height:42px;flex:0 0 42px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.instagram-box{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:900px;margin:0 auto;padding:16px 18px;border:3px solid var(--lime);border-radius:22px;background:var(--navy);color:var(--white)}.instagram-texto{display:flex;align-items:center;gap:13px;font-size:clamp(14px,2.2vw,18px);font-weight:750;line-height:1.35}.instagram-texto svg{width:42px;height:42px;flex:0 0 42px;stroke:var(--white);fill:none;stroke-width:2}.instagram-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:999px;background:var(--lime);color:var(--ink);font-weight:900;text-decoration:none;text-align:center;white-space:nowrap}.instagram-link svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2.5}
+    .sem-resultados{margin:8px auto 18px;padding:18px;border:1px dashed var(--line);border-radius:18px;background:#f7f8fa;color:var(--navy);text-align:center;font-weight:700}.sem-resultados[hidden]{display:none}
+    .destaques{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 auto 18px;max-width:1040px}.quadro{display:block;width:100%;padding:0;border:0;border-radius:18px;overflow:hidden;background:#e9e4dc;cursor:pointer;box-shadow:0 4px 12px rgba(8,13,24,.12);aspect-ratio:1/1}.quadro[hidden]{display:none}.quadro img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .2s ease}.quadro:focus-visible{outline:4px solid var(--lime);outline-offset:3px}.quadro:active img{transform:scale(.98)}.paginacao{display:flex;justify-content:center;gap:10px;margin:0 auto 18px}.ponto{width:12px;height:12px;border:0;border-radius:50%;background:#9ca3af;padding:0}.ponto:first-child{background:var(--lime)}.orientacao{display:flex;align-items:center;gap:14px;max-width:960px;margin:0 auto 18px;padding:15px 18px;border-radius:20px;background:#eef0f3;color:var(--ink);font-size:15px;font-weight:700;line-height:1.4}.orientacao svg{width:42px;height:42px;flex:0 0 42px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.instagram-box{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1040px;margin:0 auto;padding:16px 18px;border:3px solid var(--lime);border-radius:22px;background:var(--navy);color:var(--white)}.instagram-texto{display:flex;align-items:center;gap:13px;font-size:clamp(14px,2.2vw,18px);font-weight:750;line-height:1.35}.instagram-texto svg{width:42px;height:42px;flex:0 0 42px;stroke:var(--white);fill:none;stroke-width:2}.instagram-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:999px;background:var(--lime);color:var(--ink);font-weight:900;text-decoration:none;text-align:center;white-space:nowrap}.instagram-link svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2.5}.modal-quadro{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(8,13,24,.82)}.modal-quadro.aberto{display:flex}.modal-conteudo{position:relative;width:min(520px,100%);max-height:92vh;overflow:auto;border-radius:22px;background:var(--white);padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.35)}.modal-fechar{position:absolute;top:10px;right:10px;width:40px;height:40px;border:0;border-radius:50%;background:var(--navy);color:var(--white);font-size:25px;cursor:pointer}.modal-imagem{display:block;width:100%;max-height:55vh;object-fit:contain;border-radius:14px;background:#eee}.modal-conteudo h3{margin:14px 48px 6px 0;font-size:22px;color:var(--ink)}.modal-conteudo p{margin:0 0 14px;line-height:1.5;color:#273244}.modal-instagram{display:block;padding:13px 16px;border-radius:999px;background:var(--lime);color:var(--ink);font-weight:900;text-align:center;text-decoration:none}
     .nav{position:fixed;z-index:10;left:0;right:0;bottom:0;min-height:68px;padding:7px 12px calc(7px + env(safe-area-inset-bottom));background:var(--navy);border-top:4px solid var(--lime);display:flex;justify-content:center;box-shadow:0 -5px 18px rgba(8,13,24,.12)}.nav-inner{width:min(720px,100%);display:grid;grid-template-columns:repeat(3,1fr);align-items:center}.nav a{min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--white);font-size:12px;font-weight:750;text-decoration:none}.nav a svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}.nav a:first-child{color:var(--lime)}.nav a+a{border-left:1px solid rgba(204,255,0,.55)}
-    @media(max-width:650px){.topo{padding:5px 10px}.topo-inner{min-height:100px;gap:7px}.marca{height:92px}.marca img{max-height:92px;width:min(100%,320px)}.voltar{padding:8px 10px;font-size:12px}.titulo{margin:15px 0 10px;gap:10px}.titulo-icone{width:58px;height:58px;border-right-width:4px}.titulo-icone svg{width:44px;height:44px}.titulo h1{font-size:clamp(23px,6vw,32px)}.intro{padding:16px 12px 8px}.categorias{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:12px 4px 17px}.categoria{min-height:105px;border-radius:17px;font-size:15px}.categoria svg{width:40px;height:40px}.secao-titulo{font-size:20px;gap:8px;margin:10px 0 13px}.secao-titulo:before,.secao-titulo:after{width:22px}.vazio{padding:23px 15px}.instagram-box{align-items:stretch;flex-direction:column;padding:15px}.instagram-link{width:100%}.nav{min-height:65px}.nav a{font-size:11px;min-height:44px}}
+    @media(max-width:650px){.topo{padding:5px 10px}.topo-inner{min-height:100px;gap:7px}.marca{height:92px}.marca img{max-height:92px;width:min(100%,320px)}.voltar{padding:8px 10px;font-size:12px}.titulo{margin:15px 0 10px;gap:10px}.titulo-icone{width:58px;height:58px;border-right-width:4px}.titulo-icone svg{width:44px;height:44px}.titulo h1{font-size:clamp(23px,6vw,32px)}.intro{padding:16px 12px 8px}.categorias{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:12px 4px 17px}.categoria{min-height:105px;border-radius:17px;font-size:15px}.categoria svg{width:40px;height:40px}.secao-titulo{font-size:20px;gap:8px;margin:10px 0 13px}.secao-titulo:before,.secao-titulo:after{width:22px}.destaques{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:14px}.quadro{border-radius:12px}.orientacao{padding:13px 14px;font-size:14px}.instagram-box{align-items:stretch;flex-direction:column;padding:15px}.instagram-link{width:100%}.nav{min-height:65px}.nav a{font-size:11px;min-height:44px}}
     @media(max-width:360px){.topo-inner{grid-template-columns:minmax(0,1fr) auto}.voltar{font-size:11px;padding:7px 8px}.titulo h1{font-size:23px}.categoria{font-size:14px}}
   </style>
 </head>
@@ -40,17 +41,34 @@
       <button class="categoria" type="button" data-categoria="todos" aria-pressed="false"><svg viewBox="0 0 48 48"><rect x="5" y="5" width="15" height="15" rx="2"/><rect x="28" y="5" width="15" height="15" rx="2"/><rect x="5" y="28" width="15" height="15" rx="2"/><rect x="28" y="28" width="15" height="15" rx="2"/></svg><span>Ver Todos<br>os Quadros</span></button>
     </section>
     <h2 class="secao-titulo">Destaques do Catálogo</h2>
-    <section class="vazio" aria-live="polite">
-      <div class="vazio-icone"><svg viewBox="0 0 48 48"><rect x="5" y="8" width="34" height="32" rx="3"/><circle cx="29" cy="18" r="4"/><path d="m9 34 10-11 7 7 5-5 6 8"/></svg></div>
-      <h2>Estamos preparando nossa coleção</h2>
-      <p>Em breve, você poderá conhecer aqui nossos quadros decorativos, visualizar cada peça em detalhes e consultar informações pelo Instagram.</p>
+    <p id="semResultados" class="sem-resultados" hidden>Não há quadros cadastrados nesta categoria no momento.</p>
+    <section class="destaques" aria-label="Quadros decorativos disponíveis">
+      <button class="quadro" type="button" data-quadro="batei" aria-label="Ver quadro Batei e a Porta">
+        <img src="./quadro-batei-e-a-porta.png" alt="Arte original Batei e a Porta, com ilustração de uma porta entre tijolos">
+      </button>
+      <button class="quadro" type="button" data-quadro="orai" aria-label="Ver quadro Orai sem Cessar">
+        <img src="./quadro-orai-sem-cessar.png" alt="Arte original Orai sem Cessar, com lettering preto e pincelada laranja">
+      </button>
+      <button class="quadro" type="button" data-quadro="lampada" aria-label="Ver quadro Lâmpada para os meus pés">
+        <img src="./quadro-lampada-palavra.png" alt="Arte original Lâmpada para os meus pés é a tua Palavra, com lâmpada amarela">
+      </button>
     </section>
-    <div class="orientacao"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 22V9a3 3 0 0 1 6 0v11-14a3 3 0 0 1 6 0v14-11a3 3 0 0 1 6 0v13-7a3 3 0 0 1 6 0v14c0 8-5 13-13 13h-3c-5 0-8-2-11-6l-7-9a3 3 0 0 1 5-4l5 5"/></svg><span>Quando os quadros estiverem cadastrados, toque em uma peça para ver a imagem ampliada, a descrição e os detalhes.</span></div>
+    <div class="paginacao" aria-hidden="true"><span class="ponto"></span><span class="ponto"></span><span class="ponto"></span></div>
+    <div class="orientacao"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 22V9a3 3 0 0 1 6 0v11-14a3 3 0 0 1 6 0v14-11a3 3 0 0 1 6 0v13-7a3 3 0 0 1 6 0v14c0 8-5 13-13 13h-3c-5 0-8-2-11-6l-7-9a3 3 0 0 1 5-4l5 5"/></svg><span>Toque em um quadro para ver a imagem ampliada, a descrição e mais detalhes.</span></div>
     <section class="instagram-box">
       <div class="instagram-texto"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>As consultas e os pedidos são realizados exclusivamente pelo Instagram.</span></div>
       <a class="instagram-link" href="https://www.instagram.com/comunidadecara/" target="_blank" rel="noopener noreferrer">Consultar pelo Instagram <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
     </section>
   </main>
+  <div class="modal-quadro" id="modalQuadro" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <div class="modal-conteudo">
+      <button class="modal-fechar" type="button" id="fecharModal" aria-label="Fechar">×</button>
+      <img class="modal-imagem" id="modalImagem" src="" alt="">
+      <h3 id="modalTitulo">Quadro decorativo</h3>
+      <p id="modalDescricao">Consulte detalhes e disponibilidade pelo Instagram da comunidade.</p>
+      <a class="modal-instagram" id="modalInstagram" href="https://www.instagram.com/comunidadecara/" target="_blank" rel="noopener noreferrer">Consultar pelo Instagram</a>
+    </div>
+  </div>
   <nav class="nav" aria-label="Navegação inferior"><div class="nav-inner">
     <a href="./visitante.html" aria-label="Início"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Início</span></a>
     <a href="./quem-somos.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/></svg><span>Sobre</span></a>
@@ -59,10 +77,65 @@
 </div>
 <script>
 (() => {
-  const botoes = document.querySelectorAll('[data-categoria]');
-  botoes.forEach(botao => botao.addEventListener('click', () => {
-    botoes.forEach(item => item.setAttribute('aria-pressed', String(item === botao)));
+  const instagram = 'https://www.instagram.com/comunidadecara/';
+  const catalogo = {
+    batei: {
+      titulo: 'Batei e a Porta',
+      imagem: './quadro-batei-e-a-porta.png',
+      referencia: 'Mateus 7:7–12',
+      categorias: ['biblicos', 'lar'],
+      descricao: 'Arte decorativa com a mensagem “Batei e a Porta; vos será aberta”, acompanhada de uma ilustração original de uma porta. Consulte detalhes e disponibilidade exclusivamente pelo Instagram.'
+    },
+    orai: {
+      titulo: 'Orai sem Cessar',
+      imagem: './quadro-orai-sem-cessar.png',
+      referencia: '1 Tessalonicenses 5:17',
+      categorias: ['biblicos', 'lar', 'motivacionais'],
+      descricao: 'Arte decorativa com a mensagem “Orai sem Cessar”, inspirada em 1 Tessalonicenses 5:17. Consulte detalhes e disponibilidade exclusivamente pelo Instagram.'
+    },
+    lampada: {
+      titulo: 'Lâmpada para os meus pés',
+      imagem: './quadro-lampada-palavra.png',
+      referencia: 'Salmos 119:105',
+      categorias: ['biblicos', 'lar', 'motivacionais'],
+      descricao: 'Arte decorativa com a mensagem “Lâmpada para os meus pés é a tua Palavra”, inspirada em Salmos 119:105. Consulte detalhes e disponibilidade exclusivamente pelo Instagram.'
+    }
+  };
+  const botoesCategoria = [...document.querySelectorAll('[data-categoria]')];
+  const quadros = [...document.querySelectorAll('[data-quadro]')];
+  const modal = document.getElementById('modalQuadro');
+  const modalImagem = document.getElementById('modalImagem');
+  const modalTitulo = document.getElementById('modalTitulo');
+  const modalDescricao = document.getElementById('modalDescricao');
+  const modalInstagram = document.getElementById('modalInstagram');
+  const fechar = () => {
+    modal.classList.remove('aberto');
+    document.body.style.overflow = '';
+  };
+  botoesCategoria.forEach(botao => botao.addEventListener('click', () => {
+    const categoria = botao.dataset.categoria;
+    botoesCategoria.forEach(item => item.setAttribute('aria-pressed', String(item === botao)));
+    quadros.forEach(card => {
+      const item = catalogo[card.dataset.quadro];
+      card.hidden = !(categoria === 'todos' || item.categorias.includes(categoria));
+    });
+    const nenhum = document.getElementById('semResultados');
+    if (nenhum) nenhum.hidden = quadros.every(card => card.hidden);
   }));
+  quadros.forEach(card => card.addEventListener('click', () => {
+    const item = catalogo[card.dataset.quadro];
+    if (!item) return;
+    modalImagem.src = item.imagem;
+    modalImagem.alt = item.titulo;
+    modalTitulo.textContent = item.titulo;
+    modalDescricao.textContent = item.referencia + ' — ' + item.descricao;
+    modalInstagram.href = instagram;
+    modal.classList.add('aberto');
+    document.body.style.overflow = 'hidden';
+  }));
+  document.getElementById('fecharModal').addEventListener('click', fechar);
+  modal.addEventListener('click', event => { if (event.target === modal) fechar(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') fechar(); });
 })();
 </script>
 </body>
