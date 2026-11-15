@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v131-encerramento-jejum';
+const CACHE_VERSION = 'cara-app-v131-perfil-membros-organizado';
 
 const APP_SHELL = [
   './',

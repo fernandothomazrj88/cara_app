@@ -265,11 +265,12 @@
       position:fixed;
       inset:0;
       display:none;
-      align-items:flex-end;
+      align-items:center;
       justify-content:center;
-      padding:18px;
-      background:#000b;
+      padding:12px;
+      background:rgba(0,0,0,.76);
       z-index:100;
+      overscroll-behavior:contain;
     }
 
     .modal.aberto{
@@ -278,12 +279,15 @@
 
     .sheet{
       width:min(620px,100%);
-      max-height:90vh;
+      max-height:min(92dvh,900px);
       overflow:auto;
-      border-radius:26px 26px 18px 18px;
+      overscroll-behavior:contain;
+      scrollbar-width:thin;
+      scrollbar-color:#34516d #081a30;
+      border-radius:24px;
       background:#081a30;
-      border:1px solid #ffffff18;
-      box-shadow:0 20px 60px #0008;
+      border:1px solid #34516d;
+      box-shadow:0 24px 70px #000b;
     }
 
     .sheet-top{
@@ -315,21 +319,32 @@
     }
 
     .perfil{
-      padding:10px 20px 24px;
+      padding:12px 20px 24px;
+      min-width:0;
+      overflow-wrap:anywhere;
     }
 
     .perfil-topo{
       display:flex;
+      flex-direction:column;
       align-items:center;
-      gap:16px;
-      padding:10px 0 20px;
+      justify-content:center;
+      gap:11px;
+      padding:10px 8px 22px;
+      text-align:center;
+      min-width:0;
+    }
+
+    .perfil-topo > div:last-child{
+      width:100%;
+      min-width:0;
     }
 
     .avatar-grande{
-      width:100px;
-      height:100px;
-      flex:0 0 100px;
-      border-radius:28px;
+      width:112px;
+      height:112px;
+      flex:0 0 112px;
+      border-radius:26px;
       overflow:hidden;
       display:grid;
       place-items:center;
@@ -347,13 +362,22 @@
     }
 
     .perfil-nome{
-      font-size:24px;
+      width:100%;
+      font-size:clamp(19px,4.5vw,24px);
       font-weight:900;
-      line-height:1.1;
+      line-height:1.2;
+      overflow-wrap:anywhere;
+      word-break:normal;
     }
 
     .perfil-status{
-      margin-top:7px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:8px;
+      padding:4px 11px;
+      border-radius:999px;
+      background:#173d35;
       color:#b8e4c7;
       font-size:11px;
       font-weight:900;
@@ -454,7 +478,15 @@
 
       .modal{
         padding:8px;
+        align-items:center;
       }
+      .sheet{max-height:calc(100dvh - 16px);border-radius:20px}
+      .sheet-top{padding:14px 16px 10px}
+      .sheet-top h2{font-size:19px}
+      .perfil{padding:8px 14px 20px}
+      .ficha-bloco{padding:13px;border-radius:15px}
+      .perfil-topo{padding-top:8px;padding-bottom:17px}
+      .avatar-grande{width:104px;height:104px;flex-basis:104px;border-radius:24px}
     }
 
     .ficha-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
