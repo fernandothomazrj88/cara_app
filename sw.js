@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v131-perfil-membros-organizado';
+const CACHE_VERSION = 'cara-app-v132-central-propositos';
 
 const APP_SHELL = [
   './',
@@ -15,6 +15,7 @@ const APP_SHELL = [
   './quadro-orai-sem-cessar.png',
   './quadro-lampada-palavra.png',
   './proposito-espiritual.html',
+  './jejum-coletivo.html',
   './dica-semana.html',
   './palavra.html',
   './jornada-palavra.html',

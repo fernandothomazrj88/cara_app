@@ -1,284 +1,34 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#051326">
-  <title>Propósito Espiritual — C.A.R.A.</title>
-  <link rel="icon" href="./icon-192.png">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#051326">
+  <title>Propósito Espiritual — C.A.R.A.</title><link rel="icon" href="./icon-192.png">
   <style>
-    :root{--bg:#051326;--panel:#0b2038;--panel2:#061629;--lime:#CCFF00;--white:#fff;--muted:#c3d0dc;--line:#285477}
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
-    body{padding-bottom:86px}
+    :root{--bg:#051326;--lime:#CCFF00;--white:#fff;--line:#285477}*{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}body{padding-bottom:86px}
     header{position:sticky;top:0;z-index:5;background:#071a2e;border-bottom:2px solid var(--lime);padding:12px 15px;display:flex;align-items:center;gap:12px}
-    header a{color:var(--lime);text-decoration:none;font-weight:800;border:1px solid var(--lime);border-radius:10px;padding:9px 12px;white-space:nowrap}
-    header h1{font-size:18px;line-height:1.2}
-    main{width:min(calc(100% - 28px),760px);margin:auto;padding:22px 0 28px}
-    .eyebrow{color:var(--lime);font-size:11px;font-weight:900;letter-spacing:2.2px;text-transform:uppercase;margin-bottom:9px}
-    .hero{background:radial-gradient(circle at 90% 12%,#102c52 0%,#0b2038 44%,#071a2e 100%);border:1px solid #25435d;border-radius:18px;padding:20px;margin-bottom:14px}
-    .hero h2{font-size:clamp(23px,5vw,31px);line-height:1.13;margin-bottom:8px}
-    .hero .subtitle{color:#e4eaf0;font-size:15px;line-height:1.5}
-    .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-    .pill{border:1px solid #42617a;background:#061629;color:#eaf1f7;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700}
-    .pill strong{color:var(--lime)}
-    .card{background:linear-gradient(145deg,#0b2038,#071a2e);border:1px solid var(--line);border-radius:16px;padding:17px;margin-bottom:13px}
-    .card h3{color:var(--lime);font-size:16px;letter-spacing:.3px;margin-bottom:10px}
-    .card p{font-size:14px;line-height:1.7;color:#edf2f6;white-space:pre-line}
-    .day-list{display:grid;gap:10px}
-    .day-button{width:100%;display:flex;align-items:center;gap:13px;text-align:left;padding:13px;border:1px solid #31516d;border-radius:14px;background:#061629;color:#fff;cursor:pointer;transition:border-color .15s,transform .15s}
-    .day-button:active{transform:scale(.99)}
-    .day-button.active,.day-button.available:hover{border-color:var(--lime)}
-    .day-number{width:46px;height:46px;flex:0 0 46px;border-radius:12px;background:var(--lime);color:#051326;display:grid;place-items:center;font-weight:900;font-size:17px}
-    .day-info{min-width:0;flex:1}
-    .day-info strong{display:block;font-size:14px;line-height:1.35;margin-bottom:3px}
-    .day-info small{display:block;color:#b9c8d6;font-size:12px;line-height:1.4}
-    .day-status{color:var(--lime);font-size:11px;font-weight:800;white-space:nowrap}
-    .day-button.locked{opacity:.65;cursor:default}
-    .detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:13px}
-    .detail-head h2{font-size:23px;line-height:1.2}
-    .back-days{border:1px solid var(--lime);background:transparent;color:var(--lime);border-radius:9px;padding:8px 10px;font-weight:800;white-space:nowrap;cursor:pointer}
-    .theme{color:var(--lime);font-weight:900;font-size:17px;line-height:1.4;margin:6px 0 12px}
-    .scripture{background:#061629;border:1px solid #45617b;border-radius:13px;padding:15px;margin:12px 0 16px;color:#fff;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.7}
-    .scripture strong{display:block;color:var(--lime);font-family:Arial,Helvetica,sans-serif;font-size:13px;margin-bottom:8px}
-    .points{display:grid;gap:12px}
-    .point{border-left:3px solid var(--lime);padding:2px 0 2px 12px}
-    .point strong{display:block;color:#fff;font-size:14px;margin-bottom:4px}
-    .point p{color:#d9e3ec;font-size:13px;line-height:1.6}
-    .prayer{background:#061629;border:1px solid #45617b;border-radius:13px;padding:15px;color:#fff;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.7;font-style:italic}
-    .challenge{border:1px solid #536b22;background:#17250b;border-radius:13px;padding:15px;color:#f4f8eb;font-size:14px;line-height:1.65}
-    .challenge strong{color:var(--lime)}
-    .declaration{font-size:17px!important;font-weight:800;color:var(--lime)!important}
-    .signature{color:var(--muted);font-size:12px;line-height:1.6;margin-top:10px}
-    .motto{color:var(--lime);font-weight:800;margin-top:12px;font-size:13px;line-height:1.5}
-    .day-nav{display:flex;gap:10px;margin-top:14px}
-    .day-nav button{flex:1;border:1px solid #45617b;background:#061629;color:#fff;border-radius:11px;padding:12px;font-weight:800;cursor:pointer}
-    .day-nav button:disabled{opacity:.35;cursor:not-allowed}
-    .hidden{display:none!important}
+    header a{color:var(--lime);text-decoration:none;font-weight:800;border:1px solid var(--lime);border-radius:10px;padding:9px 12px;white-space:nowrap}header h1{font-size:18px;line-height:1.2}
+    main{width:min(calc(100% - 28px),760px);margin:auto;padding:22px 0 28px}.eyebrow{color:var(--lime);font-size:11px;font-weight:900;letter-spacing:2.2px;text-transform:uppercase;margin-bottom:9px}
+    .hero{background:radial-gradient(circle at 90% 12%,#102c52 0%,#0b2038 44%,#071a2e 100%);border:1px solid #25435d;border-radius:18px;padding:20px;margin-bottom:16px}
+    .hero h2{font-size:clamp(23px,5vw,29px);line-height:1.15;margin-bottom:9px}.hero p{color:#e4eaf0;font-size:14px;line-height:1.65}
+    .purpose-list{display:grid;gap:12px}.purpose-card{display:flex;align-items:center;gap:13px;width:100%;padding:15px;border:1px solid #31516d;border-radius:15px;background:linear-gradient(145deg,#0b2038,#061629);color:#fff;text-decoration:none;text-align:left}
+    .purpose-icon{width:48px;height:48px;flex:0 0 48px;border-radius:13px;background:var(--lime);color:#051326;display:grid;place-items:center;font-size:24px}
+    .purpose-info{min-width:0;flex:1}.purpose-info strong{display:block;font-size:15px;line-height:1.35;margin-bottom:4px}.purpose-info small{display:block;color:#bdcbd8;font-size:12px;line-height:1.45}
+    .purpose-status{color:var(--lime);font-size:11px;font-weight:900;white-space:nowrap}.future{margin-top:15px;border:1px dashed #45617b;border-radius:14px;padding:16px;background:#081a2d}
+    .future strong{display:block;color:var(--lime);font-size:13px;margin-bottom:6px}.future p{color:#c3d0dc;font-size:13px;line-height:1.6}
     .bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,900px);padding:11px 16px calc(11px + env(safe-area-inset-bottom));background:#071a2e;border-top:1px solid #29415b;text-align:center;z-index:4}
-    .bottom a{display:inline-block;color:#051326;background:var(--lime);border-radius:10px;padding:11px 20px;text-decoration:none;font-weight:900}
-    @media(max-width:420px){.day-status{font-size:10px}.detail-head h2{font-size:21px}.back-days{font-size:12px;padding:8px}}
+    .bottom a{display:inline-block;color:#051326;background:var(--lime);border-radius:10px;padding:11px 20px;text-decoration:none;font-weight:900}@media(max-width:420px){.purpose-info strong{font-size:14px}.purpose-status{font-size:10px}}
   </style>
 </head>
 <body>
-  <header>
-    <a href="./index.html">← Início</a>
-    <h1>Propósito Espiritual</h1>
-  </header>
+  <header><a href="./index.html">← Início</a><h1>Propósito Espiritual</h1></header>
   <main>
-    <section class="hero">
-      <div class="eyebrow">Propósito coletivo da Comunidade CARA</div>
-      <h2>Jejum coletivo da Comunidade CARA</h2>
-      <p class="subtitle">Um tempo de consagração, edificação e avivamento!</p>
-      <div class="meta">
-        <span class="pill"><strong>Em andamento</strong></span>
-        <span class="pill">Início: 09/11/2026</span>
-        <span class="pill">Renúncia aos doces</span>
-      </div>
+    <section class="hero"><div class="eyebrow">Caminhando juntos em fé</div><h2>Propósitos da Comunidade CARA</h2><p>Acompanhe os propósitos coletivos da Comunidade CARA. Aqui estarão reunidos jejuns, correntes de oração e outros momentos especiais de consagração, edificação e busca pela presença de Deus.</p></section>
+    <section class="purpose-list" aria-label="Propósitos disponíveis">
+      <a class="purpose-card" href="./jejum-coletivo.html"><span class="purpose-icon" aria-hidden="true">🙏</span><span class="purpose-info"><strong>Jejum coletivo da Comunidade CARA</strong><small>Cinco dias de consagração, oração, edificação e avivamento, com palavra de encerramento.</small></span><span class="purpose-status">ACESSAR ›</span></a>
     </section>
-
-    <section id="listaDias" class="card">
-      <h3>Nossa jornada — escolha o dia</h3>
-      <p style="margin-bottom:14px">A cada dia, um texto, uma reflexão e um alvo de oração para caminharmos juntos como comunidade.</p>
-      <div class="day-list">
-        <button class="day-button available" type="button" data-day="1">
-          <span class="day-number">01</span><span class="day-info"><strong>Primeiro dia — Nosso propósito</strong><small>Consagração, oração e unidade</small></span><span class="day-status">DISPONÍVEL ›</span>
-        </button>
-        <button class="day-button available" type="button" data-day="2">
-          <span class="day-number">02</span><span class="day-info"><strong>Edificados para o crescimento!</strong><small>Terça-feira · Colossenses 2:6–7</small></span><span class="day-status">DISPONÍVEL ›</span>
-        </button>
-        <button class="day-button available" type="button" data-day="3">
-          <span class="day-number">03</span><span class="day-info"><strong>Despertando a fome pela presença de Deus</strong><small>Quarta-feira · Mateus 5:6</small></span><span class="day-status">DISPONÍVEL ›</span>
-        </button>
-        <button class="day-button available" type="button" data-day="4">
-          <span class="day-number">04</span><span class="day-info"><strong>Sensíveis à voz e à direção do Espírito Santo</strong><small>Quinta-feira · Romanos 8:14</small></span><span class="day-status">DISPONÍVEL ›</span>
-        </button>
-        <button class="day-button available" type="button" data-day="5">
-          <span class="day-number">05</span><span class="day-info"><strong>Avivados para viver e cumprir o propósito de Deus</strong><small>Sexta-feira · Habacuque 3:2</small></span><span class="day-status">DISPONÍVEL ›</span>
-        </button>
-        <button class="day-button available" type="button" data-encerramento="true">
-          <span class="day-number">✦</span><span class="day-info"><strong>Encerramento — Mais do que um propósito, um compromisso com Deus!</strong><small>Palavra de encerramento · Isaías 40:31</small></span><span class="day-status">DISPONÍVEL ›</span>
-        </button>
-      </div>
-    </section>
-
-    <section id="conteudoDia" class="hidden">
-      <div class="card">
-        <div class="detail-head"><div><div class="eyebrow" id="diaRotulo">DIA 2 — TERÇA-FEIRA</div><h2 id="diaTitulo">Edificados para o crescimento!</h2></div><button class="back-days" id="voltarDias" type="button">← Dias</button></div>
-        <div class="theme" id="diaTema"></div>
-        <div class="scripture"><strong id="referencia">Colossenses 2:6–7</strong><span id="textoBiblico"></span></div>
-        <div id="blocosDia"></div>
-        <div class="day-nav"><button id="diaAnterior" type="button">← Dia anterior</button><button id="proximoDia" type="button" disabled>Próximo dia →</button></div>
-      </div>
-    </section>
+    <section class="future"><strong>Novos propósitos</strong><p>Este espaço também receberá futuras correntes de oração e outros propósitos coletivos da Comunidade CARA.</p></section>
   </main>
   <nav class="bottom"><a href="./index.html">Voltar ao início</a></nav>
-
-  <script>
-    const dias = {
-      1: {
-        rotulo: 'DIA 1 — SEGUNDA-FEIRA',
-        titulo: 'Nosso propósito',
-        tema: 'Um tempo de consagração, edificação e avivamento!',
-        referencia: 'Tiago 4:7–10',
-        texto: 'Nosso propósito é abrir mão dos doces como um ato de consagração ao Senhor. Queremos dedicar este tempo para buscar mais intensamente a presença de Deus, permitindo que o Espírito Santo edifique nossas vidas, desperte a Igreja para um novo tempo de avivamento e nos conceda direção para os passos que precisamos dar como comunidade.',
-        blocos: [
-          {titulo:'Nosso propósito', texto:'Estamos abrindo mão dos doces como um ato de consagração ao Senhor. Nosso propósito vai além de deixar de consumir algo de que gostamos: queremos dedicar este tempo para buscar mais intensamente a presença de Deus, permitindo que o Espírito Santo edifique nossas vidas, desperte a Igreja para um novo tempo de avivamento e nos conceda direção para os passos que precisamos dar como comunidade.\n\nQue cada vez que sentirmos o desejo de consumir aquilo de que estamos abrindo mão, sejamos lembrados de transformar esse momento em uma oportunidade de oração, adoração e comunhão com Deus.\n\nNão fazemos este propósito por obrigação, mas por amor e pelo desejo de estar mais perto do Senhor.'},
-          {titulo:'Fundamentação bíblica — Tiago 4:7–10', texto:'Sujeição e resistência — versículo 7: A resistência ao mal e às tentações começa com a submissão da nossa vontade a Deus.\n\nProximidade e pureza — versículo 8: Um convite à intimidade com o Criador, acompanhado de arrependimento prático e sinceridade interior.\n\nArrependimento verdadeiro — versículo 9: Um chamado à contrição genuína, trocando a leviandade por uma reflexão séria sobre nosso estado espiritual.\n\nHumildade — versículo 10: A verdadeira elevação e honra vêm de Deus para aqueles que reconhecem suas limitações e se humilham diante dele.'},
-          {titulo:'Nossa oração durante este período', tipo:'oracao', texto:'Senhor, edifique a Tua Igreja! Desperta em nós uma fome maior pela Tua presença. Aviva nossa fé, fortalece nossa unidade e concede à Comunidade CARA a direção do Teu Espírito Santo. Que sejamos uma comunidade sensível à Tua voz e disponível para cumprir a Tua vontade! Em nome do Senhor Jesus!'},
-          {titulo:'Seguimos juntos em unidade', texto:'Que este jejum produza frutos em nossas vidas e que, ao final deste propósito, estejamos mais fortalecidos espiritualmente, mais unidos e mais comprometidos com o Reino de Deus.\n\nNão queremos apenas deixar de consumir doces; queremos desenvolver ainda mais a sensibilidade à voz do Espírito Santo e o desejo pelas coisas do Reino.'}
-        ],
-        assinatura: true
-      },
-      2: {
-        rotulo: 'DIA 2 — TERÇA-FEIRA',
-        titulo: 'Edificados para o crescimento!',
-        tema: 'Edificados para o crescimento!',
-        referencia: 'Colossenses 2:6–7',
-        texto: '6 E agora, assim como aceitaram Cristo Jesus como Senhor, continuem a segui-lo.\n7 Aprofundem nele suas raízes e sobre ele edifiquem sua vida. Então sua fé se fortalecerá na verdade que lhes foi ensinada, e vocês transbordarão de gratidão.',
-        blocos: [
-          {titulo:'Querida família CARA', texto:'Nesse segundo dia do nosso jejum, somos convidados a refletir sobre a importância de estarmos firmados em Cristo.\n\nUma comunidade espiritualmente forte não é construída apenas por reuniões, atividades ou projetos, mas por vidas que estão profundamente enraizadas em Jesus.\n\nAssim como uma árvore precisa de raízes profundas para permanecer firme diante dos ventos, nós também precisamos aprofundar nossa comunhão com Deus para permanecermos firmes diante das circunstâncias.\n\nNosso desejo neste propósito não é apenas ver uma comunidade crescer em número, mas crescer em maturidade, conhecimento da Palavra, unidade e intimidade com o Senhor.\n\nHoje, nossa oração será para que Deus nos edifique individualmente e como Igreja.'},
-          {titulo:'Alvo de oração', tipo:'pontos', itens:['Que nossa fé seja fortalecida.','Que nossas raízes estejam firmadas em Cristo.','Que cresçamos em maturidade espiritual.','Que a CARA seja uma Comunidade fundamentada na Palavra.']},
-          {titulo:'Desafio do dia', tipo:'desafio', texto:'Quero te desafiar que ao sentir vontade de consumir um doce, transforme esse momento em uma oração, pedindo ao Senhor que aprofunde suas raízes espirituais.'},
-          {titulo:'Oração', tipo:'oracao', texto:'Senhor, edifica a nossa vida sobre Cristo. Fortalece nossas raízes, amadurece nossa fé e nos ensina a crescer em Tua presença. Que a Comunidade CARA seja uma igreja firme, saudável e fundamentada na Tua Palavra. Em nome do Senhor Jesus. Amém!'},
-          {titulo:'Declare', tipo:'declaracao', texto:'Não desejamos apenas crescer, desejamos crescer com nossas raízes aprofundadas em Cristo!'}
-        ],
-        assinatura: true
-      },
-      3: {
-        rotulo: 'DIA 3 — QUARTA-FEIRA',
-        titulo: 'Despertando a fome pela presença de Deus',
-        tema: 'DESPERTANDO A FOME PELA PRESENÇA DE DEUS',
-        referencia: 'Mateus 5:6',
-        texto: '"Bem-aventurados os que têm fome e sede de justiça, porque serão fartos."',
-        blocos: [
-          {titulo:'Querida família CARA', texto:'Chegamos ao terceiro dia do nosso propósito de jejum. Hoje, somos convidados a refletir sobre a fome que temos de Deus.\n\nExiste uma diferença entre conhecer a respeito de Deus e desenvolver uma vida de profunda intimidade com Ele. Podemos estar envolvidos em atividades, compromissos e responsabilidades, mas nunca devemos permitir que essas coisas ocupem o lugar da nossa comunhão com o Senhor.\n\nO nosso maior desejo precisa ser a presença de Deus. Uma Igreja avivada não é simplesmente uma Igreja que realiza muitas atividades, mas uma comunidade que tem sede da presença do Espírito Santo e deseja viver de acordo com a vontade do Pai.\n\nQue durante este jejum o Senhor desperte em nós uma fome que não seja passageira, mas que nos conduza a uma vida constante de oração, adoração e busca pela Sua Palavra.'},
-          {titulo:'Motivos de oração', tipo:'pontos', itens:['Que Deus desperte em nós fome e sede pela Sua presença.','Que nossa vida de oração seja fortalecida.','Que a Palavra de Deus tenha prioridade em nosso cotidiano.','Que nossa comunidade não perca a paixão por Jesus.']},
-          {titulo:'Desafio do dia', tipo:'desafio', texto:'Quero te desafiar a separar um momento especial para ficar na presença de Deus, sem pressa e sem distrações. Não peça apenas coisas; dedique esse momento a conhecer mais profundamente o Senhor.'},
-          {titulo:'Oração', tipo:'oracao', texto:'Pai, desperta em nós uma fome verdadeira pela Tua presença. Não queremos viver de experiências passadas, mas experimentar diariamente a Tua graça e a ação do Teu Espírito. Que nossa comunidade seja marcada pela intimidade contigo. Em nome do Senhor Jesus. Amém!'},
-          {titulo:'Declare', tipo:'declaracao', texto:'Nossa maior necessidade não é de mais atividades, mas de mais intimidade com Deus!'}
-        ],
-        assinatura: true
-      },
-      4: {
-        rotulo: 'DIA 4 — QUINTA-FEIRA',
-        titulo: 'Sensíveis à voz e à direção do Espírito Santo',
-        tema: 'SENSÍVEIS À VOZ E À DIREÇÃO DO ESPÍRITO SANTO',
-        referencia: 'Romanos 8:14',
-        texto: '"Porque todos os que são guiados pelo Espírito de Deus são filhos de Deus."',
-        blocos: [
-          {titulo:'Querida família CARA', texto:'Neste quarto dia do nosso jejum, nosso propósito é buscar sensibilidade espiritual para ouvir e obedecer à direção do Espírito Santo.\n\nNem sempre o caminho que parece mais fácil é aquele que Deus deseja que sigamos. Por isso, precisamos aprender a depender da direção do Espírito Santo, e não apenas das nossas experiências, opiniões ou capacidades.\n\nUma comunidade que deseja cumprir os propósitos de Deus precisa desenvolver um coração ensinável, disposto a ouvir, discernir e obedecer à Palavra do Senhor.\n\nNão queremos tomar decisões simplesmente porque parecem boas aos nossos olhos. Queremos caminhar debaixo da direção de Deus, permitindo que Ele alinhe nossos pensamentos, atitudes, projetos e decisões à Sua vontade.\n\nQue este jejum nos ensine a ouvir mais e obedecer sempre que a Palavra do Senhor nos direcionar.'},
-          {titulo:'Motivos de oração', tipo:'pontos', itens:['Que o Espírito Santo nos conceda discernimento.','Que Deus direcione os passos da Comunidade CARA, principalmente em relação ao imóvel.','Que nossas decisões estejam alinhadas à Palavra.','Que tenhamos coragem para obedecer à direção do Senhor.']},
-          {titulo:'Desafio do dia', tipo:'desafio', texto:'Quero te desafiar hoje, antes de tomar qualquer decisão simples ou importante, apresente-as ao Senhor em oração e examine tudo à luz da Sua palavra.'},
-          {titulo:'Oração', tipo:'oracao', texto:'Espírito Santo, queremos ser uma comunidade sensível à Tua direção. Ensina-nos a discernir a Tua vontade, a reconhecer aquilo que precisa ser ajustado e a obedecer à Tua Palavra. Que nenhum projeto seja maior do que o propósito de Deus para nós. Em nome do Senhor Jesus. Amém!'},
-          {titulo:'Declare', tipo:'declaracao', texto:'Não quero caminhar apenas segundo os meus próprios planos; quero caminhar segundo a direção do Espírito Santo!'}
-        ],
-        assinatura: true
-      },
-      5: {
-        rotulo: 'DIA 5 — SEXTA-FEIRA',
-        titulo: 'Avivados para viver e cumprir o propósito de Deus',
-        tema: 'AVIVADOS PARA VIVER E CUMPRIR O PROPÓSITO DE DEUS',
-        referencia: 'Habacuque 3:2',
-        texto: '"Aviva, ó Senhor, a tua obra no meio dos anos..."',
-        blocos: [
-          {titulo:'Querida Comunidade CARA', texto:'Chegamos ao quinto dia do nosso jejum coletivo! Durante esses dias, estivemos buscando no Senhor por edificação, avivamento e direção do Espírito Santo.\n\nHoje, nossa reflexão nos conduz ao desejo de ver a obra de Deus viva e frutificando em nosso meio.\n\nAvivamento não é apenas um momento de emoção, uma reunião diferente ou uma experiência passageira. O verdadeiro avivamento produz transformação, desperta o compromisso com Deus, fortalece a fé e nos conduz a uma vida de obediência.\n\nPrecisamos compreender que não adianta pedir que Deus avive a Sua obra se não estivermos dispostos a ser instrumentos dessa obra.\n\nQue o Senhor encontre em nós corações disponíveis, vidas consagradas e pessoas comprometidas com o Reino.\n\nQue a Comunidade CARA seja uma comunidade viva, que ame a Palavra, cuide de pessoas, promova a unidade e manifeste o amor de Cristo onde estiver.'},
-          {titulo:'Motivos de oração', tipo:'pontos', itens:['Que Deus avive Sua obra em nossa comunidade.','Que cada membro encontre seu lugar no propósito do Senhor.','Que os dons sejam despertados e colocados a serviço do Reino.','Que haja unidade, amor e compromisso entre nós.','Que vidas sejam alcançadas e restauradas por meio de Cristo.']},
-          {titulo:'Desafio do dia', tipo:'desafio', texto:'Eu te desafio a perguntar ao Senhor: "O que precisa ser despertado, restaurado ou alinhado em minha vida para que eu possa viver aquilo que o Senhor deseja realizar?"'},
-          {titulo:'Oração', tipo:'oracao', texto:'Senhor, aviva a Tua obra em nosso meio! Desperta os corações, fortalece os cansados, restaura os que estão enfraquecidos e levanta pessoas comprometidas com o Teu Reino. Que sejamos uma comunidade cheia do Espírito Santo, firmada na Palavra e disposta a cumprir Teu propósito. Em nome do Senhor Jesus. Amém!'},
-          {titulo:'Declare', tipo:'declaracao', texto:'Não queremos apenas viver um tempo de avivamento; queremos ser uma comunidade que vive e manifesta o avivamento de Deus!'}
-        ],
-        assinatura: true
-      }
-    };
-
-    const listaDias = document.getElementById('listaDias');
-    const conteudoDia = document.getElementById('conteudoDia');
-    const blocosDia = document.getElementById('blocosDia');
-
-    function criarBloco(bloco) {
-      const section = document.createElement('section');
-      section.className = 'card';
-      const h = document.createElement('h3'); h.textContent = bloco.titulo; section.appendChild(h);
-      if (bloco.tipo === 'pontos') {
-        const wrap = document.createElement('div'); wrap.className = 'points';
-        bloco.itens.forEach(item => { const p = document.createElement('div'); p.className='point'; const t=document.createElement('p'); t.textContent=item; p.appendChild(t); wrap.appendChild(p); });
-        section.appendChild(wrap);
-      } else if (bloco.tipo === 'oracao') {
-        const p=document.createElement('div'); p.className='prayer'; p.textContent=bloco.texto; section.appendChild(p);
-      } else if (bloco.tipo === 'desafio') {
-        const p=document.createElement('div'); p.className='challenge'; p.textContent=bloco.texto; section.appendChild(p);
-      } else if (bloco.tipo === 'declaracao') {
-        const p=document.createElement('p'); p.className='declaration'; p.textContent=bloco.texto; section.appendChild(p);
-      } else {
-        const p=document.createElement('p'); p.textContent=bloco.texto; section.appendChild(p);
-      }
-      return section;
-    }
-
-    function abrirEncerramento() {
-      document.getElementById('diaRotulo').textContent = 'ENCERRAMENTO DO JEJUM COLETIVO';
-      document.getElementById('diaTitulo').textContent = 'MAIS DO QUE UM PROPÓSITO, UM COMPROMISSO COM DEUS!';
-      document.getElementById('diaTema').textContent = '';
-      document.getElementById('referencia').textContent = 'Isaías 40:31';
-      document.getElementById('textoBiblico').textContent = '"Mas os que esperam no Senhor renovarão as suas forças..."';
-
-      const encerramento = [
-        {titulo:'', texto:'Querida Comunidade CARA,\\n\\nHoje encerramos nosso propósito coletivo de jejum, mas não encerramos nossa busca por Deus!\\n\\nDurante esses cinco dias, abrimos mão de algo que faz parte da nossa rotina para dedicar um tempo dedicadol ao Senhor. Fizemos isso com um propósito: buscar edificação, avivamento e direção do Espírito Santo para nossas vidas e para nossa comunidade.\\n\\nMas precisamos compreender algo muito importante: o verdadeiro resultado de um jejum não deve ser medido apenas pelos dias em que conseguimos permanecer em abstinência, mas pelos frutos espirituais que esse propósito produzirá em nossa caminhada.\\n\\nNão queremos que a oração termine com o jejum, que a busca termine com o propósito ou que a disposição de obedecer a Deus termine com esta semana.\\n\\nQueremos continuar crescendo em intimidade com o Senhor, fortalecendo nossa unidade e desenvolvendo uma vida de compromisso com Sua Palavra.\\n\\nQue tudo aquilo que aprendemos durante esses dias se transforme em atitudes. Que sejamos mais pacientes uns com os outros, mais comprometidos com a obra, mais sensíveis às necessidades das pessoas e mais disponíveis para servir.\\n\\nA Comunidade CARA precisa continuar sendo edificada em Cristo, fortalecida pelo Espírito Santo e conduzida pela Palavra de Deus.\\n\\nHoje não estamos apenas encerrando um jejum; estamos reafirmando nosso compromisso de caminhar com Deus!'},
-        {titulo:'ORAÇÃO DE ENCERRAMENTO', tipo:'oracao', texto:'Pai, nós Te agradecemos por esses dias de consagração. Obrigada por cada vida que participou desse propósito e por cada momento dedicado à oração e à busca pela Tua presença.\\n\\nPedimos que os frutos desse jejum permaneçam em nós. Edifica a nossa comunidade, fortalece nossa unidade, desperta os dons, renova nossas forças e concede-nos direção para os próximos passos.\\n\\nQue o Espírito Santo continue conduzindo nossas vidas e que tudo aquilo que fizermos seja para a glória do Teu nome.\\n\\nDeclaramos que a Comunidade CARA pertence ao Senhor e deseja permanecer firme em Cristo, comprometida com Sua Palavra e disponível para cumprir Sua vontade.\\n\\nEm nome do Senhor Jesus. Amém!'},
-        {titulo:'DECLARE', tipo:'declaracao', texto:'O jejum termina, mas nossa consagração continua. A abstinência termina, mas nossa busca permanece. Nosso propósito termina, mas nosso compromisso com Deus se renova a cada dia!'}
-      ];
-
-      blocosDia.replaceChildren(...encerramento.map(criarBloco));
-      const assinatura = document.createElement('div');
-      assinatura.className = 'card';
-      const assinaturaTexto = document.createElement('p');
-      assinaturaTexto.textContent = 'Com amor e oração,\\n\\nPra. Juçara Soares\\nComunidade Apostólica Restaurando Almas — CARA';
-      assinatura.appendChild(assinaturaTexto);
-      const lema = document.createElement('p');
-      lema.className = 'motto';
-      lema.textContent = '“Um amor que acolhe, a verdade que liberta e a graça que restaura”';
-      assinatura.appendChild(lema);
-      const hashtag = document.createElement('p');
-      hashtag.style.cssText = 'margin-top:12px;color:#CCFF00;font-weight:800';
-      hashtag.textContent = '#JUNTOSPODEMOSMAIS🤜🤛';
-      assinatura.appendChild(hashtag);
-      blocosDia.appendChild(assinatura);
-
-      document.getElementById('diaAnterior').disabled = true;
-      document.getElementById('proximoDia').disabled = true;
-      document.getElementById('diaAnterior').onclick = null;
-      document.getElementById('proximoDia').onclick = null;
-      listaDias.classList.add('hidden');
-      conteudoDia.classList.remove('hidden');
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
-
-    function abrirDia(numero) {
-      const dia = dias[numero];
-      if (!dia) return;
-      document.getElementById('diaRotulo').textContent=dia.rotulo;
-      document.getElementById('diaTitulo').textContent=dia.titulo;
-      document.getElementById('diaTema').textContent=dia.tema;
-      document.getElementById('referencia').textContent=dia.referencia;
-      document.getElementById('textoBiblico').textContent=dia.texto;
-      blocosDia.replaceChildren(...dia.blocos.map(criarBloco));
-      if (dia.assinatura) {
-        const assinatura=document.createElement('div'); assinatura.className='card';
-        assinatura.innerHTML='<div class="signature">Com carinho e cobertura pastoral,<br><strong>Pra. Juçara Soares</strong><br>Comunidade Apostólica Restaurando Almas — CARA</div><div class="motto">“Um amor que acolhe, a verdade que liberta e a graça que restaura!”</div><p style="margin-top:12px;color:#CCFF00;font-weight:800">#JUNTOSPODEMOSMAIS 🤜🤛</p>';
-        blocosDia.appendChild(assinatura);
-      }
-      document.getElementById('diaAnterior').disabled = numero === 1;
-      document.getElementById('proximoDia').disabled = !dias[numero+1];
-      document.getElementById('diaAnterior').onclick=()=>abrirDia(numero-1);
-      document.getElementById('proximoDia').onclick=()=>abrirDia(numero+1);
-      listaDias.classList.add('hidden'); conteudoDia.classList.remove('hidden');
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
-
-    document.querySelectorAll('[data-day]').forEach(btn=>btn.addEventListener('click',()=>abrirDia(Number(btn.dataset.day))));
-    document.querySelector('[data-encerramento]').addEventListener('click', abrirEncerramento);
-    document.getElementById('voltarDias').addEventListener('click',()=>{conteudoDia.classList.add('hidden');listaDias.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});});
-  </script>
 </body>
 </html>
