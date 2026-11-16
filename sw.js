@@ -1,5 +1,5 @@
 
-const CACHE_VERSION = 'cara-app-v132-central-propositos';
+const CACHE_VERSION = 'cara-app-v133-pregacao-jejum-proposito';
 
 const APP_SHELL = [
   './',
@@ -15,7 +15,6 @@ const APP_SHELL = [
   './quadro-orai-sem-cessar.png',
   './quadro-lampada-palavra.png',
   './proposito-espiritual.html',
-  './jejum-coletivo.html',
   './dica-semana.html',
   './palavra.html',
   './jornada-palavra.html',
@@ -34,6 +33,7 @@ const APP_SHELL = [
   './pregacoes.html',
   './banner-pregacoes.png',
   './pregacao-biblia.jpg',
+  './banner-jejum-proposito.png',
   './galeria.html',
   './banner-galeria.png',
   './tesouraria.html',
